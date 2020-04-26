@@ -1,0 +1,88 @@
+#Reversed the installer script at https://raw.githubusercontent.com/home-assistant/supervised-installer/master/installer.sh to develop this playbook and the docker-compose.yml
+
+- name: Configure calculon.
+  hosts: calculon
+  become: yes
+  vars:
+    packages:
+      - docker
+      - docker-compose
+      - apparmor-utils
+      - apt-transport-https
+      - avahi-daemon
+      - jq
+      - network-manager
+      - socat
+
+  tasks:
+
+    - name: Install packages.
+      apt:
+        name: "{{ packages }}"
+        state: latest
+        update_cache: yes
+
+    - name: Run dockerd (for first install, will run automatically after reboot).
+      systemd:
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: Disable ModemManager.service (can interfere with serial devices and home assistant).
+      service:
+        name: ModemManager.service
+        enabled: no
+        state: stopped
+
+    - name: Create docker-compose staging area.
+      file:
+        path: /home/docker/data
+        state: directory
+        owner: jc
+        group: jc
+        mode: u=rwx,g=rx,o=rx
+
+## Set up and enable apparmor.
+    - name: Enable apparmor for hassio 1of4 - copy systemd unit file.
+      copy:
+        src: ../calculon/etc/systemd/system/hassio-apparmor.service
+        dest: /etc/systemd/system/hassio-apparmor.service
+        owner: root
+        group: root
+        mode: u=rwx,g=rx,o=rx
+    - name: Enable apparmor for hassio 2of4 - copy hassio-apparmor executable.
+      copy:
+        src: ../calculon/usr/sbin/hassio-apparmor
+        dest: /usr/sbin/hassio-apparmor
+        owner: root
+        group: root
+        mode: u=rwx,g=rx,o=rx
+    - name: Enable apparmor for hassio 3of4 - copy hassio-apparmor profiles.
+      copy:
+        src: ../calculon/home/docker/homeassistant/data/apparmor
+        dest: /home/docker/homeassistant/data/apparmor
+        owner: jc
+        group: jc
+        mode: preserve
+    - name: Enable apparmor for hassio 4of4 - enable service.
+      systemd:
+        name: hassio-apparmor.service
+        state: started
+        enabled: yes
+
+## Set up and enable homeassistant via docker-compose.
+    - name: Enable docker services 1of3 - add user to docker group.
+      user:
+        name: jc
+        group: docker
+    - name: Enable docker services 2of3 - copy docker-compose.yml.
+      copy:
+        src: ../calculon/home/docker/docker-compose.yml
+        dest: /home/docker/docker-compose.yml
+        owner: jc
+        group: jc
+        mode: preserve
+    - name: Enable docker services 3of3 - initiate docker-compose.
+      command: 
+        chdir: /home/docker/
+        cmd: docker-compose up -d

@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+
+## The hassio_supervisor container, if configured correctly, will itself pull and manage a number of other containers:
+## - hassio_audio
+## - hassio_cli
+## - hassio_dns
+## - hassio_multicast
+## - homeassistant
+## These containers will all communicate on a "hassio" network also created by hassio_supervisor.
+  hassio_supervisor:
+    container_name: hassio_supervisor
+    image: homeassistant/aarch64-hassio-supervisor
+    privileged: true
+    security_opt:
+      - apparmor:hassio-supervisor
+      - seccomp:unconfined
+    environment:
+      - SUPERVISOR_SHARE=/home/docker/homeassistant/data #Must be absolute path.
+      - SUPERVISOR_NAME=hassio_supervisor
+      - HOMEASSISTANT_REPOSITORY=homeassistant/raspberrypi4-64-homeassistant
+    volumes:
+      - /run/docker.sock:/run/docker.sock
+      - /run/dbus:/run/dbus
+      - ./homeassistant/data:/data
+
+    restart: unless-stopped
+

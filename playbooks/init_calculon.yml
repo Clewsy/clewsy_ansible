@@ -1,0 +1,62 @@
+#These plays will take a stock raspberry pi installation, configure hostname calculon, user jc (1000:1000) and re-establish archived keys. 
+#For this init to work, sd card needs to be flashed with ubuntu and first login must be run to set a password for default user (ubuntu).
+#Default login is "ubuntu" followed by auto prompt to change password.  Set to match hosts file.
+
+- name: First play - as default user (ubuntu), create temp user and add to sudoers  Make sudo passwordless.
+  hosts: init_calculon
+  remote_user: ubuntu
+  become: yes
+  tasks:
+    - name: Create user temp.
+      user: 
+        name: temp_user
+        groups: sudo
+        password: $6$THG.TBLP.$4f5toer3b5FYPsuSfWa1VGxVT7VgfT2Y0Epx2cuCTrjwwPMrTY1ciMWCZ8ga1dfz.g/6ui2U7dD3j7ZqAhsz3/
+    - name: Enable passwordless sudo.
+      lineinfile:
+        path: /etc/sudoers
+        state: present
+        regexp: '^%sudo'
+        line: '%sudo ALL=(ALL) NOPASSWD: ALL'
+        validate: 'visudo -cf %s'
+- name: Second play - as temp user, remove default user(ubuntu), create desired user (jc, uid 1000) and add jc to sudoers.
+  hosts: init_calculon
+  remote_user: temp_user
+  become: yes
+  tasks:
+    - name: Delete user ubuntu.
+      user:
+        name: ubuntu
+        state: absent
+        remove: yes
+        force: yes
+    - name: Create user jc.
+      user:
+        name: jc
+        shell: /bin/bash
+        uid: 1000
+        groups: sudo
+        password: $6$THG.TBLP.$4f5toer3b5FYPsuSfWa1VGxVT7VgfT2Y0Epx2cuCTrjwwPMrTY1ciMWCZ8ga1dfz.g/6ui2U7dD3j7ZqAhsz3/
+- name: Third play - as ansible_user (jc) delete temp_user and set up additional configurations.
+  hosts: init_calculon
+  remote_user: jc
+  become: yes
+  tasks:
+    - name: Delete temp_user.
+      user:
+        name: temp_user
+        state: absent
+        remove: yes
+        force: yes
+    - name: Set hostname.
+      hostname:
+        name: calculon
+    - name: Copy archived configurations and scripts.
+      copy:
+        src: ../calculon/home/jc
+        dest: /home/
+        owner: jc
+        group: jc
+        mode: preserve
+
+#At this point, pi will be set up with hostname calculon, user id 1000 is jc with passwordless sudo access and .ssh config (keys/authorisations) restored. 

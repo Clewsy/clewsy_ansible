@@ -36,6 +36,7 @@
         shell: /bin/bash
         uid: 1000
         groups: sudo
+        append: yes
         password: $6$THG.TBLP.$4f5toer3b5FYPsuSfWa1VGxVT7VgfT2Y0Epx2cuCTrjwwPMrTY1ciMWCZ8ga1dfz.g/6ui2U7dD3j7ZqAhsz3/
 - name: Third play - as ansible_user (jc) delete temp_user and set up additional configurations.
   hosts: init_calculon

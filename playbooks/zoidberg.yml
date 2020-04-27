@@ -10,6 +10,14 @@
 
   tasks:
 
+    - name: Enable passwordless sudo.
+      lineinfile:
+        path: /etc/sudoers
+        state: present
+        regexp: '^%sudo'
+        line: '%sudo ALL=(ALL) NOPASSWD: ALL'
+        validate: 'visudo -cf %s'
+
     - name: Install packages.
       apt:
         name: "{{ packages }}"
@@ -21,10 +29,11 @@
         src: ../zoidberg/home/jc
         dest: /home/
 
-    - name: Add user to docker group.
+    - name: Add user to docker and www-data groups.
       user:
         name: jc
-        groups: docker
+        groups: docker,www-data
+        append: yes
 
     - name: Run dockerd (for first install, will run automatically after reboot).
       systemd:

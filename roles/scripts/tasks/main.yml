@@ -1,0 +1,17 @@
+---
+- name: Sync scripts.
+  get_url:
+    url: "{{ base_url }}{{ item }}"
+    dest: "{{ dest_dir }}{{ item }}"
+    mode: +x
+  with_items: "{{ scripts }}"
+- name: Customize stuff.sh colour theme 1 of 2 - comment default colour.
+  lineinfile:
+    path: "{{ dest_dir }}stuff.sh"
+    regexp: "#Theme colour: CYAN"
+    line: '#COL="\\\\033[00;36m"		#Theme colour: CYAN'  #Note escaped '/'s.
+- name: Customize stuff.sh colour theme 2 of 2 - set colour by host.
+  lineinfile:
+    path: "{{ dest_dir }}stuff.sh"
+    regexp: "#Theme colour: {{ colour }}"
+    line: 'COL="{{ colour_code }}"		#Theme colour: {{ colour }}'

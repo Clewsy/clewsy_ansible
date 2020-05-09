@@ -1,0 +1,6 @@
+---
+- name: Sync scripts from gitlab repo to all hosts.
+  hosts: all
+  become: no
+  roles:
+    - scripts

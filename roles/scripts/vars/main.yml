@@ -1,0 +1,3 @@
+---
+base_url: https://gitlab.com/clewsy/scripts/-/raw/master/
+dest_dir: "/home/{{ ansible_user }}/bin/"

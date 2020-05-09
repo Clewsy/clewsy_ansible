@@ -1,3 +1,0 @@
-# m h  dom mon dow   command
-0 0 * * *	crontab -l > /home/jc/.crontab.bak
-*/5 * * * *	sudo /usr/local/sbin/polly.sh

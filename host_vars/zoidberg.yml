@@ -1,4 +1,12 @@
+##########Variables for initialising fresh server.
+#Only config is user and password.
+#init_ansible_user: {{ ansible_user }}
+#init_ansible_password: {{ ansible_password }}
+
+host_name: zoidberg
+
 ansible_user: jc
+
 ansible_sudo_pass: !vault |
   $ANSIBLE_VAULT;1.1;AES256
   37666635396436643135663930613536663039656364343366376463313865366439366332303964
@@ -6,6 +14,7 @@ ansible_sudo_pass: !vault |
   32613436303463353738396339666236303936643936626466613261383062623731363732306535
   6538333037623863650a653234393966363735393237646134663333326330326561623530373834
   3937
+
 ansible_password: !vault |
   $ANSIBLE_VAULT;1.1;AES256
   35306138666465623835376532653135323339336536373832333766333933353232326638383664
@@ -13,25 +22,28 @@ ansible_password: !vault |
   63663834616566633239366137346135633231323733636562303965333534623166643033616166
   6262366533306563350a356461633135666438353637626436346164646364396366626464646530
   3535
+
+aliases:
+  - "alias ll='ls -alFh'"
+
 misc_packages:
   - ncdu
   - imagemagick
+
+misc_snaps:
+
 scripts:
   - bu.sh
   - polly.sh
   - stuff.sh
   - wami.sh
+
 colour: MAGENTA
 colour_code: "\\\\033[00;35m"
+
 bash_prompt: > 
   PS1='${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\u\[\033[01;37m\]@\[\033[01;31m\]\h\[\033[01;37m\]:\w\[\033[00m\]\$ '
 
-
-##########Variables for initialising fresh server.
-#Only config is user and password.
-#init_ansible_user: {{ ansible_user }}
-#init_ansible_password: {{ ansible_password }}
-host_name: zoidberg
 ssh_public_key: !vault |
   $ANSIBLE_VAULT;1.1;AES256
   35323035636430303665633666653132313764336462356335646661323766393766323132383930

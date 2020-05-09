@@ -3,7 +3,7 @@
   hostname:
     name: "{{ host_name }}"
 
-- name: Install packages.
+- name: Install common packages.
   apt:
     name: "{{ common_packages }}"
     state: latest
@@ -26,12 +26,13 @@
     mode: 0644
 
 - name: Set aliases.
-  copy:
-    src: files/.bash_aliases
-    dest: "/home/{{ ansible_user }}/.bash_aliases"
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
-    mode: 0644
+  lineinfile:
+    path: "/home/{{ ansible_user }}/.bash_aliases"
+    state: present
+    regexp: "{{ item }}"
+    line: "{{ item }}"
+    insertafter: EOF
+  with_items: "{{ aliases }}"
 
 - name: Set vim defaults.
   copy:

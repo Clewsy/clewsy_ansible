@@ -47,7 +47,7 @@
     owner: root
     state: directory
 
-- name: Set up ssh private key.
+- name: Set up root ssh private key.
   copy:
     content: "{{ ssh_private_key }}"
     dest: "/root/.ssh/id_rsa"
@@ -55,7 +55,7 @@
     owner: root
     group: root
 
-- name: Set up ssh public key.
+- name: Set up root ssh public key.
   copy:
     content: "{{ ssh_public_key }}"
     dest: "/root/.ssh/id_rsa.pub"
@@ -63,7 +63,7 @@
     owner: root
     group: root
 
-- name: Set up ssh config file.
+- name: Set up root ssh config file.
   copy:
     src: files/config
     dest: "/root/.ssh/config"
@@ -71,7 +71,7 @@
     owner: root
     group: root
 
-- name: Set up ssh authorized_keys file.
+- name: Set up root ssh authorized_keys file.
   copy:
     src: files/authorized_keys
     dest: "/root/.ssh/authorized_keys"

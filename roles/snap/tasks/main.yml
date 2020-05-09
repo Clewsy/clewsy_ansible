@@ -1,0 +1,6 @@
+---
+- name: Install packages for snapd.
+  apt:
+    name: snapd
+    state: latest
+    update_cache: yes

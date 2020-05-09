@@ -1,6 +1,6 @@
 ---
-- name: Configure zoidberg.
-  hosts: zoidberg
+- name: Configure farnsworth.
+  hosts: farnsworth
   become: yes
   roles:
     - init_config
@@ -10,8 +10,8 @@
     - scripts
     - snap
     - docker
-    - clews.pro
-    - polly
-    - cron_bu
+#    - clews.pro
+#    - polly
+#    - cron_bu
     - misc_packages
 

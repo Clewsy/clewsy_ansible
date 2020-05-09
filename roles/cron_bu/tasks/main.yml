@@ -1,0 +1,7 @@
+- name: Create cronjob to backup crontab.
+  cron:
+    name: "Cron Backup"
+    minute: "0"
+    hour: "0"
+    user: "{{ ansible_user }}"
+    job: "crontab -l > /home/{{ ansible_user }}/.crontab.bak"

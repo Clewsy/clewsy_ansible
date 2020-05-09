@@ -3,67 +3,14 @@
   hosts: zoidberg
   become: yes
   roles:
+    - init_config
+    - ssh
+    - sudo
+    - git
     - scripts
-#  vars:
-#    packages:
-#      - docker
-#      - docker-compose
-#      - imagemagick
-#
-#  tasks:
-#
-#    - name: Enable passwordless sudo.
-#      lineinfile:
-#        path: /etc/sudoers
-#        state: present
-#        regexp: '^%sudo'
-#        line: '%sudo ALL=(ALL) NOPASSWD: ALL'
-#        validate: 'visudo -cf %s'
-#
-#    - name: Install packages.
-#      apt:
-#        name: "{{ packages }}"
-#        state: latest
-#        update_cache: yes
-#
-#    - name: Sync user profile.
-#      copy:
-#        src: ../zoidberg/home/jc
-#        dest: /home/
-#
-#    - name: Add user to docker and www-data groups.
-#      user:
-#        name: jc
-#        groups: docker,www-data
-#        append: yes
-#
-#    - name: Run dockerd (for first install, will run automatically after reboot).
-#      systemd:
-#        name: docker
-#        state: started
-#        enabled: yes
-#
-#    - name: Create docker-compose staging area.
-#      file:
-#        path: /home/docker
-#        state: directory
-#        owner: jc
-#        group: jc
-#        mode: u=rwx,g=rx,o=rx
-#
-#    - name: Sync clews.pro repo ready for use by docker-compose.
-#      git:
-#        repo: git@gitlab.com:clewsy/clews.pro.git
-#        dest: /home/docker
-#        key_file: /home/jc/.ssh/id_rsa
-#
-#    - name: Pull docker container images listed in docker.compose.yml.
-#      command:
-#        chdir: /home/docker/
-#        cmd: docker-compose pull
-#
-#    - name: Run docker-compose.
-#      command: 
-#        chdir: /home/docker/
-#        cmd: docker-compose up -d
+    - docker
+    - clews.pro
+    - polly
+    - cron_bu
+    - misc_packages
 

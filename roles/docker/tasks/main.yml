@@ -1,0 +1,27 @@
+---
+- name: Install packages for docker.
+  apt:
+    name: "{{ docker_packages }}"
+    state: latest
+    update_cache: yes
+
+- name: Add user to docker and www-data groups.
+  user:
+    name: "{{ ansible_user }}"
+    groups: docker,www-data
+    append: yes
+
+- name: Create docker-compose staging area.
+  file:
+    path: /home/docker
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: u=rwx,g=rx,o=rx
+
+- name: Create alias dc for docker-compose.
+  lineinfile:
+    path: /home/{{ ansible_user }}/.bash_aliases
+    line: "alias dc='docker-compose'" 
+    state: present
+    insertafter: EOF

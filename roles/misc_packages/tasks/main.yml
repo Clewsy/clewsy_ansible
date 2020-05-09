@@ -1,0 +1,6 @@
+---
+- name: Install miscellaneous, host-specific packages.
+  apt:
+    name: "{{ misc_packages }}"
+    state: latest
+    update_cache: yes

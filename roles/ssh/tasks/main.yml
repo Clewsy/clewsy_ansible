@@ -1,0 +1,80 @@
+---
+########Part 1 - set up user .ssh
+- name: Ensure .ssh folder exists in home directory.
+  file:
+    dest: "/home/{{ ansible_user }}/.ssh"
+    mode: 0700
+    owner: "{{ ansible_user }}"
+    state: directory
+
+- name: Set up ssh private key.
+  copy:
+    content: "{{ ssh_private_key }}"
+    dest: "/home/{{ ansible_user }}/.ssh/id_rsa"
+    mode: 0600
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+
+- name: Set up ssh public key.
+  copy:
+    content: "{{ ssh_public_key }}"
+    dest: "/home/{{ ansible_user }}/.ssh/id_rsa.pub"
+    mode: 0644
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+
+- name: Set up ssh config file.
+  copy:
+    src: files/config
+    dest: "/home/{{ ansible_user }}/.ssh/config"
+    mode: 0644
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+
+- name: Set up ssh authorized_keys file.
+  copy:
+    src: files/authorized_keys
+    dest: "/home/{{ ansible_user }}/.ssh/authorized_keys"
+    mode: 0600
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+
+########Part 2 - set up root .ssh (duplicate of user).
+- name: Ensure .ssh folder exists in root home directory.
+  file:
+    dest: "/root/.ssh"
+    mode: 0700
+    owner: root
+    state: directory
+
+- name: Set up ssh private key.
+  copy:
+    content: "{{ ssh_private_key }}"
+    dest: "/root/.ssh/id_rsa"
+    mode: 0600
+    owner: root
+    group: root
+
+- name: Set up ssh public key.
+  copy:
+    content: "{{ ssh_public_key }}"
+    dest: "/root/.ssh/id_rsa.pub"
+    mode: 0644
+    owner: root
+    group: root
+
+- name: Set up ssh config file.
+  copy:
+    src: files/config
+    dest: "/root/.ssh/config"
+    mode: 0644
+    owner: root
+    group: root
+
+- name: Set up ssh authorized_keys file.
+  copy:
+    src: files/authorized_keys
+    dest: "/root/.ssh/authorized_keys"
+    mode: 0600
+    owner: root
+    group: root

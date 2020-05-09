@@ -1,0 +1,29 @@
+---
+- name: Copy polly.sh script for root use.
+  get_url:
+    url: "{{ base_url }}polly.sh"
+    dest: "/usr/local/sbin/polly.sh"
+    mode: +x
+
+- name: Copy blink1-tool for user use.
+  copy:
+    src: files/blink1-tool
+    dest: "/home/{{ ansible_user }}/bin/blink1-tool"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: 0755
+
+- name: Copy blink1-tool for root use.
+  copy:
+    src: files/blink1-tool
+    dest: /usr/local/sbin/blink1-tool
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Create cronjob for polly.sh poll jobs.
+  cron:
+    name: "polly.sh"
+    minute: "*/5"
+    user: "{{ ansible_user }}"
+    job: "sudo /usr/local/sbin/polly.sh"

@@ -1,0 +1,42 @@
+---
+- name: Set hostname. #Depend on DHCP to initiate server by host name before this is set.
+  hostname:
+    name: "{{ host_name }}"
+
+- name: Install packages.
+  apt:
+    name: "{{ common_packages }}"
+    state: latest
+    update_cache: yes
+
+- name: Set motd.
+  copy:
+    src: "{{ cache_root }}/{{ host_name }}/etc/motd"
+    dest: /etc/motd
+    mode: 0644
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+
+- name: Set .bashrc.
+  template:
+    src: templates/.bashrc
+    dest: "/home/{{ ansible_user }}/.bashrc"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: 0644
+
+- name: Set aliases.
+  copy:
+    src: files/.bash_aliases
+    dest: "/home/{{ ansible_user }}/.bash_aliases"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: 0644
+
+- name: Set vim defaults.
+  copy:
+    src: files/.vimrc
+    dest: "/home/{{ ansible_user }}/.vimrc"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: 0664

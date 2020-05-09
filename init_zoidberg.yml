@@ -1,0 +1,34 @@
+---
+- name: Configure zoidberg.
+  hosts: zoidberg
+  become: yes
+  roles:
+    - init_config
+    - ssh
+    - sudo
+
+#  tasks:
+#
+#    - name: Sync user profile.
+#      copy:
+#        src: ../zoidberg/home/jc
+#        dest: /home/
+
+#
+#
+#    - name: Sync clews.pro repo ready for use by docker-compose.
+#      git:
+#        repo: git@gitlab.com:clewsy/clews.pro.git
+#        dest: /home/docker
+#        key_file: /home/jc/.ssh/id_rsa
+#
+#    - name: Pull docker container images listed in docker.compose.yml.
+#      command:
+#        chdir: /home/docker/
+#        cmd: docker-compose pull
+#
+#    - name: Run docker-compose.
+#      command: 
+#        chdir: /home/docker/
+#        cmd: docker-compose up -d
+

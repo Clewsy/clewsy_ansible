@@ -1,0 +1,4 @@
+---
+clews_docker_backup_user: b4t
+clews_docker_backup_host: zapp
+clews_docker_backup_dir: /export/cl0ud/docker_zoidberg/

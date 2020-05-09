@@ -1,0 +1,39 @@
+---
+- name: Sync data from backup if it doesn't exist on host (pull to destination).
+  synchronize:
+    set_remote_user: no #Use .ssh/config to define user.  Remember, rsync command will be run as root on delegate.
+    mode: push
+    rsync_opts: "--update"
+    src: /export/cl0ud/docker_zoidberg/docker
+    dest: /home/
+  delegate_to: "zapp"
+
+- name: Sync clews.pro repo ready for use by docker-compose.
+  git:
+    repo: git@gitlab.com:clewsy/clews.pro.git
+    dest: /home/docker
+    key_file: /home/jc/.ssh/id_rsa
+
+- name: Pull docker container images listed in docker.compose.yml.
+  command:
+    chdir: /home/docker/
+    cmd: docker-compose pull
+
+- name: Create clews.service unit file.
+  get_url:
+    url: "https://gitlab.com/clewsy/clews.pro/-/raw/master/clews.service"
+    dest: "/etc/systemd/system/clews.service"
+    mode: 0644
+    owner: root
+    group: root
+
+- name: Enable clews.service.
+  service:
+    name: clews
+    enabled: yes
+
+- name: Start clews.service (will spin up containers if not already up).
+  service:
+    name: clews
+    state: started
+

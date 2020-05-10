@@ -10,7 +10,7 @@
   get_url:
     url: "{{ base_url }}{{ item }}"
     dest: "{{ dest_dir }}{{ item }}"
-    mode: +x
+    mode: 0755
   with_items: "{{ scripts }}"
 
 - name: Customize stuff.sh colour theme 1 of 2 - comment default colour.

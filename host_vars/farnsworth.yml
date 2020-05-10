@@ -30,8 +30,6 @@ misc_packages:
   - ncdu
   - imagemagick
   - kicad
-  - guake
-  - terminator
   - conky
   - iperf
 

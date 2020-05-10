@@ -1,4 +1,11 @@
 ---
+- name: Ensure bin directory within user's home directory exists.
+  file:
+    dest: "/home/{{ ansible_user }}/bin"
+    mode: 0755
+    owner: "{{ ansible_user }}"
+    state: directory
+
 - name: Sync scripts.
   get_url:
     url: "{{ base_url }}{{ item }}"

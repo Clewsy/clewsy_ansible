@@ -32,6 +32,7 @@
     regexp: "{{ item }}"
     line: "{{ item }}"
     insertafter: EOF
+    create: yes
   with_items: "{{ aliases }}"
 
 - name: Set vim defaults.

@@ -1,4 +1,5 @@
 ---
-clews_docker_backup_user: b4t
+clews_repo: 'https://gitlab.com/clewsy/clews.pro.git'
+clews_unit_file: 'https://gitlab.com/clewsy/clews.pro/-/raw/master/clews.service'
 clews_docker_backup_host: zapp
-clews_docker_backup_dir: /export/cl0ud/docker_zoidberg/
+clews_docker_backup_dir: /export/cl0ud/docker_zoidberg/docker

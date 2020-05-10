@@ -39,7 +39,7 @@ scripts:
   - wami.sh
 
 colour: MAGENTA
-colour_code: "\\\\033[00;35m"
+colour_code: '\\033[00;35m'
 
 bash_prompt: > 
   PS1='${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\u\[\033[01;37m\]@\[\033[01;31m\]\h\[\033[01;37m\]:\w\[\033[00m\]\$ '

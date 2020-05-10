@@ -3,4 +3,6 @@ common_packages:
   - rsync
   - vim
 
-cache_root: "../../file_cache/"
+cache_root: '../../file_cache/'
+
+git_repo_root: 'https://gitlab.com/clewsy'

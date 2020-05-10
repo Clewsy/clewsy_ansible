@@ -3,16 +3,17 @@
   hosts: farnsworth
   become: yes
   roles:
-    - init_config
-    - ssh
-    - sudo
-    - git
-    - scripts
-    - snap
-    - docker
-#    - clews.pro
-#    - polly
-#    - cron_bu
-    - misc_packages
+#    - init_config
+#    - ssh
+#    - sudo
+#    - git
+#    - scripts
+#    - snap
+#    - docker
+##    - clews.pro
+##    - polly
+##    - cron_bu
+#    - misc_packages
     - conky
+    - fonts
 

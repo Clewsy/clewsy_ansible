@@ -1,0 +1,8 @@
+- name: Install custom fonts.
+  get_url:
+    url: "{{ item.font_source }}"
+    dest: "/usr/share/fonts/{{ item.font_name }}"
+    owner: root
+    group: root
+    mode: 0666
+  with_items: "{{ fonts }}"

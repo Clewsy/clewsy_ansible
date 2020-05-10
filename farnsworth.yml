@@ -10,7 +10,7 @@
     - scripts
     - snap
     - docker
-    - clews.pro
+#    - clews.pro
 #    - polly
 #    - cron_bu
     - misc_packages

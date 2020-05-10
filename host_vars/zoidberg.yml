@@ -27,6 +27,7 @@ aliases:
   - "alias ll='ls -alFh'"
 
 misc_packages:
+  - iperf
   - ncdu
   - imagemagick
 

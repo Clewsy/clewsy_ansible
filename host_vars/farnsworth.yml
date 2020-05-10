@@ -33,6 +33,7 @@ misc_packages:
   - guake
   - terminator
   - conky
+  - iperf
 
 misc_snaps:
   - gimp

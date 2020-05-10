@@ -20,8 +20,9 @@
     cmd: docker-compose pull
 
 - name: Kill openvpn if it is running (will otherwise interfere with running web services).
-  shell: pkill openvpn
-  ignore_errors: yes
+  command: pkill openvpn #Returns 1 if openvpn not running.
+  register: command_result
+  failed_when: command_result.rc > 1
 
 - name: Create clews.service unit file.
   get_url:

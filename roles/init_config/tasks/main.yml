@@ -2,6 +2,7 @@
 - name: Set hostname. #Depend on DHCP to initiate server by host name before this is set.
   hostname:
     name: "{{ host_name }}"
+    use: systemd
 
 - name: Install common packages.
   apt:

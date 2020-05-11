@@ -1,0 +1,21 @@
+---
+- name: Configure nibbler.
+  hosts: nibbler
+  become: yes
+  roles:
+    - init_config
+    - ssh
+    - sudo
+    - git
+    - scripts
+    - snap
+#    - docker
+#    - clews.pro
+#    - polly
+#    - cron_bu
+    - misc_packages
+    - conky
+    - fonts
+    - terminator
+    - guake
+    - openvpn

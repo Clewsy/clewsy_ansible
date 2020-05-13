@@ -5,7 +5,8 @@ common_packages:
 
 cache_root: '../../file_cache/'
 
-git_repo_root: 'https://gitlab.com/clewsy'
+git_repo_root_https: 'https://gitlab.com/clewsy'
+git_repo_root_ssh: 'git@gitlab.com:clewsy'
 
 
 #SHELL_COL_BOLD_BLACK: '\[\033[01;30m\]'

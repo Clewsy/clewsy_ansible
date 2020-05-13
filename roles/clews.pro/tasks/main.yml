@@ -12,6 +12,7 @@
   git:
     repo: "{{ clews_repo }}"
     dest: /home/docker
+    accept_hostkey: yes
     key_file: "/home/{{ ansible_user }}/.ssh/id_rsa"
 
 - name: Pull docker container images listed in docker.compose.yml.

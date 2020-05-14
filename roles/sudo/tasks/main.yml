@@ -1,5 +1,5 @@
 ---
-- name: Install sudo package.
+- name: Install sudo.
   apt:
     name: sudo
     state: latest

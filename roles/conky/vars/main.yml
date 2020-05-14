@@ -1,2 +1,2 @@
 ---
-conky_config_url: "{{ git_repo_root }}/conky_configs/-/raw/master/conky_{{ host_name }}/.conkyrc"
+conky_config_url: "{{ git_repo_root_https }}/conky_configs/-/raw/master/conky_{{ host_name }}/.conkyrc"

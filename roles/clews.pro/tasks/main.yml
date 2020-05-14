@@ -1,4 +1,25 @@
 ---
+- name: Sync clews.pro repo ready for use by docker-compose.
+  git:
+    repo: "{{ clews_repo }}"
+    dest: /home/docker
+    accept_hostkey: yes
+    key_file: "/home/{{ ansible_user }}/.ssh/id_rsa"
+
+- name: Determine if data is already present or needs to be restored from backup.
+  stat:
+    path: /home/docker/.env #.env is gitignored so will not be present on fresh system.
+  register: data
+
+- name: Change owner of any files updated from git repo (from root to user).
+  file:
+    recurse: yes
+    path: /home/docker
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+  when: data.stat.exists == false #Only needs fixing if cloned to fresh system as owner will be root.
+
 - name: Sync data from backup if it doesn't exist on host (pull to destination).
   synchronize:
     set_remote_user: no #Use .ssh/config to define user.  Remember, rsync command will be run as root on delegate.
@@ -7,13 +28,7 @@
     src: "{{ clews_docker_backup_dir }}"  ##Location of docker dir.
     dest: /home/  ##Where to put docker dir.
   delegate_to: "{{ clews_docker_backup_host }}"
-
-- name: Sync clews.pro repo ready for use by docker-compose.
-  git:
-    repo: "{{ clews_repo }}"
-    dest: /home/docker
-    accept_hostkey: yes
-    key_file: "/home/{{ ansible_user }}/.ssh/id_rsa"
+  when: data.stat.exists == false #Only needs restoring to fresh system (i.e. .env not present).
 
 - name: Pull docker container images listed in docker.compose.yml.
   command:

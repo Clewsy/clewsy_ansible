@@ -4,6 +4,10 @@
     name: "{{ host_name }}"
     use: systemd
 
+- name: Set local timezone.
+  timezone:
+    name: "{{ local_tz }}"
+
 - name: Update apt cache (just once for all roles and tasks).
   apt:
     update_cache: yes
@@ -29,9 +33,19 @@
     group: "{{ ansible_user }}"
     mode: 0644
 
-- name: Set aliases.
+- name: Set user aliases.
   lineinfile:
     path: "/home/{{ ansible_user }}/.bash_aliases"
+    state: present
+    regexp: "{{ item }}"
+    line: "{{ item }}"
+    insertafter: EOF
+    create: yes
+  with_items: "{{ aliases }}"
+
+- name: Set root aliases.
+  lineinfile:
+    path: "/root/.bash_aliases"
     state: present
     regexp: "{{ item }}"
     line: "{{ item }}"

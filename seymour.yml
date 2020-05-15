@@ -14,7 +14,6 @@
 #    - snap
 #    - docker
 #    - clews.pro
-#    - polly
+    - polly
     - misc_packages
     - mounts
-

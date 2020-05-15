@@ -2,14 +2,6 @@ host_name: seymour
 
 ansible_user: b4t
 
-setup_sudo_pass: !vault |
-  $ANSIBLE_VAULT;1.1;AES256
-  62393163643139346339666531383734303132373333666331313765356161336138326630343432
-  3662663662323533353830623830323436386265373262360a396561656162653537373965306638
-  66666666383439653634363962303062623536643031303936313132343534643230383364313130
-  6161383365343665620a343561326163666164326532373437643736656462353333386430383063
-  3864
-
 setup_password: !vault |
   $ANSIBLE_VAULT;1.1;AES256
   34323335613037643865613735393538326666343431656233323563393532306664666132326465
@@ -17,6 +9,9 @@ setup_password: !vault |
   30356661356433613033323863643331653164323761373436303931666362326139356533643332
   3230646638366561370a373939346165303765303231613830633934626638363937303562613936
   3537
+
+local_tz: 'Australia/Melbourne'
+
 
 aliases:
   - "alias ll='ls -alFh'"
@@ -33,7 +28,6 @@ scripts:
   - apt_all.sh
   - ball.sh
   - bu.sh
-  - polly.sh
   - pong.sh
   - stuff.sh
   - vpn.sh
@@ -52,6 +46,7 @@ prompt_prompt_colour: "{{ SHELL_COL_BOLD_WHITE }}"
 bash_prompt: PS1="${debian_chroot:+($debian_chroot)}\[\033[{{ prompt_user_colour }}\]\u\[\033[{{ prompt_at_colour }}\]@\[\033[{{ prompt_host_colour }}\]\h\[\033[{{ prompt_colon_colour }}\]:\[\033[{{ prompt_dir_colour }}\]\w\[\033[{{ prompt_prompt_colour }}\]\$ \[\033[{{ SHELL_COL_RESET }}\]"
 
 mounts:
+  - { mount_source: /dev/mmcblk0p1, mount_path: '/media/cache', mount_fstype: 'auto', mount_opts: "auto,rw,async,user,uid={{ ansible_user }},gid={{ ansible_user }},nofail" }
 
 nfs_mounts:
   - { mount_source: 'zapp:/export/data', mount_path: '/mnt/zapp/data' }

@@ -7,7 +7,7 @@
 
 - name: Copy blink1-tool for user use.
   copy:
-    src: files/blink1-tool
+    src: "files/blink1-tool_{{ ansible_architecture }}"
     dest: "/home/{{ ansible_user }}/bin/blink1-tool"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
@@ -15,7 +15,7 @@
 
 - name: Copy blink1-tool for root use.
   copy:
-    src: files/blink1-tool
+    src: "files/blink1-tool_{{ ansible_architecture }}"
     dest: /usr/local/sbin/blink1-tool
     owner: root
     group: root
@@ -27,3 +27,4 @@
     minute: "*/5"
     user: "{{ ansible_user }}"
     job: "sudo /usr/local/sbin/polly.sh"
+  notify: Restart cron.

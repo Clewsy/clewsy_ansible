@@ -7,14 +7,6 @@ host_name: farnsworth
 
 ansible_user: jc
 
-setup_sudo_pass: !vault |
-  $ANSIBLE_VAULT;1.1;AES256
-  62636237363233303563346662343365333832623066643262363833653862373337353462316133
-  6665653035303165336264336139343334346365356538660a666335623263373765396130623661
-  39376336353436343035313934616238383164333433303035366432383666343732393262376632
-  3131363236633233360a643265326265393537636339643561356338393565653563353332343165
-  6233
-
 setup_password: !vault |
   $ANSIBLE_VAULT;1.1;AES256
   36636234303137383232346466376661383561626137643062396132373231646634316533333763
@@ -22,6 +14,8 @@ setup_password: !vault |
   37646366363163393438663435653534323764313031353163373731636463343533313563383333
   3961663033373062350a306535623630373963646235623563303564383963323839303163306436
   3331
+
+local_tz: 'Australia/Melbourne'
 
 aliases:
   - "alias ll='ls -alFh'"
@@ -44,7 +38,6 @@ scripts:
   - apt_all.sh
   - ball.sh
   - bu.sh
-  - polly.sh
   - pong.sh
   - stuff.sh
   - vpn.sh
@@ -72,6 +65,7 @@ nfs_mounts:
   - { mount_source: 'zapp:/export/music_videos', mount_path: '/mnt/zapp/music_videos' }
   - { mount_source: 'zapp:/export/tv', mount_path: '/mnt/zapp/tv' }
   - { mount_source: 'zapp:/export/cl0ud', mount_path: '/mnt/zapp/cl0ud' }
+  - { mount_source: 'zapp:/export/m0n0l1th', mount_path: '/mnt/zapp/m0n0l1th' }
 
 ssh_public_key: !vault |
   $ANSIBLE_VAULT;1.1;AES256

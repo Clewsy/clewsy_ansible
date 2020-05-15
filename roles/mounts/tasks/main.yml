@@ -2,9 +2,9 @@
 - name: Ensure mount desitnation directories exist.
   file:
     dest: "{{ item.mount_path }}"
-    mode: 0755
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
+#    mode: 0755
+#    owner: "{{ ansible_user }}"
+#    group: "{{ ansible_user }}"
     state: directory
   with_items: "{{ mounts }}"
   when: mounts.0 is defined
@@ -28,9 +28,9 @@
 - name: Ensure nfs mount desitnation directories exist.
   file:
     dest: "{{ item.mount_path }}"
-    mode: 0755
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
+#    mode: 0755
+#    owner: "{{ ansible_user }}"
+#    group: "{{ ansible_user }}"
     state: directory
   with_items: "{{ nfs_mounts }}"
   when: nfs_mounts.0 is defined

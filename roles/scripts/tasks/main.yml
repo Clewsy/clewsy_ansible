@@ -17,10 +17,10 @@
   lineinfile:
     path: "{{ dest_dir }}stuff.sh"
     regexp: "#Theme colour: CYAN"
-    line: '#COL="\\033[00;36m"		#Theme colour: CYAN'  #Note escaped '/'s.
+    line: '#COL="\\033[00;36m"			#Theme colour: CYAN'
     
-- name: Customize stuff.sh colour theme 2 of 2 - set colour by host.
+- name: Customize stuff.sh colour theme 2 of 2 - set colour by host ({{ theme_colour }}).
   lineinfile:
     path: "{{ dest_dir }}stuff.sh"
     regexp: "#Theme colour: {{ theme_colour }}"
-    line: 'COL="\\033[{{ theme_colour_code }}"		#Theme colour: {{ theme_colour }}'
+    line: 'COL="\\033[{{ theme_colour_code }}"			#Theme colour: {{ theme_colour }}'

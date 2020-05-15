@@ -3,7 +3,6 @@
   apt:
     name: "{{ docker_packages }}"
     state: latest
-    update_cache: yes
 
 - name: Add user to docker and www-data groups.
   user:

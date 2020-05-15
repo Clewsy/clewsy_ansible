@@ -1,9 +1,8 @@
 ---
-- name: Install sudo.
-  apt:
-    name: sudo
-    state: latest
-    update_cache: yes
+#- name: Install sudo.
+#  apt:
+#    name: sudo
+#    state: latest
 
 - name: Enable passwordless sudo.
   lineinfile:
@@ -13,8 +12,8 @@
     line: '%sudo ALL=(ALL) NOPASSWD: ALL'
     validate: 'visudo -cf %s'
 
-- name: Add user to sudo group.
-  user:
-    name: "{{ ansible_user }}"
-    groups: sudo
-    append: yes
+#- name: Add user to sudo group.
+#  user:
+#    name: "{{ ansible_user }}"
+#    groups: sudo
+#    append: yes

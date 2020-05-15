@@ -1,17 +1,8 @@
 ---
 - name: Install guake.
   apt:
-    name: terminator
+    name: guake
     state: latest
-    update_cache: yes
-
-- name: Copy terminator configuration file.
-  copy:
-    src: "{{ cache_root }}{{ host_name }}/home/{{ ansible_user }}/.config/terminator/config"
-    dest: "/home/{{ ansible_user }}/.config/terminator/config"
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
-    mode: 0664
 
 - name: Ensure autostart directory exists.
   file:

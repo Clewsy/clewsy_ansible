@@ -1,0 +1,47 @@
+---
+- name: Ensure mount desitnation directories exist.
+  file:
+    dest: "{{ item.mount_path }}"
+    mode: 0755
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    state: directory
+  with_items: "{{ mounts }}"
+  when: mounts.0 is defined
+
+- name: Add additional mounts to /etc/fstab.
+  mount:
+    path: "{{ item.mount_path }}"
+    src: "{{ item.mount_source }}"
+    fstype: "{{ item.mount_fstype }}"
+    opts: "{{ item.mount_opts }}"
+    state: mounted
+  with_items: "{{ mounts }}"
+  when: mounts.0 is defined
+
+- name: Install nfs-common (required for nfs client).
+  apt:
+    name: nfs-common
+    state: latest
+  when: nfs_mounts.0 is defined
+
+- name: Ensure nfs mount desitnation directories exist.
+  file:
+    dest: "{{ item.mount_path }}"
+    mode: 0755
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    state: directory
+  with_items: "{{ nfs_mounts }}"
+  when: nfs_mounts.0 is defined
+
+- name: Add nfs mounts to /etc/fstab.
+  mount:
+    path: "{{ item.mount_path }}"
+    src: "{{ item.mount_source }}"
+    fstype: nfs
+    opts: rw,user,intr,bg
+    state: mounted
+  with_items: "{{ nfs_mounts }}"
+  when: nfs_mounts.0 is defined
+

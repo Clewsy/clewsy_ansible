@@ -1,7 +1,6 @@
 ---
 common_packages:
   - rsync
-  - vim
 
 cache_root: '../../file_cache/'
 

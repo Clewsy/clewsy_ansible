@@ -3,7 +3,6 @@
   apt:
     name: git
     state: latest
-    update_cache: yes
 
 - name: Set git user defaults (.gitconfig).
   copy:

@@ -4,15 +4,18 @@
     name: "{{ host_name }}"
     use: systemd
 
+- name: Update apt cache (just once for all roles and tasks).
+  apt:
+    update_cache: yes
+
 - name: Install common packages.
   apt:
     name: "{{ common_packages }}"
     state: latest
-    update_cache: yes
 
 - name: Set motd.
   copy:
-    src: "{{ cache_root }}/{{ host_name }}/etc/motd"
+    src: "files/motd/motd_{{ host_name }}"
     dest: /etc/motd
     mode: 0644
     owner: "{{ ansible_user }}"
@@ -35,11 +38,3 @@
     insertafter: EOF
     create: yes
   with_items: "{{ aliases }}"
-
-- name: Set vim defaults.
-  copy:
-    src: files/.vimrc
-    dest: "/home/{{ ansible_user }}/.vimrc"
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
-    mode: 0664

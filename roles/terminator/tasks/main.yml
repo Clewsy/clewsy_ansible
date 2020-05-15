@@ -3,7 +3,6 @@
   apt:
     name: terminator
     state: latest
-    update_cache: yes
 
 - name: Copy terminator configuration file.
   copy:

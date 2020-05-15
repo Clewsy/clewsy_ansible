@@ -3,7 +3,6 @@
   apt:
     name: conky
     state: latest
-    update_cache: yes
 
 - name: Copy conky configuration file.
   get_url:

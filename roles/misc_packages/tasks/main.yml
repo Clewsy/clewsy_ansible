@@ -3,7 +3,6 @@
   apt:
     name: "{{ misc_packages }}"
     state: latest
-    update_cache: yes
   when: misc_packages.0 is defined
 
 - name: Install miscellaneous, host-specific snap packages.

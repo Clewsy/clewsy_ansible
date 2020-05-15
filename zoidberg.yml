@@ -5,13 +5,15 @@
   roles:
     - init_config
     - ssh
+    - ssh_secure
     - sudo
+    - vim
     - git
     - scripts
     - snap
     - docker
     - clews.pro
     - polly
-    - cron_bu
     - misc_packages
+    - mounts
 

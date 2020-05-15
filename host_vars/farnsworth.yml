@@ -62,6 +62,17 @@ prompt_dir_colour: "{{ SHELL_COL_WHITE }}"
 prompt_prompt_colour: "{{ SHELL_COL_BOLD_WHITE }}"
 bash_prompt: PS1="${debian_chroot:+($debian_chroot)}\[\033[{{ prompt_user_colour }}\]\u\[\033[{{ prompt_at_colour }}\]@\[\033[{{ prompt_host_colour }}\]\h\[\033[{{ prompt_colon_colour }}\]:\[\033[{{ prompt_dir_colour }}\]\w\[\033[{{ prompt_prompt_colour }}\]\$ \[\033[{{ SHELL_COL_RESET }}\]"
 
+mounts:
+  - { mount_source: UUID=EA9EFDBF9EFD847B, mount_path: '/mnt/windoze', mount_fstype: 'auto', mount_opts: 'ro,nosuid,nodev,nofail,x-gvfs-show' }
+
+nfs_mounts:
+  - { mount_source: 'zapp:/export/data', mount_path: '/mnt/zapp/data' }
+  - { mount_source: 'zapp:/export/movies', mount_path: '/mnt/zapp/movies' }
+  - { mount_source: 'zapp:/export/mp3s', mount_path: '/mnt/zapp/mp3s' }
+  - { mount_source: 'zapp:/export/music_videos', mount_path: '/mnt/zapp/music_videos' }
+  - { mount_source: 'zapp:/export/tv', mount_path: '/mnt/zapp/tv' }
+  - { mount_source: 'zapp:/export/cl0ud', mount_path: '/mnt/zapp/cl0ud' }
+
 ssh_public_key: !vault |
   $ANSIBLE_VAULT;1.1;AES256
   35646633303161303533643535383136653332616130653566303762656465666434653765663964

@@ -1,0 +1,22 @@
+---
+- name: Ensure bin directory within user's home directory exists.
+  file:
+    dest: "/home/{{ ansible_user }}/bin"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: 0755
+    state: directory
+
+- name: Copy terbling.sh script to user's bin directory.
+  get_url:
+    url: "{{ terbling_script_url }}"
+    dest: "/home/{{ ansible_user }}/bin/terbling.sh"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: 0755
+
+- name: Customize terbling.sh colour theme - desired colour for {{ host_name }} is {{ theme_colour }}.
+  lineinfile:
+    path: "/home/{{ ansible_user }}/bin/terbling.sh"
+    regexp: '^COL='
+    line: "COL=\"${{ '{' }}{{ theme_colour }}{{ '}' }}\"" #Use jinja expression to "escape" braces.

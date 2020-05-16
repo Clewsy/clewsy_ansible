@@ -6,7 +6,7 @@
 
 - name: Copy terminator configuration file.
   copy:
-    src: "{{ cache_root }}{{ host_name }}/home/{{ ansible_user }}/.config/terminator/config"
+    src: "files/config_{{ host_name }}"
     dest: "/home/{{ ansible_user }}/.config/terminator/config"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"

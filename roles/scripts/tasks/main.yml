@@ -2,14 +2,17 @@
 - name: Ensure bin directory within user's home directory exists.
   file:
     dest: "/home/{{ ansible_user }}/bin"
-    mode: 0755
     owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: 0755
     state: directory
 
 - name: Sync scripts.
   get_url:
     url: "{{ base_url }}{{ item }}"
     dest: "{{ dest_dir }}{{ item }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
     mode: 0755
   with_items: "{{ scripts }}"
 

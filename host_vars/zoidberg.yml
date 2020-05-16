@@ -32,6 +32,7 @@ misc_classic_snaps:
 scripts:
 #  - bu.sh #add bu role instead.
 #  - polly.sh #Use polly role instead.
+#  - pong.sh #add pong role instead
   - stuff.sh
   - wami.sh
 

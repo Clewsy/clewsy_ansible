@@ -15,6 +15,7 @@
 #    - docker
 #    - clews.pro
     - polly
+    - pong
     - bu
     - ball
     - misc_packages

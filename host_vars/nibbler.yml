@@ -42,7 +42,7 @@ scripts:
   - apt_all.sh
 #  - ball.sh #add ball role instead.
 #  - bu.sh #add bu role instead.
-  - pong.sh
+#  - pong.sh #add pong role instead
   - stuff.sh
 #  - vpn.sh #add openvpn role instead
   - wami.sh

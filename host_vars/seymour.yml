@@ -30,7 +30,7 @@ scripts:
 #  - bu.sh #add bu role instead.
   - p0wer_switch.sh
 #  - polly.sh #Use polly role instead.
-  - pong.sh
+#  - pong.sh #add pong role instead
   - stuff.sh
 #  - vpn.sh #Use openvpn role insetad.
   - wami.sh

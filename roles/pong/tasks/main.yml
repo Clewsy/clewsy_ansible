@@ -1,0 +1,24 @@
+---
+- name: Ensure bin directory exists within user's home directory.
+  file:
+    dest: "/home/{{ ansible_user }}/bin"
+    mode: 0755
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    state: directory
+
+- name: Copy pong.sh script to user's bin directory.
+  get_url:
+    url: "{{ pong_script_url }}"
+    dest: "/home/{{ ansible_user }}/bin/pong.sh"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: 0755
+
+- name: Copy default lisy of hosts to /home/{{ ansible_user }}/bin/my_hosts.list.
+  copy:
+    src: "files/my_hosts.list"
+    dest: "/home/{{ ansible_user }}/bin/my_hosts.list"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: 0644

@@ -1,0 +1,16 @@
+---
+- name: Copy desktop profile image to /var/lib/AccountsService/icons/{{ ansible_user }}.
+  copy:
+    src: "files/{{ ansible_user }}"
+    dest: "/var/lib/AccountsService/icons/{{ ansible_user }}"
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Copy desktop profile image to /home/{{ ansible_user }}/.face.
+  copy:
+    src: "files/{{ ansible_user }}"
+    dest: "/home/{{ ansible_user }}/.face"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: 0644

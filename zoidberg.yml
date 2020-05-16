@@ -27,4 +27,5 @@
 #    - guake
 #    - wireguard
     - mounts
+#    - gnome_config
 

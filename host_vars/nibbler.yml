@@ -19,10 +19,10 @@ local_tz: 'Australia/Melbourne'
 
 aliases:
   - "alias ll='ls -alFh'"
-  - "alias clewsup='sudo wg-quick up wg0'"
-  - "alias clewsdn='sudo wg-quick down wg0'"
-  - "alias b4tup='sudo wg-quick up wg1'"
-  - "alias b4tdn='sudo wg-quick down wg1'"
+#  - "alias clewsup='sudo wg-quick up wg0'"
+#  - "alias clewsdn='sudo wg-quick down wg0'"
+#  - "alias b4tup='sudo wg-quick up wg1'"
+#  - "alias b4tdn='sudo wg-quick down wg1'"
   - "alias ll='ls -alh'"
   - "alias stream_code_radio='mpc clear && mpc add https://coderadio-relay.freecodecamp.org/radio/8010/radio.mp3 && mpc play'"
   - "alias stream_triple_j='mpc clear && mpc add http://live-radio01.mediahubaustralia.com/2TJW/aac/ && mpc play'"

@@ -24,6 +24,9 @@
     - wami
     - whodis
     - misc_packages
+#    - terminator
+#    - guake
+#    - wireguard
     - mounts
 
   # Run tasks specific only to seymour

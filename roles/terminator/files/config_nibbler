@@ -38,7 +38,7 @@
       order = 0
       profile = default
       uuid = bdcf2385-f006-4ef8-8146-93c1e418aaca
-      command = bash -ic "ssh b4t@seymour" || bash -ic "ssh b4t@clews.pro"; bash
+      command = ssh b4t@seymour || ssh b4t@clews.pro; bash
     [[[terminal3]]]
       type = Terminal
       parent = child2

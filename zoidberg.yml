@@ -23,5 +23,8 @@
     - wami
 #    - whodis
     - misc_packages
+#    - terminator
+#    - guake
+#    - wireguard
     - mounts
 

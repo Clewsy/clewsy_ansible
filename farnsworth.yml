@@ -9,7 +9,6 @@
     - sudo
     - vim
     - git
-    - scripts
     - snap
     - docker
 #    - clews.pro
@@ -19,6 +18,8 @@
 #    - ball
 #    - apt_all
     - stuff
+    - wami
+    - whodis
     - misc_packages
     - conky
     - fonts

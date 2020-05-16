@@ -41,8 +41,8 @@ scripts:
 #  - pong.sh #add pong role instead
 #  - stuff.sh #add stuff role insetad
 #  - vpn.sh #add openvpn role instead.
-  - wami.sh
-  - whodis.sh
+#  - wami.sh
+#  - whodis.sh
 
 theme_colour: GREEN
 

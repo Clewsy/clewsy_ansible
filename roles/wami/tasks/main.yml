@@ -1,0 +1,16 @@
+---
+- name: Ensure bin directory within user's home directory exists.
+  file:
+    dest: "/home/{{ ansible_user }}/bin"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: 0755
+    state: directory
+
+- name: Copy wami.sh script to user's bin directory.
+  get_url:
+    url: "{{ wami_script_url }}"
+    dest: "/home/{{ ansible_user }}/bin/wami.sh"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: 0755

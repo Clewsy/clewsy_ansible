@@ -15,9 +15,3 @@
     group: "{{ ansible_user }}"
     mode: 0755
   with_items: "{{ scripts }}"
-
-- name: Customize stuff.sh colour theme - desired colour for {{ host_name }} is {{ theme_colour }}.
-  lineinfile:
-    path: "{{ dest_dir }}stuff.sh"
-    regexp: '^COL='
-    line: "COL=\"${{ '{' }}{{ theme_colour }}{{ '}' }}\"" #Use jinja expression to "escape" braces.

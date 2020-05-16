@@ -1,0 +1,22 @@
+---
+- name: Ensure bin directory within user's home directory exists.
+  file:
+    dest: "/home/{{ ansible_user }}/bin"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: 0755
+    state: directory
+
+- name: Copy stuff.sh script to user's bin directory.
+  get_url:
+    url: "{{ stuff_script_url }}"
+    dest: "/home/{{ ansible_user }}/bin/stuff.sh"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: 0755
+
+- name: Customize stuff.sh colour theme - desired colour for {{ host_name }} is {{ theme_colour }}.
+  lineinfile:
+    path: "{{ dest_dir }}stuff.sh"
+    regexp: '^COL='
+    line: "COL=\"${{ '{' }}{{ theme_colour }}{{ '}' }}\"" #Use jinja expression to "escape" braces.

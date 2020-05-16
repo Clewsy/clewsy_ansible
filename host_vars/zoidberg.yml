@@ -34,7 +34,7 @@ scripts:
 #  - bu.sh #add bu role instead.
 #  - polly.sh #Use polly role instead.
 #  - pong.sh #add pong role instead
-  - stuff.sh
+#  - stuff.sh #add stuff role insetad
   - wami.sh
 
 theme_colour: RED

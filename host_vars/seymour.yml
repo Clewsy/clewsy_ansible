@@ -31,7 +31,7 @@ scripts:
 #  - p0wer_switch.sh
 #  - polly.sh #Use polly role instead.
 #  - pong.sh #add pong role instead
-  - stuff.sh
+#  - stuff.sh #add stuff role insetad
 #  - vpn.sh #Use openvpn role insetad.
   - wami.sh
   - whodis.sh

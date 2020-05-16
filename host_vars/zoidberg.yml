@@ -35,8 +35,7 @@ scripts:
   - stuff.sh
   - wami.sh
 
-theme_colour: MAGENTA
-theme_colour_code: "{{ SHELL_COL_PURPLE }}"
+theme_colour: RED
 
 prompt_user_colour: "{{ SHELL_COL_BOLD_RED }}"
 prompt_at_colour: "{{ SHELL_COL_BOLD_WHITE }}"

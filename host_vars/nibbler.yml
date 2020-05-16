@@ -49,7 +49,6 @@ scripts:
   - whodis.sh
 
 theme_colour: ORANGE
-theme_colour_code: "{{ SHELL_COL_ORANGE }}"
 
 prompt_user_colour: "{{ SHELL_COL_BOLD_ORANGE }}"
 prompt_at_colour: "{{ SHELL_COL_BOLD_WHITE }}"

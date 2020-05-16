@@ -31,9 +31,10 @@
   when: data.stat.exists == false #Only needs restoring to fresh system (i.e. .env not present).
 
 - name: Pull docker container images listed in docker.compose.yml.
-  command:
-    chdir: /home/docker/
-    cmd: docker-compose pull
+  docker_compose:
+    project_src: /home/docker
+    pull: yes
+    recreate: smart #Containers will be recreated if a new version is pulled.
 
 - name: Kill openvpn if it is running (will otherwise interfere with running web services).
   command: pkill openvpn #Returns 1 if openvpn not running.

@@ -3,7 +3,9 @@
   get_url:
     url: "{{ base_url }}polly.sh"
     dest: "/usr/local/sbin/polly.sh"
-    mode: +x
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: 0755
 
 - name: Copy blink1-tool for user use.
   copy:

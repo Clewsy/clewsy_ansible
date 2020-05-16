@@ -37,7 +37,6 @@ scripts:
   - whodis.sh
 
 theme_colour: CYAN
-theme_colour_code: "{{ SHELL_COL_CYAN }}"
 
 prompt_user_colour: "{{ SHELL_COL_BOLD_CYAN }}"
 prompt_at_colour: "{{ SHELL_COL_BOLD_WHITE }}"

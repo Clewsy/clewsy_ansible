@@ -1,0 +1,15 @@
+##A list of files to be backed up
+~/.bashrc			#just in case I customise it
+~/bin/				#my frequent home-made executables
+/etc/motd			#futurama theme
+~/.bash_aliases			#remeber my aliases
+a fake file
+another fake file		#comment
+~/.ssh/				#ssh keys and authorsed hosts
+a_third_fake_file
+the_last_fake_file     		#fake_comment
+$HOME/.conkyrc			#conky config set for DELL XPS 13 9360
+$HOME/.config/autostart		#autostart configs
+$HOME/.config/terminator	#terminator configuration
+~/wireguard			#wireguard config files
+~/.vimrc			#Vim custom configs

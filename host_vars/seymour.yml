@@ -27,7 +27,7 @@ misc_classic_snaps:
 scripts:
   - apt_all.sh
   - ball.sh
-  - bu.sh
+#  - bu.sh #add bu role instead.
   - p0wer_switch.sh
 #  - polly.sh #Use polly role instead.
   - pong.sh

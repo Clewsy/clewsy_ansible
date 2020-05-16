@@ -30,8 +30,8 @@ misc_snaps:
 misc_classic_snaps:
 
 scripts:
-  - bu.sh
-  #  - polly.sh #Use polly role instead.
+#  - bu.sh #add bu role instead.
+#  - polly.sh #Use polly role instead.
   - stuff.sh
   - wami.sh
 

@@ -1,0 +1,2 @@
+---
+bu_script_url: "{{ git_repo_root_https }}/scripts/-/raw/master/bu.sh"

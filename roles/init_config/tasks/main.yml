@@ -41,6 +41,8 @@
     line: "{{ item }}"
     insertafter: EOF
     create: yes
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
   with_items: "{{ aliases }}"
 
 - name: Set root aliases.

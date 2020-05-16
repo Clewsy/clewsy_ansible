@@ -15,5 +15,34 @@
 #    - docker
 #    - clews.pro
     - polly
+    - bu
     - misc_packages
     - mounts
+
+  # Run tasks specific only to seymour
+  tasks:
+
+    - name: Clone repos to home directory.
+      git:
+        repo: "{{ git_repo_root_ssh }}/{{ item }}"
+        dest: "/home/{{ ansible_user }}/{{ item }}"
+        accept_hostkey: yes
+        key_file: "/home/{{ ansible_user }}/.ssh/id_rsa"
+      with_items: "{{ repos }}"
+      register: repo_clones
+    
+    - name: Ensure cloned repos are owned by {{ ansible_user }}{{ ':' }}{{ ansible_user }}
+      file:
+        recurse: yes
+        path: "/home/{{ ansible_user }}/{{ item }}"
+        state: directory
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+      with_items: "{{ repos }}"
+      when: repo_clones is changed
+
+  vars:
+    repos:
+      - scripts
+      - misc
+      - docs

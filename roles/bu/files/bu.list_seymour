@@ -1,0 +1,19 @@
+##This is the list of iles and directories on seymour to be backed up by the bu.sh script.
+~/.bashrc
+~/bin/
+$HOME/misc/
+~/openvpn/
+/etc/motd
+~/.bash_aliases
+$HOME/docs/
+/etc/hosts
+/etc/fstab
+#badfile			#Fake file for testing error checking in bu.sh script.
+~/.ssh/
+$HOME/.gnupg/gpg-agent.conf	#gpg settings that prevent any temporary saving of keys after decrypting.
+$HOME/.gitconfig
+~/.crontab.bak			#a daily cron job dumps crontab -l to this file
+~/.vimrc			#vim default config - syntax on and colorscheme
+$HOME/.gitconfig		#git configuration (just username and email address for commits).
+/usr/local/sbin/polly.sh	#script for polling clews.pro to confirm it's up
+

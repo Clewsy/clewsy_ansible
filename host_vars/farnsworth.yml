@@ -37,10 +37,10 @@ misc_classic_snaps:
 scripts:
   - apt_all.sh
   - ball.sh
-  - bu.sh
+#  - bu.sh #add bu role instead.
   - pong.sh
   - stuff.sh
-#  - vpn.sh #add ropenvpn role instead
+#  - vpn.sh #add openvpn role instead.
   - wami.sh
   - whodis.sh
 

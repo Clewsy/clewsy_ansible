@@ -1,0 +1,5 @@
+~/bin/
+~/.bash_aliases
+~/.bashrc
+/etc/motd
+$HOME/.ssh

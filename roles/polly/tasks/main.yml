@@ -1,13 +1,21 @@
 ---
-- name: Copy polly.sh script for root use.
+- name: Copy polly.sh script for use by {{ ansible_user }}.
   get_url:
     url: "{{ base_url }}polly.sh"
-    dest: "/usr/local/sbin/polly.sh"
+    dest: "/home/{{ ansible_user }}/bin/polly.sh"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: 0755
 
-- name: Copy blink1-tool for user use.
+- name: Copy polly.sh script for root use.
+  get_url:
+    url: "{{ base_url }}polly.sh"
+    dest: "/usr/local/sbin/polly.sh"
+    owner: "root"
+    group: "root"
+    mode: 0755
+
+- name: Copy blink1-tool for use by {{ ansible_user }}.
   copy:
     src: "files/blink1-tool_{{ ansible_architecture }}"
     dest: "/home/{{ ansible_user }}/bin/blink1-tool"

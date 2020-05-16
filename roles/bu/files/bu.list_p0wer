@@ -1,0 +1,9 @@
+~/bin/
+~/.bashrc
+~/.bash_aliases
+~/p0wer			#p0wer project folder - synced to gitlab.
+/usr/local/sbin/p0wer	#The p0wer executable.
+$HOME/.crontab.bak	#Cronjob dumps crontab -l to this file daily.
+$HOME/.ssh		#Keys and authorisations.
+/var/www/html		#Web server content.
+~/.gitconfig		#git username and email because I always forget to set these on a new install.

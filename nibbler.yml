@@ -19,6 +19,7 @@
 #    - apt_all
     - stuff
     - terbling
+    - vpn
     - wami
     - whodis
     - misc_packages
@@ -26,5 +27,4 @@
     - fonts
     - terminator
     - guake
-    - openvpn
 #    - mounts

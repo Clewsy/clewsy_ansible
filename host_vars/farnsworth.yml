@@ -40,7 +40,7 @@ scripts:
   - bu.sh
   - pong.sh
   - stuff.sh
-  - vpn.sh
+#  - vpn.sh #add ropenvpn role instead
   - wami.sh
   - whodis.sh
 

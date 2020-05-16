@@ -28,9 +28,11 @@ scripts:
   - apt_all.sh
   - ball.sh
   - bu.sh
+  - p0wer_switch.sh
+#  - polly.sh #Use polly role instead.
   - pong.sh
   - stuff.sh
-  - vpn.sh
+#  - vpn.sh #Use openvpn role insetad.
   - wami.sh
   - whodis.sh
 

@@ -31,6 +31,7 @@ misc_classic_snaps:
 
 scripts:
   - bu.sh
+  #  - polly.sh #Use polly role instead.
   - stuff.sh
   - wami.sh
 

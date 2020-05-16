@@ -25,10 +25,10 @@ misc_snaps:
 misc_classic_snaps:
 
 scripts:
-  - apt_all.sh
+#  - apt_all.sh #add apt_all role instead
 #  - ball.sh #add ball role instead.
 #  - bu.sh #add bu role instead.
-  - p0wer_switch.sh
+#  - p0wer_switch.sh
 #  - polly.sh #Use polly role instead.
 #  - pong.sh #add pong role instead
   - stuff.sh

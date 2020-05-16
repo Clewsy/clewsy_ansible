@@ -35,7 +35,7 @@ misc_classic_snaps:
   - code
 
 scripts:
-  - apt_all.sh
+#  - apt_all.sh #add apt_all role instead
 #  - ball.sh #add ball role instead.
 #  - bu.sh #add bu role instead.
 #  - pong.sh #add pong role instead

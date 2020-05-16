@@ -30,6 +30,7 @@ misc_snaps:
 misc_classic_snaps:
 
 scripts:
+#  - apt_all.sh #add apt_all role instead
 #  - bu.sh #add bu role instead.
 #  - polly.sh #Use polly role instead.
 #  - pong.sh #add pong role instead

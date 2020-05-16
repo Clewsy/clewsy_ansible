@@ -1,0 +1,2 @@
+---
+ball_script_url: "{{ git_repo_root_https }}/scripts/-/raw/master/ball.sh"

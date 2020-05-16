@@ -22,12 +22,3 @@
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: 0644
-
-- name: Create cron-job to periodically run backup script (bu.sh).
-  cron:
-    name: Run backup script (~/bin/bu.sh).
-    user: "{{ ansible_user }}"
-    minute: "0"
-    hour: "0"
-    job: "/home/{{ ansible_user }}/bin/bu.sh"
-  notify: Restart cron.

@@ -3,14 +3,14 @@
   hosts: rad10
   become: yes
   roles:
-#    - init_config
-#    - ssh
-#    - sudo
-#    - vim
-#    - git
-#    - bu
-#    - stuff
-#    - wami
-#    - misc_packages
-#    - mounts
+    - init_config
+    - ssh
+    - sudo
+    - vim
+    - git
+    - bu
+    - stuff
+    - wami
+    - misc_packages
+    - mounts
     - rad10

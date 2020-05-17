@@ -43,7 +43,12 @@
   service:
     name: rad10d
     enabled: yes
-    state: restarted
+    state: started
+
+- name: If it exists, delete the default apache index.html page.
+  file:
+    path: /var/www/html/index.html
+    state: absent
 
 - name: Copy webui files to /var/www/html (to be served by apache).
   copy:
@@ -64,3 +69,13 @@
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
   with_items: "{{ rad10_aliases }}"
+
+- name: Configure mpd.conf (change mp3 directory location to nfs mount).
+  lineinfile:
+    path: "/etc/mpd.conf"
+    state: present
+    regexp: "^music_directory"
+    line: 'music_directory    "/mnt/zapp/mp3s"'
+  notify: 
+    - Restart mpd.
+    - Rescan music files.

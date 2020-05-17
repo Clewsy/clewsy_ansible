@@ -5,6 +5,7 @@ rad10_packages:
   - pigpio
   - mpd
   - mpc
+  - ncmpc
   - libmpdclient-dev
   - apache2
   - php

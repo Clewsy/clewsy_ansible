@@ -53,6 +53,17 @@
       with_items: "{{ repos }}"
       when: repo_clones is changed
 
+    - name: Disable gnupg key cacheing.
+      copy:
+        content: |
+          #Disable agent cache
+          default-cache-ttl 0
+          max-cache-ttl 0
+        dest: "/home/{{ ansible_user }}/.gnupg/gpg-agent.conf"
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+        mode: 0644
+
   vars:
     repos:
       - scripts

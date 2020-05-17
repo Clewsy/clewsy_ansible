@@ -1,5 +1,5 @@
 ##########Variables for initialising fresh server.
-#Only config is user and password.
+#Only config is user and password - user must be a member of sudo.
 #init_ansible_user: {{ ansible_user }}
 #init_ansible_password: {{ ansible_password }}
 
@@ -33,16 +33,6 @@ misc_snaps:
 
 misc_classic_snaps:
   - code
-
-scripts:
-#  - apt_all.sh #add apt_all role instead
-#  - ball.sh #add ball role instead.
-#  - bu.sh #add bu role instead.
-#  - pong.sh #add pong role instead
-#  - stuff.sh #add stuff role insetad
-#  - vpn.sh #add openvpn role instead.
-#  - wami.sh
-#  - whodis.sh
 
 theme_colour: GREEN
 

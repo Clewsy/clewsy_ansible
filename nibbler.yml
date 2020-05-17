@@ -10,13 +10,8 @@
     - vim
     - git
     - snap
-#    - docker
-#    - clews.pro
-#    - polly
     - pong
     - bu
-#    - ball
-#    - apt_all
     - stuff
     - terbling
     - vpn
@@ -28,5 +23,4 @@
     - terminator
     - guake
     - wireguard
-#    - mounts
     - gnome_config

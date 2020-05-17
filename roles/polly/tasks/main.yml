@@ -1,4 +1,12 @@
 ---
+- name: Ensure bin directory exists within user's home directory.
+  file:
+    dest: "/home/{{ ansible_user }}/bin"
+    mode: 0755
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    state: directory
+
 - name: Copy polly.sh script for use by {{ ansible_user }}.
   get_url:
     url: "{{ base_url }}polly.sh"

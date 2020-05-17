@@ -3,31 +3,14 @@
   hosts: rad10
   become: yes
   roles:
-    - init_config
-    - ssh
-#    - ssh_secure
-    - sudo
-    - vim
-    - git
-#    - snap
-#    - docker
-#    - clews.pro
-#    - polly
-#    - pong
-    - bu
-#    - ball
-#    - apt_all
-    - stuff
-#    - terbling
-#    - vpn
-    - wami
-#    - whodis
-    - misc_packages
-#    - conky
-#    - fonts
-#    - terminator
-#    - guake
-#    - wireguard
-    - mounts
-#    - gnome_config
-#    - rad10
+#    - init_config
+#    - ssh
+#    - sudo
+#    - vim
+#    - git
+#    - bu
+#    - stuff
+#    - wami
+#    - misc_packages
+#    - mounts
+    - rad10

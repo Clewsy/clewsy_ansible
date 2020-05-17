@@ -1,0 +1,66 @@
+---
+- name: Ensure all packages required for rad10d daemon and webui are installed.
+  apt:
+    name: "{{ rad10_packages }}"
+    state: latest
+
+- name: Clone rad10d repository to home directory.
+  git:
+    repo: "{{ rad10d_repo }}"
+    dest: "/home/{{ ansible_user }}/rad10d"
+    accept_hostkey: yes
+    key_file: "/home/{{ ansible_user }}/.ssh/id_rsa"
+  register: rad10d_clone
+
+- name: Change owner of any files updated from git repo (from root to {{ ansible_user }}).
+  file:
+    recurse: yes
+    path: "/home/{{ ansible_user }}/rad10d"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+  when: rad10d_clone is changed
+
+- name: Build the rad10d executable from source. #Note executable will be owned by root:root
+  make:
+    chdir: "/home/{{ ansible_user }}/rad10d"
+    target: all
+
+- name: Copy rad10d executable to /usr/local/sbin/rad10d
+  copy:
+    src: "/home/{{ ansible_user }}/rad10d/rad10d"
+    dest: "/usr/local/sbin/rad10d"
+    remote_src: yes
+    mode: +x
+
+- name: Copy rad10d.service unit file to /lib/systemd/system/rad10d.service
+  copy:
+    src: "/home/{{ ansible_user }}/rad10d/rad10d.service"
+    dest: "/lib/systemd/system/rad10d.service"
+    remote_src: yes
+
+- name: Enable and start rad10d service.
+  service:
+    name: rad10d
+    enabled: yes
+    state: restarted
+
+- name: Copy webui files to /var/www/html (to be served by apache).
+  copy:
+    src: "/home/{{ ansible_user }}/rad10d/webui/"
+    dest: "/var/www/html"
+    remote_src: yes
+    owner: www-data
+    group: www-data
+
+- name: Create useful command line aliases.
+  lineinfile:
+    path: "/home/{{ ansible_user }}/.bash_aliases"
+    state: present
+    regexp: "{{ item }}"
+    line: "{{ item }}"
+    insertafter: EOF
+    create: yes
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+  with_items: "{{ rad10_aliases }}"

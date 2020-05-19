@@ -84,3 +84,14 @@
     owner: root
     group: root
   notify: Restart ssh.
+
+########Part 3 - General Config
+- name: Disable ssh login banner (issue.net).
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: 'Banner'
+    line: '#Banner none'
+    state: present
+    insertafter: 'Banner'
+  notify: Restart ssh.
+

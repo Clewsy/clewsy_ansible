@@ -70,12 +70,20 @@
     group: "{{ ansible_user }}"
   with_items: "{{ rad10_aliases }}"
 
-- name: Configure mpd.conf (change mp3 directory location to nfs mount).
+- name: Ensure preferred mpd music files directory exists ({{ mpd_music_dir }}).
+  file:
+    dest: "{{ mpd_music_dir }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: 0755
+    state: directory
+
+- name: Configure mpd.conf (change mp3 directory location to {{ mpd_music_dir }}).
   lineinfile:
     path: "/etc/mpd.conf"
     state: present
     regexp: "^music_directory"
-    line: 'music_directory    "/mnt/zapp/mp3s"'
+    line: 'music_directory    "{{ mpd_music_dir }}"'
   notify: 
     - Restart mpd.
     - Rescan music files.

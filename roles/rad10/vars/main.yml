@@ -25,3 +25,5 @@ rad10_aliases:
   - "alias v8='mpc volume 80'"
   - "alias v9='mpc volume 90'"
   - "alias v10='mpc volume 100'"
+
+mpd_music_dir: /mnt/zapp/mp3s #If this is an nfs mount, ensure nfs share included in host vars.  Default is /var/lib/mpd/music

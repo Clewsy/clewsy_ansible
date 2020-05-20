@@ -8,9 +8,13 @@
   timezone:
     name: "{{ local_tz }}"
 
-- name: Update apt cache (just once for all roles and tasks).
+- name: Update apt cache and run a full upgrade.
   apt:
+    upgrade: 'full'
     update_cache: yes
+    autoremove: yes
+    autoclean: yes
+    cache_valid_time: 3600 #Cache is valid for 1 hour.
 
 - name: Install common packages.
   apt:

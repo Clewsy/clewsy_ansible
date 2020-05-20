@@ -15,4 +15,4 @@
     name: "{{ item }}"
     classic: yes
   with_items: "{{ misc_classic_snaps }}"
-  when: misc_snaps.0 is defined
+  when: misc_classic_snaps.0 is defined

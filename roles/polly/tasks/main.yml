@@ -41,7 +41,7 @@
 
 - name: Create cronjob for polly.sh poll jobs.
   cron:
-    name: "polly.sh"
+    name: "Role: \"polly\" - Run polly.sh."
     minute: "*/5"
     user: "{{ ansible_user }}"
     job: "sudo /usr/local/sbin/polly.sh"

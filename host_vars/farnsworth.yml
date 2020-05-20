@@ -44,6 +44,8 @@ prompt_dir_colour: "{{ SHELL_COL_WHITE }}"
 prompt_prompt_colour: "{{ SHELL_COL_BOLD_WHITE }}"
 bash_prompt: PS1="${debian_chroot:+($debian_chroot)}\[\033[{{ prompt_user_colour }}\]\u\[\033[{{ prompt_at_colour }}\]@\[\033[{{ prompt_host_colour }}\]\h\[\033[{{ prompt_colon_colour }}\]:\[\033[{{ prompt_dir_colour }}\]\w\[\033[{{ prompt_prompt_colour }}\]\$ \[\033[{{ SHELL_COL_RESET }}\]"
 
+cron_jobs:
+
 mounts:
   - { mount_source: UUID=EA9EFDBF9EFD847B, mount_path: '/mnt/windoze', mount_fstype: 'auto', mount_opts: 'ro,nosuid,nodev,nofail,x-gvfs-show' }
 

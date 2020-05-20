@@ -6,3 +6,10 @@
     group: root
     mode: 0666
   with_items: "{{ fonts }}"
+  register: get_font
+  ignore_errors: True
+
+- name: Notify error.
+  debug: 
+    msg: "Could not download font."
+  when: get_font is failed

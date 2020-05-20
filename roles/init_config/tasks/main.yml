@@ -77,3 +77,18 @@
       fi
     insertafter: EOF
   when: bash_aliases_enabled is changed #I.e. previous dry run task did not match and so wanted to replace line.
+
+- name: Configure cron jobs.
+  cron:
+    name: "{{ item.name }}"
+    minute: "{{ item.minute }}"
+    hour: "{{ item.hour }}"
+    weekday: "{{ item.weekday }}"
+    day: "{{ item.day }}"
+    month: "{{ item.month }}"
+    user: "{{ ansible_user }}"
+    job: "{{ item.job }}"
+  with_items: "{{ cron_jobs }}"
+  when: cron_jobs.0 is defined
+  notify: Restart cron.
+

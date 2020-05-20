@@ -25,7 +25,7 @@
 
 - name: Create cron-job to periodically update and upgrade packages for all hosts in my_hosts.list (i.e. run apt_all.sh).
   cron:
-    name: Run update/upgrade script (~/bin/apt_all.sh).
+    name: "Role: \"apt_all\" - Run apt_all.sh."
     user: "{{ ansible_user }}"
     minute: "47"
     hour: "1"

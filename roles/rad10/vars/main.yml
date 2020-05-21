@@ -2,6 +2,7 @@
 rad10d_repo: "{{ git_repo_root_ssh }}/rad10d.git"
 
 rad10_packages:
+  - build-essential
   - pigpio
   - mpd
   - mpc

@@ -9,40 +9,28 @@
 
 - name: Copy polly.sh script for use by {{ ansible_user }}.
   get_url:
-    url: "{{ base_url }}polly.sh"
-    dest: "/home/{{ ansible_user }}/bin/polly.sh"
+    url: "{{ polly_script_url }}"
+    dest: "{{ polly_script_dest_user }}"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: 0755
 
 - name: Copy polly.sh script for root use.
-  get_url:
-    url: "{{ base_url }}polly.sh"
-    dest: "/usr/local/sbin/polly.sh"
+  copy:
+    remote_src: yes
+    src: "{{ polly_script_dest_user }}"
+    dest: "{{ polly_script_dest_root }}"
     owner: "root"
     group: "root"
     mode: 0755
 
-- name: Copy blink1-tool for use by {{ ansible_user }}.
-  copy:
-    src: "files/blink1-tool_{{ ansible_architecture }}"
-    dest: "/home/{{ ansible_user }}/bin/blink1-tool"
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
-    mode: 0755
-
-- name: Copy blink1-tool for root use.
-  copy:
-    src: "files/blink1-tool_{{ ansible_architecture }}"
-    dest: /usr/local/sbin/blink1-tool
-    owner: root
-    group: root
-    mode: 0755
+- name: Install and enable blink1-tool.
+  include: blink1_tool.yml
 
 - name: Create cronjob for polly.sh poll jobs.
   cron:
     name: "Role: \"polly\" - Run polly.sh."
     minute: "*/5"
     user: "{{ ansible_user }}"
-    job: "sudo /usr/local/sbin/polly.sh"
+    job: "sudo {{ polly_script_dest_root }}"
   notify: Restart cron.

@@ -2,8 +2,7 @@
 common_packages:
   - rsync
   - curl
-
-cache_root: '../../file_cache/'
+  - iperf3
 
 git_repo_root_https: 'https://gitlab.com/clewsy'
 git_repo_root_ssh: 'git@gitlab.com:clewsy'

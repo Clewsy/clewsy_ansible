@@ -24,7 +24,6 @@ misc_packages:
   - ncdu
   - imagemagick
   - kicad
-  - iperf
 
 misc_snaps:
   - gimp

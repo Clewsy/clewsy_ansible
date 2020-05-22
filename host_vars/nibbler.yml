@@ -30,7 +30,6 @@ aliases:
 misc_packages:
   - ncdu
   - imagemagick
-  - iperf
 
 misc_snaps:
   - vlc

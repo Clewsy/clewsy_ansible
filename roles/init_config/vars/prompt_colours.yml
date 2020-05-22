@@ -18,7 +18,6 @@ SHELL_COL_BLUE: '00;34m'
 SHELL_COL_PURPLE: '00;35m'
 SHELL_COL_WHITE: '00;37m'
 
-
 SHELL_COL_TAN: '00;38;5;180m'
 SHELL_COL_BOLD_TAN: '01;38;5;180m'
 SHELL_COL_GREENISHBLUE: '00;38;5;050m'
@@ -27,7 +26,6 @@ SHELL_COL_GRAY: '00;38;5;237m'
 SHELL_COL_BOLD_GRAY: '01;38;5;237m'
 
 SHELL_COL_RESET: '00m'
-
 
 B4T:
   user: "{{ SHELL_COL_BOLD_WHITE }}"
@@ -68,11 +66,9 @@ ZOIDBERG:
   user: "{{ SHELL_COL_BOLD_RED }}"
   at: "{{ SHELL_COL_BOLD_GREENISHBLUE }}"
   host: "{{ SHELL_COL_BOLD_WHITE }}"
-  colon: "{{ SHELL_COL_BOLD_WHITE }}"
+  colon: "{{ SHELL_COL_BOLD_RED }}"
   dir: "{{ SHELL_COL_BOLD_GREENISHBLUE }}"
   prompt: "{{ SHELL_COL_BOLD_RED }}"
-
-
 
 prompt_user_colour: "{{ theme_prompt.user }}"
 prompt_at_colour: "{{ theme_prompt.at }}"
@@ -80,7 +76,5 @@ prompt_host_colour: "{{ theme_prompt.host }}"
 prompt_colon_colour: "{{ theme_prompt.colon }}"
 prompt_dir_colour: "{{ theme_prompt.dir }}"
 prompt_prompt_colour: "{{ theme_prompt.prompt }}"
-
-
 
 bash_prompt: PS1="${debian_chroot:+($debian_chroot)}\[\033[{{ prompt_user_colour }}\]\u\[\033[{{ prompt_at_colour }}\]@\[\033[{{ prompt_host_colour }}\]\h\[\033[{{ prompt_colon_colour }}\]:\[\033[{{ prompt_dir_colour }}\]\w\[\033[{{ prompt_prompt_colour }}\]\$ \[\033[{{ SHELL_COL_RESET }}\]"

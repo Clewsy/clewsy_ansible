@@ -29,6 +29,9 @@
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
 
+- name: Load prompt_colours variables.
+  include_vars: prompt_colours.yml
+
 - name: Set .bashrc.
   template:
     src: templates/.bashrc

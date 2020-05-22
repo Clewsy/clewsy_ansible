@@ -19,13 +19,6 @@ local_tz: 'Australia/Melbourne'
 
 aliases:
   - "alias ll='ls -alFh'"
-#  - "alias clewsup='sudo wg-quick up wg0'"
-#  - "alias clewsdn='sudo wg-quick down wg0'"
-#  - "alias b4tup='sudo wg-quick up wg1'"
-#  - "alias b4tdn='sudo wg-quick down wg1'"
-  - "alias ll='ls -alh'"
-  - "alias stream_code_radio='mpc clear && mpc add https://coderadio-relay.freecodecamp.org/radio/8010/radio.mp3 && mpc play'"
-  - "alias stream_triple_j='mpc clear && mpc add http://live-radio01.mediahubaustralia.com/2TJW/aac/ && mpc play'"
 
 misc_packages:
   - ncdu
@@ -38,14 +31,7 @@ misc_classic_snaps:
   - code
 
 theme_colour: ORANGE
-
-prompt_user_colour: "{{ SHELL_COL_BOLD_ORANGE }}"
-prompt_at_colour: "{{ SHELL_COL_BOLD_WHITE }}"
-prompt_host_colour: "{{ SHELL_COL_BOLD_ORANGE }}"
-prompt_colon_colour: "{{ SHELL_COL_BOLD_WHITE }}"
-prompt_dir_colour: "{{ SHELL_COL_ORANGE }}"
-prompt_prompt_colour: "{{ SHELL_COL_BOLD_WHITE }}"
-bash_prompt: PS1="${debian_chroot:+($debian_chroot)}\[\033[{{ prompt_user_colour }}\]\u\[\033[{{ prompt_at_colour }}\]@\[\033[{{ prompt_host_colour }}\]\h\[\033[{{ prompt_colon_colour }}\]:\[\033[{{ prompt_dir_colour }}\]\w\[\033[{{ prompt_prompt_colour }}\]\$ \[\033[{{ SHELL_COL_RESET }}\]"
+theme_prompt: "{{ NIBBLER }}"
 
 cron_jobs:
 

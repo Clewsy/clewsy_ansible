@@ -1,0 +1,3 @@
+---
+theme_colour: CYAN
+theme_prompt: "{{ CYAN_BLUE }}"

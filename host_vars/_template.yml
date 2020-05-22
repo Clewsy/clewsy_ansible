@@ -52,7 +52,6 @@ cron_jobs:
 #    month: "*"
 #    job: 'echo "hello ansible"'
 
-
 mounts:
 #  - { mount_source: /dev/mmcblk0p1, mount_path: '/media/cache', mount_fstype: 'auto', mount_opts: "auto,rw,async,user,uid={{ ansible_user }},gid={{ ansible_user }},nofail" }
 #  - { mount_source: UUID=EA9EFDBF9EFD847B, mount_path: '/mnt/windoze', mount_fstype: 'auto', mount_opts: 'ro,nosuid,nodev,nofail,x-gvfs-show' }
@@ -65,6 +64,8 @@ nfs_mounts:
 #  - { mount_source: 'zapp:/export/tv', mount_path: '/mnt/zapp/tv' }
 #  - { mount_source: 'zapp:/export/cl0ud', mount_path: '/mnt/zapp/cl0ud' }
 #  - { mount_source: 'zapp:/export/m0n0l1th', mount_path: '/mnt/zapp/m0n0l1th' }
+
+music_dir: #"/home/{{ ansible_user }}/Music" #If this is an nfs share, ensure nfs role included and share defined above.
 
 ssh_public_key: !vault | # $ cat .ssh/id_rsa.pub | ansible-vault encrypt_string
 #  $ANSIBLE_VAULT;1.1;AES256

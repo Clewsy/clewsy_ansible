@@ -1,0 +1,35 @@
+---
+- name: Ensure all packages required for using mpd installed.
+  apt:
+    name: "{{ mpd_packages }}"
+    state: latest
+
+- name: Create useful command line aliases.
+  lineinfile:
+    path: "/home/{{ ansible_user }}/.bash_aliases"
+    state: present
+    regexp: "{{ item }}"
+    line: "{{ item }}"
+    insertafter: EOF
+    create: yes
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+  with_items: "{{ mpd_aliases }}"
+
+- name: Ensure preferred mpd music files directory exists ({{ mpd_music_dir }}).
+  file:
+    dest: "{{ mpd_music_dir }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: 0755
+    state: directory
+
+- name: Configure mpd.conf (change mp3 directory location to {{ mpd_music_dir }}).
+  lineinfile:
+    path: "/etc/mpd.conf"
+    state: present
+    regexp: "^music_directory"
+    line: 'music_directory    "{{ music_dir }}"'
+  notify: 
+    - Restart mpd.
+    - Rescan music files.

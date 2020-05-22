@@ -1,0 +1,8 @@
+---
+- name: Restart mpd.
+  service:
+    name: mpd
+    state: restarted
+
+- name: Rescan music files.
+  command: mpc rescan

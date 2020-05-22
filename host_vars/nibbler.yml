@@ -53,6 +53,8 @@ mounts:
 
 nfs_mounts:
 
+#music_dir: "/home/{{ ansible_user }}/Music"
+
 ssh_public_key: !vault |
   $ANSIBLE_VAULT;1.1;AES256
   66376135356439636236386431306363396137623533336330306662646465346433396531343031

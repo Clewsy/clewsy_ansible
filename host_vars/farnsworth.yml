@@ -57,6 +57,8 @@ nfs_mounts:
   - { mount_source: 'zapp:/export/cl0ud', mount_path: '/mnt/zapp/cl0ud' }
   - { mount_source: 'zapp:/export/m0n0l1th', mount_path: '/mnt/zapp/m0n0l1th' }
 
+music_dir: "/mnt/zapp/mp3s"
+
 ssh_public_key: !vault |
   $ANSIBLE_VAULT;1.1;AES256
   35646633303161303533643535383136653332616130653566303762656465666434653765663964

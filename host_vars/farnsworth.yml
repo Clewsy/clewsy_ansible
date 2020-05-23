@@ -21,6 +21,7 @@ aliases:
   - "alias ll='ls -alFh'"
 
 misc_packages:
+  - ansible
   - imagemagick
   - kicad
 

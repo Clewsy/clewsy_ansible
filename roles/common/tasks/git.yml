@@ -1,0 +1,13 @@
+---
+- name: '[git] Install git.'
+  apt:
+    name: git
+    state: latest
+
+- name: '[git] Set git user defaults (.gitconfig).'
+  copy:
+    src: files/git/.gitconfig
+    dest: "/home/{{ ansible_user }}/.gitconfig"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0664'

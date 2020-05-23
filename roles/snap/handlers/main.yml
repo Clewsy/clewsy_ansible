@@ -1,6 +1,0 @@
----
-- name: Enable and start snapd service.
-  service:
-    enabled: yes
-    name: snapd
-    state: started

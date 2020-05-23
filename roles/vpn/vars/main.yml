@@ -1,2 +1,3 @@
 ---
-vpn_script_url: "{{ git_repo_root_https }}/scripts/-/raw/master/vpn.sh"
+repo_root: "https://gitlab.com/clewsy"
+vpn_script_url: "{{ repo_root }}/scripts/-/raw/master/vpn.sh"

@@ -1,0 +1,25 @@
+---
+- name: '[misc_packages] Install miscellaneous, host-specific apt packages.'
+  apt:
+    name: "{{ misc_packages }}"
+    state: latest
+  when: misc_packages.0 is defined
+
+- name: '[misc_packages] Install snapd.'
+  apt:
+    name: snapd
+    state: latest
+  notify: Enable and start snapd service.
+  when: misc_snaps.0 is defined or misc_classic_snaps.0 is defined
+
+- name: '[misc_packages] Install miscellaneous, host-specific snap packages.'
+  snap:
+    name: "{{ misc_snaps }}"
+  when: misc_snaps.0 is defined
+
+- name: '[misc_packages] Install miscellaneous, host-specific classic snap packages.'
+  snap:
+    name: "{{ item }}"
+    classic: yes
+  with_items: "{{ misc_classic_snaps }}"
+  when: misc_classic_snaps.0 is defined

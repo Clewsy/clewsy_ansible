@@ -4,29 +4,18 @@
   become: yes
   gather_facts: True
   roles:
-    - init_config
-    - ssh
+    - common
     - ssh_secure
-    - sudo
-    - vim
-    - git
+    - ufw
+    - node
     - polly
-    - pong
-    - bu
-    - ball
-    - apt_all
-    - stuff
-    - wami
-    - whodis
-    - misc_packages
-    - mounts
 
   # Run tasks specific only to seymour
   tasks:
 
     - name: Clone repos to home directory.
       git:
-        repo: "{{ git_repo_root_ssh }}/{{ item }}"
+        repo: "{{ repo_ssh_root }}/{{ item }}"
         dest: "/home/{{ ansible_user }}/{{ item }}"
         accept_hostkey: yes
         key_file: "/home/{{ ansible_user }}/.ssh/id_rsa"
@@ -52,9 +41,10 @@
         dest: "/home/{{ ansible_user }}/.gnupg/gpg-agent.conf"
         owner: "{{ ansible_user }}"
         group: "{{ ansible_user }}"
-        mode: 0644
+        mode: '0644'
 
   vars:
+    repo_ssh_root: "git@gitlab.com:clewsy"
     repos:
       - scripts
       - misc

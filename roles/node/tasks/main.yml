@@ -1,0 +1,28 @@
+---
+- name: Ensure bin directory exists within user's home directory.
+  file:
+    dest: "/home/{{ ansible_user }}/bin"
+    mode: '0755'
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    state: directory
+
+- name: Copy default list of hosts to /home/{{ ansible_user }}/bin/my_hosts.list.
+  copy:
+    src: "files/my_hosts.list"
+    dest: "/home/{{ ansible_user }}/bin/my_hosts.list"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0644'
+
+- name: Install and configure apt_all.sh script.
+  include: apt_all.yml
+
+- name: Install and configure ball.sh script.
+  include: ball.yml
+
+- name: Install and configure pong.sh script.
+  include: pong.yml
+
+- name: Install and configure whodis.sh script.
+  include: whodis.yml

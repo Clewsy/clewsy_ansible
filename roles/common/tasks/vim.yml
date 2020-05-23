@@ -1,0 +1,16 @@
+---
+- name: '[vim] Install vim.'
+  apt:
+    name: vim
+    state: latest
+
+- name: '[vim] Create vim configuration file.'
+  copy:
+    content: |
+      colo elflord
+      syntax on
+    dest: "/home/{{ ansible_user }}/.vimrc"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0664'
+

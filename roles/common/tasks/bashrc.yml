@@ -1,0 +1,11 @@
+---
+- name: '[bashrc] Load prompt_colours variables.'
+  include_vars: bashrc_vars.yml
+
+- name: '[bashrc] Set .bashrc.'
+  template:
+    src: templates/.bashrc
+    dest: "/home/{{ ansible_user }}/.bashrc"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0644'

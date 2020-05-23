@@ -1,4 +1,3 @@
 ---
 dependencies:
   - role: mpd
-  - role: mounts

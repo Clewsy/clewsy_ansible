@@ -1,2 +1,3 @@
 ---
-conky_config_url: "{{ git_repo_root_https }}/conky_configs/-/raw/master/conky_{{ ansible_hostname }}/.conkyrc"
+repo_root: "https://gitlab.com/clewsy"
+conky_config_url: "{{ repo_root }}/conky_configs/-/raw/master/conky_{{ ansible_hostname }}/.conkyrc"

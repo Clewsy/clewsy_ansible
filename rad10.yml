@@ -4,13 +4,5 @@
   become: yes
   gather_facts: True
   roles:
-    - init_config
-    - ssh
-    - sudo
-    - vim
-    - git
-    - bu
-    - stuff
-    - wami
-    - misc_packages
+    - common
     - rad10

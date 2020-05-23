@@ -1,7 +1,0 @@
----
-- name: Install snapd.
-  apt:
-    name: snapd
-    state: latest
-    update_cache: yes
-  notify: Enable and start snapd service.

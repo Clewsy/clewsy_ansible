@@ -1,0 +1,76 @@
+---
+- name: Set hostname. #Depend on DHCP to initiate server by host name before this is set.
+  hostname:
+    name: '{{ ansible_hostname }}'
+    use: systemd
+
+- name: Set local timezone.
+  timezone:
+    name: "{{ local_tz }}"
+
+- name: Add keys and configure ssh.
+  include: ssh.yml
+
+- name: Enable passwordless sudo.
+  lineinfile:
+    path: /etc/sudoers
+    state: present
+    regexp: '^%sudo'
+    line: '%sudo ALL=(ALL) NOPASSWD: ALL'
+    validate: 'visudo -cf %s'
+
+- name: Update apt cache and run a full upgrade.
+  apt:
+    upgrade: 'full'
+    update_cache: yes
+    autoremove: yes
+    autoclean: yes
+    cache_valid_time: 3600 #Cache is valid for 1 hour.
+
+- name: Install common packages.
+  apt:
+    name: "{{ common_packages }}"
+    state: latest
+
+- name: Install host-specific miscellaneous packages.
+  include: misc_packages.yml
+
+- name: Install and configure vim.
+  include: vim.yml
+
+- name: Install and configure git.
+  include: git.yml
+
+- name: Set motd.
+  copy:
+    src: "files/motd/motd_{{ ansible_hostname }}"
+    dest: /etc/motd
+    mode: '0644'
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+
+- name: Configure .bashrc file.
+  include: bashrc.yml
+
+- name: Configure aliases.
+  include: aliases.yml
+
+- name: Configure cron jobs.
+  cron:
+    name: "{{ item.name }}"
+    minute: "{{ item.minute }}"
+    hour: "{{ item.hour }}"
+    weekday: "{{ item.weekday }}"
+    day: "{{ item.day }}"
+    month: "{{ item.month }}"
+    user: "{{ ansible_user }}"
+    job: "{{ item.job }}"
+  with_items: "{{ cron_jobs }}"
+  when: cron_jobs.0 is defined
+  notify: Restart cron.
+
+- name: Configure mounts.
+  include: mounts.yml
+
+- name: Install and configure common scripts.
+  include: common_scripts.yml

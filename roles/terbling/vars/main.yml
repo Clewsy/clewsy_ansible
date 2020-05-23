@@ -1,2 +1,3 @@
 ---
-terbling_script_url: "{{ git_repo_root_https }}/scripts/-/raw/master/terbling.sh"
+repo_root: "https://gitlab.com/clewsy"
+terbling_script_url: "{{ repo_root }}/scripts/-/raw/master/terbling.sh"

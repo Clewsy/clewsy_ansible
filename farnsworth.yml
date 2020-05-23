@@ -4,26 +4,17 @@
   become: yes
   gather_facts: True
   roles:
-    - init_config
-    - ssh
-    - sudo
-    - vim
-    - git
-    - snap
+    - common
+#    - ssh_secure
+#    - ufw
+#    - clews.pro
+    - node
     - docker
-    - pong
-    - bu
-    - stuff
     - terbling
     - vpn
-    - wami
-    - whodis
-    - misc_packages
     - conky
     - fonts
     - terminator
     - guake
-    - mounts
     - gnome_config
     - mpd
-

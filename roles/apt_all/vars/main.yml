@@ -1,2 +1,0 @@
----
-apt_all_script_url: "{{ git_repo_root_https }}/scripts/-/raw/master/apt_all.sh"

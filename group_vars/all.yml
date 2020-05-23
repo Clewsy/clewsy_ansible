@@ -1,9 +1,0 @@
----
-common_packages:
-  - rsync
-  - curl
-  - iperf3
-  - ncdu
-
-git_repo_root_https: 'https://gitlab.com/clewsy'
-git_repo_root_ssh: 'git@gitlab.com:clewsy'

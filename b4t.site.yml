@@ -4,16 +4,8 @@
   become: yes
   gather_facts: True
   roles:
-    - init_config
-    - ssh
+    - common
     - ssh_secure
     - ufw
-    - sudo
-    - vim
-    - git
     - docker
-    - bu
-    - stuff
-    - wami
-    - misc_packages
     - wireguard_server

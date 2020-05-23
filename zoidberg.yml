@@ -3,21 +3,8 @@
   hosts: zoidberg
   become: yes
   roles:
-  roles:
-    - init_config
-    - ssh
+    - common
     - ssh_secure
     - ufw
-    - sudo
-    - vim
-    - git
-    - snap
-    - docker
     - clews.pro
     - polly
-    - bu
-    - stuff
-    - wami
-    - misc_packages
-    - mounts
-    

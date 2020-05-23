@@ -1,0 +1,60 @@
+---
+- name: '[common_scripts] Load common_scripts variables.'
+  include_vars: common_scripts_vars.yml
+
+- name: '[common_scripts] Ensure bin directory exists within user home directory.'
+  file:
+    dest: "/home/{{ ansible_user }}/bin"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0755'
+
+###bu.sh
+
+- name: '[common_scripts] Copy bu.sh script to user bin directory.'
+  get_url:
+    url: "{{ bu_script_url }}"
+    dest: "/home/{{ ansible_user }}/bin/bu.sh"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0755'
+
+- name: '[common_scripts] Copy host-specific backup list (bu.list) to /home/{{ ansible_user }}/bin.'
+  copy:
+    src: "files/bu/bu.list_{{ ansible_hostname }}"
+    dest: "/home/{{ ansible_user }}/bin/bu.list"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0644'
+
+###stuff.sh
+
+- name: '[common_scripts] Copy stuff.sh script to user bin directory.'
+  get_url:
+    url: "{{ stuff_script_url }}"
+    dest: "/home/{{ ansible_user }}/bin/stuff.sh"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0755'
+
+- name: '[common_scripts] Customize stuff.sh colour theme - desired colour for {{ host_name }} is {{ theme_colour }}.'
+  lineinfile:
+    path: "/home/{{ ansible_user }}/bin/stuff.sh"
+    regexp: '^COL='
+    line: "COL=\"${{ '{' }}{{ theme_colour }}{{ '}' }}\"" #Use jinja expression to "escape" braces.
+
+###wami.sh
+
+- name: '[common_scripts] Copy wami.sh script to user bin directory.'
+  get_url:
+    url: "{{ wami_script_url }}"
+    dest: "/home/{{ ansible_user }}/bin/wami.sh"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0755'
+
+
+
+
+

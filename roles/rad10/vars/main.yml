@@ -1,5 +1,6 @@
 ---
-rad10d_repo: "{{ git_repo_root_ssh }}/rad10d.git"
+repo_ssh_root: "git@gitlab.com:clewsy"
+rad10d_repo: "{{ repo_ssh_root }}/rad10d.git"
 
 rad10_packages:
   - build-essential
@@ -10,19 +11,3 @@ rad10_packages:
 #  - mpd #mpd role is a dependency
 #  - mpc #mpd role is a dependency
 #  - ncmpc #mpd role is a dependency
-
-rad10_aliases:
-  - "alias stream_nightridefm='mpc clear && mpc add https://nightride.fm/stream/nightride.m4a && mpc play'"
-  - "alias stream_proton='mpc clear && mpc add http://www.protonradio.com:8000/schedule && mpc play'"
-  - "alias stream_triplej='mpc clear && mpc add http://live-radio01.mediahubaustralia.com/2TJW/aac/ && mpc play'"
-  - "alias v0='mpc volume 0'"
-  - "alias v1='mpc volume 10'"
-  - "alias v2='mpc volume 20'"
-  - "alias v3='mpc volume 30'"
-  - "alias v4='mpc volume 40'"
-  - "alias v5='mpc volume 50'"
-  - "alias v6='mpc volume 60'"
-  - "alias v7='mpc volume 70'"
-  - "alias v8='mpc volume 80'"
-  - "alias v9='mpc volume 90'"
-  - "alias v10='mpc volume 100'"

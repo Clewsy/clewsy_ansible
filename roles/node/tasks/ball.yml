@@ -1,0 +1,17 @@
+---
+- name: '[ball] Copy ball.sh script to user bin directory.'
+  get_url:
+    url: "{{ ball_script_url }}"
+    dest: "/home/{{ ansible_user }}/bin/ball.sh"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0755'
+
+#- name: '[ball] Create cron-job to periodically run bu.sh on all hosts in my_hosts.list (i.e. run ball.sh).'
+#  cron:
+#    name: 'Role: "node" - Run ball.sh."'
+#    user: "{{ ansible_user }}"
+#    minute: "12"
+#    hour: "0"
+#    job: "/home/{{ ansible_user }}/bin/ball.sh"
+#  notify: Restart cron.

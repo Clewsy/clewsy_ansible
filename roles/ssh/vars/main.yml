@@ -1,3 +1,0 @@
----
-ansible_password: "{{ setup_password }}"  #Needed for initial setup before ssh keys are configured.
-ansible_sudo_pass: "{{ setup_password }}" #Needed for initial setup before ssh keys are configured.

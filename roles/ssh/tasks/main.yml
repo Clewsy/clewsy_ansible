@@ -33,14 +33,13 @@
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
 
-- name: Set up ssh authorized_keys file.
-  copy:
-    src: files/authorized_keys
-    dest: "/home/{{ ansible_user }}/.ssh/authorized_keys"
-    mode: 0600
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
-  notify: Restart ssh.
+- name: Set up {{ ansible_user }} ssh authorized_keys.
+  authorized_key:
+    user: "{{ ansible_user }}"
+    state: present
+    key: "{{ item }}"
+    exclusive: yes
+  with_file: files/authorized_keys
 
 ########Part 2 - set up root .ssh (duplicate of user).
 - name: Ensure .ssh folder exists in root home directory.
@@ -76,14 +75,13 @@
     owner: root
     group: root
 
-- name: Set up root ssh authorized_keys file.
-  copy:
-    src: files/authorized_keys
-    dest: "/root/.ssh/authorized_keys"
-    mode: 0600
-    owner: root
-    group: root
-  notify: Restart ssh.
+- name: Set up root ssh authorized_keys.
+  authorized_key:
+    user: root
+    state: present
+    key: "{{ item }}"
+    exclusive: yes
+  with_file: files/authorized_keys
 
 ########Part 3 - General Config
 - name: Disable ssh login banner (issue.net).

@@ -27,6 +27,7 @@ SHELL_COL_BOLD_GRAY: '01;38;5;237m'
 
 SHELL_COL_RESET: '00m'
 
+## Different command prompt colour themes.
 B4T:
   user: "{{ SHELL_COL_BOLD_WHITE }}"
   at: "{{ SHELL_COL_WHITE }}"

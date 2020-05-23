@@ -2,6 +2,7 @@
 - name: Configure farnsworth.
   hosts: farnsworth
   become: yes
+  gather_facts: True
   roles:
     - init_config
     - ssh

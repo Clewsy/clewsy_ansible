@@ -1,8 +1,8 @@
-## Must be able to log in as b4t with sudo access.
 ---
 - name: Configure seymour.
   hosts: seymour
   become: yes
+  gather_facts: True
   roles:
     - init_config
     - ssh

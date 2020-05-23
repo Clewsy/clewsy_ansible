@@ -3,9 +3,11 @@
   hosts: zoidberg
   become: yes
   roles:
+  roles:
     - init_config
     - ssh
     - ssh_secure
+    - ufw
     - sudo
     - vim
     - git
@@ -18,4 +20,4 @@
     - wami
     - misc_packages
     - mounts
-
+    

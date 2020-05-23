@@ -15,7 +15,7 @@
 
 - name: Copy wireguard configuration file - client connect to b4t.site (wg1).
   copy:
-    src: "files/wg_b4t_client_{{ host_name }}.conf"
+    src: "files/wg_b4t.site_client_{{ host_name }}.conf"
     decrypt: yes
     dest: "/etc/wireguard/wg1.conf"
     owner: "root"

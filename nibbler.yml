@@ -2,10 +2,12 @@
 - name: Configure nibbler.
   hosts: nibbler
   become: yes
+  gather_facts: True
   roles:
     - init_config
     - ssh
     - ssh_secure
+    - ufw
     - sudo
     - vim
     - git

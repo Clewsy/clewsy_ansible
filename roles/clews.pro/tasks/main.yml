@@ -1,4 +1,10 @@
 ---
+- name: Add user to www-data group.
+  user:
+    name: "{{ ansible_user }}"
+    groups: www-data
+    append: yes
+
 - name: Sync clews.pro repo ready for use by docker-compose.
   git:
     repo: "{{ clews_repo }}"

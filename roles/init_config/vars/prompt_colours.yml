@@ -30,10 +30,10 @@ SHELL_COL_RESET: '00m'
 ## Different command prompt colour themes.
 B4T:
   user: "{{ SHELL_COL_BOLD_WHITE }}"
-  at: "{{ SHELL_COL_WHITE }}"
+  at: "{{ SHELL_COL_GRAY }}"
   host: "{{ SHELL_COL_BOLD_WHITE }}"
-  colon: "{{ SHELL_COL_WHITE }}"
-  dir: "{{ SHELL_COL_BOLD_WHITE }}"
+  colon: "{{ SHELL_COL_GRAY }}"
+  dir: "{{ SHELL_COL_WHITE }}"
   prompt: "{{ SHELL_COL_GRAY }}"
 FARNSWORTH:
   user: "{{ SHELL_COL_TAN }}"

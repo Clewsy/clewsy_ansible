@@ -22,7 +22,6 @@ aliases:
   - "alias ll='ls -alFh'"
 
 misc_packages:
-  - ncdu
 
 misc_snaps:
 
@@ -35,9 +34,9 @@ cron_jobs:
   - name: "Backup file_cache to sd card."
     minute: "0"
     hour: "1"
-    weekday: "*"
     day: "*"
     month: "*"
+    weekday: "*"
     job: "cp -r /home/{{ ansible_user }}/file_cache /media/cache/."
 
 mounts:

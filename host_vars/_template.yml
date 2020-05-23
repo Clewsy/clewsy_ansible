@@ -48,9 +48,9 @@ cron_jobs:
 #  - name: "Comment will be added to crontab."
 #    minute: "0"
 #    hour: "*"
-#    weekday: "*"
 #    day: "*"
 #    month: "*"
+#    weekday: "*"
 #    job: 'echo "hello ansible"'
 
 mounts:

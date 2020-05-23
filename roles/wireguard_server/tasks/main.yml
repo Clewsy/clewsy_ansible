@@ -1,0 +1,47 @@
+---
+- name: Install wireguard.
+  apt:
+    name: wireguard
+    state: latest
+
+- name: Open wireguard port in firewall.
+  ufw:
+    rule: allow
+    port: "{{ wireguard_port }}"
+    proto: udp
+    comment: Wireguard
+  notify: Restart ufw.
+
+- name: Enable ipv4 routing on the server with net.ipv4.ip_forward = 1 entry in /etc/sysctl.conf
+  sysctl:
+    name: net.ipv4.ip_forward
+    value: '1'
+    sysctl_set: yes
+    state: present
+    reload: yes
+  notify: Restart wg-quick@wg0.
+
+- name: Enable ipv6 routing on the server with net.ipv6.conf.all.forwarding = 1 entry in /etc/sysctl.conf
+  sysctl:
+    name: net.ipv6.conf.all.forwarding
+    value: '1'
+    sysctl_set: yes
+    state: present
+    reload: yes
+  notify: Restart wg-quick@wg0.
+
+- name: Copy wireguard server configuration file.
+  copy:
+    src: "files/wg_{{ host_name }}_server.conf"
+    decrypt: yes
+    dest: "/etc/wireguard/wg0.conf"
+    owner: "root"
+    group: "root"
+    mode: '0600'
+  notify: Restart wg-quick@wg0.
+
+- name: Enable and start wireguard service wg-quick@wg0.
+  service:
+    name: wg-quick@wg0
+    enabled: yes
+  notify: Restart wg-quick@wg0.

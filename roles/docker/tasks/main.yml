@@ -4,10 +4,10 @@
     name: "{{ docker_packages }}"
     state: latest
 
-- name: Add user to docker and www-data groups.
+- name: Add user to docker group.
   user:
     name: "{{ ansible_user }}"
-    groups: docker,www-data
+    groups: docker
     append: yes
 
 - name: Create docker-compose staging area.

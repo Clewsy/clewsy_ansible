@@ -21,7 +21,6 @@ aliases:
   - "alias ll='ls -alFh'"
 
 misc_packages:
-  - ncdu
 
 misc_snaps:
 

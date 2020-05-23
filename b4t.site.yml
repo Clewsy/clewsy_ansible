@@ -1,0 +1,20 @@
+---
+- name: Configure b4t.site.
+  hosts: b4t.site
+  become: yes
+#  gather_facts: True
+  gather_facts: False
+  roles:
+#    - init_config
+#    - ssh
+#    - ssh_secure
+    - ufw
+#    - sudo
+#    - vim
+#    - git
+#    - docker
+#    - bu
+#    - stuff
+#    - wami
+#    - misc_packages
+    - wireguard_server

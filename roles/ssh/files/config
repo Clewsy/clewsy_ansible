@@ -22,7 +22,7 @@ Host zoidberg zoid zoi
 Host kif
 	HostName kif
 	User root
-Host b4t.site b4t
+Host b4t.site b4t-site b4t
 	HostName b4t.site
 	User b4t
 Host zapp zap

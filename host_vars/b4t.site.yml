@@ -3,7 +3,7 @@
 #init_ansible_user: {{ ansible_user }}
 #init_ansible_password: {{ ansible_password }}
 
-host_name: b4t.site
+ansible_hostname: b4t-site
 
 ansible_user: b4t
 

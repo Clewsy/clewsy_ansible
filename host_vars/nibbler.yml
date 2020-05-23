@@ -3,7 +3,7 @@
 #init_ansible_user: {{ ansible_user }}
 #init_ansible_password: {{ ansible_password }}
 
-host_name: nibbler
+ansible_hostname: nibbler
 
 ansible_user: jc
 

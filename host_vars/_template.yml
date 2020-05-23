@@ -3,7 +3,7 @@
 #init_ansible_user: {{ ansible_user }}
 #init_ansible_password: {{ ansible_password }}
 
-host_name: name
+ansible_hostname: hostname
 
 ansible_user: user
 

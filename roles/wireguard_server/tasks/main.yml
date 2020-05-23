@@ -1,7 +1,7 @@
 ---
-- name: Install wireguard.
+- name: Ensure all packages required for using wireguard are installed.
   apt:
-    name: wireguard
+    name: "{{ wireguard_packages }}"
     state: latest
 
 - name: Open wireguard port in firewall.
@@ -32,7 +32,7 @@
 
 - name: Copy wireguard server configuration file.
   copy:
-    src: "files/wg_{{ host_name }}_server.conf"
+    src: "files/wg_{{ ansible_hostname }}_server.conf"
     decrypt: yes
     dest: "/etc/wireguard/wg0.conf"
     owner: "root"

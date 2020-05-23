@@ -3,7 +3,7 @@
 #init_ansible_user: {{ ansible_user }}
 #init_ansible_password: {{ ansible_password }}
 
-host_name: rad10
+ansible_hostname: rad10
 
 ansible_user: b4t
 

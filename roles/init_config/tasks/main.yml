@@ -1,7 +1,7 @@
 ---
 - name: Set hostname. #Depend on DHCP to initiate server by host name before this is set.
   hostname:
-    name: "{{ host_name }}"
+    name: '{{ ansible_hostname }}'
     use: systemd
 
 - name: Set local timezone.
@@ -23,7 +23,7 @@
 
 - name: Set motd.
   copy:
-    src: "files/motd/motd_{{ host_name }}"
+    src: "files/motd/motd_{{ ansible_hostname }}"
     dest: /etc/motd
     mode: 0644
     owner: "{{ ansible_user }}"

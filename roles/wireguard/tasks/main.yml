@@ -1,26 +1,26 @@
 ---
-- name: Install wireguard.
+- name: Ensure all packages required for using wireguard are installed.
   apt:
-    name: wireguard
+    name: "{{ wireguard_packages }}"
     state: latest
 
 - name: Copy wireguard configuration file - client connect to clews.pro (wg0).
   copy:
-    src: "files/wg_clews_client_{{ host_name }}.conf"
+    src: "files/wg_clews_client_{{ ansible_hostname }}.conf"
     decrypt: yes
     dest: "/etc/wireguard/wg0.conf"
     owner: "root"
     group: "root"
-    mode: 0644
+    mode: '0644'
 
 - name: Copy wireguard configuration file - client connect to b4t.site (wg1).
   copy:
-    src: "files/wg_b4t.site_client_{{ host_name }}.conf"
+    src: "files/wg_b4t-site_client_{{ ansible_hostname }}.conf"
     decrypt: yes
     dest: "/etc/wireguard/wg1.conf"
     owner: "root"
     group: "root"
-    mode: 0644
+    mode: '0644'
 
 - name: Set {{ ansible_user }} aliases for bringing wireguard connections up / down.
   lineinfile:

@@ -1,3 +1,8 @@
+---
+wireguard_packages:
+  - wireguard
+#  - openresolv
+
 wireguard_port: !vault |
   $ANSIBLE_VAULT;1.1;AES256
   31343666643162356265356661346337616438386532663664613130383762373237383238633637

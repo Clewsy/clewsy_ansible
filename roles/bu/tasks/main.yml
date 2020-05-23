@@ -17,7 +17,7 @@
 
 - name: Copy host-specific backup list (bu.list) to /home/{{ ansible_user }}/bin.
   copy:
-    src: "files/bu.list_{{ host_name }}"
+    src: "files/bu.list_{{ ansible_hostname }}"
     dest: "/home/{{ ansible_user }}/bin/bu.list"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"

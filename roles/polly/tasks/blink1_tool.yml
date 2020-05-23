@@ -12,10 +12,12 @@
     repo: "{{ blink1_tool_repo }}"
     dest: "{{ blink1_tool_local_clone }}"
     depth: 1 #Don't need the full git history.
+  register: blink1_tool_repo_clone
 
 - name: Compile blink1-tool.
   make:
     chdir: "{{ blink1_tool_local_clone }}"
+  when: blink1_tool_repo_clone is changed
 
 - name: Copy blink1-tool for root use.
   copy:
@@ -25,3 +27,4 @@
     owner: root
     group: root
     mode: 0755
+  when: blink1_tool_repo_clone is changed

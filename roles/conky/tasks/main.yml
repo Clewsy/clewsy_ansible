@@ -1,4 +1,7 @@
 ---
+- name: Install and configure non-standard fonts for use by conky.
+  include: fonts.yml
+
 - name: Install conky.
   apt:
     name: conky

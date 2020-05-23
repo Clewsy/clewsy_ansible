@@ -1,4 +1,8 @@
-- name: Install custom fonts.
+---
+- name: '[fonts] Load fonts variables.'
+  include_vars: fonts_vars.yml
+
+- name: '[fonts] Install custom fonts.'
   get_url:
     url: "{{ item.font_source }}"
     dest: "/usr/share/fonts/{{ item.font_name }}"
@@ -9,7 +13,7 @@
   register: get_font
   ignore_errors: True
 
-- name: Notify error.
+- name: '[fonts] Notify if error.'
   debug: 
     msg: "Could not download font."
   when: get_font is failed

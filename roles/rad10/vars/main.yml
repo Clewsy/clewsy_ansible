@@ -4,12 +4,12 @@ rad10d_repo: "{{ git_repo_root_ssh }}/rad10d.git"
 rad10_packages:
   - build-essential
   - pigpio
-  - mpd
-  - mpc
-  - ncmpc
   - libmpdclient-dev
   - apache2
   - php
+#  - mpd #mpd role is a dependency
+#  - mpc #mpd role is a dependency
+#  - ncmpc #mpd role is a dependency
 
 rad10_aliases:
   - "alias stream_nightridefm='mpc clear && mpc add https://nightride.fm/stream/nightride.m4a && mpc play'"

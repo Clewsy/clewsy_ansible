@@ -3,7 +3,7 @@
 #init_ansible_user: {{ ansible_user }}
 #init_ansible_password: {{ ansible_password }}
 
-ansible_hostname: seymour
+host_name: seymour
 
 ansible_user: b4t
 
@@ -17,9 +17,7 @@ setup_password: !vault |
 
 local_tz: 'Australia/Melbourne'
 
-
 aliases:
-  - "alias ll='ls -alFh'"
 
 misc_packages:
 

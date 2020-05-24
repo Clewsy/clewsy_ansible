@@ -1,5 +1,30 @@
 ---
-- name: '[aliases] Set user aliases.'
+- name: '[aliases] Load aliases variables.'
+  include_vars: aliases_vars.yml
+
+- name: '[aliases] Set common user aliases.'
+  lineinfile:
+    path: "/home/{{ ansible_user }}/.bash_aliases"
+    state: present
+    regexp: "{{ item }}"
+    line: "{{ item }}"
+    insertafter: EOF
+    create: yes
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+  with_items: "{{ common_aliases }}"
+
+- name: '[aliases] Set common root aliases.'
+  lineinfile:
+    path: "/root/.bash_aliases"
+    state: present
+    regexp: "{{ item }}"
+    line: "{{ item }}"
+    insertafter: EOF
+    create: yes
+  with_items: "{{ common_aliases }}"
+
+- name: '[aliases] Set host-specific user aliases.'
   lineinfile:
     path: "/home/{{ ansible_user }}/.bash_aliases"
     state: present
@@ -10,8 +35,9 @@
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
   with_items: "{{ aliases }}"
+  when: aliases.0 is defined
 
-- name: '[aliases] Set root aliases.'
+- name: '[aliases] Set host-specific root aliases.'
   lineinfile:
     path: "/root/.bash_aliases"
     state: present
@@ -20,6 +46,7 @@
     insertafter: EOF
     create: yes
   with_items: "{{ aliases }}"
+  when: aliases.0 is defined
 
 - name: '[aliases] Ensure bash_aliases enabled for root user.'
   lineinfile:

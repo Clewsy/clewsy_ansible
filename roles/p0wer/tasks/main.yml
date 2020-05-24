@@ -1,0 +1,70 @@
+---
+- name: Ensure all packages required for p0wer executable and webui are installed.
+  apt:
+    name: "{{ p0wer_packages }}"
+    state: latest
+
+- name: Clone p0wer repository to home directory.
+  git:
+    repo: "{{ p0wer_repo }}"
+    dest: "/home/{{ ansible_user }}/p0wer"
+    accept_hostkey: yes
+    key_file: "/home/{{ ansible_user }}/.ssh/id_rsa" #Ensure ssh key is loaded into repo ssh settings.
+  register: p0wer_clone
+
+- name: Change owner of any files updated from git repo (from root to {{ ansible_user }}).
+  file:
+    recurse: yes
+    path: "/home/{{ ansible_user }}/p0wer"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+  when: p0wer_clone is changed
+
+- name: Build the p0wer executable from source. #Note executable will be owned by root:root
+  make:
+    chdir: "/home/{{ ansible_user }}/p0wer"
+    target: all
+
+- name: Copy p0wer executable to /usr/local/sbin/p0wer
+  copy:
+    src: "/home/{{ ansible_user }}/p0wer/p0wer"
+    dest: "/usr/local/sbin/p0wer"
+    remote_src: yes
+    owner: root
+    group: root
+    mode: '04755' #Note setting setuid bit so that file is executated by user or www-data but with root permissions.
+
+- name: Set useful p0wer aliases.'
+  lineinfile:
+    path: "/home/{{ ansible_user }}/.bash_aliases"
+    state: present
+    regexp: "{{ item }}"
+    line: "{{ item }}"
+    insertafter: EOF
+    create: yes
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+  with_items: "{{ p0wer_aliases }}"
+
+- name: If it exists, delete the default apache index.html page.
+  file:
+    path: /var/www/html/index.html
+    state: absent
+
+- name: Copy webui files to /var/www/html (to be served by apache).
+  copy:
+    src: "/home/{{ ansible_user }}/p0wer/webui/"
+    dest: "/var/www/html"
+    remote_src: yes
+    owner: www-data
+    group: www-data
+
+- name: Copy p0wer executable file to /var/www/html/bin/super_p0wer to be executed by user www-data.
+  copy:
+    src: "/usr/local/sbin/p0wer"
+    dest: "/var/www/html/bin/super_p0wer"
+    remote_src: yes
+    owner: root
+    group: root
+    mode: '04755' #Note setting setuid bit so that file is executated by user or www-data but with root permissions.

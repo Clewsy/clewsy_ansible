@@ -1,8 +1,9 @@
 ---
-- name: Set hostname to {{ ansible_hostname }}. #Depend on DHCP to initiate server by host name before this is set.
+- name: 'Set hostname ({{ ansible_hostname }}) to {{ host_name }}.'
   hostname:
-    name: '{{ ansible_hostname }}'
+    name: "{{ host_name }}"
     use: systemd
+  register: new_hostname
 
 - name: Set local timezone to {{ local_tz }}.
   timezone:
@@ -32,14 +33,14 @@
     name: "{{ common_packages }}"
     state: latest
 
-- name: Install host-specific miscellaneous packages.
-  include: misc_packages.yml
-
 - name: Install and configure vim.
   include: vim.yml
 
 - name: Install and configure git.
   include: git.yml
+
+- name: Install host-specific miscellaneous packages.
+  include: misc_packages.yml
 
 - name: Set motd.
   copy:

@@ -31,7 +31,7 @@
     src: "/home/{{ ansible_user }}/rad10d/rad10d"
     dest: "/usr/local/sbin/rad10d"
     remote_src: yes
-    mode: +x
+    mode: '0755'
 
 - name: Copy rad10d.service unit file to /lib/systemd/system/rad10d.service
   copy:

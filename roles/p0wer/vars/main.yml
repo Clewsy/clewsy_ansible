@@ -1,0 +1,20 @@
+---
+repo_ssh_root: "git@gitlab.com:clewsy"
+p0wer_repo: "{{ repo_ssh_root }}/p0wer.git"
+
+p0wer_packages:
+  - build-essential
+  - pigpio
+  - apache2
+  - php
+
+p0wer_aliases:
+  - "alias aon='sudo p0wer a on'"
+  - "alias aoff='sudo p0wer a off'"
+  - "alias bon='sudo p0wer b on'"
+  - "alias boff='sudo p0wer b off'"
+  - "alias con='sudo p0wer c on'"
+  - "alias coff='sudo p0wer c off'"
+  - "alias don='sudo p0wer d on'"
+  - "alias doff='sudo p0wer d off'"
+  

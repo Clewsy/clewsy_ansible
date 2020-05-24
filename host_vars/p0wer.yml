@@ -3,7 +3,7 @@
 #init_ansible_user: {{ ansible_user }}
 #init_ansible_password: {{ ansible_password }}
 
-ansible_hostname: p0wer
+host_name: p0wer #fact "ansible_hostname" will be changed to host_name if it doesn't match.
 
 ansible_user: b4t
 
@@ -17,8 +17,7 @@ setup_password: !vault |
 
 local_tz: 'Australia/Melbourne'
 
-aliases:
-  - "alias ll='ls -alFh'"
+#aliases:
 
 #misc_packages:
 

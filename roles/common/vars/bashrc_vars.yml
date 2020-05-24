@@ -71,6 +71,13 @@ ZOIDBERG:
   colon: "{{ SHELL_COL_BOLD_RED }}"
   dir: "{{ SHELL_COL_BOLD_GREENISHBLUE }}"
   prompt: "{{ SHELL_COL_BOLD_RED }}"
+BLUE_WHITE:
+  user: "{{ SHELL_COL_BOLD_BLUE }}"
+  at: "{{ SHELL_COL_BOLD_WHITE }}"
+  host: "{{ SHELL_COL_BOLD_BLUE }}"
+  colon: "{{ SHELL_COL_BOLD_WHITE }}"
+  dir: "{{ SHELL_COL_BOLD_BLUE }}"
+  prompt: "{{ SHELL_COL_BOLD_WHITE }}"
 
 prompt_user_colour: "{{ theme_prompt.user }}"
 prompt_at_colour: "{{ theme_prompt.at }}"

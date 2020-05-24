@@ -1,10 +1,10 @@
 ---
-- name: Set hostname. #Depend on DHCP to initiate server by host name before this is set.
+- name: Set hostname to {{ ansible_hostname }}. #Depend on DHCP to initiate server by host name before this is set.
   hostname:
     name: '{{ ansible_hostname }}'
     use: systemd
 
-- name: Set local timezone.
+- name: Set local timezone to {{ local_tz }}.
   timezone:
     name: "{{ local_tz }}"
 

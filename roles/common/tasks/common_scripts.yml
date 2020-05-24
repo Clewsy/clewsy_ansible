@@ -20,7 +20,7 @@
     group: "{{ ansible_user }}"
     mode: '0755'
 
-- name: '[common_scripts] Copy host-specific backup list (bu.list) to /home/{{ ansible_user }}/bin.'
+- name: "[common_scripts] Copy host-specific backup list (bu.list) to /home/{{ ansible_user }}/bin."
   copy:
     src: "files/bu/bu.list_{{ ansible_hostname }}"
     dest: "/home/{{ ansible_user }}/bin/bu.list"
@@ -38,7 +38,7 @@
     group: "{{ ansible_user }}"
     mode: '0755'
 
-- name: '[common_scripts] Customize stuff.sh colour theme - desired colour for {{ host_name }} is {{ theme_colour }}.'
+- name: "[common_scripts] Customize stuff.sh colour theme - desired colour for {{ ansible_hostname }} is {{ theme_colour }}."
   lineinfile:
     path: "/home/{{ ansible_user }}/bin/stuff.sh"
     regexp: '^COL='

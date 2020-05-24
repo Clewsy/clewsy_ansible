@@ -42,7 +42,7 @@ FARNSWORTH:
   host: "{{ SHELL_COL_BOLD_WHITE }}"
   colon: "{{ SHELL_COL_GREENISHBLUE }}"
   dir: "{{ SHELL_COL_BOLD_GRAY }}"
-  prompt: "{{ SHELL_COL_BOLD_WHITE }}"
+  prompt: "{{ SHELL_COL_GREENISHBLUE }}"
 NIBBLER:
   user: "{{ SHELL_COL_BOLD_ORANGE }}"
   at: "{{ SHELL_COL_BOLD_WHITE }}"

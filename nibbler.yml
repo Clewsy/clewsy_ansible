@@ -8,11 +8,7 @@
     - ssh_secure
     - ufw
     - node
-    - terbling
     - vpn
-    - conky
-    - terminator
-    - guake
     - wireguard
-    - gnome_config
     - mpd
+    - desktop

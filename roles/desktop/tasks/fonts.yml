@@ -8,7 +8,7 @@
     dest: "/usr/share/fonts/{{ item.font_name }}"
     owner: root
     group: root
-    mode: 0666
+    mode: '0666'
   with_items: "{{ fonts }}"
   register: get_font
   ignore_errors: True

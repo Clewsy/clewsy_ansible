@@ -1,0 +1,18 @@
+---
+- name: Install and configure non-standard fonts.
+  include: fonts.yml
+
+- name: Install and configure conky.
+  include: conky.yml
+
+- name: Install and configure terbling script.
+  include: terbling.yml
+
+- name: Install and configure terminator.
+  include: terminator.yml
+
+- name: Install and configure guake.
+  include: guake.yml
+
+- name: Install and configure gnome_config.
+  include: gnome_config.yml

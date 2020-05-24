@@ -1,0 +1,11 @@
+---
+- name: '[gnome_config] Load gnome_config variables.'
+  include_vars: gnome_config_vars.yml
+
+- name: '[gnome_config] Copy desktop profile image to {{ profile_icon_dest }} (expected location for distribution {{ ansible_distribution }}).'
+  copy:
+    src: "files/gnome_config/{{ ansible_user }}.png"
+    dest: "{{ profile_icon_dest }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0644'

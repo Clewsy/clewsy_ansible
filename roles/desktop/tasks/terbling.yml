@@ -1,21 +1,24 @@
 ---
-- name: Ensure bin directory within user's home directory exists.
+- name: '[terbling] Load terbling variables.'
+  include_vars: terbling_vars.yml
+
+- name: '[terbling] Ensure bin directory within user home directory exists.'
   file:
     dest: "/home/{{ ansible_user }}/bin"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
-    mode: 0755
+    mode: '0755'
     state: directory
 
-- name: Copy terbling.sh script to user's bin directory.
+- name: '[terbling] Copy terbling.sh script to user bin directory.'
   get_url:
     url: "{{ terbling_script_url }}"
     dest: "/home/{{ ansible_user }}/bin/terbling.sh"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
-    mode: 0755
+    mode: '0755'
 
-- name: Customize terbling.sh colour theme - desired colour for {{ host_name }} is {{ theme_colour }}.
+- name: '[terbling] Customize terbling.sh colour theme - desired colour for {{ host_name }} is {{ theme_colour }}.'
   lineinfile:
     path: "/home/{{ ansible_user }}/bin/terbling.sh"
     regexp: '^COL='

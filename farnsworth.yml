@@ -10,10 +10,6 @@
 #    - clews.pro
     - node
     - docker
-    - terbling
     - vpn
-    - conky
-    - terminator
-    - guake
-    - gnome_config
     - mpd
+    - desktop

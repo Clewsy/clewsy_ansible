@@ -1,29 +1,29 @@
 ---
-- name: Install and configure non-standard fonts for use by conky.
-  include: fonts.yml
+- name: '[conky] Load conky variables.'
+  include_vars: conky_vars.yml
 
-- name: Install conky.
+- name: '[conky] Install conky.'
   apt:
     name: conky
     state: latest
 
-- name: Copy conky configuration file.
+- name: '[conky] Copy conky configuration file.'
   get_url:
     url: "{{ conky_config_url }}"
     dest: "/home/{{ ansible_user }}/.conkyrc"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
-    mode: 0640
+    mode: '0640'
 
-- name: Ensure autostart directory exists.
+- name: '[conky] Ensure autostart directory exists.'
   file:
     dest: "/home/{{ ansible_user }}/.config/autostart"
-    mode: 0755
+    mode: '0755'
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     state: directory
 
-- name: Create autostart entry.
+- name: '[conky] Create autostart entry.'
   copy:
     content: |
       [Desktop Entry]
@@ -38,5 +38,4 @@
     dest: "/home/{{ ansible_user }}/.config/autostart/conky.desktop"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
-    mode: 0664
-
+    mode: '0664'

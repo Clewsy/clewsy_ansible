@@ -1,26 +1,26 @@
 ---
-- name: Install terminator.
+- name: '[terminator] Install terminator.'
   apt:
     name: terminator
     state: latest
 
-- name: Copy terminator configuration file.
+- name: '[terminator] Copy terminator configuration file.'
   copy:
-    src: "files/config_{{ ansible_hostname }}"
+    src: "files/terminator/config_{{ ansible_hostname }}"
     dest: "/home/{{ ansible_user }}/.config/terminator/config"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
-    mode: 0664
+    mode: '0664'
 
-- name: Ensure autostart directory exists.
+- name: '[terminator] Ensure autostart directory exists.'
   file:
     dest: "/home/{{ ansible_user }}/.config/autostart"
-    mode: 0755
+    mode: '0755'
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     state: directory
 
-- name: Create autostart entry.
+- name: '[terminator] Create autostart entry.'
   copy:
     content: |
       [Desktop Entry]
@@ -42,5 +42,4 @@
     dest: "/home/{{ ansible_user }}/.config/autostart/terminator.desktop"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
-    mode: 0664
-
+    mode: '0664'

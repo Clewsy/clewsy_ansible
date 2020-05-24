@@ -15,7 +15,7 @@ setup_password: !vault | # $ ansible-vault encrypt_string 'secret_password'
 #  3065366532326430610a383162643461643764306339323863366632306530326235653861653931
 #  6661
 
-local_tz: 'Australia/Melbourne'
+local_tz: 'Australia/Melbourne' #If ommitted will default to 'Australia/Melbourne'
 
 aliases:
 #  - "alias ll='ls -alFh'"
@@ -33,8 +33,8 @@ misc_snaps:
 misc_classic_snaps:
 #  - code
 
-theme_colour: CYAN
-theme_prompt: "{{ CYAN_BLUE }}"
+theme_colour: CYAN #Can override setting referenced in common/common_scripts role. Will default to CYAN if ommitted.
+theme_prompt: "{{ CYAN_BLUE }}" #Can override setting referenced in common/bashrc role.  Will default to {{ CYAN_BLUE }}
 
 cron_jobs:
 #  - name: "Comment will be added to crontab."
@@ -44,6 +44,18 @@ cron_jobs:
 #    month: "*"
 #    weekday: "*"
 #    job: 'echo "hello ansible"'
+
+motion: #Can override default settings in motion role.
+#  videodevice: '/dev/video0' #If ommitted, will default to /dev/video0
+#  rotate: '180' #If ommitted, will default to 0 
+#  flip_axis: 'none'  #If ommitted, will default to none
+#  width: '640' #If ommitted, will default to 320
+#  height: '480' #If ommitted, will default to 240
+#  framerate: '100' #If ommitted, will default to 2
+#  ffmpeg_output_movies: 'off' #If ommitted, will default to on
+#  stream_port: '8888' #If ommitted, will default to 8081
+#  stream_quality: '100' #If ommitted, will default to 50 (%)
+#  stream_localhost: 'off' #If ommitted, will default to on (i.e. only stream locally).
 
 mounts:
 #  - { mount_source: /dev/mmcblk0p1, mount_path: '/media/cache', mount_fstype: 'auto', mount_opts: "auto,rw,async,user,uid={{ ansible_user }},gid={{ ansible_user }},nofail" }
@@ -58,7 +70,7 @@ nfs_mounts:
 #  - { mount_source: 'zapp:/export/cl0ud', mount_path: '/mnt/zapp/cl0ud' }
 #  - { mount_source: 'zapp:/export/m0n0l1th', mount_path: '/mnt/zapp/m0n0l1th' }
 
-music_dir: #"/home/{{ ansible_user }}/Music" #If this is an nfs share, ensure nfs role included and share defined above.
+music_dir: #"/home/{{ ansible_user }}/Music" #Can override default setting in mpd role.  If this is an nfs share, ensure nfs role included and share defined above.
 
 ssh_public_key: !vault | # $ cat .ssh/id_rsa.pub | ansible-vault encrypt_string
 #  $ANSIBLE_VAULT;1.1;AES256

@@ -38,9 +38,9 @@ B4T:
   prompt: "{{ SHELL_COL_GRAY }}"
 FARNSWORTH:
   user: "{{ SHELL_COL_TAN }}"
-  at: "{{ SHELL_COL_BOLD_WHITE }}"
-  host: "{{ SHELL_COL_GREENISHBLUE }}"
-  colon: "{{ SHELL_COL_WHITE }}"
+  at: "{{ SHELL_COL_GREENISHBLUE }}"
+  host: "{{ SHELL_COL_BOLD_WHITE }}"
+  colon: "{{ SHELL_COL_GREENISHBLUE }}"
   dir: "{{ SHELL_COL_BOLD_GRAY }}"
   prompt: "{{ SHELL_COL_BOLD_WHITE }}"
 NIBBLER:

@@ -1,0 +1,5 @@
+---
+- name: Restart motion.
+  service:
+    name: motion
+    state: restarted

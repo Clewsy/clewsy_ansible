@@ -1,0 +1,25 @@
+---
+- name: Ensure all packages required for motion are installed.
+  apt:
+    name: "{{ motion_packages }}"
+    state: latest
+
+- name: Enable motion daemon autostart.
+  copy:
+    content: |
+      # set to 'yes' to enable the motion daemon
+      start_motion_daemon=yes
+    dest: /etc/default/motion
+    owner: root
+    group: root
+    mode: '0644'
+  notify: Restart motion.
+
+- name: 'Create /etc/motion/motion.conf from template.'
+  template:
+    src: templates/motion.conf
+    dest: "/etc/motion/motion.conf"
+    owner: root
+    group: root
+    mode: '0644'
+  notify: Restart motion.

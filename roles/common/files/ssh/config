@@ -50,3 +50,6 @@ Host b4t-phone phone pho
         HostName b4t-phone
         User jc
         Port 8022
+Host pazuzu paz
+	HostName pazuzu
+	User b4t

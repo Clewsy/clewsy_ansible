@@ -3,3 +3,6 @@
   service:
     name: motion
     state: restarted
+
+- name: Reboot pi.
+  reboot:

@@ -1,0 +1,8 @@
+---
+- name: Configure pazuzu.
+  hosts: pazuzu
+  become: yes
+  gather_facts: True
+  roles:
+    - common
+    - motion

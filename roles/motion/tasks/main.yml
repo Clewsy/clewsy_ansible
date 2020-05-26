@@ -23,3 +23,15 @@
     group: root
     mode: '0644'
   notify: Restart motion.
+
+- name: 'Enable the raspberry pi camera if used (defined by variable motion.picam: True).'
+  blockinfile:
+    path: "/boot/config.txt"
+    block: |
+      start_x=1
+      gpu_mem=128
+    owner: root
+    group: root
+    mode: '0755'
+  notify: Reboot pi.
+  when: motion.picam == "True"

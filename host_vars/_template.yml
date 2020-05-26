@@ -56,6 +56,8 @@ motion: #Can override default settings in motion role.
 #  stream_port: '8888' #If ommitted, will default to 8081
 #  stream_quality: '100' #If ommitted, will default to 50 (%)
 #  stream_localhost: 'off' #If ommitted, will default to on (i.e. only stream locally).
+#  picam: "False" #If omitted, defaults to False (i.e. webcam, not picam).
+
 
 mounts:
 #  - { mount_source: /dev/mmcblk0p1, mount_path: '/media/cache', mount_fstype: 'auto', mount_opts: "auto,rw,async,user,uid={{ ansible_user }},gid={{ ansible_user }},nofail" }

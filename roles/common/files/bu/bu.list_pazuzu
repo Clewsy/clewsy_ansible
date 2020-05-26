@@ -1,0 +1,7 @@
+##This is the list of iles and directories on seymour to be backed up by the bu.sh script.
+~/.bashrc
+~/bin/
+/etc/motd
+~/.bash_aliases
+~/.ssh/
+$HOME/.vimrc

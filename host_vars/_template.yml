@@ -56,7 +56,7 @@ motion: #Can override default settings in motion role.
 #  stream_port: '8888' #If ommitted, will default to 8081
 #  stream_quality: '100' #If ommitted, will default to 50 (%)
 #  stream_localhost: 'off' #If ommitted, will default to on (i.e. only stream locally).
-#  picam: "False" #If omitted, defaults to False (i.e. webcam, not picam).
+#  picam: false #If omitted, defaults to false (i.e. webcam, not picam).
 
 
 mounts:

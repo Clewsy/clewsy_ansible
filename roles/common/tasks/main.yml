@@ -42,13 +42,8 @@
 - name: Install host-specific miscellaneous packages.
   include: misc_packages.yml
 
-- name: Set motd.
-  copy:
-    src: "files/motd/motd_{{ ansible_hostname }}"
-    dest: /etc/motd
-    mode: '0644'
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
+- name: Set custom motd.
+  include: motd.yml
 
 - name: Configure .bashrc file.
   include: bashrc.yml

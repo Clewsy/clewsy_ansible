@@ -1,0 +1,27 @@
+---
+- name: '[motd] Ensure /etc/update-motd.d directory exists.'
+  file:
+    dest: "/etc/update-motd.d/"
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: '[motd] Add image generation script to /etc/update-motd.d/ directory (99-image).'
+  copy:
+    content: |
+      #!/bin/sh
+      IFS='%' #Temporarily change the internal field separator so that contiguous spaces are preserved in motd file.
+      echo $(cat /etc/update-motd.d/motd)
+    dest: /etc/update-motd.d/99-image
+    mode: '0755'
+    owner: root
+    group: root
+
+- name: '[motd] Copy motd file to host.'
+  copy:
+    src: "files/motd/motd_{{ ansible_hostname }}"
+    dest: /etc/update-motd.d/motd
+    mode: '0644'
+    owner: root
+    group: root

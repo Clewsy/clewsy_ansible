@@ -7,7 +7,3 @@ clews_unit_file: "{{ repo_root }}/clews.pro/-/raw/master/clews.service"
 
 clews_docker_backup_host: zapp
 clews_docker_backup_dir: /export/cl0ud/docker_zoidberg/docker
-
-# passwords needed for rsync - should match backup host.
-#ansible_password: "{{ setup_password }}"
-#ansible_sudo_pass: "{{ setup_password }}"

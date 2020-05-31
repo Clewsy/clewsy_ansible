@@ -1,0 +1,15 @@
+---
+homeassistant_packages:
+  - apparmor-utils
+  - apt-transport-https
+  - avahi-daemon
+  - ca-certificates
+  - jq
+  - curl
+  - dbus
+  - network-manager
+  - socat
+  - software-properties-common
+#  - docker-ce
+#  - docker-ce-cli
+#  - containerd.io

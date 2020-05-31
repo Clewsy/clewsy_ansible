@@ -1,0 +1,38 @@
+---
+# https://blakeniemyjski.com/blog/installing-home-assistant-on-ubuntu/
+- name: Ensure all packages required for homeassistant are installed.
+  apt:
+    name: "{{ homeassistant_packages }}"
+    state: latest
+
+- name: Remove ModemManager.
+  apt:
+    name: modemmanager
+    state: absent
+    purge: yes
+  register: modemmanager_was_installed
+
+- name: Force systemd to re-execute itself (purge ModemManager service).
+  systemd:
+    daemon_reexec: yes
+  when: modemmanager_was_installed is changed
+
+- name: Download homeassistant installation script.
+  get_url:
+    url: https://raw.githubusercontent.com/home-assistant/supervised-installer/c674830d8ddc6af9d618755a7995af939dd73fde/installer.sh
+    dest: /tmp/homeassistant_installer.sh
+    owner: root
+    group: root
+    mode: '0700'
+
+- name: 'Ensure home-assistant data-share directory exists {{ homeassistant.data_share }}.'
+  file:
+    dest: "{{ homeassistant.data_share }}"
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Run homeassistant installer script.
+  shell:
+    cmd: "/tmp/homeassistant_installer.sh --machine {{ homeassistant.machine }} --data-share {{ homeassistant.data_share }}" #" --sysconfdir {{ homeassistant.config_dir }}"

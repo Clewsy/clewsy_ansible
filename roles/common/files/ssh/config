@@ -36,7 +36,7 @@ Host bender ben
 	User jc
 Host calculon calc cal
 	HostName calculon
-	User jc
+	User b4t
 Host planet-express-ship planet-express planet pes pex pla
 	HostName planet-express-ship
 	User b4t

@@ -58,6 +58,9 @@ motion: #Can override default settings in motion role.
 #  stream_localhost: 'off' #If ommitted, will default to on (i.e. only stream locally).
 #  picam: false #If omitted, defaults to false (i.e. webcam, not picam).
 
+homeassistant: #Can override default settings when running the homeassistant installer script.
+#  machine: raspberrypi4-64 #If ommitted will default to raspberrypi-64
+#  data_share: /home/docker/home-assistant #If ommitted will default to /home/docker/home-assistant
 
 mounts:
 #  - { mount_source: /dev/mmcblk0p1, mount_path: '/media/cache', mount_fstype: 'auto', mount_opts: "auto,rw,async,user,uid={{ ansible_user }},gid={{ ansible_user }},nofail" }

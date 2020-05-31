@@ -29,7 +29,7 @@ SHELL_COL_PINK: '00;38;5;201m'
 SHELL_COL_BOLD_PINK: '01;38;5;201m'
 SHELL_COL_MAROON: '00;38;5;052m'
 SHELL_COL_BOLD_MAROON: '01;38;5;052m'
-
+SHELL_COL_DIM_YELLOW: '02;33m'
 
 SHELL_COL_RESET: '00m'
 
@@ -89,6 +89,13 @@ PAZUZU:
   host: "{{ SHELL_COL_MAROON }}"
   colon: "{{ SHELL_COL_PINK }}"
   dir: "{{ SHELL_COL_BOLD_MAROON }}"
+  prompt: "{{ SHELL_COL_BOLD_WHITE }}"
+CALCULON:
+  user: "{{ SHELL_COL_YELLOW }}"
+  at: "{{ SHELL_COL_BOLD_YELLOW }}"
+  host: "{{ SHELL_COL_DIM_YELLOW }}"
+  colon: "{{ SHELL_COL_YELLOW }}"
+  dir: "{{ SHELL_COL_DIM_YELLOW }}"
   prompt: "{{ SHELL_COL_BOLD_WHITE }}"
 
 prompt_user_colour: "{{ theme_prompt.user }}"

@@ -1,0 +1,4 @@
+---
+homeassistant:
+  machine: raspberrypi4-64
+  data_share: /home/docker/home-assistant

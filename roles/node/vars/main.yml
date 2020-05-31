@@ -6,3 +6,5 @@ ball_script_url: "{{ repo_root }}/scripts/-/raw/master/ball.sh"
 pong_script_url: "{{ repo_root }}/scripts/-/raw/master/pong.sh"
 whodis_script_url: "{{ repo_root }}/scripts/-/raw/master/whodis.sh"
 
+ansible_repo: "git@gitlab.com:clewsy/ansible"
+

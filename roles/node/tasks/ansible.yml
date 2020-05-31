@@ -1,0 +1,22 @@
+---
+- name: '[ansible] Install ansible.'
+  apt:
+    name: ansible
+    state: latest
+
+- name: '[ansible] Clone repo to home directory.'
+  git:
+    repo: "{{ ansible_repo }}"
+    dest: "/home/{{ ansible_user }}/ansible"
+    accept_hostkey: yes
+    key_file: "/home/{{ ansible_user }}/.ssh/id_rsa"
+  register: ansible_clone
+
+- name: '[ansible] Ensure cloned ansible repo is owned by {{ ansible_user }}'
+  file:
+    recurse: yes
+    path: "/home/{{ ansible_user }}/ansible"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+  when: ansible_clone is changed

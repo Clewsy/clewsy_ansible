@@ -15,6 +15,9 @@
     group: "{{ ansible_user }}"
     mode: '0644'
 
+- name: Install ansible and clone repo to home directory.
+  include: ansible.yml
+
 - name: Install and configure apt_all.sh script.
   include: apt_all.yml
 

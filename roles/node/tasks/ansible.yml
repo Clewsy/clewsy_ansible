@@ -11,6 +11,12 @@
     accept_hostkey: yes
     key_file: "/home/{{ ansible_user }}/.ssh/id_rsa"
   register: ansible_clone
+  ignore_errors: True
+
+- name: '[ansible] Error notification.'
+  debug: 
+    msg: "Did not clone repo.  Already exists with changes."
+  when: ansible_clone is failed
 
 - name: '[ansible] Ensure cloned ansible repo is owned by {{ ansible_user }}'
   file:

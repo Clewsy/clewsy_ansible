@@ -1,7 +1,10 @@
 ---
-- name: '[ansible] Install ansible.'
+- name: '[ansible] Load ansible variables.'
+  include_vars: ansible_vars.yml
+
+- name: '[ansible] Ensure all packages required for using ansible are installed.'
   apt:
-    name: ansible
+    name: "{{ ansible_packages }}"
     state: latest
 
 - name: '[ansible] Clone repo to home directory.'

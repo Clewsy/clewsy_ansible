@@ -7,6 +7,8 @@ host_name: farnsworth
 
 ansible_user: jc
 
+ansible_python_interpreter: /usr/bin/python3
+
 setup_password: !vault |
   $ANSIBLE_VAULT;1.1;AES256
   36636234303137383232346466376661383561626137643062396132373231646634316533333763

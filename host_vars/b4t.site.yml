@@ -7,6 +7,8 @@ host_name: b4t-site
 
 ansible_user: b4t
 
+ansible_python_interpreter: /usr/bin/python3
+
 setup_password: !vault |
   $ANSIBLE_VAULT;1.1;AES256
   35376437643262303233646536633830376438353961376639346631353833376539366338333331

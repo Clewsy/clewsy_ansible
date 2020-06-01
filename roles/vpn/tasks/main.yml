@@ -4,19 +4,29 @@
     name: openvpn
     state: latest
 
-- name: Copy openvpn configuration files to home directory.
-  copy:
-    src: files/openvpn
-    decrypt: yes
-    dest: "/home/{{ ansible_user }}/."
+- name: Ensure openvpn directory exists within user's home directory.
+  file:
+    dest: "/home/{{ ansible_user }}/openvpn"
+    mode: '0755'
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
-    mode: 0644
+    state: directory
+
+- name: Copy openvpn configuration files to home directory.
+  template:
+    src: "{{ item }}"
+    decrypt: yes
+    dest: "/home/{{ ansible_user }}/openvpn/"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0644'
+  with_fileglob:
+    - "templates/openvpn/*"
 
 - name: Ensure bin directory exists within user's home directory.
   file:
     dest: "/home/{{ ansible_user }}/bin"
-    mode: 0755
+    mode: '0755'
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     state: directory
@@ -27,7 +37,7 @@
     dest: "/home/{{ ansible_user }}/bin/vpn.sh"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
-    mode: 0755
+    mode: '0755'
 
 - name: Configure vpn.sh script for host-specific use.
   lineinfile:

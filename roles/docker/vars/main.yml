@@ -1,4 +1,4 @@
 ---
 docker_packages:
-  - docker
+  - docker.io
   - docker-compose

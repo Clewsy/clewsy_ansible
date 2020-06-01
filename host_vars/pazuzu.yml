@@ -2,6 +2,8 @@ host_name: pazuzu
 
 ansible_user: b4t
 
+ansible_python_interpreter: /usr/bin/python3
+
 setup_password: !vault |
   $ANSIBLE_VAULT;1.1;AES256
   39326466623139383734303239666533623635616561336436623938333832636661636633366439

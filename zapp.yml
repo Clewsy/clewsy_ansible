@@ -1,0 +1,9 @@
+---
+- name: Configure zapp.
+  hosts: zapp
+  become: yes
+  gather_facts: True
+  roles:
+    - common
+    - vpn
+    - qbittorrent

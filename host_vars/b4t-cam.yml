@@ -2,6 +2,8 @@ host_name: b4t-cam
 
 ansible_user: b4t
 
+ansible_python_interpreter: /usr/bin/python3
+
 setup_password: !vault |
   $ANSIBLE_VAULT;1.1;AES256
   61613830663330383862353239386666663739343730623362333766396339626437646639626630

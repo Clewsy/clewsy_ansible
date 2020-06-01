@@ -1,0 +1,22 @@
+---
+- name: Copy docker-compose.yml file to /home/docker ready for use by docker-compose.
+  copy:
+    src: files/docker-compose.yml
+    dest: /home/docker/docker-compose.yml
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0644'
+
+- name: Pull docker container images listed in docker-compose.yml.
+  docker_compose:
+    project_src: /home/docker
+    pull: yes
+    recreate: smart #Containers will be recreated if a new version is pulled.
+
+- name: Create a symlink to the downloads directory within the user's home directory.
+  file:
+    src: "/home/docker/qbittorrent/downloads"
+    dest: "/home/{{ ansible_user }}/downloads"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    state: link

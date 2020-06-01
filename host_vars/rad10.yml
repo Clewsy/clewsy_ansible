@@ -7,6 +7,8 @@ host_name: rad10
 
 ansible_user: b4t
 
+ansible_python_interpreter: /usr/bin/python3
+
 setup_password: !vault |
   $ANSIBLE_VAULT;1.1;AES256
   61353433396362316661643565623466623030383561316434616164353234626366643437663763

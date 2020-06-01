@@ -2,6 +2,8 @@ host_name: calculon
 
 ansible_user: b4t
 
+ansible_python_interpreter: /usr/bin/python3
+
 setup_password: !vault |
   $ANSIBLE_VAULT;1.1;AES256
   34336532623166353930393064393033346665356463643933636331386233336562396235626662

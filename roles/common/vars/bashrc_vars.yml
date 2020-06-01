@@ -97,6 +97,13 @@ CALCULON:
   colon: "{{ SHELL_COL_YELLOW }}"
   dir: "{{ SHELL_COL_DIM_YELLOW }}"
   prompt: "{{ SHELL_COL_BOLD_WHITE }}"
+ZAPP:
+  user: "{{ SHELL_COL_BOLD_YELLOW }}"
+  at: "{{ SHELL_COL_TAN }}"
+  host: "{{ SHELL_COL_MAROON }}"
+  colon: "{{ SHELL_COL_BOLD_WHITE }}"
+  dir: "{{ SHELL_COL_TAN }}"
+  prompt: "{{ SHELL_COL_BOLD_WHITE }}"
 
 prompt_user_colour: "{{ theme_prompt.user }}"
 prompt_at_colour: "{{ theme_prompt.at }}"

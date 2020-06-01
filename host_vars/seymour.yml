@@ -7,6 +7,8 @@ host_name: seymour
 
 ansible_user: b4t
 
+ansible_python_interpreter: /usr/bin/python3
+
 setup_password: !vault |
   $ANSIBLE_VAULT;1.1;AES256
   34323335613037643865613735393538326666343431656233323563393532306664666132326465

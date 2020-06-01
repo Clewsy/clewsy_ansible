@@ -1,0 +1,6 @@
+$HOME/bin/
+/etc/motd
+$HOME/.ssh/
+~/.bash_aliases
+$HOME/.vimrc
+~/OSMCBACKUP*

@@ -1,0 +1,33 @@
+---
+- name: Configure hypnotoad.
+  hosts: hypnotoad
+  become: yes
+  gather_facts: True
+  environment:
+    PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin #Needed as some locations are absent by default on osmc.
+
+  roles:
+    - common
+
+  # Run tasks specific only to hypnotoad.
+  tasks:
+
+  - name: Create tv_on.sh script for sending cec command to turn on the tv.
+    copy:
+      content: |
+        #!/bin/bash
+        echo 'on 0' | /usr/osmc/bin/cec-client -s ##> /dev/null
+      dest: "/home/{{ ansible_user }}/bin/tv_on.sh"
+      owner: "{{ ansible_user }}"
+      group: "{{ ansible_user }}"
+      mode: '0755'
+
+  - name: Create tv_off.sh script for sending cec command to turn on the tv.
+    copy:
+      content: |
+        #!/bin/bash
+        echo 'standby 0' | /usr/osmc/bin/cec-client -s ##> /dev/null
+      dest: "/home/{{ ansible_user }}/bin/tv_off.sh"
+      owner: "{{ ansible_user }}"
+      group: "{{ ansible_user }}"
+      mode: '0755'

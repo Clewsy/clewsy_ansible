@@ -3,6 +3,9 @@
   hosts: hostname #hostname must be configured in dhcp server.
   become: yes
   gather_facts: True
+#  environment:
+#    PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
   roles:
 #    - common
 #    - ssh_secure

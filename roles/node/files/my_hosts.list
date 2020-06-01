@@ -12,4 +12,5 @@ jc@zoidberg			#011 Home of clews.pro.
 jc@nibbler			#123 My amazing XPS 13!
 jc@calculon			#100 raspi 4 serving hass.io.
 #butt@fartsworth		#N/A A fake host for testing scripts.
-osmc@brain-slug			#010 Media center (raspberry pi running osmc).
+#osmc@brain-slug		#N/A Formerly media center (raspberry pi running osmc).
+osmc@hypnotoad			#010 Media center (raspberry pi running osmc).

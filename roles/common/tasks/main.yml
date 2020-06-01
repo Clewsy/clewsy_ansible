@@ -32,7 +32,7 @@
   apt:
     name: "{{ common_packages }}"
     state: latest
-
+    
 - name: Install and configure vim.
   include: vim.yml
 

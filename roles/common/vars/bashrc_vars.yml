@@ -104,6 +104,13 @@ ZAPP:
   colon: "{{ SHELL_COL_BOLD_WHITE }}"
   dir: "{{ SHELL_COL_TAN }}"
   prompt: "{{ SHELL_COL_BOLD_WHITE }}"
+HYPNOTOAD:
+  user: "{{ SHELL_COL_BOLD_YELLOW }}"
+  at: "{{ SHELL_COL_DIM_YELLOW }}"
+  host: "{{ SHELL_COL_YELLOW }}"
+  colon: "{{ SHELL_COL_DIM_YELLOW }}"
+  dir: "{{ SHELL_COL_YELLOW }}"
+  prompt: "{{ SHELL_COL_BOLD_WHITE }}"
 
 prompt_user_colour: "{{ theme_prompt.user }}"
 prompt_at_colour: "{{ theme_prompt.at }}"

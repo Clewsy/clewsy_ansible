@@ -17,66 +17,48 @@ setup_password: !vault |
 local_tz: 'Australia/Melbourne'
 
 aliases:
-#  - "alias ll='ls -alFh'"
 
 misc_packages:
-#  - ncdu
-#  - imagemagick
-#  - kicad
 
 misc_snaps:
-#  - gimp
-#  - inkscape
-#  - vlc
 
 misc_classic_snaps:
-#  - code
 
-theme_colour: GREEN #Can override setting referenced in common/common_scripts role. Will default to CYAN if ommitted.
-theme_prompt: "{{ HYPNOTOAD }}" #Can override setting referenced in common/bashrc role.  Will default to {{ CYAN_BLUE }}
+theme_colour: YELLOW
+theme_prompt: "{{ HYPNOTOAD }}"
 
 cron_jobs:
-#  - name: "Comment will be added to crontab."
-#    minute: "0"
-#    hour: "*"
-#    day: "*"
-#    month: "*"
-#    weekday: "*"
-#    job: 'echo "hello ansible"'
-
-motion: #Can override default settings in motion role.
-#  videodevice: '/dev/video0' #If ommitted, will default to /dev/video0
-#  rotate: '180' #If ommitted, will default to 0 
-#  flip_axis: 'none'  #If ommitted, will default to none
-#  width: '640' #If ommitted, will default to 320
-#  height: '480' #If ommitted, will default to 240
-#  framerate: '100' #If ommitted, will default to 2
-#  ffmpeg_output_movies: 'off' #If ommitted, will default to on
-#  stream_port: '8888' #If ommitted, will default to 8081
-#  stream_quality: '100' #If ommitted, will default to 50 (%)
-#  stream_localhost: 'off' #If ommitted, will default to on (i.e. only stream locally).
-#  picam: false #If omitted, defaults to false (i.e. webcam, not picam).
-
-homeassistant: #Can override default settings when running the homeassistant installer script.
-#  machine: raspberrypi4-64 #If ommitted will default to raspberrypi-64
-#  data_share: /home/docker/home-assistant #If ommitted will default to /home/docker/home-assistant
 
 mounts:
-#  - { mount_source: /dev/mmcblk0p1, mount_path: '/media/cache', mount_fstype: 'auto', mount_opts: "auto,rw,async,user,uid={{ ansible_user }},gid={{ ansible_user }},nofail" }
-#  - { mount_source: UUID=EA9EFDBF9EFD847B, mount_path: '/mnt/windoze', mount_fstype: 'auto', mount_opts: 'ro,nosuid,nodev,nofail,x-gvfs-show' }
 
 nfs_mounts:
-#  - { mount_source: 'zapp:/export/data', mount_path: '/mnt/zapp/data' }
-#  - { mount_source: 'zapp:/export/movies', mount_path: '/mnt/zapp/movies' }
-#  - { mount_source: 'zapp:/export/mp3s', mount_path: '/mnt/zapp/mp3s' }
-#  - { mount_source: 'zapp:/export/music_videos', mount_path: '/mnt/zapp/music_videos' }
-#  - { mount_source: 'zapp:/export/tv', mount_path: '/mnt/zapp/tv' }
-#  - { mount_source: 'zapp:/export/cl0ud', mount_path: '/mnt/zapp/cl0ud' }
-#  - { mount_source: 'zapp:/export/m0n0l1th', mount_path: '/mnt/zapp/m0n0l1th' }
 
-music_dir: #"/home/{{ ansible_user }}/Music" #Can override default setting in mpd role.  If this is an nfs share, ensure nfs role included and share defined above.
-
-ssh_public_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCqH9edkpoigusvGBJB+TrrDfGeKMCahi+r9z0AZ5mvDJmZljY6HIh2OeySxIXWa9WRi//pjxU6Qv2hmTDDMH+rhz7BRGqkHcFWA0IoacyFcNW/EQSm5bC799rqIj6DY6SDNmWNqJpFyAJGwvzAmQjF2piAbx4/sLyPhE5rfXfUffaQd1HihlMFiaZyQR2PsdBtLkdVHdlue2zW5v1PV9lTPULYc9mf9f6X3+e9MXMnz2DiV4jmKUpRtGJCYDpHK6y5C2Kv8iAZ++p8hj0nQZPhBwr2UsmWYaspZ7C5xH+tv/19W4XkxphmpB0d78Bz8h2ibrnyO1kRvnBanRBMO5DF osmc@hypnotoad
+ssh_public_key: !vault |
+  $ANSIBLE_VAULT;1.1;AES256
+  36353438663039656363393631333038663339326537383832386166383134636564336164666365
+  3062393134363931303531323761653736376463303263300a393261343734643334323834343664
+  33613565613138353734333134313463343961633432653863623235623538656263303464613062
+  3962363937663531660a313136336461663139373835393534623936636437366237383438656666
+  34303837613831633939316133346131326130353337306433343864616233643531666337366663
+  38626634393433653435663537333531653362363832623964343265653231393162663232356364
+  33316263643637326631346230323439376632656564396430653164656466633536393037643361
+  64386431636364393664656638313838366338386661613632613436393364653239646237616163
+  39386130646338326632613334653537653933616564613365386331663563636361373834336662
+  37353861393862636536363439383730323931306635666633326131333666323732393064386434
+  63356266616664316566653064396333333834626137323465373738653762663061376166303431
+  39613166336264313965613632333939323431363231666430363832333835396535373139343033
+  30393033363436366336316333373063653166303963656334343230303461386539326462393263
+  66633666613163653837333766643465326162373964393634636235636337383833313264643536
+  62353639333933633333356438626430633362366230663062616135616365386463353732653764
+  36393864393233383532373461393936363431653431323236373839333630396663303137306335
+  36393533336237633364346263343033386462313762333033336439663065366566316161343138
+  63306236313033623530616462333232396163336661333138383665303231393035336536626437
+  35336464323439366635323639346636383066306634616461353532336161353438306433326230
+  30373939656363333637366363343537373034626635306463363561346161303964633935313435
+  64363934376632656662396633356265636330323336363939666333393564663933316662633335
+  63656434323139313462353039623136363732623230663631326635623638373038653430653136
+  30616136323136646536336565636639613665326337646239653838306334346364356139386636
+  63393666326537323138
 
 ssh_private_key: !vault |
   $ANSIBLE_VAULT;1.1;AES256

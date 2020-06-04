@@ -1,4 +1,9 @@
 ---
+- name: Ensure all miscellaneous node packages are installed.
+  apt:
+    name: "{{ node_packages }}"
+    state: latest
+
 - name: Ensure bin directory exists within user's home directory.
   file:
     dest: "/home/{{ ansible_user }}/bin"

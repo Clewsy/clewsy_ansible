@@ -8,3 +8,6 @@ whodis_script_url: "{{ repo_root }}/scripts/-/raw/master/whodis.sh"
 
 ansible_repo: "git@gitlab.com:clewsy/ansible"
 
+node_packages:
+  - netdiscover
+  - nmap

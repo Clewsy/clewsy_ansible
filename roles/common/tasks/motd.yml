@@ -1,4 +1,9 @@
 ---
+- name: '[motd] Delete /etc/motd if it exists.'
+  file:
+    path: /etc/motd
+    state: absent
+
 - name: '[motd] Ensure /etc/update-motd.d directory exists.'
   file:
     dest: "/etc/update-motd.d/"

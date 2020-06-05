@@ -11,6 +11,13 @@
     dest: /home/docker
     accept_hostkey: yes
     key_file: "/home/{{ ansible_user }}/.ssh/id_rsa"
+  register: clews_clone
+  ignore_errors: True
+
+- name: 'Error notification.'
+  debug: 
+    msg: "Did not clone repo.  Possibly already exists with changes."
+  when: clews_clone is failed
 
 - name: Determine if data is already present or needs to be restored from backup.
   stat:

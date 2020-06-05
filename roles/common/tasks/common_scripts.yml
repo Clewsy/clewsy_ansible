@@ -20,13 +20,29 @@
     group: "{{ ansible_user }}"
     mode: '0755'
 
+- name: '[common_scripts] Determine if a host-specific backup file list exists (bu.list_{{ ansible_hostname }}).'
+  local_action: stat path="{{ bu_list_files_dir }}/bu.list_{{ ansible_hostname }}"
+  register: host_specific_bu_list
+
 - name: "[common_scripts] Copy host-specific backup list (bu.list) to /home/{{ ansible_user }}/bin."
   copy:
-    src: "files/bu/bu.list_{{ ansible_hostname }}"
+    src: "{{ bu_list_files_dir }}/bu.list_{{ ansible_hostname }}"
     dest: "/home/{{ ansible_user }}/bin/bu.list"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: '0644'
+  when: host_specific_bu_list.stat.exists
+  register: bu_list_copy
+
+- name: "[common_scripts] Copy generic backup list (bu.list) as host-specific list does not exist."
+  copy:
+    content: |
+      ~/.ssh
+    dest: "/home/{{ ansible_user }}/bin/bu.list"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0644'
+  when: bu_list_copy is skipped
 
 ###stuff.sh
 

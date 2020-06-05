@@ -1,12 +1,2 @@
-~/.profile
-~/bin/
-/etc/motd				#zoids
 $HOME/.ssh/
-$HOME/.bashrc
-~/.bash_aliases
-~/.vimrc				#vim settings
-/home/jc/.crontab.bak			#a cronjob automatically dumps the crontab to this file daily.
-/etc/netplan				#netplan config/s
-$HOME/projects				#ongoing projects - probably git clones
-$HOME/.gitconfig			#Saved git config (username and email)
 /etc/systemd/system/clews.service	#service created to ensure docker containers are restarted at boot.

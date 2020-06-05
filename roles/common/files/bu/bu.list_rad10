@@ -1,11 +1,7 @@
-~/.profile
-~/bin/
-/lib/systemd/system/rad10d.service
+~/rad10
 /usr/local/sbin/rad10d
-~/.vimrc
-~/.bashrc
-$HOME/rad10d/
-$HOME/.bash_aliases
-~/.ssh/
+$HOME/.ssh/
+/var/www/html
+/lib/systemd/system/rad10d.service
 /etc/fstab
-/home/b4t/.gitconfig
+

@@ -1,14 +1,4 @@
-~/.bashrc
 ~/bin/
-/etc/motd
-~/.bash_aliases
 ~/openvpn_configs
-$HOME/.gnupg/gpg-agent.conf
 $HOME/.ssh/
 ~/wireguard/
-#/usr/local/bin/
-#$HOME/.crontab_bak		#backup of crontab
-#$HOME/.crontab_www-data_bak	#backup of crontab for user www-data
-~/.vimrc			#local vim config - set syntax on and colour scheme
-/etc/fstab			#currently default stab
-$HOME/.crontab.bak		#Daily dump of the crontab

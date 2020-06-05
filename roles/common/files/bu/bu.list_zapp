@@ -1,9 +1,5 @@
-~/.profile
-~/bin/
-/etc/motd
 $HOME/.ssh/
-$HOME/.bashrc
-$HOME/.vimrc
-~/.bash_aliases
-~/qbittorent_docker/docker-compose.yml	#*.yml to establish qBittorrent at port 8080.
-~/qbittorent_docker/config		#Has qBittorrent config settings.
+/etc/fstab
+/etc/cron.d
+/var/lib/openmediavault/cron.d
+/etc/openmediavault/config.xml

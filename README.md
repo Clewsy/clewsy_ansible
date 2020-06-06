@@ -1,6 +1,6 @@
 # clewsy_ansible
 
-Basic automation playbooks and roles for deploying boxes on my home network.  Super handy when nuking/paving, but originally this project just started as a means of learning [ansible][link_web_ansible].
+Basic automation playbooks and roles for deploying machines on my home network.  Super handy when nuking/paving, but originally this project just started as a means of learning [ansible][link_web_ansible].
 
 A playbook and variables file exists for each host machine.  When run, the host-specific playbook will configure the host with the specified roles described below.  Prior to running the host-specific playbooks, some minimum requirements must be met:
 1. Operating system installed .

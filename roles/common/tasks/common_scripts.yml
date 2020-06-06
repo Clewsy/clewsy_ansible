@@ -11,7 +11,6 @@
     mode: '0755'
 
 ###bu.sh
-
 - name: '[common_scripts] Copy bu.sh script to user bin directory.'
   get_url:
     url: "{{ bu_script_url }}"
@@ -45,7 +44,6 @@
   when: bu_list_copy is skipped
 
 ###stuff.sh
-
 - name: '[common_scripts] Copy stuff.sh script to user bin directory.'
   get_url:
     url: "{{ stuff_script_url }}"
@@ -61,7 +59,6 @@
     line: "COL=\"${{ '{' }}{{ theme_colour }}{{ '}' }}\"" #Use jinja expression to "escape" braces.
 
 ###wami.sh
-
 - name: '[common_scripts] Copy wami.sh script to user bin directory.'
   get_url:
     url: "{{ wami_script_url }}"
@@ -69,8 +66,3 @@
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: '0755'
-
-
-
-
-

@@ -71,4 +71,3 @@
   service:
     name: clews
     state: started
-

@@ -10,6 +10,3 @@ homeassistant_packages:
   - network-manager
   - socat
   - software-properties-common
-#  - docker-ce
-#  - docker-ce-cli
-#  - containerd.io

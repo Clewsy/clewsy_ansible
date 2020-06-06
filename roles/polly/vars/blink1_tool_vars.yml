@@ -6,3 +6,4 @@ blink1_tool_packages: #Requisites defined at github repo.
  - build-essential
  - pkg-config
  - libudev-dev
+ 

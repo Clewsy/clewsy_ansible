@@ -1,7 +1,6 @@
 ---
 wireguard_packages:
   - wireguard
-#  - openresolv
 
 wireguard_port: !vault |
   $ANSIBLE_VAULT;1.1;AES256

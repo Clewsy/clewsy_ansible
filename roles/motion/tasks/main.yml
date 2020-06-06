@@ -35,3 +35,4 @@
     mode: '0755'
   notify: Reboot pi.
   when: motion.picam is defined and motion.picam
+  

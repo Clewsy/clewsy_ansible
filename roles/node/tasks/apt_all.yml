@@ -6,12 +6,3 @@
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: '0755'
-
-#- name: '[apt_all] Create cron-job to periodically update and upgrade packages for all hosts in my_hosts.list (i.e. run apt_all.sh).'
-#  cron:
-#    name: 'Role: "node" - Run apt_all.sh."'
-#    user: "{{ ansible_user }}"
-#    minute: "47"
-#    hour: "1"
-#    job: "/home/{{ ansible_user }}/bin/apt_all.sh"
-#  notify: Restart cron.

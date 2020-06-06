@@ -8,6 +8,3 @@ rad10_packages:
   - libmpdclient-dev
   - apache2
   - php
-#  - mpd #mpd role is a dependency
-#  - mpc #mpd role is a dependency
-#  - ncmpc #mpd role is a dependency

@@ -19,3 +19,4 @@ mpd_aliases:
   - "alias v8='mpc volume 80'"
   - "alias v9='mpc volume 90'"
   - "alias v10='mpc volume 100'"
+  

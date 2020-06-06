@@ -6,3 +6,4 @@
 
 - name: Reboot pi.
   reboot:
+  

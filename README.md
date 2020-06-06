@@ -2,7 +2,7 @@
 
 Basic automation playbooks and roles for deploying boxes on my home network.  Super handy when nuking/paving, but originally this project just started as a means of learning [ansible][link_web_ansible].
 
-A playbook and variables file exists for each host machine.  When run, it will configure the host with the specified roles described below.  Prior to running the host-specific playbooks, some minimum requirements must be met:
+A playbook and variables file exists for each host machine.  When run, the host-specific playbook will configure the host with the specified roles described below.  Prior to running the host-specific playbooks, some minimum requirements must be met:
 1. Operating system installed .
 2. User exists as defined in host variables file (*host_vars/hostname.yml*).
 	* User must have sudo access.
@@ -24,7 +24,7 @@ A playbook and variables file exists for each host machine.  When run, it will c
 |[p0wer][link_repo_p0wer]			| Configure a raspberry pi with gpio connected to an rf remote control used to switch on or off mains-connected devices from scripts or a webui.  Clone [p0wer repo][link_gitlab_clewsy_p0wer], compile executable, install webserver packages and copy htmp/php files. |
 |[polly][link_repo_polly]			| Configue a box to control a [thingm blink1][link_web_blink1] device, then install [polly][link_gitlab_clewsy_scripts_polly] script which polls [clews.pro][link_clews], logs the result and uses the blink1 to indicate the site status. |
 |[qbittorrent][link_repo_qbittorrent]		| Install and configure [qbittorrent][link_web_qbittorrent] client.  This is installed as a docker container so forst the docker role is run, then a docker-compose.yml file is copied and used to pull and run the [qbittorrent container][link_dockerhub_qbittorrent]. |
-|[rad10][link_repo_rad10]			| Configure a raspberry pi as an internet radio/music streamer with hardware control and a webui.  First run the mpd role, then clone [rad10 repo][link_gitlab_clewsy_rad10], compile the daemon and configure a unit-file for auto-starting.  Will also install web server packages and copy the html/php files for the rad10 webui. |
+|[rad10][link_repo_rad10]			| Configure a raspberry pi as an internet radio/music streamer with hardware control and a webui.  First run the mpd role, then clone [rad10d repo][link_gitlab_clewsy_rad10d], compile the daemon and configure a unit-file for auto-starting.  Will also install web server packages and copy the html/php files for the rad10 webui. |
 |[ssh_secure][link_repo_ssh_secure]		| Configure some basic settings for ssh security.  Ensure root login and password authentication are both disabled. |
 |[ufw][link_repo_ufw]				| Base level configuration then enabling of a firewall. |
 |[vpn][link_repo_vpn]				| Install openvpn and copy some custom vpn configuration files.  Also copy and configure a custom [vpn][link_gitlab_clewsy_scripts_vpn] initialisation script. |
@@ -50,14 +50,7 @@ A playbook and variables file exists for each host machine.  When run, it will c
 |zoidberg	| [ubuntu][link_web_ubuntu]			| Web server machine.<br />Serves various web sites and web apps.<br />Refer to the [clews.pro][link_clews_projects_clews] project page or [gitlab repo][link_gitlab_clewsy_clews.pro].	| <ul><li>clews.pro</li><li>common</li><li>docker</li><li>polly</li><li>ssh_secure</li><li>ufw</li></ul> |
 
 
-
-
-
-
-
-
-
-[link_web_ansible]:https://www.ansible.com/
+[link_web_ansible]:https://docs.ansible.com/
 [link_web_conky]:https://github.com/brndnmtthws/conky
 [link_web_terminator]:https://github.com/software-jessies-org/jessies/wiki/Terminator
 [link_web_guake]:http://guake-project.org/
@@ -81,14 +74,7 @@ A playbook and variables file exists for each host machine.  When run, it will c
 [link_web_debian]:https://www.debian.org/
 [link_web_openmediavault]:https://www.openmediavault.org/
 
-
-
-
-
-
-
-[link_dockerhub_qbittorrent]:https://github.com/linuxserver/docker-qbittorrent
-
+[link_dockerhub_qbittorrent]:https://hub.docker.com/r/linuxserver/qbittorrent
 
 [link_gitlab_clewsy_clews.pro]:https://gitlab.com/clewsy/clews.pro
 [link_gitlab_clewsy_scripts_bu]:https://gitlab.com/clewsy/scripts/-/blob/master/bu.sh
@@ -101,10 +87,8 @@ A playbook and variables file exists for each host machine.  When run, it will c
 [link_gitlab_clewsy_scripts_whodis]:https://gitlab.com/clewsy/scripts/-/blob/master/whodis.sh
 [link_gitlab_clewsy_p0wer]:https://gitlab.com/clewsy/p0wer
 [link_gitlab_clewsy_scripts_polly]:https://gitlab.com/clewsy/scripts/-/blob/master/polly.sh
-[link_gitlab_clewsy_rad10]:https://gitlab.com/clewsy/rad10d
+[link_gitlab_clewsy_rad10d]:https://gitlab.com/clewsy/rad10d
 [link_gitlab_clewsy_scripts_vpn]:https://gitlab.com/clewsy/scripts/-/blob/master/vpn.sh
-
-
 
 [link_repo_clews.pro]:roles/clews.pro
 [link_repo_common]:roles/common

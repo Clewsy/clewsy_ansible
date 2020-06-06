@@ -2,4 +2,4 @@ ansible_packages:
   - ansible
   - sshpass
 
-ansible_repo: "git@gitlab.com:clewsy/ansible"
+ansible_repo: "git@gitlab.com:clewsy/clewsy_ansible"

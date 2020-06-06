@@ -1,5 +1,6 @@
 ---
-# https://blakeniemyjski.com/blog/installing-home-assistant-on-ubuntu/
+#https://github.com/home-assistant/supervised-installer
+  # https://blakeniemyjski.com/blog/installing-home-assistant-on-ubuntu/
 - name: Ensure all packages required for homeassistant are installed.
   apt:
     name: "{{ homeassistant_packages }}"
@@ -36,3 +37,4 @@
 - name: Run homeassistant installer script.
   shell:
     cmd: "/tmp/homeassistant_installer.sh --machine {{ homeassistant.machine }} --data-share {{ homeassistant.data_share }}" #" --sysconfdir {{ homeassistant.config_dir }}"
+    

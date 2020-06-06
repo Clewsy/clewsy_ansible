@@ -5,27 +5,12 @@
     state: latest
   register: docker_not_installed 
 
-
-#- name: Install python packages for docker.
-#  pip:
-#    name: "{{ docker_pip_packages }}"
-#
-#- name: Start docker.
-#  command: docker
-#  when: docker_not_installed is changed
-
-
 - name: Start docker service.
   service:
     name: docker
     enabled: yes
     state: restarted
   when: docker_not_installed is changed
-
-#- name: Ensure docker group exists
-#  group:
-#    name: docker
-#    state: present
 
 - name: Add user to docker group.
   user:

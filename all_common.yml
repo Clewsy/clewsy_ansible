@@ -1,0 +1,8 @@
+---
+- name: Update common configurations on all hosts.
+  hosts: all
+  become: yes
+  gather_facts: True
+
+  roles:
+    - common

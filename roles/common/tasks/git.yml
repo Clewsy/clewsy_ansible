@@ -7,6 +7,7 @@
 - name: '[git] Set git user defaults (.gitconfig).'
   copy:
     src: files/git/.gitconfig
+    decrypt: yes
     dest: "/home/{{ ansible_user }}/.gitconfig"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"

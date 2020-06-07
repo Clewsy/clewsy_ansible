@@ -25,7 +25,7 @@ A playbook and variables file exists for each host machine.  When run, the host-
 |[polly][link_repo_polly]			| Configue a box to control a [thingm blink1][link_web_blink1] device, then install [polly][link_gitlab_clewsy_scripts_polly] script which polls [clews.pro][link_clews], logs the result and uses the blink1 to indicate the site status. |
 |[qbittorrent][link_repo_qbittorrent]		| Install and configure [qbittorrent][link_web_qbittorrent] client.  This is installed as a docker container so forst the docker role is run, then a docker-compose.yml file is copied and used to pull and run the [qbittorrent container][link_dockerhub_qbittorrent]. |
 |[rad10][link_repo_rad10]			| Configure a raspberry pi as an internet radio/music streamer with hardware control and a webui.  First run the mpd role, then clone [rad10d repo][link_gitlab_clewsy_rad10d], compile the daemon and configure a unit-file for auto-starting.  Will also install web server packages and copy the html/php files for the rad10 webui. |
-|[secure][link_repo_secure]			| Configure some basic ssh settings for ssh security and enable/configure a firewall. |
+|[secure][link_repo_secure]			| Configure some basic settings for ssh security and enable/configure a firewall (using [ufw][link_web_ufw]). |
 |[vpn][link_repo_vpn]				| Install openvpn and copy some custom vpn configuration files.  Also copy and configure a custom [vpn][link_gitlab_clewsy_scripts_vpn] initialisation script. |
 |[wireguard][link_repo_wireguard]		| Install [wireguard][link_web_wireguard] and create custom "client" connection configurations.  Also create some aliases for quick wireguard up/down from the command line. |
 |[wireguard_server][link_repo_wireguard_server]	| Configure a box as a [wireguard][link_web_wireguard] "server" endpoint. |
@@ -72,6 +72,7 @@ A playbook and variables file exists for each host machine.  When run, the host-
 [link_web_pop_os]:https://pop.system76.com/
 [link_web_debian]:https://www.debian.org/
 [link_web_openmediavault]:https://www.openmediavault.org/
+[link_web_ufw]:https://launchpad.net/ufw
 
 [link_dockerhub_qbittorrent]:https://hub.docker.com/r/linuxserver/qbittorrent
 

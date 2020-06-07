@@ -20,12 +20,10 @@ aliases:
 #  - "alias ll='ls -alFh'"
 
 misc_packages:
-#  - ncdu
-#  - imagemagick
-#  - kicad
+  - rename
 
 theme_colour: RED
-theme_prompt: "{{ ZAPP }}" #Can override setting referenced in common/bashrc role.  Will default to {{ CYAN_BLUE }}
+theme_prompt: "{{ ZAPP }}" 
 
 cron_jobs:
 #  - name: "Comment will be added to crontab."

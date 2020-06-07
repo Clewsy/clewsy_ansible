@@ -16,3 +16,6 @@
     state: present
     insertafter: '^#PasswordAuthentication'
   notify: Restart ssh.
+
+- name: Install and configure ufw.
+  include: ufw.yml

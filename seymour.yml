@@ -5,8 +5,7 @@
   gather_facts: True
   roles:
     - common
-    - ssh_secure
-    - ufw
+    - secure
     - node
     - polly
 

@@ -8,8 +8,7 @@
 
   roles:
 #    - common
-#    - ssh_secure
-#    - ufw
+#    - secure
 #    - docker
 #    - clews.pro
 #    - polly

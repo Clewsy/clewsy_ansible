@@ -5,7 +5,6 @@
   gather_facts: True
   roles:
     - common
-    - ssh_secure
-    - ufw
+    - secure
     - docker
     - wireguard_server

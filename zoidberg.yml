@@ -4,7 +4,6 @@
   become: yes
   roles:
     - common
-    - ssh_secure
-    - ufw
+    - secure
     - clews.pro
     - polly

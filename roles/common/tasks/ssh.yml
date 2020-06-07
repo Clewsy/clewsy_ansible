@@ -33,7 +33,7 @@
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
 
-- name: '[SSH] Set up {{ ansible_user }} ssh authorized_keys.'
+- name: '[ssh] Set up {{ ansible_user }} ssh authorized_keys.'
   authorized_key:
     user: "{{ ansible_user }}"
     state: present

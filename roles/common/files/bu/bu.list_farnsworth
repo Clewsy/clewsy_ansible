@@ -9,7 +9,6 @@ $HOME/openvpn			#quick access vpn configurations (windscribe servers in various 
 #~/projects/			#kind of a working directory for ongoing projects
 $HOME/.ssh/			#ssh keys and auths
 /etc/fstab			#save this for mounting windows disk and nfs shares from zapp
-/etc/motd			#farnsworth ascii art
 $HOME/.config/autostart		#autostart configs
 ~/Documents
 /usr/share/fonts/openlogos.ttf	#so I don't have to find and download it again (used by conky).

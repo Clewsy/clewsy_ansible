@@ -6,5 +6,4 @@ $HOME/docs/
 /etc/fstab
 ~/.ssh/
 $HOME/.gnupg/gpg-agent.conf	#gpg settings that prevent any temporary saving of keys after decrypting.
-~/.crontab.bak			#a daily cron job dumps crontab -l to this file
 /usr/local/sbin/polly.sh	#script for polling clews.pro to confirm it's up

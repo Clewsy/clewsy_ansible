@@ -1,0 +1,11 @@
+---
+- name: '[lm-sensors] Install lm_sensors (only on x86_64 machines).'
+  apt:
+    name: lm-sensors
+    state: latest
+  register: install_lm_sensors
+  when: ansible_architecture == "x86_64"
+
+- name: '[lm-sensors] Run sensors-detect after first install of lm_sensors.'
+  command: sensors-detect --auto
+  when: install_lm_sensors is changed

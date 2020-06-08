@@ -39,6 +39,9 @@
 - name: Install and configure git.
   include: git.yml
 
+- name: Install and configure lm-sensors.
+  include: lm-sensors.yml
+
 - name: Install host-specific miscellaneous packages.
   include: misc_packages.yml
 

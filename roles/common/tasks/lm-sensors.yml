@@ -4,7 +4,7 @@
     name: lm-sensors
     state: latest
   register: install_lm_sensors
-  when: ansible_architecture == "x86_64"
+  when: "{{ ansible_architecture == 'x86_64' }}"
 
 - name: '[lm-sensors] Run sensors-detect after first install of lm_sensors.'
   command: sensors-detect --auto

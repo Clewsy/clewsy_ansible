@@ -24,12 +24,13 @@
     mode: 0755
     state: directory
 
-- name: Configure mpd.conf (change mp3 directory location to {{ music_dir }}).
-  lineinfile:
-    path: "/etc/mpd.conf"
-    state: present
-    regexp: "^music_directory"
-    line: 'music_directory    "{{ music_dir }}"'
-  notify: 
+- name: 'Create /etc/mpd.conf from template.'
+  template:
+    src: templates/mpd.conf
+    dest: "/etc/mpd.conf"
+    owner: root
+    group: root
+    mode: '0644'
+  notify:
     - Restart mpd.
     - Rescan music files.

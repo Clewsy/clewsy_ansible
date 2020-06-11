@@ -2,4 +2,5 @@
 common_aliases:
   - "alias ll='ls -alFh'"
   - "alias ssh='ssh -4'"
+  - "alias sudo='sudo '" #This alias enables other aliases when called after sudo.
   

@@ -24,7 +24,7 @@
     mode: 0755
     state: directory
 
-- name: 'Create /etc/mpd.conf from template.'
+- name: Create /etc/mpd.conf from template.
   template:
     src: templates/mpd.conf
     dest: "/etc/mpd.conf"
@@ -34,3 +34,14 @@
   notify:
     - Restart mpd.
     - Rescan music files.
+
+- name: Correct mpd mixer configuration for Raspberry Pi.
+  lineinfile:
+    path: "/etc/mpd.conf"
+    state: present
+    regexp: "^#\tmixer_control\t\"PCM\"\t\t# optional"
+    firstmatch: yes
+    line: "\tmixer_control\t\"Headphone\"\t# optional"
+  notify: Restart mpd.
+  when: ansible_architecture == "armv7l" #I.e. on  my raspberry pi 3.
+

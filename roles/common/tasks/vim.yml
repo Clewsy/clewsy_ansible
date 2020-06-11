@@ -4,7 +4,7 @@
     name: vim
     state: latest
 
-- name: '[vim] Create vim configuration file.'
+- name: '[vim] Create vim configuration file for user {{ ansible_user }}.'
   copy:
     content: |
       colo elflord
@@ -12,4 +12,14 @@
     dest: "/home/{{ ansible_user }}/.vimrc"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
+    mode: '0664'
+
+- name: '[vim] Create vim configuration file for root.'
+  copy:
+    content: |
+      colo elflord
+      syntax on
+    dest: "/root/.vimrc"
+    owner: "root"
+    group: "root"
     mode: '0664'

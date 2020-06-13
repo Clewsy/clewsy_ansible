@@ -21,6 +21,8 @@ misc_packages:
     - ansible
     - imagemagick
     - kicad
+    - android-tools-adb
+    - android-tools-fastboot
 
 misc_snaps:
   install:

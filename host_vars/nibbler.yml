@@ -1,8 +1,3 @@
-##########Variables for initialising fresh server.
-#Only config is user and password - user must be a member of sudo.
-#init_ansible_user: {{ ansible_user }}
-#init_ansible_password: {{ ansible_password }}
-
 host_name: nibbler
 
 ansible_user: jc
@@ -19,30 +14,25 @@ setup_password: !vault |
 
 local_tz: 'Australia/Melbourne'
 
-aliases:
-
 misc_packages:
-  - imagemagick #Command line image manipulation.
-  - asunder     #Rip CDs
-  - lame        #Encoder used by asunder to create mp3s
-  - easytag     #Edit mp3 id3 tags.
+  install:
+    - imagemagick #Command line image manipulation.
+    - asunder     #Rip CDs
+    - lame        #Encoder used by asunder to create mp3s
+    - easytag     #Edit mp3 id3 tags.
+  remove:
+    - geary       #Unwanted email client.
 
 misc_snaps:
-  - vlc
+  install:
+    - vlc
 
 misc_classic_snaps:
-  - code
+  install:
+    - code
 
 theme_colour: ORANGE
 theme_prompt: "{{ NIBBLER }}"
-
-cron_jobs:
-
-mounts:
-
-nfs_mounts:
-
-#music_dir: "/home/{{ ansible_user }}/Music"
 
 ssh_public_key: !vault |
   $ANSIBLE_VAULT;1.1;AES256

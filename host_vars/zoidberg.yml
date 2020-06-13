@@ -22,7 +22,8 @@ local_tz: 'Australia/Melbourne'
 aliases:
 
 misc_packages:
-  - imagemagick
+  install:
+    - imagemagick
 
 misc_snaps:
 

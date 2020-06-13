@@ -1,25 +1,51 @@
 ---
+########### Installation of apps that don't come pre-installed.
 - name: '[misc_packages] Install miscellaneous, host-specific apt packages.'
   apt:
-    name: "{{ misc_packages }}"
+    name: "{{ misc_packages.install }}"
     state: latest
-  when: misc_packages.0 is defined
+  when: misc_packages.install.0 is defined
 
 - name: '[misc_packages] Install snapd.'
   apt:
     name: snapd
     state: latest
   notify: Enable and start snapd service.
-  when: misc_snaps.0 is defined or misc_classic_snaps.0 is defined
+  when: misc_snaps.install.0 is defined or misc_classic_snaps.0 is defined
 
 - name: '[misc_packages] Install miscellaneous, host-specific snap packages.'
   snap:
-    name: "{{ misc_snaps }}"
-  when: misc_snaps.0 is defined
+    name: "{{ misc_snaps.install }}"
+    state: present
+    classic: no
+  when: misc_snaps.install.0 is defined
 
 - name: '[misc_packages] Install miscellaneous, host-specific classic snap packages.'
   snap:
-    name: "{{ item }}"
+    name: "{{ misc_classic_snaps.install }}"
+    state: present
     classic: yes
-  with_items: "{{ misc_classic_snaps }}"
-  when: misc_classic_snaps.0 is defined
+  when: misc_classic_snaps.install.0 is defined
+
+########### Removal of apps that do come pre-installed.
+- name: '[misc_packages] Remove miscellaneous, host-specific, pre-installed apt packages.'
+  apt:
+    name: "{{ misc_packages.remove }}"
+    state: absent
+    purge: yes
+    autoremove: yes
+  when: misc_packages.remove.0 is defined
+
+- name: '[misc_packages] Remove miscellaneous, host-specific, pre-installed snap packages.'
+  snap:
+    name: "{{ misc_snaps.remove }}"
+    state: absent
+    classic: no
+  when: misc_snaps.remove.0 is defined
+
+- name: '[misc_packages] Remove miscellaneous, host-specific, pre-installed classic snap packages.'
+  snap:
+    name: "{{ misc_classic_snaps.remove }}"
+    state: absent
+    classic: yes
+  when: misc_classic_snaps.remove.0 is defined

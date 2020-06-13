@@ -1,8 +1,3 @@
-##########Variables for initialising fresh server.
-#Only config is user and password - user must be a member of sudo.
-#init_ansible_user: {{ ansible_user }}
-#init_ansible_password: {{ ansible_password }}
-
 host_name: seymour
 
 ansible_user: b4t

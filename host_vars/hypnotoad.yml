@@ -16,22 +16,12 @@ setup_password: !vault |
 
 local_tz: 'Australia/Melbourne'
 
-aliases:
-
-misc_packages:
-
-misc_snaps:
-
-misc_classic_snaps:
-
 theme_colour: YELLOW
 theme_prompt: "{{ HYPNOTOAD }}"
 
-cron_jobs:
-
 mounts:
 
-nfs_mounts:
+nfs_mounts: #Note on OSMC, media shares are managed through the gui.
 
 ssh_public_key: !vault |
   $ANSIBLE_VAULT;1.1;AES256

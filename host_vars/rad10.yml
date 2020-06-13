@@ -19,20 +19,8 @@ setup_password: !vault |
 
 local_tz: 'Australia/Melbourne'
 
-aliases:
-
-misc_packages:
-
-misc_snaps:
-
-misc_classic_snaps:
-
 theme_colour: YELLOW
 theme_prompt: "{{ YELLOW_RED }}"
-
-cron_jobs:
-
-mounts:
 
 nfs_mounts:
   - { mount_source: 'zapp:/export/mp3s', mount_path: '/mnt/zapp/mp3s' }

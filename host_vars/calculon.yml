@@ -16,18 +16,10 @@ local_tz: 'Australia/Melbourne'
 
 aliases:
 
-misc_packages:
-
-misc_snaps:
-
-misc_classic_snaps:
-
 theme_colour: YELLOW
 theme_prompt: "{{ CALCULON }}"
 
 cron_jobs:
-
-motion:
 
 homeassistant:
   machine: raspberrypi4-64
@@ -45,8 +37,6 @@ nfs_mounts:
 #  - { mount_source: 'zapp:/export/tv', mount_path: '/mnt/zapp/tv' }
 #  - { mount_source: 'zapp:/export/cl0ud', mount_path: '/mnt/zapp/cl0ud' }
 #  - { mount_source: 'zapp:/export/m0n0l1th', mount_path: '/mnt/zapp/m0n0l1th' }
-
-music_dir:
 
 ssh_public_key: !vault |
   $ANSIBLE_VAULT;1.1;AES256

@@ -17,7 +17,7 @@ theme_prompt: "{{ B4T }}"
 
 motion:
   videodevice: '/dev/video0'
-  rotate: '90' 
+#  rotate: '90' 
   flip_axis: 'none'
   width: '640'
   height: '480'

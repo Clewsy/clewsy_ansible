@@ -23,17 +23,27 @@ aliases:
 #  - "alias ll='ls -alFh'"
 
 misc_packages:
-#  - ncdu
-#  - imagemagick
-#  - kicad
+  install:
+#    - ncdu
+#    - imagemagick
+#    - kicad
+#    - asunder
+#    - lame
+#    - easytag
+  remove:
+#    - geary
 
 misc_snaps:
-#  - gimp
-#  - inkscape
-#  - vlc
+  install:
+#    - gimp
+#    - inkscape
+#    - vlc
+  remove:
 
 misc_classic_snaps:
-#  - code
+  install:
+#    - code
+  remove:
 
 theme_colour: CYAN #Can override setting referenced in common/common_scripts role. Will default to CYAN if ommitted.
 theme_prompt: "{{ CYAN_BLUE }}" #Can override setting referenced in common/bashrc role.  Will default to {{ CYAN_BLUE }}

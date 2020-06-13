@@ -19,14 +19,6 @@ setup_password: !vault |
 
 local_tz: 'Australia/Melbourne'
 
-#aliases:
-
-#misc_packages:
-
-#misc_snaps:
-
-#misc_classic_snaps:
-
 theme_colour: BLUE
 theme_prompt: "{{ BLUE_WHITE }}"
 

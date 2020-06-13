@@ -1,8 +1,3 @@
-##########Variables for initialising fresh server.
-#Only config is user and password - user must be a member of sudo.
-#init_ansible_user: {{ ansible_user }}
-#init_ansible_password: {{ ansible_password }}
-
 host_name: farnsworth
 
 ansible_user: jc
@@ -22,17 +17,20 @@ local_tz: 'Australia/Melbourne'
 aliases:
 
 misc_packages:
-  - ansible
-  - imagemagick
-  - kicad
+  install:
+    - ansible
+    - imagemagick
+    - kicad
 
 misc_snaps:
-  - gimp
-  - inkscape
-  - vlc
+  install:
+    - gimp
+    - inkscape
+    - vlc
 
 misc_classic_snaps:
-  - code
+  install:
+    - code
 
 theme_colour: GREEN
 theme_prompt: "{{ FARNSWORTH }}"

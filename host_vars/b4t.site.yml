@@ -22,10 +22,16 @@ local_tz: 'Australia/Melbourne'
 aliases:
 
 misc_packages:
+  install:
+  remove:
 
 misc_snaps:
+  install:
+  remove:
 
 misc_classic_snaps:
+  install:
+  remove:
 
 theme_colour: WHITE
 theme_prompt: "{{ B4T }}"

@@ -1,2 +1,0 @@
-$HOME/.ssh/
-/etc/systemd/system/clews.service	#service created to ensure docker containers are restarted at boot.

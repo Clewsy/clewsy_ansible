@@ -1,8 +1,3 @@
-##########Variables for initialising fresh server.
-#Only config is user and password - user must be a member of sudo.
-#init_ansible_user: {{ ansible_user }}
-#init_ansible_password: {{ ansible_password }}
-
 host_name: rad10
 
 ansible_user: b4t
@@ -26,6 +21,14 @@ nfs_mounts:
   - { mount_source: 'zapp:/export/mp3s', mount_path: '/mnt/zapp/mp3s' }
 
 music_dir: "/mnt/zapp/mp3s"
+
+backup_file_list: |
+  ~/rad10d
+  /usr/local/sbin/rad10d
+  $HOME/.ssh/
+  /var/www/html
+  /lib/systemd/system/rad10d.service
+  /etc/fstab
 
 ssh_public_key: !vault |
   $ANSIBLE_VAULT;1.1;AES256

@@ -34,6 +34,13 @@ misc_classic_snaps:
 theme_colour: ORANGE
 theme_prompt: "{{ NIBBLER }}"
 
+backup_file_list: |
+  ##A list of files to be backed up
+  ~/.bashrc			#just in case I customise it
+  ~/bin/				#my home-made executables
+  ~/.ssh/				#ssh keys and authorsed hosts
+  $HOME/.conkyrc			#conky config set for DELL XPS 13 9360
+
 ssh_public_key: !vault |
   $ANSIBLE_VAULT;1.1;AES256
   66376135356439636236386431306363396137623533336330306662646465346433396531343031

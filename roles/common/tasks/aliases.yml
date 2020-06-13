@@ -12,6 +12,7 @@
     create: yes
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
+    mode: '0644'
   with_items: "{{ common_aliases }}"
 
 - name: '[aliases] Set common root aliases.'

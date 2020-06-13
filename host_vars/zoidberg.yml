@@ -1,8 +1,3 @@
-##########Variables for initialising fresh server.
-#Only config is user and password - user must be a member of sudo.
-#init_ansible_user: {{ ansible_user }}
-#init_ansible_password: {{ ansible_password }}
-
 host_name: zoidberg
 
 ansible_user: jc
@@ -43,6 +38,10 @@ nfs_mounts:
   - { mount_source: 'zapp:/export/music_videos', mount_path: '/mnt/zapp/music_videos' }
   - { mount_source: 'zapp:/export/tv', mount_path: '/mnt/zapp/tv' }
   - { mount_source: 'zapp:/export/cl0ud', mount_path: '/mnt/zapp/cl0ud' }
+
+backup_file_list: |
+  $HOME/.ssh/
+  /etc/systemd/system/clews.service	#service created to ensure docker containers are restarted at boot.
 
 ssh_public_key: !vault |
   $ANSIBLE_VAULT;1.1;AES256

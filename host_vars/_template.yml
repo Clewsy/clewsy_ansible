@@ -92,6 +92,9 @@ music_dir: #"/home/{{ ansible_user }}/Music" #Can override default setting in mp
 ufw_allows: #By default the firewall will be configured to allow OpenSSH (i.e. port 22) if the secure role is used.  This can be overridden or added to here. 
 #  - OpenSSH
 
+backup_file_list: | #Delete completely and the default file list will include only the ~/.ssh directory.
+#  ~/.ssh
+
 ssh_public_key: !vault | # $ cat .ssh/id_rsa.pub | ansible-vault encrypt_string
 #  $ANSIBLE_VAULT;1.1;AES256
 #  35636236663831646136386466666635376234643534623730303238303936393230346133383035

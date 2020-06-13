@@ -1,4 +1,0 @@
-~/p0wer			#p0wer project folder - synced to gitlab.
-/usr/local/sbin/p0wer	#The p0wer executable.
-$HOME/.ssh		#Keys and authorisations.
-/var/www/html		#Web server content.

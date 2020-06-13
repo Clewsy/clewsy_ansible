@@ -59,6 +59,17 @@ nfs_mounts:
   - { mount_source: 'zapp:/export/tv', mount_path: '/mnt/zapp/tv' }
   - { mount_source: 'zapp:/export/cl0ud', mount_path: '/mnt/zapp/cl0ud' }
 
+backup_file_list: |
+  ##This is the list of files and directories on seymour to be backed up by the bu.sh script.
+  ~/.bashrc
+  ~/bin/
+  $HOME/misc/
+  $HOME/docs/
+  /etc/fstab
+  ~/.ssh/
+  $HOME/.gnupg/gpg-agent.conf	#gpg settings that prevent any temporary saving of keys after decrypting.
+  /usr/local/sbin/polly.sh	#script for polling clews.pro to confirm it's up
+
 ssh_public_key: !vault |
   $ANSIBLE_VAULT;1.1;AES256
   35636236663831646136386466666635376234643534623730303238303936393230346133383035

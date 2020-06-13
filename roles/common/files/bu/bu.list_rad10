@@ -1,6 +1,0 @@
-~/rad10d
-/usr/local/sbin/rad10d
-$HOME/.ssh/
-/var/www/html
-/lib/systemd/system/rad10d.service
-/etc/fstab

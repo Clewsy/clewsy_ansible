@@ -1,5 +1,0 @@
-##A list of files to be backed up
-~/.bashrc			#just in case I customise it
-~/bin/				#my home-made executables
-~/.ssh/				#ssh keys and authorsed hosts
-$HOME/.conkyrc			#conky config set for DELL XPS 13 9360

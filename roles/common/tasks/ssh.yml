@@ -5,6 +5,7 @@
     dest: "/home/{{ ansible_user }}/.ssh"
     mode: '0700'
     owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
     state: directory
 
 - name: '[ssh] Set up ssh private key.'

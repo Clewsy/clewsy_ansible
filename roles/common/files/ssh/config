@@ -4,10 +4,6 @@ Host b4t.site b4t-site b4t
 Host b4t-cam b4t-cam cam
 	HostName b4t-cam
 	User b4t
-Host b4t-phone phone pho
-        HostName b4t-phone
-        User jc
-        Port 8022
 Host calculon calc cal
 	HostName calculon
 	User b4t
@@ -20,6 +16,10 @@ Host donbot don
 Host farnsworth farn far
         HostName farnsworth
         User jc
+Host flexo flex fle
+        HostName flexo
+        User jc
+        Port 8022
 Host hypnotoad hypno hyp toad toa
 	HostName hypnotoad
 	User osmc

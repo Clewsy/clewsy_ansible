@@ -1,0 +1,21 @@
+---
+ansible_password: "{{ setup_password }}"  #Needed for initial setup before ssh keys are configured.
+
+droid_home_dir: "/data/data/com.termux/files/home"
+
+droid_motd: "TERMUX!\n\nWelcome to flexo.\n\n"
+
+droid_pip_packages:
+  - youtube-dl
+
+droid_apt_packages:
+  - bash-completion
+  - vim
+  - termux-api
+  - rsync
+  - htop
+
+droid_profile: |
+  alias ll="ls -alFh"
+  alias gps="termux-location -p gps -r last"
+  PATH=${PATH}:/data/data/com.termux/files/home/bin

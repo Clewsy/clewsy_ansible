@@ -1,0 +1,19 @@
+---
+#Pre-requisites:
+# - obviously termux
+# - apt install python
+# - apt install openssh
+# - run passwd - must match setup_pasword in playbook.
+# - run sshd
+# - dhcp configured for hostname b4t-phone
+# - default ssh port for termux is 8022
+#Also remeber the following
+# - run termux-setup-storage and accept permissions.
+
+- name: Configure flexo.
+  hosts: flexo
+  become: no
+  gather_facts: True
+
+  roles:
+  - droid

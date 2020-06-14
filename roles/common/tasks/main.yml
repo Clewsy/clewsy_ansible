@@ -3,7 +3,6 @@
   hostname:
     name: "{{ host_name }}"
     use: systemd
-  register: new_hostname
 
 - name: Set local timezone to {{ local_tz }}.
   timezone:

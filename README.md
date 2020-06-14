@@ -9,6 +9,14 @@ A playbook and variables file exists for each host machine.  When run, the host-
 	* Sudo password must be as defined by the host-specific *setup-password* variabe.
 3. Static IP must be assigned to the MAC address of the machine's network interface.  A hosts file on my dhcp server is used so all these machines are identified by hostname, not ip address.
 
+The flexo.yml playbook is a special case.  It will configure my smartphone via [Termux][link_web_termux] and as such, has some additional pre-requisites:
+1. Termux must be installed.
+2. Within termux, a couple of packages need to be manually installed:
+	* python
+	* openssh
+3. Termux ssh sessions don't really have a "user' in the traditional sense, but a password must be configured.
+4. sshd must be executed from Termux.  By default, the ssh daemon will serve on port 8022.
+
 ## Roles
 
 |Role/Link					|Desctiption|
@@ -17,6 +25,7 @@ A playbook and variables file exists for each host machine.  When run, the host-
 |[common][link_repo_common]			|Configurations common to all hosts - hostname, timezone, ssh keys/configs, apt upgrades, common packages, vim, git, host-specific packages, motd, .bashrc, aliases, cron jobs, mounts/fstab, common scripts ([bu][link_gitlab_clewsy_scripts_bu], [stuff][link_gitlab_clewsy_scripts_stuff], [wami][link_gitlab_clewsy_scripts_wami]). |
 |[desktop][link_repo_desktop]			|Configurations for systems with a desktop - fonts, [conky][link_web_conky], [terbling][link_gitlab_clewsy_scripts_terbling], [terminator][link_web_terminator], [guake][link_web_guake], gnome settings. |
 |[docker][link_repo_docker]			|Install [docker][link_web_docker] and [docker-compose][link_web_docker-compose].  Start the docker service and create a standard docker-compose staging directory.  Also create alias dc='docker-compose'. |
+|[droid][link_repo_droid]			|A special role created to configure an android smartphone running [Termux][link_web_termux].  This role has tasks similar to common that had to be implemented dfferently (configure ssh, install packages, install scripts).  It also installs some termux "shortcuts" which are basically scripts that can be run from a widget.  |
 |[homeassistant][link_repo_homeassistant]	|First configure docker role as a pre-requisite.  Then install/remove certain packages as required by the [home assistant supervised installer script][link_web_home_assistant_supervised_installer].  Finally download and run the installer script that will install [home assistant supervised][link_web_home_assistant] |
 |[motion][link_repo_motion]			|Turn a raspberry pi into a web-cam.  Install configure and enable [motion][link_web_motion] for streaming over the lan. |
 |[mpd][link_repo_mpd]				|Use on boxes that will be used for streaming audio or playing mp3s.  Install the required and useful packages ([mpd][link_web_mpd], [mpc][link_web_mpc], [ncmpc][link_web_ncmpc]) then configure and run the mpd daemon. |
@@ -39,6 +48,7 @@ A playbook and variables file exists for each host machine.  When run, the host-
 |b4t.site	|[ubuntu][link_web_ubuntu]			|Off-site box (VPS) used as a wireguard endpoint and backup storage.																|<ul><li>common</li><li>docker</li><li>secure</li><li>wireguard_server</li><li>vpn</li></ul> |
 |calculon	|[ubuntu][link_web_ubuntu]			|Home automation stuff.<br />A raspberry pi 4 with containerised [home assistant][link_web_home_assistant] (supervised) on top of an ubuntu base.						|<ul><li>common</li><li>homeassistant</li></ul> |
 |farnsworth	|[ubuntu][link_web_ubuntu]			|My main desktop machine.																					|<ul><li>clews.pro</li><li>common</li><li>desktop</li><li>docker</li><li>mpd</li><li>node</li><li>secure</li><li>vpn</li></ul> |
+|flexo		|[lineageOS][link_web_lineageos]		|My smartphone.																							|<ul><li>droid</li></ul> |
 |hypnotoad	|[osmc][link_web_osmc]				|Media server installed on a raspberry pi 3 connected to a tv.<br />Serves media stored on zapp using nfs shares.<br />Refer to the [clews.pro][link_clews_projects_media_center] project page.	|<ul><li>common</li></ul> |
 |nibbler	|[pop_os][link_web_pop_os]			|My laptop.																							|<ul><li>common</li><li>desktop</li><li>mpd</li><li>node</li><li>secure</li><li>vpn</li><li>wireguard</li></ul> |
 |p0wer		|[raspbian][link_web_raspbian]			|A raspberry pi zero W with additional hardware connected to the gpio.<br />Refer to the [p0wer][link_clews_projects_p0wer] project page or [gitlab repo][link_gitlab_clewsy_p0wer].		|<ul><li>common</li><li>p0wer</li></ul> |
@@ -55,6 +65,7 @@ A playbook and variables file exists for each host machine.  When run, the host-
 [link_web_guake]:http://guake-project.org/
 [link_web_docker]:https://www.docker.com/
 [link_web_docker-compose]:https://docs.docker.com/compose/
+[link_web_termux]:https://termux.com/
 [link_web_home_assistant_supervised_installer]:https://github.com/home-assistant/supervised-installer
 [link_web_home_assistant]:https://www.home-assistant.io/
 [link_web_motion]:https://motion-project.github.io/
@@ -68,6 +79,7 @@ A playbook and variables file exists for each host machine.  When run, the host-
 [link_web_wireguard]:https://www.wireguard.com/
 [link_web_raspbian]:https://www.raspbian.org/
 [link_web_ubuntu]:https://ubuntu.com/
+[link_web_lineageos]:https://lineageos.org/
 [link_web_osmc]:https://osmc.tv/
 [link_web_pop_os]:https://pop.system76.com/
 [link_web_debian]:https://www.debian.org/
@@ -94,6 +106,7 @@ A playbook and variables file exists for each host machine.  When run, the host-
 [link_repo_common]:roles/common
 [link_repo_desktop]:roles/desktop
 [link_repo_docker]:roles/docker
+[link_repo_droid]:roles/droid
 [link_repo_homeassistant]:roles/homeassistant
 [link_repo_motion]:roles/motion
 [link_repo_mpd]:roles/mpd

@@ -1,6 +1,6 @@
 ---
 - name: Update common configurations on all hosts.
-  hosts: all
+  hosts: not_android
   become: yes
   gather_facts: True
 

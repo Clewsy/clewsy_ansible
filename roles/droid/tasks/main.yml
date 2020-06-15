@@ -13,10 +13,10 @@
     state: latest
 
 - name: Update apt cache and run a full upgrade.
-  command: "pkg upgrade"
+  command: "pkg upgrade -y"
 
 - name: Install common packages.
-  command: "pkg install {{ item }}"
+  command: "pkg install {{ item }} -y"
   with_items: "{{ droid_apt_packages }}"
 
 - name: Create motd.

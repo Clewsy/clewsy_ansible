@@ -24,6 +24,7 @@ backup_file_list: |
   ~/storage/downloads/otp_accounts.json.aes
   ~/storage/downloads/NewPipeData-**
   ~/storage/downloads/newpipe_subscriptions_**
+  ~/storage/downloads/favourites.gpx
 
 ssh_public_key: !vault |
   $ANSIBLE_VAULT;1.1;AES256

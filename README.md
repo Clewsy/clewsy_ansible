@@ -3,7 +3,7 @@
 Basic automation playbooks and roles for deploying machines on my home network.  Super handy when nuking/paving, but originally this project just started as a means of learning [ansible][link_web_ansible].
 
 A playbook and variables file exists for each host machine.  When run, the host-specific playbook will configure the host with the specified roles described below.  Prior to running the host-specific playbooks, some minimum requirements must be met:
-1. Operating system installed .
+1. Operating system installed.
 2. User exists as defined in host variables file (*host_vars/hostname.yml*).
 	* User must have sudo access.
 	* Sudo password must be as defined by the host-specific *setup-password* variabe.
@@ -14,7 +14,7 @@ The flexo.yml playbook is a special case.  It will configure my smartphone via [
 2. Within termux, a couple of packages need to be manually installed:
 	* python
 	* openssh
-3. Termux ssh sessions don't really have a "user' in the traditional sense, but a password must be configured.
+3. Termux ssh sessions don't really have a "user" in the traditional sense, but a password must be configured.
 4. sshd must be executed from Termux.  By default, the ssh daemon will serve on port 8022.
 
 ## Roles
@@ -49,7 +49,7 @@ The flexo.yml playbook is a special case.  It will configure my smartphone via [
 |calculon	|[ubuntu][link_web_ubuntu]			|Home automation stuff.<br />A raspberry pi 4 with containerised [home assistant][link_web_home_assistant] (supervised) on top of an ubuntu base.						|<ul><li>common</li><li>homeassistant</li></ul> |
 |farnsworth	|[ubuntu][link_web_ubuntu]			|My main desktop machine.																					|<ul><li>clews.pro</li><li>common</li><li>desktop</li><li>docker</li><li>mpd</li><li>node</li><li>secure</li><li>vpn</li></ul> |
 |flexo		|[lineageOS][link_web_lineageos]		|My smartphone.																							|<ul><li>droid</li></ul> |
-|hypnotoad	|[osmc][link_web_osmc]				|Media server installed on a raspberry pi 3 connected to a tv.<br />Serves media stored on zapp using nfs shares.<br />Refer to the [clews.pro][link_clews_projects_media_center] project page.	|<ul><li>common</li></ul> |
+|hypnotoad	|[osmc][link_web_osmc]				|Media server installed on a raspberry pi 3 connected to a tv.<br />Serves media stored on zapp using nfs shares.<br />Refer to the [media_center][link_clews_projects_media_center] project page.	|<ul><li>common</li></ul> |
 |nibbler	|[pop_os][link_web_pop_os]			|My laptop.																							|<ul><li>common</li><li>desktop</li><li>mpd</li><li>node</li><li>secure</li><li>vpn</li><li>wireguard</li></ul> |
 |p0wer		|[raspbian][link_web_raspbian]			|A raspberry pi zero W with additional hardware connected to the gpio.<br />Refer to the [p0wer][link_clews_projects_p0wer] project page or [gitlab repo][link_gitlab_clewsy_p0wer].		|<ul><li>common</li><li>p0wer</li></ul> |
 |pazuzu		|[raspbian][link_web_raspbian]			|Raspberry pi zero W connected to a raspberry pi cam.<br />Configured as an ip cam.														|<ul><li>common</li><li>motion</li></ul> |

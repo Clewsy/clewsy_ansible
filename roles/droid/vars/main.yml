@@ -14,6 +14,7 @@ droid_apt_packages:
   - termux-api
   - rsync
   - htop
+  - man
 
 droid_profile: |
   alias ll="ls -alFh"

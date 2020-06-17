@@ -27,7 +27,7 @@ The flexo.yml playbook is a special case.  It will configure my smartphone via [
 |[docker][link_repo_docker]			|Install [docker][link_web_docker] and [docker-compose][link_web_docker-compose].  Start the docker service and create a standard docker-compose staging directory.  Also create alias dc='docker-compose'. |
 |[droid][link_repo_droid]			|A special role created to configure an android smartphone running [Termux][link_web_termux].  This role has tasks similar to *common* that had to be implemented dfferently (configure ssh, install packages, install scripts).  It also installs some termux "shortcuts" which are basically scripts that can be run from a widget.  |
 |[homeassistant][link_repo_homeassistant]	|First configure docker role as a pre-requisite.  Then install/remove certain packages as required by the [home assistant supervised installer script][link_web_home_assistant_supervised_installer].  Finally download and run the installer script that will install [home assistant supervised][link_web_home_assistant] |
-|[motion][link_repo_motion]			|Turn a raspberry pi into a web-cam.  Install configure and enable [motion][link_web_motion] for streaming over the lan. |
+|[motion][link_repo_motion]			|Turn a [raspberry pi][link_web_raspberry_pi] into a web-cam.  Install configure and enable [motion][link_web_motion] for streaming over the lan. |
 |[mpd][link_repo_mpd]				|Use on boxes that will be used for streaming audio or playing mp3s.  Install the required and useful packages ([mpd][link_web_mpd], [mpc][link_web_mpc], [ncmpc][link_web_ncmpc]) then configure and run the mpd daemon. |
 |[node][link_repo_node]				|Set up some common packages and scripts on key boxes that are used for maintaining other boxes.  Install networking packages ([netdiscover][link_web_netdiscover], [nmap][link_web_nmap]), install [ansible][link_web_ansible], clone this repository and install some custom scripts ([apt_all][link_gitlab_clewsy_scripts_apt_all], [ball][link_gitlab_clewsy_scripts_ball], [pong][link_gitlab_clewsy_scripts_pong], [whodis][link_gitlab_clewsy_scripts_whodis]). |
 |[p0wer][link_repo_p0wer]			|Configure a raspberry pi with gpio connected to an rf remote control used to switch on or off mains-connected devices from scripts or a webui.  Clone [p0wer repo][link_gitlab_clewsy_p0wer], compile executable, install webserver packages and copy htmp/php files. |
@@ -35,7 +35,7 @@ The flexo.yml playbook is a special case.  It will configure my smartphone via [
 |[qbittorrent][link_repo_qbittorrent]		|Install and configure [qbittorrent][link_web_qbittorrent] client.  This is installed as a docker container so forst the docker role is run, then a docker-compose.yml file is copied and used to pull and run the [qbittorrent container][link_dockerhub_qbittorrent]. |
 |[rad10][link_repo_rad10]			|Configure a raspberry pi as an internet radio/music streamer with hardware control and a webui.  First run the mpd role, then clone [rad10d repo][link_gitlab_clewsy_rad10d], compile the daemon and configure a unit-file for auto-starting.  Will also install web server packages and copy the html/php files for the rad10 webui. |
 |[secure][link_repo_secure]			|Configure some basic settings for ssh security and enable/configure a firewall (using [ufw][link_web_ufw]). |
-|[vpn][link_repo_vpn]				|Install openvpn and copy some custom vpn configuration files.  Also copy and configure a custom [vpn][link_gitlab_clewsy_scripts_vpn] initialisation script. |
+|[vpn][link_repo_vpn]				|Install [openvpn][link_web_openvpn] and copy some custom vpn configuration files.  Also copy and configure a custom [vpn][link_gitlab_clewsy_scripts_vpn] initialisation script. |
 |[wireguard][link_repo_wireguard]		|Install [wireguard][link_web_wireguard] and create custom "client" connection configurations.  Also create some aliases for quickly bringing wireguard up/down from the command line. |
 |[wireguard_server][link_repo_wireguard_server]	|Configure a box as a [wireguard][link_web_wireguard] "server" endpoint. |
 
@@ -45,7 +45,7 @@ The flexo.yml playbook is a special case.  It will configure my smartphone via [
 |Hostname	|Base OS					|Description																							|Roles|
 |---------------|-----------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----|
 |b4t-cam	|[raspbian][link_web_raspbian]			|An old raspberry pi 2 with a wifi dongle and an old usb webcam.<br />Configured as an ip cam.													|<ul><li>common</li><li>motion</li></ul> |
-|b4t.site	|[ubuntu][link_web_ubuntu]			|Off-site box (VPS) used as a wireguard endpoint and backup storage.																|<ul><li>common</li><li>docker</li><li>secure</li><li>wireguard_server</li><li>vpn</li></ul> |
+|b4t.site	|[ubuntu][link_web_ubuntu]			|Off-site box (VPS) used as a [wireguard][link_web_wireguard] endpoint and backup storage.																|<ul><li>common</li><li>docker</li><li>secure</li><li>wireguard_server</li><li>vpn</li></ul> |
 |calculon	|[ubuntu][link_web_ubuntu]			|Home automation stuff.<br />A raspberry pi 4 with containerised [home assistant][link_web_home_assistant] (supervised) on top of an ubuntu base.						|<ul><li>common</li><li>homeassistant</li></ul> |
 |farnsworth	|[ubuntu][link_web_ubuntu]			|My main desktop machine.																					|<ul><li>clews.pro</li><li>common</li><li>desktop</li><li>docker</li><li>mpd</li><li>node</li><li>secure</li><li>vpn</li></ul> |
 |flexo		|[lineageOS][link_web_lineageos]		|My smartphone.																							|<ul><li>droid</li></ul> |
@@ -54,7 +54,7 @@ The flexo.yml playbook is a special case.  It will configure my smartphone via [
 |p0wer		|[raspbian][link_web_raspbian]			|A raspberry pi zero W with additional hardware connected to the gpio.<br />Refer to the [p0wer][link_clews_projects_p0wer] project page or [gitlab repo][link_gitlab_clewsy_p0wer].		|<ul><li>common</li><li>p0wer</li></ul> |
 |pazuzu		|[raspbian][link_web_raspbian]			|Raspberry pi zero W connected to a raspberry pi cam.<br />Configured as an ip cam.														|<ul><li>common</li><li>motion</li></ul> |
 |rad10		|[raspbian][link_web_raspbian]			|A raspberry pi 3 with additional hardware connected to the gpio.<br />Refer to the [rad10][link_clews_projects_rad10] project page or [gitlab repo][link_gitlab_clewsy_rad10d].		|<ul><li>common</li><li>mpd</li><li>rad10</li></ul> |
-|seymour	|[debian][link_web_debian] 			|Beaglebone black SBC connected to the LAN via ethernet.<br />Always-on box that serves as a network admin node and runs some custom script cron jobs.						|<ul><li>common</li><li>docker</li><li>node</li><li>polly</li><li>secure</li></ul> |
+|seymour	|[debian][link_web_debian] 			|[Beaglebone Black][link_web_beaglebone_black] SBC connected to the LAN via ethernet.<br />Always-on box that serves as a network admin node and runs some custom script cron jobs.						|<ul><li>common</li><li>docker</li><li>node</li><li>polly</li><li>secure</li></ul> |
 |zapp		|[openmediavault][link_web_openmediavault]	|File-server and backup storage.<br />Shares bulk media over nfs and acts as the on-site backup storage.<br />Also runs a torrent client.							|<ul><li>common</li><li>docker</li><li>qbittorrent</li><li>vpn</li></ul> |
 |zoidberg	|[ubuntu][link_web_ubuntu]			|Web server machine.<br />Serves various web sites and web apps.<br />Refer to the [clews.pro][link_clews_projects_clews] project page or [gitlab repo][link_gitlab_clewsy_clews.pro].		|<ul><li>clews.pro</li><li>common</li><li>docker</li><li>polly</li><li>secure</li></ul> |
 
@@ -69,6 +69,7 @@ The flexo.yml playbook is a special case.  It will configure my smartphone via [
 [link_web_home_assistant_supervised_installer]:https://github.com/home-assistant/supervised-installer
 [link_web_home_assistant]:https://www.home-assistant.io/
 [link_web_motion]:https://motion-project.github.io/
+[link_web_raspberry_pi]:https://www.raspberrypi.org/
 [link_web_mpd]:https://www.musicpd.org/
 [link_web_mpc]:https://www.musicpd.org/clients/mpc/
 [link_web_ncmpc]:https://rybczak.net/ncmpcpp/
@@ -83,8 +84,10 @@ The flexo.yml playbook is a special case.  It will configure my smartphone via [
 [link_web_osmc]:https://osmc.tv/
 [link_web_pop_os]:https://pop.system76.com/
 [link_web_debian]:https://www.debian.org/
+[link_web_beaglebone_black]:https://beagleboard.org/black/
 [link_web_openmediavault]:https://www.openmediavault.org/
 [link_web_ufw]:https://launchpad.net/ufw
+[link_web_openvpn]:https://openvpn.net/
 
 [link_dockerhub_qbittorrent]:https://hub.docker.com/r/linuxserver/qbittorrent
 

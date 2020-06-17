@@ -21,19 +21,19 @@ The flexo.yml playbook is a special case.  It will configure my smartphone via [
 
 |Role/Link					|Desctiption|
 |-----------------------------------------------|-----------|
-|[clews.pro][link_repo_clews.pro] 		|Will configure a box as a containerised web server, clone the [clews.pro][link_gitlab_clewsy_clews.pro] repo, and spin up the containers defined in the docker-compose.yml file. |
-|[common][link_repo_common]			|Configurations common to all hosts - hostname, timezone, ssh keys/configs, apt upgrades, common packages, vim, git, host-specific packages, motd, .bashrc, aliases, cron jobs, mounts/fstab, common scripts ([bu][link_gitlab_clewsy_scripts_bu], [stuff][link_gitlab_clewsy_scripts_stuff], [wami][link_gitlab_clewsy_scripts_wami]). |
-|[desktop][link_repo_desktop]			|Configurations for systems with a desktop - fonts, [conky][link_web_conky], [terbling][link_gitlab_clewsy_scripts_terbling], [terminator][link_web_terminator], [guake][link_web_guake], gnome settings. |
+|[clews.pro][link_repo_clews.pro] 		|Will configure a box as a containerised web server, clone the [clews.pro][link_gitlab_clewsy_clews.pro] repo, and spin up the containers defined in the [docker-compose.yml][link_gitlab_clewsy_clews.pro_docker-compose] file. |
+|[common][link_repo_common]			|Configurations common to all hosts - hostname, timezone, ssh keys/configs, apt upgrades, common packages, [vim][link_web_vim], [git][link_web_git], host-specific packages, motd, .bashrc, aliases, cron jobs, mounts/fstab, common scripts ([bu][link_gitlab_clewsy_scripts_bu], [stuff][link_gitlab_clewsy_scripts_stuff], [wami][link_gitlab_clewsy_scripts_wami]). |
+|[desktop][link_repo_desktop]			|Configurations for systems with a desktop - fonts, [conky][link_web_conky], [terbling][link_gitlab_clewsy_scripts_terbling], [terminator][link_web_terminator], [guake][link_web_guake], [gnome][link_web_gnome] settings. |
 |[docker][link_repo_docker]			|Install [docker][link_web_docker] and [docker-compose][link_web_docker-compose].  Start the docker service and create a standard docker-compose staging directory.  Also create alias dc='docker-compose'. |
 |[droid][link_repo_droid]			|A special role created to configure an android smartphone running [Termux][link_web_termux].  This role has tasks similar to *common* that had to be implemented dfferently (configure ssh, install packages, install scripts).  It also installs some termux "shortcuts" which are basically scripts that can be run from a widget.  |
 |[homeassistant][link_repo_homeassistant]	|First configure docker role as a pre-requisite.  Then install/remove certain packages as required by the [home assistant supervised installer script][link_web_home_assistant_supervised_installer].  Finally download and run the installer script that will install [home assistant supervised][link_web_home_assistant] |
 |[motion][link_repo_motion]			|Turn a [raspberry pi][link_web_raspberry_pi] into a web-cam.  Install configure and enable [motion][link_web_motion] for streaming over the lan. |
 |[mpd][link_repo_mpd]				|Use on boxes that will be used for streaming audio or playing mp3s.  Install the required and useful packages ([mpd][link_web_mpd], [mpc][link_web_mpc], [ncmpc][link_web_ncmpc]) then configure and run the mpd daemon. |
 |[node][link_repo_node]				|Set up some common packages and scripts on key boxes that are used for maintaining other boxes.  Install networking packages ([netdiscover][link_web_netdiscover], [nmap][link_web_nmap]), install [ansible][link_web_ansible], clone this repository and install some custom scripts ([apt_all][link_gitlab_clewsy_scripts_apt_all], [ball][link_gitlab_clewsy_scripts_ball], [pong][link_gitlab_clewsy_scripts_pong], [whodis][link_gitlab_clewsy_scripts_whodis]). |
-|[p0wer][link_repo_p0wer]			|Configure a raspberry pi with gpio connected to an rf remote control used to switch on or off mains-connected devices from scripts or a webui.  Clone [p0wer repo][link_gitlab_clewsy_p0wer], compile executable, install webserver packages and copy htmp/php files. |
+|[p0wer][link_repo_p0wer]			|Configure a [raspberry pi][link_web_raspberry_pi] with gpio connected to an RF remote control used to switch on or off mains-connected devices from scripts or a webui.  Clone [p0wer repo][link_gitlab_clewsy_p0wer], compile executable, install webserver packages ([Apache][link_web_apache])and copy html/php files. |
 |[polly][link_repo_polly]			|Configue a box to control a [thingm blink1][link_web_blink1] device, then install [polly][link_gitlab_clewsy_scripts_polly] script which polls [clews.pro][link_clews], logs the result and uses the blink1 to indicate the site status. |
-|[qbittorrent][link_repo_qbittorrent]		|Install and configure [qbittorrent][link_web_qbittorrent] client.  This is installed as a docker container so forst the docker role is run, then a docker-compose.yml file is copied and used to pull and run the [qbittorrent container][link_dockerhub_qbittorrent]. |
-|[rad10][link_repo_rad10]			|Configure a raspberry pi as an internet radio/music streamer with hardware control and a webui.  First run the mpd role, then clone [rad10d repo][link_gitlab_clewsy_rad10d], compile the daemon and configure a unit-file for auto-starting.  Will also install web server packages and copy the html/php files for the rad10 webui. |
+|[qbittorrent][link_repo_qbittorrent]		|Install and configure [qbittorrent][link_web_qbittorrent] client.  This is installed as a [docker][link_web_docker] container, so first the docker role is run, then a docker-compose.yml file is copied and used to pull and run the [qbittorrent container][link_dockerhub_qbittorrent]. |
+|[rad10][link_repo_rad10]			|Configure a [raspberry pi][link_web_raspberry_pi] as an internet radio/music streamer with hardware control and a webui.  First run the mpd role, then clone [rad10d repo][link_gitlab_clewsy_rad10d], compile the daemon and configure a unit-file for auto-starting.  Will also install web server packages ([Apache][link_web_apache]) and copy the html/php files for the rad10 webui. |
 |[secure][link_repo_secure]			|Configure some basic settings for ssh security and enable/configure a firewall (using [ufw][link_web_ufw]). |
 |[vpn][link_repo_vpn]				|Install [openvpn][link_web_openvpn] and copy some custom vpn configuration files.  Also copy and configure a custom [vpn][link_gitlab_clewsy_scripts_vpn] initialisation script. |
 |[wireguard][link_repo_wireguard]		|Install [wireguard][link_web_wireguard] and create custom "client" connection configurations.  Also create some aliases for quickly bringing wireguard up/down from the command line. |
@@ -67,6 +67,7 @@ The flexo.yml playbook is a special case.  It will configure my smartphone via [
 [link_dockerhub_qbittorrent]:https://hub.docker.com/r/linuxserver/qbittorrent
 
 [link_gitlab_clewsy_clews.pro]:https://gitlab.com/clewsy/clews.pro
+[link_gitlab_clewsy_clews.pro_docker-compose]:https://gitlab.com/clewsy/clews.pro/-/blob/master/docker-compose.yml
 [link_gitlab_clewsy_p0wer]:https://gitlab.com/clewsy/p0wer
 [link_gitlab_clewsy_rad10d]:https://gitlab.com/clewsy/rad10d
 [link_gitlab_clewsy_scripts_apt_all]:https://gitlab.com/clewsy/scripts/-/blob/master/apt_all.sh
@@ -98,6 +99,7 @@ The flexo.yml playbook is a special case.  It will configure my smartphone via [
 [link_repo_wireguard]:roles/wireguard
 [link_repo_wireguard_server]:roles/wireguard_server
 
+[link_web_apache]:https://httpd.apache.org/
 [link_web_ansible]:https://docs.ansible.com/
 [link_web_beaglebone_black]:https://beagleboard.org/black/
 [link_web_blink1]:https://blink1.thingm.com/
@@ -105,6 +107,8 @@ The flexo.yml playbook is a special case.  It will configure my smartphone via [
 [link_web_debian]:https://www.debian.org/
 [link_web_docker]:https://www.docker.com/
 [link_web_docker-compose]:https://docs.docker.com/compose/
+[link_web_git]:https://git-scm.com/
+[link_web_gnome]:https://www.gnome.org
 [link_web_guake]:http://guake-project.org/
 [link_web_home_assistant]:https://www.home-assistant.io/
 [link_web_home_assistant_supervised_installer]:https://github.com/home-assistant/supervised-installer
@@ -126,5 +130,6 @@ The flexo.yml playbook is a special case.  It will configure my smartphone via [
 [link_web_termux]:https://termux.com/
 [link_web_ubuntu]:https://ubuntu.com/
 [link_web_ufw]:https://launchpad.net/ufw
+[link_web_vim]:https://www.vim.org/
 [link_web_wireguard]:https://www.wireguard.com/
 

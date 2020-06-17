@@ -1,6 +1,6 @@
 # clewsy_ansible
 
-Basic automation playbooks and roles for deploying machines on my home network.  Super handy when nuking/paving, but originally this project just started as a means of learning [ansible][link_web_ansible].
+Basic automation playbooks and roles for deploying machines on my home network.  Super handy when nuking/paving, but originally this project just started as a means of learning [ansible][link_web_ansible].  Additional information at [clews.pro][link_clews_projects_clewsy_ansible]
 
 A playbook and variables file exists for each host machine.  When run, the host-specific playbook will configure the host with the specified roles described below.  Prior to running the host-specific playbooks, some minimum requirements must be met:
 1. Operating system installed.
@@ -60,6 +60,7 @@ The flexo.yml playbook is a special case.  It will configure my smartphone via [
 
 [link_clews]:https://clews.pro
 [link_clews_projects_clews]:https://clews.pro/projects/clews.php
+[link_clews_projects_clewsy_ansible]:https://clews.pro/projects/clewsy_ansible.php
 [link_clews_projects_media_center]:https://clews.pro/projects/media_center.php
 [link_clews_projects_p0wer]:https://clews.pro/projects/p0wer.php
 [link_clews_projects_rad10]:https://clews.pro/projects/rad10.php

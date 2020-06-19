@@ -24,17 +24,18 @@ misc_packages:
     - android-tools-adb
     - android-tools-fastboot
   remove:
-    - remmina
+    - aisleriot
+    - byobu
+    - cheese
     - gnome-mines
     - gnome-mahjongg
     - gnome-todo
     - gnome-sudoku
-    - aisleriot
-    - byobu
-    - shotwell
+    - remmina
     - rhythmbox
-    - transmission
+    - shotwell
     - thunderbird
+    - transmission
 
 misc_snaps:
   install:

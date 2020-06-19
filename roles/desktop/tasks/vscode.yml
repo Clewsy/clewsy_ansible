@@ -1,0 +1,22 @@
+---
+- name: '[vscode] Install vscode.'
+  snap:
+    name: "code"
+    state: present
+    classic: yes
+
+#- name: '[vscode] Ensure vscode user settings directory exists.'
+#  file:
+#    dest: "/home/{{ ansible_user }}/.config/Code/User"
+#    state: directory
+#    owner: "{{ ansible_user }}"
+#    group: "{{ ansible_user }}"
+#    mode: '0755'
+
+- name: '[vscode] Copy vscode configuration file.'
+  copy:
+    src: "files/vscode/settings.json"
+    dest: "/home/{{ ansible_user }}/.config/Code/User/settings.json"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0664'

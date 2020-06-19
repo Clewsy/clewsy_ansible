@@ -1,0 +1,16 @@
+{
+    "editor.tabSize": 8,
+    "editor.insertSpaces": false,
+    "workbench.startupEditor": "newUntitledFile",
+"workbench.colorTheme": "Material Theme Darker",
+"editor.detectIndentation": false,
+"arduino.path": "/home/jc/arduino-1.8.12",
+"arduino.additionalUrls": "https://adafruit.github.io/arduino-board-index/package_adafruit_index.json",
+"arduino.logLevel": "verbose",
+"C_Cpp.intelliSenseEngine": "Tag Parser",
+"C_Cpp.errorSquiggles": "Enabled",
+"C_Cpp.loggingLevel": "Debug",
+"explorer.confirmDragAndDrop": false,
+"window.zoomLevel": 0,
+"explorer.confirmDelete": false,
+}

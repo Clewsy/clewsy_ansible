@@ -23,16 +23,23 @@ misc_packages:
     - kicad
     - android-tools-adb
     - android-tools-fastboot
+  remove:
+    - remmina
+    - gnome-mines
+    - gnome-mahjongg
+    - gnome-todo
+    - gnome-sudoku
+    - aisleriot
+    - byobu
+    - shotwell
+    - rhythmbox
+    - transmission
+    - thunderbird
 
 misc_snaps:
   install:
     - gimp
     - inkscape
-    - vlc
-
-misc_classic_snaps:
-  install:
-    - code
 
 theme_colour: GREEN
 theme_prompt: "{{ FARNSWORTH }}"

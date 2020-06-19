@@ -11,8 +11,8 @@
     enabled: yes
     state: restarted
 
-- name: Restart snapd service.
+- name: Enable and start snapd service.
   service:
     name: snapd
     enabled: yes
-    state: restarted
+    state: started

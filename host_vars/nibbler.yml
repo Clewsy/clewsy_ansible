@@ -23,14 +23,6 @@ misc_packages:
   remove:
     - geary       #Unwanted email client.
 
-misc_snaps:
-  install:
-    - vlc
-
-misc_classic_snaps:
-  install:
-    - code
-
 theme_colour: ORANGE
 theme_prompt: "{{ NIBBLER }}"
 

@@ -22,6 +22,7 @@ aliases:
 misc_packages:
   install:
     - rename
+    - mc #midnight commander
 
 theme_colour: RED
 theme_prompt: "{{ ZAPP }}" 

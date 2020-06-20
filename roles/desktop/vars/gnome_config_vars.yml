@@ -6,3 +6,7 @@ profile_icon_dest: "{% if ansible_distribution == 'Ubuntu' %}\
                     {% else %}\
                       /var/lib/AccountsService/icons/{{ ansible_user }}\
                     {% endif %}"  #Expected location of user profile icon varies depending on the distribution,
+
+gnome_packages:
+  - gnome-tweaks
+  - gnome-shell-extensions

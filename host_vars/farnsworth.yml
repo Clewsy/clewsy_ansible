@@ -35,7 +35,8 @@ misc_packages:
     - rhythmbox
     - shotwell
     - thunderbird
-    - transmission
+    - transmission-common
+    - transmission-gtk
 
 misc_snaps:
   install:

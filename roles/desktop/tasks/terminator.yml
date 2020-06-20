@@ -4,6 +4,14 @@
     name: terminator
     state: latest
 
+- name: '[terminator] Ensure terminator config directory exists.'
+  file:
+    dest: "/home/{{ ansible_user }}/.config/terminator"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0755'
+    state: directory
+
 - name: '[terminator] Copy terminator configuration file.'
   copy:
     src: "files/terminator/config_{{ ansible_hostname }}"

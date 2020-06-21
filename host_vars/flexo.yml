@@ -18,10 +18,10 @@ backup_file_list: |
   ~/bin
   ~/.shortcuts
   ~/storage/downloads/wireguard-export.zip
-  ~/storage/downloads/AntennaPodBackup.db
-  ~/storage/downloads/antennapod-feeds.html
-  ~/storage/downloads/antennapod-feeds.opml
-  ~/storage/downloads/otp_accounts.json.aes
+  ~/storage/downloads/AntennaPodBackup.db**
+  ~/storage/downloads/antennapod-feeds.html**
+  ~/storage/downloads/antennapod-feeds.opml**
+  ~/storage/downloads/otp_accounts.json.aes**
   ~/storage/downloads/NewPipeData-**
   ~/storage/downloads/newpipe_subscriptions_**
   ~/storage/downloads/favourites.gpx

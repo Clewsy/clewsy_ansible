@@ -6,6 +6,7 @@
   roles:
     - common
     - secure
+    - headless
     - node
     - polly
 

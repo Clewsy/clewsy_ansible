@@ -18,11 +18,11 @@ aliases:
 
 misc_packages:
   install:
-    - ansible
     - imagemagick
     - kicad
     - android-tools-adb
     - android-tools-fastboot
+    - avrdude
   remove:
     - aisleriot
     - byobu

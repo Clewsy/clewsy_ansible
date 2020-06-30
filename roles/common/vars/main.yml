@@ -6,6 +6,5 @@ common_packages:
   - rsync
   - curl
   - iperf3
-  - ncdu
   - bash-completion
   

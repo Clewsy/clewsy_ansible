@@ -54,6 +54,8 @@ backup_file_list: |
   /etc/fstab
   /etc/cron.d
 
+mc_skin: modarcon16root-defbg
+
 ssh_public_key: !vault | # $ cat .ssh/id_rsa.pub | ansible-vault encrypt_string
   $ANSIBLE_VAULT;1.1;AES256
   34653262346130376662396164646134333364643761393361323862373061646361623963316332

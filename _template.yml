@@ -4,11 +4,12 @@
   become: yes
   gather_facts: True
 #  environment:
-#    PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+#    PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin #Include if paths not defined by default after install (e.g. OSMC).
 
   roles:
 #    - common
 #    - secure
+#    - headless
 #    - docker
 #    - clews.pro
 #    - polly

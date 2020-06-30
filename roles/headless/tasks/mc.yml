@@ -1,0 +1,12 @@
+---
+- name: '[mc] Install midnight commander.'
+  apt:
+    name: mc
+    state: latest
+
+- name: '[mc] Set skin for mc.'
+  lineinfile:
+    path: "/home/{{ ansible_user }}/.config/mc/ini"
+    regexp: '^skin='
+    line: "skin={{ mc_skin }}"
+

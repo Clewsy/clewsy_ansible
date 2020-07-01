@@ -6,5 +6,6 @@ common_packages:
   - rsync
   - curl
   - iperf3
+  - rename
   - bash-completion
   

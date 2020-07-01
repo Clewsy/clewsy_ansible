@@ -1,7 +1,6 @@
 ---
 headless_packages:
-  - rename
   - htop
-  - ncdu
   - iftop
+  - ncdu
 

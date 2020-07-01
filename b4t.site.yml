@@ -6,5 +6,6 @@
   roles:
     - common
     - secure
+    - headless
     - docker
     - wireguard_server

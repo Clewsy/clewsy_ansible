@@ -1,5 +1,5 @@
 ---
-- name:  Install general packages required for a headless system.
+- name:  Install general packages useful for a headless system.
   apt:
     name: "{{ headless_packages }}"
     state: latest

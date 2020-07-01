@@ -43,6 +43,8 @@ backup_file_list: |
   $HOME/.ssh/
   /etc/systemd/system/clews.service	#service created to ensure docker containers are restarted at boot.
 
+mc_skin: modarin256-defbg
+
 ssh_public_key: !vault |
   $ANSIBLE_VAULT;1.1;AES256
   61363533656363323136633265653631383231663262326336393534313361333135363039613235

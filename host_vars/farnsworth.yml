@@ -80,6 +80,8 @@ backup_file_list: |
   #$HOME/.vimrc			#Setting to make it easier to read with putty
   #$HOME/.config/terminator	#Terminator configuration
 
+mc_skin: modarcon16_defbg
+
 ssh_public_key: !vault |
   $ANSIBLE_VAULT;1.1;AES256
   35646633303161303533643535383136653332616130653566303762656465666434653765663964

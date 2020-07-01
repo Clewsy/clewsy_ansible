@@ -1,0 +1,8 @@
+---
+- name: Run secure role on selected hosts.
+  hosts: secure
+  become: yes
+  gather_facts: True
+
+  roles:
+    - secure

@@ -14,7 +14,7 @@
   register: clews_clone
   ignore_errors: True
 
-- name: 'Error notification.'
+- name: 'Repo sync error notification.'
   debug: 
     msg: "Did not clone repo.  Possibly already exists with changes."
   when: clews_clone is failed
@@ -71,3 +71,11 @@
   service:
     name: clews
     state: started
+
+- name: Create cron job to periodically run docker-compose just in case it is brought down for some reason.
+  cron:
+    user: "{{ ansible_user }}"
+    name: 'Role: "clews.pro" - Periodically run docker-compose to ensure containers are up.'
+    minute: "48"
+    job: "/usr/bin/docker-compose --env-file /home/docker/.env -f /home/docker/docker-compose.yml up -d"
+

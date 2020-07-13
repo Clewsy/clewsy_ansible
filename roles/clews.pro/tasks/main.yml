@@ -7,10 +7,10 @@
 
 - name: Sync clews.pro repo ready for use by docker-compose.
   git:
-    repo: "{{ clews_repo }}"
+    repo: "{{ clews_repo_ssh }}"
     dest: /home/docker
     accept_hostkey: yes
-    key_file: "/home/{{ ansible_user }}/.ssh/id_rsa"
+    key_file: "{{ clews_repo_keyfile }}"
   register: clews_clone
   ignore_errors: True
 
@@ -21,7 +21,7 @@
 
 - name: Determine if data is already present or needs to be restored from backup.
   stat:
-    path: /home/docker/.env #.env is gitignored so will not be present on fresh system.
+    path: "{{ clews_env_file }}" #.env is gitignored so will not be present on fresh system.
   register: data
 
 - name: Change owner of any files updated from git repo (from root to user).
@@ -58,7 +58,7 @@
   get_url:
     url: "{{ clews_unit_file }}"
     dest: /etc/systemd/system/clews.service
-    mode: 0644
+    mode: '0644'
     owner: root
     group: root
 

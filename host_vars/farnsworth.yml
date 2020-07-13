@@ -43,7 +43,7 @@ misc_snaps:
     - gimp
     - inkscape
 
-theme_colour: GREEN
+theme_colour: BLUE
 theme_prompt: "{{ FARNSWORTH }}"
 
 cron_jobs:

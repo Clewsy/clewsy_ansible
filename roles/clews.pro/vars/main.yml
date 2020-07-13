@@ -1,9 +1,8 @@
 ---
-repo_ssh_root: "git@gitlab.com:clewsy"
-repo_root: "https://gitlab.com/clewsy"
-
-clews_repo: "{{ repo_ssh_root }}/clews.pro.git"
-clews_unit_file: "{{ repo_root }}/clews.pro/-/raw/master/clews.service"
+clews_repo_ssh: "git@gitlab.com:clewsy/clews.pro.git"
+clews_repo_keyfile: "/home/{{ ansible_user }}/.ssh/id_rsa"
+clews_unit_file: "https://gitlab.com/clewsy/clews.pro/-/raw/master/clews.service"
+clews_env_file: "/home/docker/.env"
 
 clews_docker_backup_host: zapp
 clews_docker_backup_dir: /export/cl0ud/docker_zoidberg/docker

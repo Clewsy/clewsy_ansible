@@ -25,7 +25,7 @@
     update_cache: yes
     autoremove: yes
     autoclean: yes
-    cache_valid_time: 43200 #Cache is valid for 12 hours.
+    cache_valid_time: 86400 #Cache is valid for 24 hours.
 
 - name: Install common packages.
   apt:

@@ -4,7 +4,7 @@
   become: yes
   gather_facts: True
   environment:
-    PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin #Needed as some locations are absent by default on osmc.
+    PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin #Needed as default sudo PATH on osmc is overridden by /etc/sudoers.d/osmc-no-secure-path
 
   roles:
     - common

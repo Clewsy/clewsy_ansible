@@ -97,6 +97,9 @@ backup_file_list: | #Delete completely and the default file list will include on
 
 #mc_skin: modarcon16root-defbg #Override default skin for midnight commander as configured by headless role.
 
+path_additions: #Add additional paths to user's PATH variable by including in the ~/.profile file.
+#  - ~/.platformio/penv/bin #Path addition for using platformio in vscode terminal (or any terminal).
+
 ssh_public_key: !vault | # $ cat .ssh/id_rsa.pub | ansible-vault encrypt_string
 #  $ANSIBLE_VAULT;1.1;AES256
 #  35636236663831646136386466666635376234643534623730303238303936393230346133383035

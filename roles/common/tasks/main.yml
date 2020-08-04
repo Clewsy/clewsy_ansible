@@ -70,5 +70,14 @@
 - name: Configure mounts.
   include: mounts.yml
 
+- name: "Add custom paths to PATH variable for {{ ansible_user }}."
+  lineinfile:
+    path: "/home/{{ ansible_user }}/.profile"
+    state: present
+    line: "export PATH=$PATH:{{ item }}"
+    insertafter: EOF
+  with_items: "{{ path_additions }}"
+  when: path_additions.0 is defined
+
 - name: Install and configure common scripts.
   include: common_scripts.yml

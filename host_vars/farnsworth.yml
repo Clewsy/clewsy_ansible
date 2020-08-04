@@ -82,6 +82,9 @@ backup_file_list: |
 
 mc_skin: modarcon16-defbg
 
+path_additions:
+  - ~/.platformio/penv/bin #Path addition for using platformio in vscode terminal (or any terminal).
+
 ssh_public_key: !vault |
   $ANSIBLE_VAULT;1.1;AES256
   35646633303161303533643535383136653332616130653566303762656465666434653765663964

@@ -3,4 +3,4 @@ headless_packages:
   - htop
   - iftop
   - ncdu
-
+  - tmux

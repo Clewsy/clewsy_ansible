@@ -16,7 +16,7 @@ local_tz: 'Australia/Melbourne'
 
 aliases:
 
-misc_packages:
+misc_apt_packages:
   install:
     - imagemagick
     - kicad
@@ -43,7 +43,11 @@ misc_snaps:
     - gimp
     - inkscape
 
-theme_colour: BLUE
+misc_python_packages:
+  install:
+    - youtube-dl
+
+theme_colour: GREEN
 theme_prompt: "{{ FARNSWORTH }}"
 
 cron_jobs:

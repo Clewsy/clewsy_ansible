@@ -2,7 +2,7 @@
 ########### Installation of apps that don't come pre-installed.
 - name: '[misc_packages] Install miscellaneous, host-specific apt packages.'
   apt:
-    name: "{{ misc_packages.install }}"
+    name: "{{ misc_apt_packages.install }}"
     state: latest
   when: misc_packages.install.0 is defined
 
@@ -27,10 +27,22 @@
     classic: yes
   when: misc_classic_snaps.install.0 is defined
 
+- name: '[misc_packages] Install pip3.'
+  apt:
+    name: python3-pip
+    state: latest
+  when: misc_python_packages.install.0 is defined
+
+- name: '[misc_packages] Install miscellaneous, host-specific python packages (pip).'
+  pip:
+    name: "{{ misc_python_packages.install }}"
+    state: latest
+  when: misc_python_packages.install.0 is defined
+
 ########### Removal of apps that do come pre-installed.
 - name: '[misc_packages] Remove miscellaneous, host-specific, pre-installed apt packages.'
   apt:
-    name: "{{ misc_packages.remove }}"
+    name: "{{ misc_apt_packages.remove }}"
     state: absent
     purge: yes
     autoremove: yes
@@ -49,3 +61,9 @@
     state: absent
     classic: yes
   when: misc_classic_snaps.remove.0 is defined
+
+- name: '[misc_packages] Remove miscellaneous, host-specific, pre-python packages (pip).'
+  pip:
+    name: "{{ misc_python_packages.remove }}"
+    state: absent
+  when: misc_python_packages.remove.0 is defined

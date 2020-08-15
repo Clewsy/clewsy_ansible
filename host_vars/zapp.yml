@@ -19,10 +19,9 @@ local_tz: 'Australia/Melbourne' #If ommitted will default to 'Australia/Melbourn
 aliases:
 #  - "alias ll='ls -alFh'"
 
-misc_packages:
+misc_apt_packages:
   install:
     - rename
-    - mc #midnight commander
 
 theme_colour: RED
 theme_prompt: "{{ ZAPP }}" 

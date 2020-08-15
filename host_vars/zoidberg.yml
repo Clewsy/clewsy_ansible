@@ -16,7 +16,7 @@ local_tz: 'Australia/Melbourne'
 
 aliases:
 
-misc_packages:
+misc_apt_packages:
   install:
     - imagemagick
 

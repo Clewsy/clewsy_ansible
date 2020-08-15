@@ -40,9 +40,15 @@ misc_snaps:
 #    - vlc
   remove:
 
+
 misc_classic_snaps:
   install:
 #    - code
+  remove:
+
+misc_python_packages:
+  install:
+#    - youtube-dl
   remove:
 
 theme_colour: CYAN #Can override setting referenced in common/common_scripts role. Will default to CYAN if ommitted.

@@ -76,6 +76,13 @@
   cron:
     user: "{{ ansible_user }}"
     name: 'Role: "clews.pro" - Periodically run docker-compose to ensure containers are up.'
-    minute: "48"
+    minute: "45"
     job: "/usr/bin/docker-compose --env-file /home/docker/.env -f /home/docker/docker-compose.yml up -d"
 
+- name: Create cron job to pull and update the latest container images every day with docker-compose.
+  cron:
+    user: "{{ ansible_user }}"
+    name: 'Role: "clews.pro" - Pull and update container images.'
+    minute: "0"
+    hour: "5"
+    job: "/usr/bin/docker-compose --env-file /home/docker/.env -f /home/docker/docker-compose.yml pull && /usr/bin/docker-compose --env-file /home/docker/.env -f /home/docker/docker-compose.yml up -d"

@@ -27,13 +27,13 @@ theme_colour: RED
 theme_prompt: "{{ ZAPP }}" 
 
 cron_jobs:
-#  - name: "Comment will be added to crontab."
-#    minute: "0"
-#    hour: "*"
-#    day: "*"
-#    month: "*"
-#    weekday: "*"
-#    job: 'echo "hello ansible"'
+  - name: "Daily pull and update to the latest qbittorrent container image."
+    minute: "0"
+    hour: "5"
+    day: "*"
+    month: "*"
+    weekday: "*"
+    job: '/usr/bin/docker-compose -f /home/docker/docker-compose.yml pull && /usr/bin/docker-compose -f /home/docker/docker-compose.yml up -d'
 
 mounts:
 #  - { mount_source: /dev/mmcblk0p1, mount_path: '/media/cache', mount_fstype: 'auto', mount_opts: "auto,rw,async,user,uid={{ ansible_user }},gid={{ ansible_user }},nofail" }

@@ -18,7 +18,8 @@ aliases:
 
 misc_apt_packages:
   install:
-    - imagemagick
+    - imagemagick #For image manipulation.
+    - libimage-exiftool-perl #For manipulating exif data embedded in photod (e.g. deleting gps co-ords),
 
 misc_snaps:
 

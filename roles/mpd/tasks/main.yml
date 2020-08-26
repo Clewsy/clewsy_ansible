@@ -43,5 +43,5 @@
     firstmatch: yes
     line: "\tmixer_control\t\"Headphone\"\t# optional"
   notify: Restart mpd.
-  when: ansible_architecture == "armv7l" #I.e. on  my raspberry pi 3.
+  when: ansible_architecture == "armv7l" or ansible_architecture == "aarch64" #I.e. on my raspberry pi 3 or pi 4 64-bit.
 

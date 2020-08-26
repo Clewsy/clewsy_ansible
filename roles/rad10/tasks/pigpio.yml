@@ -1,0 +1,16 @@
+---
+- name: Load pigpio variables.
+  include_vars: pigpio_vars.yml
+
+- name: Clone pigpio repo.
+  git:
+    repo: "{{ pigpio_repo }}"
+    dest: "{{ pigpio_local_clone }}"
+    depth: 1 #Don't need the full git history.
+  register: pigpio_repo_clone
+
+- name: Compile and install pigpio.
+  make:
+    chdir: "{{ pigpio_local_clone }}"
+    target: install
+  when: pigpio_repo_clone is changed

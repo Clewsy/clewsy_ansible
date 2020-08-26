@@ -4,6 +4,9 @@
     name: "{{ rad10_packages }}"
     state: latest
 
+- name: Install and enable latest pigpio. #Note will clone and make install from source.  Not included in ubuntu repo but could be apt installed on raspios.
+  include: pigpio.yml
+
 - name: Clone rad10d repository to home directory.
   git:
     repo: "{{ rad10d_repo }}"

@@ -1,0 +1,3 @@
+---
+pigpio_repo: "https://github.com/joan2937/pigpio"
+pigpio_local_clone: "/tmp/pigpio"

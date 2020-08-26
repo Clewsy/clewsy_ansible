@@ -4,7 +4,7 @@ ansible-playbook b4t-cam.yml	&&
 ansible-playbook b4t.site.yml	&&
 ansible-playbook calculon.yml	&&
 ansible-playbook farnsworth.yml	&&
-ansible-playbook flexo.yml	&&
+#ansible-playbook flexo.yml	&&
 ansible-playbook hypnotoad.yml	&&
 #ansible-playbook nibbler.yml	&&
 ansible-playbook p0wer.yml	&&

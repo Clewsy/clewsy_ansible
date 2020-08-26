@@ -23,6 +23,10 @@ misc_apt_packages:
   install:
     - rename
 
+misc_python_packages:
+  install:
+    - youtube-dl
+
 theme_colour: RED
 theme_prompt: "{{ ZAPP }}" 
 

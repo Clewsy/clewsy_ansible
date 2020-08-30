@@ -1,25 +1,25 @@
 ---
-- name: Load blink1-tool variables.
+- name: '[blink1_tool] Load blink1-tool variables.'
   include_vars: blink1_tool_vars.yml
 
-- name: Ensure all packages required to compile blink1-tool are installed.
+- name: '[blink1_tool] Ensure all packages required to compile blink1-tool are installed.'
   apt:
     name: "{{ blink1_tool_packages }}"
     state: latest
 
-- name: Clone blink1-tool repo.
+- name: '[blink1_tool] Clone blink1-tool repo.'
   git:
     repo: "{{ blink1_tool_repo }}"
     dest: "{{ blink1_tool_local_clone }}"
     depth: 1 #Don't need the full git history.
   register: blink1_tool_repo_clone
 
-- name: Compile blink1-tool.
+- name: '[blink1_tool] Compile blink1-tool.'
   make:
     chdir: "{{ blink1_tool_local_clone }}"
   when: blink1_tool_repo_clone is changed
 
-- name: Copy blink1-tool for root use.
+- name: '[blink1_tool] Copy blink1-tool for root use.'
   copy:
     remote_src: yes
     src: "{{ blink1_tool_local_clone }}/blink1-tool"

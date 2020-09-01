@@ -3,28 +3,19 @@
   include_vars: pigpio_vars.yml
 
 #################temp fix until PR is merged https://github.com/joan2937/pigpio/pull/376/commits/dc14cf41bf11eb6fc2ec79a4982b08650be91c89
-#####################Delete this once pigpio release 77 is out.
+#####################Delete this task once pigpio release 77 is out, and remove version: develop from the next task.
 - name: '[pigpio] Delete existing clone as want to modify.'
   file:
     path: "{{ pigpio_local_clone }}"
     state: absent
-#####################
 
 - name: '[pigpio] Clone pigpio repo.'
   git:
     repo: "{{ pigpio_repo }}"
     dest: "{{ pigpio_local_clone }}"
     depth: 1 #Don't need the full git history.
+    version: develop #Temporarily use the develop branch until PR342 is merged into the current release.
   register: pigpio_repo_clone
-
-#################temp fix until PR is merged https://github.com/joan2937/pigpio/pull/376/commits/dc14cf41bf11eb6fc2ec79a4982b08650be91c89
-#####################Delete this once pigpio release 77 is out.
-- name: '[pigpio] FIX pigpio.c'
-  lineinfile:
-    path: "{{ pigpio_local_clone }}/pigpio.c"
-    regexp: '       PROT_READ\|PROT_WRITE\|PROT_EXEC,'
-    line: '       PROT_READ|PROT_WRITE,'
-#####################
 
 - name: '[pigpio] Compile and install pigpio.'
   make:

@@ -26,6 +26,7 @@ misc_apt_packages:
     - gcc-avr
     - binutils-avr
     - avr-libc
+    - sonata #graphical mpd client
   remove:
     - aisleriot
     - byobu

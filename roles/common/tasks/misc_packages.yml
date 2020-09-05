@@ -4,7 +4,7 @@
   apt:
     name: "{{ misc_apt_packages.install }}"
     state: latest
-  when: misc_packages.install.0 is defined
+  when: misc_apt_packages.install.0 is defined
 
 - name: '[misc_packages] Install snapd.'
   apt:
@@ -46,7 +46,7 @@
     state: absent
     purge: yes
     autoremove: yes
-  when: misc_packages.remove.0 is defined
+  when: misc_apt_packages.remove.0 is defined
 
 - name: '[misc_packages] Remove miscellaneous, host-specific, pre-installed snap packages.'
   snap:

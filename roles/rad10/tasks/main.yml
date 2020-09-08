@@ -24,29 +24,10 @@
     group: "{{ ansible_user }}"
   when: rad10d_clone is changed
 
-- name: Build the rad10d executable from source. #Note executable will be owned by root:root
+- name: Compile and install the rad10d executable from source. #Note executable will be owned by root:root
   make:
     chdir: "/home/{{ ansible_user }}/rad10d"
-    target: all
-
-- name: Copy rad10d executable to /usr/local/sbin/rad10d
-  copy:
-    src: "/home/{{ ansible_user }}/rad10d/rad10d"
-    dest: "/usr/local/sbin/rad10d"
-    remote_src: yes
-    mode: '0755'
-
-- name: Copy rad10d.service unit file to /lib/systemd/system/rad10d.service
-  copy:
-    src: "/home/{{ ansible_user }}/rad10d/rad10d.service"
-    dest: "/lib/systemd/system/rad10d.service"
-    remote_src: yes
-
-- name: Enable and start rad10d service.
-  service:
-    name: rad10d
-    enabled: yes
-    state: started
+    target: install
 
 - name: If it exists, delete the default apache index.html page.
   file:

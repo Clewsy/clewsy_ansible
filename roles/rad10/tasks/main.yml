@@ -11,8 +11,7 @@
   git:
     repo: "{{ rad10d_repo }}"
     dest: "/home/{{ ansible_user }}/rad10d"
-    accept_hostkey: yes
-    key_file: "/home/{{ ansible_user }}/.ssh/id_rsa"
+    depth: 1
   register: rad10d_clone
 
 - name: Change owner of any files updated from git repo (from root to {{ ansible_user }}).

@@ -4,7 +4,7 @@
 
 #################temp fix until PR is merged https://github.com/joan2937/pigpio/pull/376/commits/dc14cf41bf11eb6fc2ec79a4982b08650be91c89
 #####################Delete this task once pigpio release 77 is out, and remove version: develop from the next task.
-- name: '[pigpio] Delete existing clone as want to modify.'
+- name: '[pigpio] Delete existing clone.'
   file:
     path: "{{ pigpio_local_clone }}"
     state: absent

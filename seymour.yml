@@ -18,7 +18,7 @@
         repo: "{{ repo_ssh_root }}/{{ item }}"
         dest: "/home/{{ ansible_user }}/{{ item }}"
         accept_hostkey: yes
-        key_file: "/home/{{ ansible_user }}/.ssh/id_rsa"
+        key_file: "/home/{{ ansible_user }}/.ssh/id_rsa" #Use key and ssh to clone private repo/s.
       with_items: "{{ repos }}"
       register: repo_clones
     

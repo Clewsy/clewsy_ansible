@@ -1,10 +1,8 @@
 ---
-repo_ssh_root: "git@gitlab.com:clewsy"
-rad10d_repo: "{{ repo_ssh_root }}/rad10d.git"
+rad10d_repo: "https://gitlab.com/clewsy/rad10d.git"
 
 rad10_packages:
   - build-essential
-#  - pigpio
   - libmpdclient-dev
   - apache2
   - php

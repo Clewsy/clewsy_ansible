@@ -8,8 +8,7 @@
   git:
     repo: "{{ p0wer_repo }}"
     dest: "/home/{{ ansible_user }}/p0wer"
-    accept_hostkey: yes
-    key_file: "/home/{{ ansible_user }}/.ssh/id_rsa" #Ensure ssh key is loaded into repo ssh settings.
+    depth: 1
   register: p0wer_clone
 
 - name: Change owner of any files updated from git repo (from root to {{ ansible_user }}).

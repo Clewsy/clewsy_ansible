@@ -1,6 +1,5 @@
 ---
-repo_ssh_root: "git@gitlab.com:clewsy"
-p0wer_repo: "{{ repo_ssh_root }}/p0wer.git"
+p0wer_repo: "https://gitlab.com/clewsy/p0wer.git"
 
 p0wer_packages:
   - build-essential

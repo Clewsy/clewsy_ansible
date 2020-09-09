@@ -50,12 +50,3 @@
     remote_src: yes
     owner: www-data
     group: www-data
-
-- name: Copy p0wer executable file to /var/www/html/bin/super_p0wer to be executed by user www-data.
-  copy:
-    src: "/usr/local/sbin/p0wer"
-    dest: "/var/www/html/bin/super_p0wer"
-    remote_src: yes
-    owner: root
-    group: root
-    mode: '04755' #Note setting setuid bit so that file is executated by user or www-data but with root permissions.

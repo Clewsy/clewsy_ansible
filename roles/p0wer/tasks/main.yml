@@ -21,19 +21,10 @@
     group: "{{ ansible_user }}"
   when: p0wer_clone is changed
 
-- name: Build the p0wer executable from source. #Note executable will be owned by root:root
+- name: Compile and install the p0wer executable from source. #Note executable will be owned by root:root
   make:
     chdir: "/home/{{ ansible_user }}/p0wer"
-    target: all
-
-- name: Copy p0wer executable to /usr/local/sbin/p0wer
-  copy:
-    src: "/home/{{ ansible_user }}/p0wer/p0wer"
-    dest: "/usr/local/sbin/p0wer"
-    remote_src: yes
-    owner: root
-    group: root
-    mode: '04755' #Note setting setuid bit so that file is executated by user or www-data but with root permissions.
+    target: install
 
 - name: Set useful p0wer aliases.'
   lineinfile:

@@ -3,12 +3,14 @@
 #init_ansible_user: {{ ansible_user }}
 #init_ansible_password: {{ ansible_password }}
 
+#common role, main.yml.
 host_name: hostname #fact "ansible_hostname" will be changed to host_name if it doesn't match.
 
 ansible_user: user
 
 ansible_python_interpreter: /usr/bin/python3
 
+#common role and droid role.
 setup_password: !vault | # $ ansible-vault encrypt_string 'secret_password'
 #  $ANSIBLE_VAULT;1.1;AES256
 #  33643765646136613432306633363534613063376137666533383766616234386665666466393037
@@ -17,11 +19,14 @@ setup_password: !vault | # $ ansible-vault encrypt_string 'secret_password'
 #  3065366532326430610a383162643461643764306339323863366632306530326235653861653931
 #  6661
 
+#common role, main.yml.
 local_tz: 'Australia/Melbourne' #If ommitted will default to 'Australia/Melbourne'
 
+#common role, aliases.yml.
 aliases:
 #  - "alias ll='ls -alFh'"
 
+#common role, misc_packages.yml
 misc_packages:
   install:
 #    - ncdu
@@ -33,6 +38,7 @@ misc_packages:
   remove:
 #    - geary
 
+#common role, misc_packages.yml
 misc_snaps:
   install:
 #    - gimp
@@ -40,19 +46,23 @@ misc_snaps:
 #    - vlc
   remove:
 
+#common role, misc_packages.yml
 misc_classic_snaps:
   install:
 #    - code
   remove:
 
+#common role, misc_packages.yml
 misc_python_packages:
   install:
 #    - youtube-dl
   remove:
 
+#common role, bashrc.yml and common_scripts.yml
 theme_colour: CYAN #Can override setting referenced in common/common_scripts role. Will default to CYAN if ommitted.
 theme_prompt: "{{ CYAN_BLUE }}" #Can override setting referenced in common/bashrc role.  Will default to {{ CYAN_BLUE }}
 
+#common role, main.yml
 cron_jobs:
 #  - name: "Comment will be added to crontab."
 #    minute: "0"
@@ -62,6 +72,7 @@ cron_jobs:
 #    weekday: "*"
 #    job: 'echo "hello ansible"'
 
+#motion role, motion.conf template overrides.
 motion: #Can override default settings in motion role.
 #  videodevice: '/dev/video0' #If ommitted, will default to /dev/video0
 #  rotate: '180' #If ommitted, will default to 0 
@@ -75,14 +86,17 @@ motion: #Can override default settings in motion role.
 #  stream_localhost: 'off' #If ommitted, will default to on (i.e. only stream locally).
 #  picam: false #If omitted, defaults to false (i.e. webcam, not picam).
 
+#homeassistanr role.
 homeassistant: #Can override default settings when running the homeassistant installer script.
 #  machine: raspberrypi4-64 #If ommitted will default to raspberrypi-64
 #  data_share: /home/docker/home-assistant #If ommitted will default to /home/docker/home-assistant
 
+#common role, mounts.yml
 mounts:
 #  - { mount_source: /dev/mmcblk0p1, mount_path: '/media/cache', mount_fstype: 'auto', mount_opts: "auto,rw,async,user,uid={{ ansible_user }},gid={{ ansible_user }},nofail" }
 #  - { mount_source: UUID=EA9EFDBF9EFD847B, mount_path: '/mnt/windoze', mount_fstype: 'auto', mount_opts: 'ro,nosuid,nodev,nofail,x-gvfs-show' }
 
+#common role, mounts.yml
 nfs_mounts:
 #  - { mount_source: 'zapp:/export/data', mount_path: '/mnt/zapp/data' }
 #  - { mount_source: 'zapp:/export/movies', mount_path: '/mnt/zapp/movies' }
@@ -92,24 +106,31 @@ nfs_mounts:
 #  - { mount_source: 'zapp:/export/cl0ud', mount_path: '/mnt/zapp/cl0ud' }
 #  - { mount_source: 'zapp:/export/m0n0l1th', mount_path: '/mnt/zapp/m0n0l1th' }
 
+#mpd role, main.yml
 music_dir: #"/home/{{ ansible_user }}/Music" #Can override default setting in mpd role.  If this is an nfs share, ensure nfs role included and share defined above.
 
+#desktop role, nautilus.yml
 nautilus_bookmarks: #Add bookmarks to nautilus sidebar.
 #  - "davs://nextcloud.clews.pro/remote.php/dav/files/jadon jadon"
 #  - "file:///mnt/zapp"
 #  - "file:///mnt/windoze"
 
+#secure role, ufw.yml
 ufw_allows: #By default the firewall will be configured to allow OpenSSH (i.e. port 22) if the secure role is used.  This can be overridden or added to here. 
 #  - OpenSSH
 
+#common role, common_scripts.yml
 backup_file_list: | #Delete completely and the default file list will include only the ~/.ssh directory.
 #  ~/.ssh
 
-#mc_skin: modarcon16root-defbg #Override default skin for midnight commander as configured by headless role.
+#headless role, mc.yml
+mc_skin: #modarcon16root-defbg #Override default skin for midnight commander as configured by headless role.
 
+#common role, main.yml
 path_additions: #Add additional paths to user's PATH variable by including in the ~/.profile file.
 #  - ~/.platformio/penv/bin #Path addition for using platformio in vscode terminal (or any terminal).
 
+#common role, ssh.yml
 ssh_public_key: !vault | # $ cat .ssh/id_rsa.pub | ansible-vault encrypt_string
 #  $ANSIBLE_VAULT;1.1;AES256
 #  35636236663831646136386466666635376234643534623730303238303936393230346133383035
@@ -137,6 +158,7 @@ ssh_public_key: !vault | # $ cat .ssh/id_rsa.pub | ansible-vault encrypt_string
 #  64396534663031363635383336633236653165653336376461323765373561626635393933376363
 #  30613161363939623265
 
+#common role, ssh.yml
 ssh_private_key: !vault | # $ cat .ssh/id_rsa | ansible-vault encrypt_string
 #  $ANSIBLE_VAULT;1.1;AES256
 #  30666234373436396230656661376132376530383033346635396663393666656635313761613562

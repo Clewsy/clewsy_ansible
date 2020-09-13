@@ -1,0 +1,22 @@
+---
+- name: '[nautilus] Load nautilus variables.'
+  include_vars: nautilus_vars.yml
+
+- name: '[nautilus] Install nautilus packages'
+  apt:
+    name: "{{ nautilus_packages }}"
+    state: latest
+
+- name: '[nautilus] Set host-specific nautilus bookmarks.'
+  lineinfile:
+    path: "{{ nautilus_bookmarks_path }}"
+    state: present
+    regexp: "{{ item }}"
+    line: "{{ item }}"
+    insertafter: EOF
+    create: yes
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0664'
+  with_items: "{{ nautilus_bookmarks }}"
+  when: nautilus_bookmarks.0 is defined

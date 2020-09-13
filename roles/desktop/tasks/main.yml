@@ -26,8 +26,11 @@
 - name: Install and configure vscode.
   include: vscode.yml
 
-- name: 'Install vlc.'
+- name: Install vlc.
   snap:
     name: "vlc"
     state: present
     classic: no
+
+- name: Install nautilus and configure bookmarks.
+  include: nautilus.yml

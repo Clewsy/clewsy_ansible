@@ -71,6 +71,12 @@ nfs_mounts:
 
 music_dir: "/mnt/zapp/mp3s"
 
+nautilus_bookmarks:
+  - "davs://nextcloud.clews.pro/remote.php/dav/files/jadon nextcloud"
+  - "file:///home/jc/projects projects"
+  - "file:///mnt/zapp"
+  - "file:///mnt/windoze windoze"
+
 backup_file_list: |
   #a list of files and/or directories to be backed up from farnsworth to seymour
   $HOME/.conkyrc			#main conky config for farnsworth

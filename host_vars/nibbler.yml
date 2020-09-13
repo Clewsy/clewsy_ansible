@@ -30,6 +30,9 @@ misc_python_packages:
 theme_colour: ORANGE
 theme_prompt: "{{ NIBBLER }}"
 
+nautilus_bookmarks:
+  - "davs://nextcloud.clews.pro/remote.php/dav/files/jadon nextcloud"
+
 backup_file_list: |
   ##A list of files to be backed up
   ~/.bashrc			#just in case I customise it

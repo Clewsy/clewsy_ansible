@@ -40,7 +40,6 @@ misc_snaps:
 #    - vlc
   remove:
 
-
 misc_classic_snaps:
   install:
 #    - code
@@ -94,6 +93,11 @@ nfs_mounts:
 #  - { mount_source: 'zapp:/export/m0n0l1th', mount_path: '/mnt/zapp/m0n0l1th' }
 
 music_dir: #"/home/{{ ansible_user }}/Music" #Can override default setting in mpd role.  If this is an nfs share, ensure nfs role included and share defined above.
+
+nautilus_bookmarks: #Add bookmarks to nautilus sidebar.
+#  - "davs://nextcloud.clews.pro/remote.php/dav/files/jadon jadon"
+#  - "file:///mnt/zapp"
+#  - "file:///mnt/windoze"
 
 ufw_allows: #By default the firewall will be configured to allow OpenSSH (i.e. port 22) if the secure role is used.  This can be overridden or added to here. 
 #  - OpenSSH

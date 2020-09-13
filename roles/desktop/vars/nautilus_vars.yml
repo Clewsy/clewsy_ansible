@@ -1,0 +1,4 @@
+nautilus_packages:
+  - nautilus #Probably already installed.
+
+nautilus_bookmarks_path: "/home/{{ ansible_user }}/.config/gtk-3.0/bookmarks"

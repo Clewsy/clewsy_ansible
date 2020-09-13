@@ -19,12 +19,12 @@
     chdir: "{{ blink1_tool_local_clone }}"
   when: blink1_tool_repo_clone is changed
 
-- name: '[blink1_tool] Copy blink1-tool for root use.'
+- name: '[blink1_tool] Copy blink1-tool for use with suid bit set so any user can run it.'
   copy:
     remote_src: yes
     src: "{{ blink1_tool_local_clone }}/blink1-tool"
     dest: "{{ blink1_tool_executable_dest }}"
     owner: root
     group: root
-    mode: 0755
+    mode: 04755 #Note setting setuid bit so that file is executated by user with root permissions.
   when: blink1_tool_repo_clone is changed

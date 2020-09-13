@@ -7,8 +7,8 @@
 
 - name: Sync clews.pro repo ready for use by docker-compose.
   git:
-    repo: "{{ clews_repo_ssh }}"
-    dest: /home/docker
+    repo: "{{ clews_repo }}"
+    dest: "{{ docker_home_dir }}" #docker_home_dir defined in required docker role vars file. 
     accept_hostkey: yes
     key_file: "{{ clews_repo_keyfile }}"
   register: clews_clone
@@ -21,13 +21,23 @@
 
 - name: Determine if data is already present or needs to be restored from backup.
   stat:
-    path: "{{ clews_env_file }}" #.env is gitignored so will not be present on fresh system.
+    path: "{{ docker_home_dir }}/.env" #.env is gitignored so will not be present on fresh system.
   register: data
+
+- name: Copy and decrypt .env file to new install.
+  copy:
+    src: "files/.env"
+    decrypt: yes
+    dest: "{{ docker_home_dir }}/.env"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0640'
+  when: data.stat.exists == false #Only needs restoring to fresh system (i.e. .env not present).
 
 - name: Change owner of any files updated from git repo (from root to user).
   file:
     recurse: yes
-    path: /home/docker
+    path: "{{ docker_home_dir }}"
     state: directory
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
@@ -38,14 +48,14 @@
     set_remote_user: no #Use .ssh/config to define user.  Remember, rsync command will be run as root on delegate.
     mode: push  #I.e. localhost or delegate is source.
     rsync_opts: "--update"
-    src: "{{ clews_docker_backup_dir }}"  ##Location of docker dir.
-    dest: /home/  ##Where to put docker dir.
+    src: "{{ clews_docker_backup_source }}"  ##Location of data.
+    dest: "{{ docker_home_dir }}"  ##Where to put data.
   delegate_to: "{{ clews_docker_backup_host }}"
   when: data.stat.exists == false #Only needs restoring to fresh system (i.e. .env not present).
 
 - name: Pull docker container images listed in docker.compose.yml.
   docker_compose:
-    project_src: /home/docker
+    project_src: "{{ docker_home_dir }}"
     pull: yes
     recreate: smart #Containers will be recreated if a new version is pulled.
 
@@ -56,8 +66,8 @@
 
 - name: Create clews.service unit file.
   get_url:
-    url: "{{ clews_unit_file }}"
-    dest: /etc/systemd/system/clews.service
+    url: "{{ clews_unit_file_source }}"
+    dest: "{{ clews_unit_file_dest }}"
     mode: '0644'
     owner: root
     group: root

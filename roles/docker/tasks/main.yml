@@ -14,7 +14,7 @@
 
 - name: Create docker-compose staging area.
   file:
-    path: /home/docker
+    path: "{{ docker_home_dir }}"
     state: directory
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"

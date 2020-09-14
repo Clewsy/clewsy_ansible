@@ -34,7 +34,7 @@
     path: "{{ item.mount_path }}"
     src: "{{ item.mount_source }}"
     fstype: nfs
-    opts: rw,user,intr,bg
+    opts: rw,user,nofail,intr,bg
     state: mounted
   with_items: "{{ nfs_mounts }}"
   when: nfs_mounts.0 is defined

@@ -1,4 +1,5 @@
-##Note openmediavault initial install login is admin/openmediavault (webui).  Ssh login configured during install. 
+##Note openmediavault initial install login is admin/openmediavault (webui).  Ssh login configured during install.   Don't forget to add user to ssh group.
+#Initial login for qbittorrent is admin/adminadmin.  If this doesn't work after installation, bring the container down then back up again.
 
 host_name: zapp
 
@@ -17,11 +18,10 @@ setup_password: !vault |
 local_tz: 'Australia/Melbourne' #If ommitted will default to 'Australia/Melbourne'
 
 aliases:
-#  - "alias ll='ls -alFh'"
 
 misc_apt_packages:
   install:
-    - rename
+    - rename #Not included with default openmediavault.
 
 misc_python_packages:
   install:
@@ -40,17 +40,8 @@ cron_jobs:
     job: '/usr/bin/docker-compose -f /home/docker/docker-compose.yml pull && /usr/bin/docker-compose -f /home/docker/docker-compose.yml up -d'
 
 mounts:
-#  - { mount_source: /dev/mmcblk0p1, mount_path: '/media/cache', mount_fstype: 'auto', mount_opts: "auto,rw,async,user,uid={{ ansible_user }},gid={{ ansible_user }},nofail" }
-#  - { mount_source: UUID=EA9EFDBF9EFD847B, mount_path: '/mnt/windoze', mount_fstype: 'auto', mount_opts: 'ro,nosuid,nodev,nofail,x-gvfs-show' }
 
 nfs_mounts:
-#  - { mount_source: 'zapp:/export/data', mount_path: '/mnt/zapp/data' }
-#  - { mount_source: 'zapp:/export/movies', mount_path: '/mnt/zapp/movies' }
-#  - { mount_source: 'zapp:/export/mp3s', mount_path: '/mnt/zapp/mp3s' }
-#  - { mount_source: 'zapp:/export/music_videos', mount_path: '/mnt/zapp/music_videos' }
-#  - { mount_source: 'zapp:/export/tv', mount_path: '/mnt/zapp/tv' }
-#  - { mount_source: 'zapp:/export/cl0ud', mount_path: '/mnt/zapp/cl0ud' }
-#  - { mount_source: 'zapp:/export/m0n0l1th', mount_path: '/mnt/zapp/m0n0l1th' }
 
 backup_file_list: |
   $HOME/.ssh/

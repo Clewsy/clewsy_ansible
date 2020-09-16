@@ -1,5 +1,7 @@
 ---
-rad10d_repo: "https://gitlab.com/clewsy/rad10d.git"
+rad10d_repo: "git@gitlab.com:clewsy/rad10d.git"
+#rad10d_repo: "https://gitlab.com/clewsy/rad10d.git" #Use this repo link for https instead of ssh if you don't have a key set up.
+rad10d_repo_keyfile: "/home/{{ ansible_user }}/.ssh/id_rsa"
 
 rad10_packages:
   - build-essential

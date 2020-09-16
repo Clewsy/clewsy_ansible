@@ -22,7 +22,7 @@
       with_items: "{{ repos }}"
       register: repo_clones
     
-    - name: Ensure cloned repos are owned by {{ ansible_user }}{{ ':' }}{{ ansible_user }}
+    - name: "Ensure cloned repos are owned by {{ ansible_user }}{{ ':' }}{{ ansible_user }}"
       file:
         recurse: yes
         path: "/home/{{ ansible_user }}/{{ item }}"

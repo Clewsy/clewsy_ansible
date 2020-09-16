@@ -8,7 +8,8 @@
   git:
     repo: "{{ p0wer_repo }}"
     dest: "/home/{{ ansible_user }}/p0wer"
-    depth: 1
+    accept_hostkey: yes
+    key_file: "{{ p0wer_repo_keyfile }}"
   register: p0wer_clone
 
 - name: Change owner of any files updated from git repo (from root to {{ ansible_user }}).

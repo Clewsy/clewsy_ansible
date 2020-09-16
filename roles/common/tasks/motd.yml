@@ -1,7 +1,4 @@
 ---
-- name: '[motd] Load motd variables.'
-  include_vars: motd_vars.yml
-
 - name: '[motd] Delete /etc/motd if it exists.'
   file:
     path: /etc/motd
@@ -27,12 +24,12 @@
     group: root
 
 - name: '[motd] Determine if a host-specific motd file exists (motd_{{ ansible_hostname }}).'
-  local_action: stat path="{{ motd_files_dir }}/motd_{{ ansible_hostname }}"
+  local_action: stat path="{{ role_path }}/files/motd/motd_{{ ansible_hostname }}"
   register: host_specific_motd
 
 - name: '[motd] Copy host-specific motd file to host.'
   copy:
-    src: "{{ motd_files_dir }}/motd_{{ ansible_hostname }}"
+    src: "files/motd/motd_{{ ansible_hostname }}"
     dest: /etc/update-motd.d/motd
     mode: '0644'
     owner: root
@@ -42,7 +39,7 @@
 
 - name: '[motd] Copy generic motd file to host as host-specific motd does not exist.'
   copy:
-    src: "{{ motd_files_dir }}/motd_generic"
+    src: "files/motd/motd_generic"
     dest: /etc/update-motd.d/motd
     mode: '0644'
     owner: root

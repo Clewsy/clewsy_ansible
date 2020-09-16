@@ -1,0 +1,12 @@
+---
+- name: '[vlc] Ensure snapd is installed.'
+  apt:
+    name: snapd
+    state: latest
+  notify: Enable and start snapd service.
+
+- name: '[vlc] Install vlc.'
+  snap:
+    name: "vlc"
+    state: present
+    classic: no

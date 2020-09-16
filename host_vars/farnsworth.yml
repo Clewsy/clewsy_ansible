@@ -20,12 +20,12 @@ misc_apt_packages:
   install:
     - imagemagick
     - kicad
-    - android-tools-adb
-    - android-tools-fastboot
-    - avrdude #avrdude, gcc,avr, binutils-avr & avr-libc for direct compiling and programming avr micros.
-    - gcc-avr
-    - binutils-avr
-    - avr-libc
+#    - android-tools-adb
+#    - android-tools-fastboot
+#    - avrdude #avrdude, gcc,avr, binutils-avr & avr-libc for direct compiling and programming avr micros.
+#    - gcc-avr
+#    - binutils-avr
+#    - avr-libc
     - sonata #graphical mpd client
     - libimage-exiftool-perl #package includes exiftool for manipulating photo metadata.
   remove:

@@ -5,7 +5,7 @@
   gather_facts: True
   roles:
     - common
-#    - secure
+    - secure
 #    - clews.pro
     - headless
     - node
@@ -13,3 +13,4 @@
     - vpn
     - mpd
     - desktop
+    - develop

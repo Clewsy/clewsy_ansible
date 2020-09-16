@@ -1,0 +1,9 @@
+---
+develop_packages:
+  - kicad
+  - android-tools-adb
+  - android-tools-fastboot
+  - avrdude #avrdude, gcc-avr, binutils-avr & avr-libc for direct compiling and programming avr micros.
+  - gcc-avr
+  - binutils-avr
+  - avr-libc

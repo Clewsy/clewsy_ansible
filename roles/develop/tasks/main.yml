@@ -1,0 +1,8 @@
+---
+- name: 'Install and configure vscode.'
+  include: vscode.yml
+
+- name: 'Ensure all additional develop packages are installed.'
+  apt:
+    name: "{{ develop_packages }}"
+    state: latest

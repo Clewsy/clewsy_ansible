@@ -1,10 +1,4 @@
 ---
-- name: 'Install snapd.'
-  apt:
-    name: snapd
-    state: latest
-  notify: Enable and start snapd service.
-
 - name: Install and configure non-standard fonts.
   include: fonts.yml
 
@@ -23,14 +17,8 @@
 - name: Install and configure gnome_config.
   include: gnome_config.yml
 
-- name: Install and configure vscode.
-  include: vscode.yml
-
 - name: Install vlc.
-  snap:
-    name: "vlc"
-    state: present
-    classic: no
+  include: vlc.yml
 
 - name: Install nautilus and configure bookmarks.
   include: nautilus.yml

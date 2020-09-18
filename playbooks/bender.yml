@@ -1,0 +1,22 @@
+---
+- name: Configure bender.
+  hosts: bender #hostname must be configured in dhcp server.
+  become: yes
+  gather_facts: True
+
+  roles:
+#    - common
+    - file_server
+
+#    - secure
+#    - headless
+#    - docker
+#    - clews.pro
+#    - polly
+#    - homeassistant
+#    - vpn
+#    - wireguard
+#    - wireguard_server
+#    - mpd
+#    - desktop
+#    - develop

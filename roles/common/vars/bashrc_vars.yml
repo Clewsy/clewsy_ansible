@@ -41,6 +41,13 @@ B4T:
   colon: "{{ SHELL_COL_GRAY }}"
   dir: "{{ SHELL_COL_WHITE }}"
   prompt: "{{ SHELL_COL_GRAY }}"
+BENDER:
+  user: "{{ SHELL_COL_GRAY }}"
+  at: "{{ SHELL_COL_BOLD_WHITE }}"
+  host: "{{ SHELL_COL_GRAY }}"
+  colon: "{{ SHELL_COL_BOLD_WHITE }}"
+  dir: "{{ SHELL_COL_GRAY }}"
+  prompt: "{{ SHELL_COL_WHITE }}"
 FARNSWORTH:
   user: "{{ SHELL_COL_TAN }}"
   at: "{{ SHELL_COL_GREENISHBLUE }}"

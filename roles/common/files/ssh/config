@@ -4,6 +4,9 @@ Host b4t.site b4t-site b4t
 Host b4t-cam b4t-cam cam
 	HostName b4t-cam
 	User b4t
+Host bender bend ben
+	HostName bender
+	User b4t
 Host calculon calc cal
 	HostName calculon
 	User b4t

@@ -1,0 +1,5 @@
+---
+file_server_packages:
+  - nfs-common
+  - nfs-kernel-server
+  

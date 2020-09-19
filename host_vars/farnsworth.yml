@@ -64,10 +64,9 @@ nfs_mounts:
   - { mount_source: 'zapp:/export/data', mount_path: '/mnt/zapp/data' }
   - { mount_source: 'zapp:/export/movies', mount_path: '/mnt/zapp/movies' }
   - { mount_source: 'zapp:/export/mp3s', mount_path: '/mnt/zapp/mp3s' }
-  - { mount_source: 'zapp:/export/music_videos', mount_path: '/mnt/zapp/music_videos' }
   - { mount_source: 'zapp:/export/tv', mount_path: '/mnt/zapp/tv' }
   - { mount_source: 'zapp:/export/cl0ud', mount_path: '/mnt/zapp/cl0ud' }
-#  - { mount_source: 'zapp:/export/m0n0l1th', mount_path: '/mnt/zapp/m0n0l1th' }
+  - { mount_source: 'zapp:/export/m0n0l1th', mount_path: '/mnt/zapp/m0n0l1th' }
 
 music_dir: "/mnt/zapp/mp3s"
 

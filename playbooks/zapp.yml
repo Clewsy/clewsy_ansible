@@ -4,8 +4,8 @@
   become: yes
   gather_facts: True
   roles:
-#    - common
-#    - headless
-#    - vpn
-#    - qbittorrent
+    - common
     - file_server
+    - headless
+    - vpn
+    - qbittorrent

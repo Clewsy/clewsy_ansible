@@ -1,0 +1,27 @@
+---
+- name: Ensure all packages required for rsync_server are installed.
+  apt:
+    name: "{{ rsync_server_packages }}"
+    state: latest
+
+- name: "Ensure logfile exists and is accessible by {{ ansible_user }}"
+  file:
+    path: "{{ rsync_server_logfile }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0744'
+    state: touch
+
+- name: Create crontab entries for rsync tasks.
+  cron:
+    name: "rsync source [{{ item.source }}] to dest [{{ item.dest }}]."
+    minute: "{{ item.minute }}"
+    hour: "{{ item.hour }}"
+    weekday: "{{ item.weekday }}"
+    day: "{{ item.day }}"
+    month: "{{ item.month }}"
+    user: "{{ ansible_user }}"
+    job: "rsync --verbose --archive --delete --acls --human-readable --progress --log-file={{ rsync_server_logfile }} {{ item.source }} {{ item.dest }}"
+  with_items: "{{ rsync_server_syncs }}"
+  when: rsync_server_syncs.0 is defined
+  notify: Restart cron.

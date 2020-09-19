@@ -9,3 +9,4 @@
     - headless
     - vpn
     - qbittorrent
+    - rsync_server

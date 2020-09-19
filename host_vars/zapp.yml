@@ -1,6 +1,3 @@
-##Note openmediavault initial install login is admin/openmediavault (webui).  Ssh login configured during install.   Don't forget to add user to ssh group.
-#Initial login for qbittorrent is admin/adminadmin.  If this doesn't work after installation, bring the container down then back up again.
-
 host_name: zapp
 
 ansible_user: b4t
@@ -21,7 +18,6 @@ aliases:
 
 misc_apt_packages:
   install:
-    - rename #Not included with default openmediavault.
 
 misc_python_packages:
   install:
@@ -55,11 +51,39 @@ nfs_server_shares:
   - { source_path: '/srv/fileb0t/tv', share_path: '/export/tv' }
   - { source_path: '/srv/m0n0l1th', share_path: '/export/m0n0l1th' }
 
+rsync_server_syncs:
+  - source: 'jc@zoidberg:/home/docker'
+    dest: '/srv/cl0ud/zoidberg/'
+    minute: "0"
+    hour: "1"
+    day: "*"
+    month: "*"
+    weekday: "*"
+  - source: '/srv/cl0ud/zoidberg'
+    dest: 'b4t@b4t.site:/home/b4t/backups/'
+    minute: "0"
+    hour: "2"
+    day: "*"
+    month: "*"
+    weekday: "*"
+  - source: 'b4t@seymour:/home/b4t/file_cache'
+    dest: '/srv/cl0ud/'
+    minute: "0"
+    hour: "3"
+    day: "*"
+    month: "*"
+    weekday: "*"
+  - source: '/srv/cl0ud/file_cache'
+    dest: 'b4t@b4t.site:/home/b4t/backups/'
+    minute: "0"
+    hour: "4"
+    day: "*"
+    month: "*"
+    weekday: "*"
 
 backup_file_list: |
   $HOME/.ssh/
   /etc/fstab
-  /etc/cron.d
 
 mc_skin: modarcon16root-defbg
 

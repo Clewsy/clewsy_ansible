@@ -20,7 +20,7 @@
     src: "LABEL={{ item.label }}"
     path: "/srv/{{ item.label }}"
     fstype: auto
-    opts: 'auto,noexec,rw,async,user,nofail'
+    opts: 'defaults'
     state: mounted
   with_items: "{{ nfs_server_disks }}"
 
@@ -31,6 +31,14 @@
     fstype: auto
     opts: 'bind,auto,noexec,rw,async,user,nofail'
     state: mounted
+  with_items: "{{ nfs_server_shares }}"
+
+- name: Ensure shares are writable.
+  file:
+    path: "{{ item.share_path }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0766'
   with_items: "{{ nfs_server_shares }}"
 
 - name: Update /etc/exports with nfs shares.

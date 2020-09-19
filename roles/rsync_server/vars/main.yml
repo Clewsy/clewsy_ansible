@@ -1,0 +1,5 @@
+---
+rsync_server_logfile: "/var/log/rsync_server.log"
+
+rsync_server_packages:
+  - rsync

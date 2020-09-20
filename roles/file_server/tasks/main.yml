@@ -45,7 +45,7 @@
   lineinfile:
     path: /etc/exports
     regexp: "{{ item.share_path }}"
-    line: "{{ item.share_path }} 192.168.1.0/24(rw,sync,no_root_squash,no_subtree_check)"
+    line: "{{ item.share_path }} {{ file_server_network }}(rw,sync,no_root_squash,no_subtree_check)"
   with_items: "{{ nfs_server_shares }}"
   notify: Restart nfs server.
 

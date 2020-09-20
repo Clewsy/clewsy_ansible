@@ -38,7 +38,7 @@
     path: "{{ item.share_path }}"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
-    mode: '0766'
+    mode: '0777'
   with_items: "{{ nfs_server_shares }}"
 
 - name: Update /etc/exports with nfs shares.

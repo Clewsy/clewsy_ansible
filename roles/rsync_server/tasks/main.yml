@@ -14,14 +14,14 @@
 
 - name: Create crontab entries for rsync tasks.
   cron:
-    name: "rsync source [{{ item.source }}] to dest [{{ item.dest }}]."
+    name: 'Role: "rsync_server" - Sync source [{{ item.source }}] to dest [{{ item.dest }}].'
     minute: "{{ item.minute }}"
     hour: "{{ item.hour }}"
     weekday: "{{ item.weekday }}"
     day: "{{ item.day }}"
     month: "{{ item.month }}"
     user: "{{ ansible_user }}"
-    job: "rsync --verbose --archive --delete --acls --human-readable --progress --log-file={{ rsync_server_logfile }} {{ item.source }} {{ item.dest }}"
+    job: 'rsync --verbose --archive --delete --acls --human-readable --progress --log-file={{ rsync_server_logfile }} -e "ssh -o StrictHostKeyChecking=no" {{ item.source }} {{ item.dest }}'
   with_items: "{{ rsync_server_syncs }}"
   when: rsync_server_syncs.0 is defined
   notify: Restart cron.

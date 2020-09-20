@@ -5,8 +5,8 @@
   gather_facts: True
   roles:
     - common
-    - file_server
     - headless
+    - file_server
+    - rsync_server
     - vpn
     - qbittorrent
-    - rsync_server

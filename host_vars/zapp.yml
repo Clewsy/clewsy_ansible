@@ -27,13 +27,6 @@ theme_colour: RED
 theme_prompt: "{{ ZAPP }}" 
 
 cron_jobs:
-  - name: "Daily pull and update to the latest qbittorrent container image."
-    minute: "0"
-    hour: "5"
-    day: "*"
-    month: "*"
-    weekday: "*"
-    job: '/usr/bin/docker-compose -f /home/docker/docker-compose.yml pull && /usr/bin/docker-compose -f /home/docker/docker-compose.yml up -d'
 
 mounts:
 

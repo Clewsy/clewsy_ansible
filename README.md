@@ -27,6 +27,7 @@ The [flexo.yml][link_repo_flexo] playbook is a special case.  It will configure 
 |[develop][link_repo_roles_develop]			|Install packages I use for development - [VSCode][link_web_vscode], [avrdude][link_web_avrdude] (and dependencies) and other miscellaneous tools. |
 |[docker][link_repo_roles_docker]			|Install [docker][link_web_docker] and [docker-compose][link_web_docker-compose].  Start the docker service and create a standard docker-compose staging directory.  Also create alias dc='docker-compose'. |
 |[droid][link_repo_roles_droid]				|A special role created to configure an android smartphone running [Termux][link_web_termux].  This role has tasks similar to *common* that had to be implemented dfferently (configure ssh, install packages, install scripts).  It also installs some termux "shortcuts" which are basically scripts that can be run from a widget.  |
+|[file_server][link_repo_roles_file_server]		|Mounts a number of disks and configures specified disks or directories as [nfs][link_web_nfs] shares for access over the local network. |
 |[headless][link_repo_roles_headless]			|Install and configure some [ncurses][link_web_ncurses] apps useful for headless systems and systems that are often accessed remotely.  Includes [htop][link_web_htop], [iftop][link_web_iftop], [ncdu][link_web_ncdu], [tmux][link_web_tmux] and [Midnight Commander][link_web_mc]. |  
 |[homeassistant][link_repo_roles_homeassistant]		|First configure docker role as a pre-requisite.  Then install/remove certain packages as required by the [home assistant supervised installer script][link_web_home_assistant_supervised_installer].  Finally download and run the installer script that will install [home assistant supervised][link_web_home_assistant] |
 |[motion][link_repo_roles_motion]			|Turn a [raspberry pi][link_web_raspberry_pi] into a web-cam.  Install, configure and enable [motion][link_web_motion] for streaming over the lan. |
@@ -36,6 +37,7 @@ The [flexo.yml][link_repo_flexo] playbook is a special case.  It will configure 
 |[polly][link_repo_roles_polly]				|Configue a box to control a [thingm blink1][link_web_blink1] device, then install [polly][link_gitlab_clewsy_scripts_polly] script which polls [clews.pro][link_clews], logs the result and uses the blink1 to indicate the site status. |
 |[qbittorrent][link_repo_roles_qbittorrent]		|Install and configure [qbittorrent][link_web_qbittorrent] client.  This is installed as a [docker][link_web_docker] container, so first the docker role is run, then a docker-compose.yml file is copied and used to pull and run the [qbittorrent container][link_dockerhub_qbittorrent]. |
 |[rad10][link_repo_roles_rad10]				|Configure a [raspberry pi][link_web_raspberry_pi] as an internet radio/music streamer with hardware control and a webui.  First run the mpd role, then clone [rad10d repo][link_gitlab_clewsy_rad10d], compile the daemon and configure a unit-file for auto-starting.  Will also install web server packages ([Apache][link_web_apache]) and copy the html/php files for the rad10 webui. |
+|[rsync_server][link_repo_roles_rsync_server]		|Creates a series of [cron][link_web_cron] jobs that use [rsync][link_web_rsync] to create specified local and remote backups to/from various machines. |
 |[secure][link_repo_roles_secure]			|Configure some basic settings for ssh security and enable/configure a firewall (using [ufw][link_web_ufw]). |
 |[vpn][link_repo_roles_vpn]				|Install [openvpn][link_web_openvpn] and copy some custom vpn configuration files.  Also copy and configure a custom [vpn][link_gitlab_clewsy_scripts_vpn] initialisation script. |
 |[wireguard][link_repo_roles_wireguard]			|Install [wireguard][link_web_wireguard] and create custom "client" connection configurations.  Also create some aliases for quickly bringing wireguard up/down from the command line. |
@@ -44,21 +46,21 @@ The [flexo.yml][link_repo_flexo] playbook is a special case.  It will configure 
 
 ## Hosts
 
-|Hostname					|Base OS					|Description																						|Roles|
-|-----------------------------------------------|-----------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----|
-|[b4t-cam][link_repo_playbooks_b4t-cam]		|[raspbian][link_web_raspbian]			|An old raspberry pi 2 with a wifi dongle and an old usb webcam.<br />Configured as an ip cam.												|<ul><li>common</li><li>motion</li></ul> |
-|[b4t.site][link_repo_playbooks_b4t.site]	|[ubuntu][link_web_ubuntu]			|Off-site box (VPS) used as a [wireguard][link_web_wireguard] endpoint and backup storage.												|<ul><li>common</li><li>docker</li><li>headless</li><li>secure</li><li>wireguard_server</li><li>vpn</li></ul> |
-|[calculon][link_repo_playbooks_calculon]	|[ubuntu][link_web_ubuntu]			|Home automation stuff.<br />A raspberry pi 4 with containerised [home assistant][link_web_home_assistant] (supervised) on top of an ubuntu base.					|<ul><li>common</li><li>homeassistant</li></ul> |
-|[farnsworth][link_repo_playbooks_farnsworth]	|[ubuntu][link_web_ubuntu]			|My main desktop machine.																				|<ul><li>clews.pro</li><li>common</li><li>desktop</li><li>develop</li><li>docker</li><li>headless</li><li>mpd</li><li>node</li><li>secure</li><li>vpn</li></ul> |
-|[flexo][link_repo_playbooks_flexo]		|[lineageOS][link_web_lineageos]		|My smartphone.																						|<ul><li>droid</li></ul> |
-|[hypnotoad][link_repo_playbooks_hypnotoad]	|[osmc][link_web_osmc]				|Media server installed on a pi connected to a tv.<br />Serves media stored on zapp using nfs shares.<br />Refer to the [media_center][link_clews_projects_media_center] project page.	|<ul><li>common</li></ul> |
-|[nibbler][link_repo_playbooks_nibbler]		|[pop_os][link_web_pop_os]			|My laptop.																						|<ul><li>common</li><li>desktop</li><li>develop</li><li>mpd</li><li>node</li><li>secure</li><li>vpn</li><li>wireguard</li></ul> |
-|[p0wer][link_repo_playbooks_p0wer]		|[raspbian][link_web_raspbian]			|A raspberry pi zero W with additional hardware connected to the gpio.<br />Refer to the [p0wer][link_clews_projects_p0wer] project page or [gitlab repo][link_gitlab_clewsy_p0wer].	|<ul><li>common</li><li>p0wer</li></ul> |
-|[pazuzu][link_repo_playbooks_pazuzu]		|[raspbian][link_web_raspbian]			|Raspberry pi zero W connected to a raspberry pi cam.<br />Configured as an ip cam.													|<ul><li>common</li><li>motion</li></ul> |
-|[rad10][link_repo_playbooks_rad10]		|[raspbian][link_web_raspbian]			|A raspberry pi 3 with additional hardware connected to the gpio.<br />Refer to the [rad10][link_clews_projects_rad10] project page or [gitlab repo][link_gitlab_clewsy_rad10d].	|<ul><li>common</li><li>mpd</li><li>rad10</li></ul> |
-|[seymour][link_repo_playbooks_seymour]		|[debian][link_web_debian] 			|[Beaglebone Black][link_web_beaglebone_black] SBC connected to the LAN via ethernet.<br />Always-on box that serves as a network admin node and runs some custom script cron jobs.	|<ul><li>common</li><li>headless</li><li>node</li><li>polly</li><li>secure</li></ul> |
-|[zapp][link_repo_playbooks_zapp]		|[openmediavault][link_web_openmediavault]	|File-server and backup storage.<br />Shares bulk media over nfs and acts as the on-site backup storage.<br />Also runs a torrent client.						|<ul><li>common</li><li>docker</li><li>headless</li><li>qbittorrent</li><li>vpn</li></ul> |
-|[zoidberg][link_repo_playbooks_zoidberg]	|[ubuntu][link_web_ubuntu]			|Web server machine.<br />Serves various web sites and web apps.<br />Refer to the [clews.pro][link_clews_projects_clews] project page or [gitlab repo][link_gitlab_clewsy_clews.pro].	|<ul><li>clews.pro</li><li>common</li><li>docker</li><li>headless</li><li>polly</li><li>secure</li></ul> |
+|Hostname					|Base OS					|Description																																	|Roles|
+|-----------------------------------------------|-----------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----|
+|[b4t-cam][link_repo_playbooks_b4t-cam]		|[raspbian][link_web_raspbian]	|An old raspberry pi 2 with a wifi dongle and an old usb webcam.<br />Configured as an ip cam and accessed via a [motioneye][link_web_motioneye] server.																	|<ul><li>common</li><li>motion</li></ul> |
+|[b4t.site][link_repo_playbooks_b4t.site]	|[ubuntu][link_web_ubuntu]	|Off-site box (VPS) used as a [wireguard][link_web_wireguard] endpoint and backup storage.																									|<ul><li>common</li><li>docker</li><li>headless</li><li>secure</li><li>wireguard_server</li><li>vpn</li></ul> |
+|[calculon][link_repo_playbooks_calculon]	|[ubuntu][link_web_ubuntu]	|Home automation stuff.<br />A raspberry pi 4 with containerised [home assistant][link_web_home_assistant] (supervised) on top of an ubuntu base.																		|<ul><li>common</li><li>homeassistant</li></ul> |
+|[farnsworth][link_repo_playbooks_farnsworth]	|[ubuntu][link_web_ubuntu]	|My main desktop machine.																																	|<ul><li>clews.pro</li><li>common</li><li>desktop</li><li>develop</li><li>docker</li><li>headless</li><li>mpd</li><li>node</li><li>secure</li><li>vpn</li></ul> |
+|[flexo][link_repo_playbooks_flexo]		|[lineageOS][link_web_lineageos]|My smartphone.																																			|<ul><li>droid</li></ul> |
+|[hypnotoad][link_repo_playbooks_hypnotoad]	|[osmc][link_web_osmc]		|Media server installed on a pi connected to a tv.<br />Serves media stored on zapp using nfs shares.<br />Refer to the [media_center][link_clews_projects_media_center] project page.														|<ul><li>common</li></ul> |
+|[nibbler][link_repo_playbooks_nibbler]		|[pop_os][link_web_pop_os]	|My laptop.																																			|<ul><li>common</li><li>desktop</li><li>develop</li><li>mpd</li><li>node</li><li>secure</li><li>vpn</li><li>wireguard</li></ul> |
+|[p0wer][link_repo_playbooks_p0wer]		|[raspbian][link_web_raspbian]	|A raspberry pi zero W with additional hardware connected to the gpio.  Used to control gpio outlets over wifi.<br />Refer to the [p0wer][link_clews_projects_p0wer] project page or [gitlab repo][link_gitlab_clewsy_p0wer].									|<ul><li>common</li><li>p0wer</li></ul> |
+|[pazuzu][link_repo_playbooks_pazuzu]		|[raspbian][link_web_raspbian]	|Raspberry pi zero W connected to a raspberry pi cam.<br />Configured as an ip cam and accessed via a [motioneye][link_web_motioneye] server.																			|<ul><li>common</li><li>motion</li></ul> |
+|[rad10][link_repo_playbooks_rad10]		|[raspbian][link_web_raspbian]	|A raspberry pi 3 with additional hardware connected to the gpio plus a small amplifier and speaker.  Effectively a custom internet radio.<br />Refer to the [rad10][link_clews_projects_rad10] project page or [gitlab repo][link_gitlab_clewsy_rad10d].					|<ul><li>common</li><li>mpd</li><li>rad10</li></ul> |
+|[seymour][link_repo_playbooks_seymour]		|[debian][link_web_debian] 	|[Beaglebone Black][link_web_beaglebone_black] SBC connected to the LAN via ethernet.<br />Always-on box that serves as a network admin node and runs some custom scripts and cron jobs.													|<ul><li>common</li><li>headless</li><li>node</li><li>polly</li><li>secure</li></ul> |
+|[zapp][link_repo_playbooks_zapp]		|[ubuntu][link_web_ubuntu]	|File-server and backup storage.<br />Contains network shares and acts as an rsync server for local and remote backups.<br />Also runs a torrent client.<br />Formerly I used [openmediavault][link_web_openmediavault], but since chose to manually configure a minimal ubuntu installation.	|<ul><li>common</li><li>docker</li><li>file_server</li><li>headless</li><li>qbittorrent</li><li>rsync_server</li><li>vpn</li></ul> |
+|[zoidberg][link_repo_playbooks_zoidberg]	|[ubuntu][link_web_ubuntu]	|Web server machine.<br />Serves various web sites and web apps.<br />Refer to the [clews.pro][link_clews_projects_clews] project page or [gitlab repo][link_gitlab_clewsy_clews.pro].														|<ul><li>clews.pro</li><li>common</li><li>docker</li><li>headless</li><li>polly</li><li>secure</li></ul> |
 
 [link_clews]:https://clews.pro
 [link_clews_projects_clews]:https://clews.pro/projects/clews.php
@@ -103,6 +105,7 @@ The [flexo.yml][link_repo_flexo] playbook is a special case.  It will configure 
 [link_repo_roles_develop]:roles/develop
 [link_repo_roles_docker]:roles/docker
 [link_repo_roles_droid]:roles/droid
+[link_repo_roles_file_server]:roles/file_server
 [link_repo_roles_headless]:roles/headless
 [link_repo_roles_homeassistant]:roles/homeassistant
 [link_repo_roles_motion]:roles/motion
@@ -112,6 +115,7 @@ The [flexo.yml][link_repo_flexo] playbook is a special case.  It will configure 
 [link_repo_roles_polly]:roles/polly
 [link_repo_roles_qbittorrent]:roles/qbittorrent
 [link_repo_roles_rad10]:roles/rad10
+[link_repo_roles_rsync_server]:/roles/rsync_server
 [link_repo_roles_secure]:roles/secure
 [link_repo_roles_vpn]:roles/vpn
 [link_repo_roles_wireguard]:roles/wireguard
@@ -123,6 +127,7 @@ The [flexo.yml][link_repo_flexo] playbook is a special case.  It will configure 
 [link_web_beaglebone_black]:https://beagleboard.org/black/
 [link_web_blink1]:https://blink1.thingm.com/
 [link_web_conky]:https://github.com/brndnmtthws/conky
+[link_web_cron]:https://en.wikipedia.org/wiki/Cron
 [link_web_debian]:https://www.debian.org/
 [link_web_docker]:https://www.docker.com/
 [link_web_docker-compose]:https://docs.docker.com/compose/
@@ -138,9 +143,11 @@ The [flexo.yml][link_repo_flexo] playbook is a special case.  It will configure 
 [link_web_mpc]:https://www.musicpd.org/clients/mpc/
 [link_web_mpd]:https://www.musicpd.org/
 [link_web_motion]:https://motion-project.github.io/
+[link_web_motioneye]:https://github.com/ccrisan/motioneye
 [link_web_ncdu]:https://dev.yorhel.nl/ncdu
 [link_web_ncmpc]:https://rybczak.net/ncmpcpp/
 [link_web_ncurses]:https://invisible-island.net/ncurses/announce.html#h2-overview
+[link_web_nfs]:https://en.wikipedia.org/wiki/Network_File_System_(protocol)
 [link_web_netdiscover]:https://github.com/netdiscover-scanner/netdiscover
 [link_web_nmap]:https://nmap.org/
 [link_web_openmediavault]:https://www.openmediavault.org/
@@ -150,6 +157,7 @@ The [flexo.yml][link_repo_flexo] playbook is a special case.  It will configure 
 [link_web_qbittorrent]:https://www.qbittorrent.org/
 [link_web_raspberry_pi]:https://www.raspberrypi.org/
 [link_web_raspbian]:https://www.raspbian.org/
+[link_web_rsync]:https://rsync.samba.org/
 [link_web_terminator]:https://github.com/software-jessies-org/jessies/wiki/Terminator
 [link_web_termux]:https://termux.com/
 [link_web_tmux]:https://github.com/tmux/tmux/wiki

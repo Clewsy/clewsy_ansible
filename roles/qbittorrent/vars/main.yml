@@ -1,4 +1,7 @@
 ---
+qbittorrent_home_dir: "/home/docker"
+qbittorrent_docker_compose_yml: "{{ qbittorrent_home_dir }}/docker-compose.yml"
+
 qbittorrent_cron:
   minute: "0"
   hour: "5"

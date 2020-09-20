@@ -1,21 +1,21 @@
 ---
-- name: Copy docker-compose.yml file to /home/docker ready for use by docker-compose.
+- name: Copy docker-compose.yml file to {{ qbittorrent_home_dir }} ready for use by docker-compose.
   copy:
     src: files/docker-compose.yml
-    dest: /home/docker/docker-compose.yml
+    dest: "{{ qbittorrent_docker_compose_yml }}"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: '0644'
 
 - name: Pull docker container images listed in docker-compose.yml.
   docker_compose:
-    project_src: /home/docker
+    project_src: "{{ qbittorrent_home_dir }}"
     pull: yes
     recreate: smart #Containers will be recreated if a new version is pulled.
 
 - name: Create a symlink to the downloads directory within the user's home directory.
   file:
-    src: "/home/docker/qbittorrent/downloads"
+    src: "{{ qbittorrent_home_dir }}/qbittorrent/downloads"
     dest: "/home/{{ ansible_user }}/downloads"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
@@ -30,4 +30,4 @@
     month: "{{ qbittorrent_cron.month }}"
     weekday: "{{ qbittorrent_cron.weekday }}"
     user: "{{ ansible_user }}"
-    job: '/usr/bin/docker-compose -f /home/docker/docker-compose.yml pull && /usr/bin/docker-compose -f /home/docker/docker-compose.yml up -d'
+    job: '/usr/bin/docker-compose -f {{ qbittorrent_docker_compose_yml }} pull && /usr/bin/docker-compose -f {{ qbittorrent_docker_compose_yml }} up -d'

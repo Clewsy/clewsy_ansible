@@ -1,0 +1,7 @@
+---
+qbittorrent_cron:
+  minute: "0"
+  hour: "5"
+  day: "*"
+  month: "*"
+  weekday: "*"

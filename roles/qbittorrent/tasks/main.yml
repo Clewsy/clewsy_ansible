@@ -20,3 +20,14 @@
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     state: link
+
+- name: "Create cron job to pull and update to the latest qbittorrent container image daily."
+  cron:
+    name: 'Role: "qbittorrent" - Pull and run the latest container image for qbittorrent.'
+    minute: "{{ qbittorrent_cron.minute }}"
+    hour: "{{ qbittorrent_cron.hour }}"
+    day: "{{ qbittorrent_cron.day }}"
+    month: "{{ qbittorrent_cron.month }}"
+    weekday: "{{ qbittorrent_cron.weekday }}"
+    user: "{{ ansible_user }}"
+    job: '/usr/bin/docker-compose -f /home/docker/docker-compose.yml pull && /usr/bin/docker-compose -f /home/docker/docker-compose.yml up -d'

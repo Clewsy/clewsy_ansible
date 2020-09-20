@@ -1,12 +1,5 @@
 ---
-- name: '[mounts] Ensure mount destination directories exist.'
-  file:
-    dest: "{{ item.mount_path }}"
-    state: directory
-  with_items: "{{ mounts }}"
-  when: mounts.0 is defined
-
-- name: '[mounts] Add additional mounts to /etc/fstab.'
+- name: '[mounts] Mount host-specific disks/devices and add entries to /etc/fstab.'
   mount:
     path: "{{ item.mount_path }}"
     src: "{{ item.mount_source }}"

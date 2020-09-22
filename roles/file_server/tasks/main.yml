@@ -7,7 +7,7 @@
 
 - stat: #Check for the existence of disks by label as defined in host specific variables (nuf_server_disks).
     path: "/dev/disk/by-label/{{ item.label }}"
-  loop: "{{ nfs_server_disks }}"
+  loop: "{{ file_server_disks }}"
   register: labels_stat
 
 - name: Label the partitions (with e2label) if label not already applied to disk uuid (var nfs_server_disks). 
@@ -22,7 +22,7 @@
     fstype: auto
     opts: 'defaults'
     state: mounted
-  with_items: "{{ nfs_server_disks }}"
+  with_items: "{{ file_server_disks }}"
 
 - name: Mount (bind) nfs shares to /export.
   mount:
@@ -31,7 +31,7 @@
     fstype: auto
     opts: 'bind,auto,noexec,rw,async,user,nofail'
     state: mounted
-  with_items: "{{ nfs_server_shares }}"
+  with_items: "{{ file_server_nfs_shares }}"
 
 - name: Ensure shares are writable.
   file:
@@ -39,13 +39,32 @@
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: '0777'
-  with_items: "{{ nfs_server_shares }}"
+  with_items: "{{ file_server_nfs_shares }}"
 
 - name: Update /etc/exports with nfs shares.
   lineinfile:
     path: /etc/exports
     regexp: "{{ item.share_path }}"
     line: "{{ item.share_path }} {{ file_server_network }}(rw,sync,no_root_squash,no_subtree_check)"
-  with_items: "{{ nfs_server_shares }}"
+  with_items: "{{ file_server_nfs_shares }}"
   notify: Restart nfs server.
+
+
+
+
+- name: Append /etc/samba/smb.conf with host-specific cifs shares.
+  blockinfile:
+    path: /etc/samba/smb.conf
+    block: |
+      [{{ item.name }}]
+        path = {{ item.share_path }}
+        available = yes
+        read only = no
+        browsable = yes
+        public = yes
+        writable = yes
+        guest ok = yes
+    insertafter: EOF
+  with_items: "{{ file_server_cifs_shares }}"
+  notify: Restart cifs server.
 

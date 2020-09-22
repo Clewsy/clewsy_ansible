@@ -32,17 +32,22 @@ mounts:
 
 nfs_mounts:
 
-nfs_server_disks:
+file_server_disks:
   - { uuid: '0650992b-c39e-4a30-8cc8-90ac94503b59', label: 'cl0ud' }
   - { uuid: '42b9d5de-8e2e-4524-b544-6f988dbff09e', label: 'fileb0t' }
   - { uuid: 'bf535493-fb42-4997-b08a-d942e0bad3fe', label: 'm0n0l1th' }
-nfs_server_shares:
+file_server_nfs_shares:
   - { source_path: '/srv/cl0ud', share_path: '/export/cl0ud' }
   - { source_path: '/srv/fileb0t/data', share_path: '/export/data' }
   - { source_path: '/srv/fileb0t/movies', share_path: '/export/movies' }
   - { source_path: '/srv/fileb0t/mp3s', share_path: '/export/mp3s' }
   - { source_path: '/srv/fileb0t/tv', share_path: '/export/tv' }
   - { source_path: '/srv/m0n0l1th', share_path: '/export/m0n0l1th' }
+file_server_cifs_shares:
+  - { name: 'mp3s', share_path: '/export/mp3s' }
+  - { name: 'movies', share_path: '/export/movies' }
+  - { name: 'tv', share_path: '/export/tv' }
+
 
 rsync_server_syncs:
   - source: 'jc@zoidberg:/home/docker'

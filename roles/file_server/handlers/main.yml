@@ -3,4 +3,9 @@
   service:
     name: nfs-kernel-server
     state: restarted
+
+- name: Restart cifs server.
+  service:
+    name: smbd
+    state: restarted
  

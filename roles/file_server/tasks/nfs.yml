@@ -1,0 +1,34 @@
+---
+- name: '[nfs] Load nfs variables.'
+  include_vars: nfs_vars.yml
+
+- name: '[nfs] Ensure all packages required for nfs shares are installed.'
+  apt:
+    name: "{{ nfs_packages }}"
+    state: latest
+  notify: Restart nfs server.
+
+- name: '[nfs] Mount (bind) nfs shares to /export.'
+  mount:
+    src: "{{ item.source_path }}"
+    path: "{{ item.share_path }}"
+    fstype: auto
+    opts: 'bind,auto,noexec,rw,async,user,nofail'
+    state: mounted
+  with_items: "{{ file_server_nfs_shares }}"
+
+- name: '[nfs] Ensure shares are writable.'
+  file:
+    path: "{{ item.share_path }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0777'
+  with_items: "{{ file_server_nfs_shares }}"
+
+- name: '[nfs] Update /etc/exports with nfs shares.'
+  lineinfile:
+    path: /etc/exports
+    regexp: "{{ item.share_path }}"
+    line: "{{ item.share_path }} {{ nfs_network }}(rw,sync,no_root_squash,no_subtree_check)"
+  with_items: "{{ file_server_nfs_shares }}"
+  notify: Restart nfs server.

@@ -1,16 +1,10 @@
 ---
-- name: Ensure all packages required for file_server are installed.
-  apt:
-    name: "{{ file_server_packages }}"
-    state: latest
-  notify: Restart nfs server.
-
 - stat: #Check for the existence of disks by label as defined in host specific variables (nuf_server_disks).
     path: "/dev/disk/by-label/{{ item.label }}"
   loop: "{{ file_server_disks }}"
   register: labels_stat
 
-- name: Label the partitions (with e2label) if label not already applied to disk uuid (var nfs_server_disks). 
+- name: Label the partitions (with e2label) if label not already applied to disk uuid (var file_server_disks). 
   shell: "/usr/sbin/e2label /dev/disk/by-uuid/{{ item.item.uuid }} {{ item.item.label }}"
   when: item.stat.exists == false
   loop: "{{ labels_stat.results }}"
@@ -24,47 +18,10 @@
     state: mounted
   with_items: "{{ file_server_disks }}"
 
-- name: Mount (bind) nfs shares to /export.
-  mount:
-    src: "{{ item.source_path }}"
-    path: "{{ item.share_path }}"
-    fstype: auto
-    opts: 'bind,auto,noexec,rw,async,user,nofail'
-    state: mounted
-  with_items: "{{ file_server_nfs_shares }}"
+- name: Configure nfs shares.
+  include: nfs.yml
+  when: file_server_nfs_shares.0 is defined 
 
-- name: Ensure shares are writable.
-  file:
-    path: "{{ item.share_path }}"
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
-    mode: '0777'
-  with_items: "{{ file_server_nfs_shares }}"
-
-- name: Update /etc/exports with nfs shares.
-  lineinfile:
-    path: /etc/exports
-    regexp: "{{ item.share_path }}"
-    line: "{{ item.share_path }} {{ file_server_network }}(rw,sync,no_root_squash,no_subtree_check)"
-  with_items: "{{ file_server_nfs_shares }}"
-  notify: Restart nfs server.
-
-
-
-
-- name: Append /etc/samba/smb.conf with host-specific cifs shares.
-  blockinfile:
-    path: /etc/samba/smb.conf
-    block: |
-      [{{ item.name }}]
-        path = {{ item.share_path }}
-        available = yes
-        read only = no
-        browsable = yes
-        public = yes
-        writable = yes
-        guest ok = yes
-    insertafter: EOF
-  with_items: "{{ file_server_cifs_shares }}"
-  notify: Restart cifs server.
-
+- name: Configure cifs shares.
+  include: cifs.yml
+  when: file_server_cifs_shares is defined

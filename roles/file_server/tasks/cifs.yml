@@ -1,0 +1,26 @@
+---
+- name: '[cifs] Load cifs variables.'
+  include_vars: cifs_vars.yml
+
+- name: '[cifs] Ensure all packages required for cifs shares are installed.'
+  apt:
+    name: "{{ cifs_packages }}"
+    state: latest
+  notify: Restart cifs server.
+
+- name: '[cifs] Append /etc/samba/smb.conf with host-specific cifs shares.'
+  blockinfile:
+    path: /etc/samba/smb.conf
+    marker: "# {mark} ANSIBLE MANAGED BLOCK {{ item.name }}"
+    block: |
+      [{{ item.name }}]
+        path = {{ item.source_path }}
+        available = yes
+        read only = no
+        browsable = yes
+        public = yes
+        writable = yes
+        guest ok = yes
+    insertafter: EOF
+  loop: "{{ file_server_cifs_shares }}"
+  notify: Restart cifs server.

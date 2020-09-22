@@ -1,0 +1,6 @@
+---
+nfs_packages:
+  - nfs-common
+  - nfs-kernel-server
+  
+nfs_network: "192.168.1.0/24" #Allows access ti IPs 192.168.0.XXX

@@ -44,9 +44,9 @@ file_server_nfs_shares:
   - { source_path: '/srv/fileb0t/tv', share_path: '/export/tv' }
   - { source_path: '/srv/m0n0l1th', share_path: '/export/m0n0l1th' }
 file_server_cifs_shares:
-  - { name: 'mp3s', share_path: '/export/mp3s' }
-  - { name: 'movies', share_path: '/export/movies' }
-  - { name: 'tv', share_path: '/export/tv' }
+  - { source_path: '/srv/fileb0t/mp3s', name: 'mp3s' }
+  - { source_path: '/srv/fileb0t/movies', name: 'movies' }
+  - { source_path: '/srv/fileb0t/tv', name: 'tv' }
 
 
 rsync_server_syncs:

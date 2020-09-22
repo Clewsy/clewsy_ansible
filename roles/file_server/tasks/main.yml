@@ -3,10 +3,11 @@
     path: "/dev/disk/by-label/{{ item.label }}"
   loop: "{{ file_server_disks }}"
   register: labels_stat
+  when: file_server_disks.o is defined
 
 - name: Label the partitions (with e2label) if label not already applied to disk uuid (var file_server_disks). 
   shell: "/usr/sbin/e2label /dev/disk/by-uuid/{{ item.item.uuid }} {{ item.item.label }}"
-  when: item.stat.exists == false
+  when: file_server_disks.o is defined and item.stat.exists == false
   loop: "{{ labels_stat.results }}"
 
 - name: Mount the disks to /srv.
@@ -17,6 +18,7 @@
     opts: 'defaults'
     state: mounted
   with_items: "{{ file_server_disks }}"
+  when: file_server_disks.o is defined
 
 - name: Configure nfs shares.
   include: nfs.yml

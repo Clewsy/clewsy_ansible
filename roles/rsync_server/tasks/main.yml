@@ -3,6 +3,7 @@
   apt:
     name: "{{ rsync_server_packages }}"
     state: latest
+  when: rsync_server_syncs.0 is defined
 
 - name: "Ensure logfile exists and is accessible by {{ ansible_user }}"
   file:
@@ -11,6 +12,8 @@
     group: "{{ ansible_user }}"
     mode: '0744'
     state: touch
+  when: rsync_server_syncs.0 is defined
+
 
 - name: Create crontab entries for rsync tasks.
   cron:

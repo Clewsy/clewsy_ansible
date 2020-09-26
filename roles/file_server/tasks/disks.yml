@@ -1,0 +1,39 @@
+---
+- stat: #Check for the existence of disks by label as defined in host specific variables (file_server_disks).
+    path: "/dev/disk/by-label/{{ disk.label }}"
+  loop: "{{ file_server_disks }}"
+  loop_control:
+    loop_var: disk
+  register: label_stat
+
+- stat: #If disk not found by label, check for its existence by uuid as defined in host variables (file_server_disks).
+    path: "/dev/disk/by-uuid/{{ item.disk.uuid }}"
+  loop: "{{ label_stat.results }}"
+  register: uuid_stat
+  when: item.stat.exists == false #Will skip if disk-by-label already exists.
+
+- name: Label the partitions (with e2label) if label not already applied to disk uuid (var file_server_disks). 
+  shell: "/usr/sbin/e2label /dev/disk/by-uuid/{{ item.item.disk.uuid }} {{ item.item.disk.label }}"
+  loop: "{{ uuid_stat.results }}"
+  when: item is not skipped and item.stat.exists == true #Will only run e2label if label wasn't found but uuid was.
+
+- stat: #Re-check for the existence of disks by label after e2label has been run.
+    path: "/dev/disk/by-label/{{ disk.label }}"
+  loop: "{{ file_server_disks }}"
+  loop_control:
+    loop_var: disk
+  register: label_stat
+
+#Finally mount the disks.  Disks listed by uuid and label in the host's vars file will only be mounted if:
+# The disk exists with the listed uuid AND
+#   The disk label already matches the uuid OR
+#   The label is successfully applied to the disk with e2label.
+- name: Mount the disks to /srv.
+  mount:
+    src: "LABEL={{ item.disk.label }}"
+    path: "/srv/{{ item.disk.label }}"
+    fstype: auto
+    opts: 'defaults'
+    state: mounted
+  loop: "{{ label_stat.results }}"
+  when: item.stat.exists == true

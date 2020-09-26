@@ -8,13 +8,20 @@
     state: latest
   notify: Restart cifs server.
 
+- stat: #Check for the existence of the source_path directory.
+    path: "{{ mount.source_path }}"
+  loop: "{{ file_server_cifs_shares }}"
+  loop_control:
+    loop_var: mount
+  register: source_stat
+
 - name: '[cifs] Append /etc/samba/smb.conf with host-specific cifs shares.'
   blockinfile:
     path: /etc/samba/smb.conf
-    marker: "# {mark} ANSIBLE MANAGED BLOCK {{ item.name }}"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK {{ item.mount.name }}"
     block: |
-      [{{ item.name }}]
-        path = {{ item.source_path }}
+      [{{ item.mount.name }}]
+        path = {{ item.mount.source_path }}
         available = yes
         read only = no
         browsable = yes
@@ -22,5 +29,6 @@
         writable = yes
         guest ok = yes
     insertafter: EOF
-  loop: "{{ file_server_cifs_shares }}"
+  with_items: "{{ source_stat.results }}"
+  when: item.stat.exists == true #Will only run if the source_path directory exists.
   notify: Restart cifs server.

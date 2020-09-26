@@ -8,27 +8,37 @@
     state: latest
   notify: Restart nfs server.
 
+- stat: #Check for the existence of the source_path directory.
+    path: "{{ mount.source_path }}"
+  loop: "{{ file_server_nfs_shares }}"
+  loop_control:
+    loop_var: mount
+  register: source_stat
+
 - name: '[nfs] Mount (bind) nfs shares to /export.'
   mount:
-    src: "{{ item.source_path }}"
-    path: "{{ item.share_path }}"
+    src: "{{ item.mount.source_path }}"
+    path: "{{ item.mount.share_path }}"
     fstype: auto
     opts: 'bind,auto,noexec,rw,async,user,nofail'
     state: mounted
-  with_items: "{{ file_server_nfs_shares }}"
+  with_items: "{{ source_stat.results }}"
+  when: item.stat.exists == true #Will only run if the source_path directory exists.
 
 - name: '[nfs] Ensure shares are writable.'
   file:
-    path: "{{ item.share_path }}"
+    path: "{{ item.mount.share_path }}"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: '0777'
-  with_items: "{{ file_server_nfs_shares }}"
+  with_items: "{{ source_stat.results }}"
+  when: item.stat.exists == true #Will only run if the source_path directory exists.
 
 - name: '[nfs] Update /etc/exports with nfs shares.'
   lineinfile:
     path: /etc/exports
-    regexp: "{{ item.share_path }}"
-    line: "{{ item.share_path }} {{ nfs_network }}(rw,sync,no_root_squash,no_subtree_check)"
-  with_items: "{{ file_server_nfs_shares }}"
+    regexp: "{{ item.mount.share_path }}"
+    line: "{{ item.mount.share_path }} {{ nfs_network }}(rw,sync,no_root_squash,no_subtree_check)"
+  with_items: "{{ source_stat.results }}"
+  when: item.stat.exists == true #Will only run if the source_path directory exists.
   notify: Restart nfs server.

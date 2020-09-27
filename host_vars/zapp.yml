@@ -87,6 +87,8 @@ rsync_server_syncs:
 backup_file_list: |
   $HOME/.ssh/
   /etc/fstab
+  /etc/exports
+  /etc/samba/smb.conf
 
 mc_skin: modarcon16root-defbg
 

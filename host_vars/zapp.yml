@@ -33,9 +33,11 @@ mounts:
 nfs_mounts:
 
 file_server_disks:
-  - { uuid: '0650992b-c39e-4a30-8cc8-90ac94503b59', label: 'cl0ud' }
-  - { uuid: '42b9d5de-8e2e-4524-b544-6f988dbff09e', label: 'fileb0t' }
-  - { uuid: 'bf535493-fb42-4997-b08a-d942e0bad3fe', label: 'm0n0l1th' }
+  - { uuid: '0650992b-c39e-4a30-8cc8-90ac94503b59', label: 'cl0ud' }    #240GB SSD (2*240GB Kingston SSD in raid1).
+  - { uuid: '42b9d5de-8e2e-4524-b544-6f988dbff09e', label: 'fileb0t' }  #4.0TB SG spinning rust hot-swap bay.
+  - { uuid: 'bf535493-fb42-4997-b08a-d942e0bad3fe', label: 'm0n0l1th' } #1.5TB WD spinning rust hot-swap bay.
+  - { uuid: 'afb65dfc-30ca-4396-a2ce-3576f5cfc29c', label: 't4nk' }     #120GB Kingston SSD internal.
+  - { uuid: '05165394-2477-4c67-897f-bee066f1b980', label: 'y4nk' }     #120GB Kingston SSD hot-swap bay.
 file_server_nfs_shares:
   - { source_path: '/srv/cl0ud', share_path: '/export/cl0ud' }
   - { source_path: '/srv/fileb0t/data', share_path: '/export/data' }
@@ -43,6 +45,8 @@ file_server_nfs_shares:
   - { source_path: '/srv/fileb0t/mp3s', share_path: '/export/mp3s' }
   - { source_path: '/srv/fileb0t/tv', share_path: '/export/tv' }
   - { source_path: '/srv/m0n0l1th', share_path: '/export/m0n0l1th' }
+  - { source_path: '/srv/t4nk', share_path: '/export/t4nk' }
+  - { source_path: '/srv/y4nk', share_path: '/export/y4nk' }
   - { source_path: '/home/docker/qbittorrent/downloads', share_path: '/export/downloads' }
 file_server_cifs_shares:
   - { source_path: '/srv/fileb0t/mp3s', name: 'mp3s' }

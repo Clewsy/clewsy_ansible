@@ -6,7 +6,7 @@
   roles:
     - common
     - headless
+    - qbittorrent #put qbittorrent before file_server as file_server will mount an nfs share to the qbittorrent downloads dir.
     - file_server
     - rsync_server
     - vpn
-    - qbittorrent

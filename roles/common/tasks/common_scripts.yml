@@ -15,6 +15,7 @@
   get_url:
     url: "{{ bu_script_url }}"
     dest: "/home/{{ ansible_user }}/bin/bu.sh"
+    force: yes
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: '0755'
@@ -32,6 +33,7 @@
   get_url:
     url: "{{ stuff_script_url }}"
     dest: "/home/{{ ansible_user }}/bin/stuff.sh"
+    force: yes
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: '0755'
@@ -47,6 +49,7 @@
   get_url:
     url: "{{ wami_script_url }}"
     dest: "/home/{{ ansible_user }}/bin/wami.sh"
+    force: yes
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: '0755'

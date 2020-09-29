@@ -3,6 +3,7 @@
   get_url:
     url: "{{ pong_script_url }}"
     dest: "/home/{{ ansible_user }}/bin/pong.sh"
+    force: yes
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: '0755'

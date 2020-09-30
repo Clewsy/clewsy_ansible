@@ -2,19 +2,12 @@
 - name: '[pigpio] Load pigpio variables.'
   include_vars: pigpio_vars.yml
 
-#################temp fix until PR is merged https://github.com/joan2937/pigpio/pull/376/commits/dc14cf41bf11eb6fc2ec79a4982b08650be91c89
-#####################Delete this task once pigpio release 77 is out, and remove version: develop from the next task.
-- name: '[pigpio] Delete existing clone.'
-  file:
-    path: "{{ pigpio_local_clone }}"
-    state: absent
-
 - name: '[pigpio] Clone pigpio repo.'
   git:
     repo: "{{ pigpio_repo }}"
     dest: "{{ pigpio_local_clone }}"
     depth: 1 #Don't need the full git history.
-    version: develop #Temporarily use the develop branch until PR342 is merged into the current release.
+    version: master
   register: pigpio_repo_clone
 
 - name: '[pigpio] Compile and install pigpio.'

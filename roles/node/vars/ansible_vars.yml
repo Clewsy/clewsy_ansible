@@ -3,3 +3,5 @@ ansible_packages:
   - sshpass
 
 ansible_repo: "git@gitlab.com:clewsy/clewsy_ansible"
+
+ansible_directory: "/home/{{ ansible_user }}/ansible"

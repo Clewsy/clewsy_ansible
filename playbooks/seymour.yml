@@ -13,10 +13,31 @@
   # Run tasks specific only to seymour
   tasks:
 
+######################################################
+####Three tasks added because the latest ansible version on beaglebone's debian image is too old.
+    - name: Add key for more current ansible repo.
+      apt_key:
+        keyserver: keyserver.ubuntu.com
+        id: 93C4A3FD7BB9C367
+
+    - name: Add more current repo for ansible.
+      apt_repository:
+        repo: 'ppa:ansible/ansible'
+        codename: 'eoan'
+      register: ansible_repo_added
+
+    - name: Update ansible from added repo.
+      apt:
+        name: ansible
+        state: latest
+        update_cache: yes
+      when: ansible_repo_added is changed
+######################################################
+
     - name: Clone repos to home directory.
       git:
         repo: "{{ repo_ssh_root }}/{{ item }}"
-        dest: "/home/{{ ansible_user }}/{{ item }}"
+        dest: "{{ ansible_user_dir }}/{{ item }}"
         accept_hostkey: yes
         key_file: "/home/{{ ansible_user }}/.ssh/id_rsa" #Use key and ssh to clone private repo/s.
       with_items: "{{ repos }}"
@@ -25,7 +46,7 @@
     - name: "Ensure cloned repos are owned by {{ ansible_user }}{{ ':' }}{{ ansible_user }}"
       file:
         recurse: yes
-        path: "/home/{{ ansible_user }}/{{ item }}"
+        path: "{{ ansible_user_dir }}/{{ item }}"
         state: directory
         owner: "{{ ansible_user }}"
         group: "{{ ansible_user }}"
@@ -38,7 +59,7 @@
           #Disable agent cache
           default-cache-ttl 0
           max-cache-ttl 0
-        dest: "/home/{{ ansible_user }}/.gnupg/gpg-agent.conf"
+        dest: "{{ ansible_user_dir }}/.gnupg/gpg-agent.conf"
         owner: "{{ ansible_user }}"
         group: "{{ ansible_user }}"
         mode: '0644'

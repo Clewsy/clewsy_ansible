@@ -1,6 +1,4 @@
 ---
-ansible_password: "{{ setup_password }}"  #Needed for initial setup before ssh keys are configured.
-
 droid_home_dir: "/data/data/com.termux/files/home"
 
 droid_motd: "TERMUX!\n\nWelcome to flexo.\n\n"

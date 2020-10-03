@@ -14,7 +14,7 @@
   tasks:
 
 ######################################################
-####Three tasks added because the latest ansible version on beaglebone's debian image is too old.
+####Three tasks added because the ansible version aligned with the latest beaglebone debian distro is too old.
     - name: Add key for more current ansible repo.
       apt_key:
         keyserver: keyserver.ubuntu.com

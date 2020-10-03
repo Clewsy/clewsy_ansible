@@ -1,2 +1,4 @@
 #!/data/data/com.termux/files/usr/bin/bash
 bash ~/bin/bu.sh
+
+read -n 1 -s -r -p "Press any key to continue."

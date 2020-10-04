@@ -31,7 +31,7 @@ theme_prompt: "{{ CALCULON }}"
 cron_jobs:
 
 homeassistant:
-  machine: raspberrypi4
+  machine: raspberrypi4-64
   data_share: /home/docker/home-assistant
 
 mounts:

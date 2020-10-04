@@ -1,5 +1,3 @@
 ---
-repo_root: "https://gitlab.com/clewsy"
-bu_script_url: "{{ repo_root }}/scripts/-/raw/master/bu.sh"
-stuff_script_url: "{{ repo_root }}/scripts/-/raw/master/stuff.sh"
-wami_script_url: "{{ repo_root }}/scripts/-/raw/master/wami.sh"
+common_scripts_repo_root: "https://gitlab.com/clewsy"
+common_scripts_directory: "{{ ansible_user_dir }}/bin"

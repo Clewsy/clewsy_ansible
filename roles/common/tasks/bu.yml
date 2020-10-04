@@ -1,0 +1,20 @@
+---
+- name: '[bu] Load bu variables.'
+  include_vars: bu_vars.yml
+
+- name: '[bu] Copy bu.sh script to user bin directory.'
+  get_url:
+    url: "{{ bu_script_url }}"
+    dest: "{{ common_scripts_directory }}/bu.sh"
+    force: yes
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0755'
+
+- name: '[bu] Create backup file list.'
+  copy:
+    content: "{{ backup_file_list }}" #Defined in defaults if not found in host's vars file.
+    dest: "{{ common_scripts_directory }}/bu.list"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0644'

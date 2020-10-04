@@ -6,16 +6,16 @@
 
 - name: Ensure bin directory exists within user's home directory.
   file:
-    dest: "/home/{{ ansible_user }}/bin"
+    dest: "{{ ansible_user_dir }}/bin"
     mode: '0755'
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     state: directory
 
-- name: Copy default list of hosts to /home/{{ ansible_user }}/bin/my_hosts.list.
+- name: Copy default list of hosts to {{ ansible_user_dir }}/bin/my_hosts.list.
   copy:
     src: "files/my_hosts.list"
-    dest: "/home/{{ ansible_user }}/bin/my_hosts.list"
+    dest: "{{ ansible_user_dir }}/bin/my_hosts.list"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: '0644'

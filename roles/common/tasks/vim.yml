@@ -9,7 +9,7 @@
     content: |
       colo elflord
       syntax on
-    dest: "/home/{{ ansible_user }}/.vimrc"
+    dest: "{{ ansible_user_dir }}/.vimrc"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: '0664'

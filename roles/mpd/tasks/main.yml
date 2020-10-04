@@ -6,7 +6,7 @@
 
 - name: Create useful command line aliases.
   lineinfile:
-    path: "/home/{{ ansible_user }}/.bash_aliases"
+    path: "{{ ansible_user_dir }}/.bash_aliases"
     state: present
     regexp: "{{ item }}"
     line: "{{ item }}"

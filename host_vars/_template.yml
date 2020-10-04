@@ -159,7 +159,7 @@ rsync_server_syncs:
 #    weekday: "*"
 
 #mpd role, main.yml
-music_dir: #"/home/{{ ansible_user }}/Music" #Can override default setting in mpd role.  If this is an nfs share, ensure nfs role included and share defined above.
+music_dir: #"{{ ansible_user_dir }}/Music" #Can override default setting in mpd role.  If this is an nfs share, ensure nfs role included and share defined above.
 
 #desktop role, nautilus.yml
 nautilus_bookmarks: #Add bookmarks to nautilus sidebar.

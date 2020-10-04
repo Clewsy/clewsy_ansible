@@ -4,7 +4,7 @@
 
 - name: '[aliases] Set common user aliases.'
   lineinfile:
-    path: "/home/{{ ansible_user }}/.bash_aliases"
+    path: "{{ ansible_user_dir }}/.bash_aliases"
     state: present
     regexp: "{{ item }}"
     line: "{{ item }}"
@@ -27,7 +27,7 @@
 
 - name: '[aliases] Set host-specific user aliases.'
   lineinfile:
-    path: "/home/{{ ansible_user }}/.bash_aliases"
+    path: "{{ ansible_user_dir }}/.bash_aliases"
     state: present
     regexp: "{{ item }}"
     line: "{{ item }}"

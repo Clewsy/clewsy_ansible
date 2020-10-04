@@ -2,7 +2,7 @@
 - name: '[ball] Copy ball.sh script to user bin directory.'
   get_url:
     url: "{{ ball_script_url }}"
-    dest: "/home/{{ ansible_user }}/bin/ball.sh"
+    dest: "{{ ansible_user_dir }}/bin/ball.sh"
     force: yes
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"

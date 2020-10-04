@@ -1,7 +1,7 @@
 ---
 clews_repo: "git@gitlab.com:clewsy/clews.pro"
 #clews_repo: "https://gitlab.com/clewsy/clews.pro" #Use this repo link for https instead of ssh if you don't have a key set up.
-clews_repo_keyfile: "/home/{{ ansible_user }}/.ssh/id_rsa"
+clews_repo_keyfile: "{{ ansible_user_dir }}/.ssh/id_rsa"
 clews_unit_file_source: "https://gitlab.com/clewsy/clews.pro/-/raw/master/clews.service"
 clews_unit_file_dest: "/etc/systemd/system/clews.service"
 

@@ -17,7 +17,7 @@
       content: |
         #!/bin/bash
         echo 'on 0' | /usr/osmc/bin/cec-client -s ##> /dev/null
-      dest: "/home/{{ ansible_user }}/bin/tv_on.sh"
+      dest: "{{ ansible_user_dir }}/bin/tv_on.sh"
       owner: "{{ ansible_user }}"
       group: "{{ ansible_user }}"
       mode: '0755'
@@ -27,7 +27,7 @@
       content: |
         #!/bin/bash
         echo 'standby 0' | /usr/osmc/bin/cec-client -s ##> /dev/null
-      dest: "/home/{{ ansible_user }}/bin/tv_off.sh"
+      dest: "{{ ansible_user_dir }}/bin/tv_off.sh"
       owner: "{{ ansible_user }}"
       group: "{{ ansible_user }}"
       mode: '0755'

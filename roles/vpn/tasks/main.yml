@@ -6,7 +6,7 @@
 
 - name: Ensure openvpn directory exists within user's home directory.
   file:
-    dest: "/home/{{ ansible_user }}/openvpn"
+    dest: "{{ ansible_user_dir }}/openvpn"
     mode: '0755'
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
@@ -16,7 +16,7 @@
   template:
     src: "{{ item }}"
     decrypt: yes
-    dest: "/home/{{ ansible_user }}/openvpn/"
+    dest: "{{ ansible_user_dir }}/openvpn/"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: '0644'
@@ -25,7 +25,7 @@
 
 - name: Ensure bin directory exists within user's home directory.
   file:
-    dest: "/home/{{ ansible_user }}/bin"
+    dest: "{{ ansible_user_dir }}/bin"
     mode: '0755'
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
@@ -34,13 +34,13 @@
 - name: Copy vpn.sh script to user's bin directory.
   get_url:
     url: "{{ vpn_script_url }}"
-    dest: "/home/{{ ansible_user }}/bin/vpn.sh"
+    dest: "{{ ansible_user_dir }}/bin/vpn.sh"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: '0755'
 
 - name: Configure vpn.sh script for host-specific use.
   lineinfile:
-    path: "/home/{{ ansible_user }}/bin/vpn.sh"
+    path: "{{ ansible_user_dir }}/bin/vpn.sh"
     regexp: '^DEFAULT_CONF='
-    line: "DEFAULT_CONF=\"/home/{{ ansible_user }}/openvpn/Windscribe-Australia_UDP.ovpn\""
+    line: "DEFAULT_CONF=\"{{ ansible_user_dir }}/openvpn/Windscribe-Australia_UDP.ovpn\""

@@ -6,12 +6,12 @@
 
 - name: '[mc] Check if midnight commander has been initialised (determined by presence of ~/.config/mc/ini)'
   stat:
-    path: "/home/{{ ansible_user }}/.config/mc/ini"
+    path: "{{ ansible_user_dir }}/.config/mc/ini"
   register: mc_ini
 
 - name: '[mc] Set skin for mc. (Note: only runs if mc has been initialised).'
   lineinfile:
-    path: "/home/{{ ansible_user }}/.config/mc/ini"
+    path: "{{ ansible_user_dir }}/.config/mc/ini"
     regexp: '^skin='
     line: "skin={{ mc_skin }}"
   when: mc_ini.stat.exists == true

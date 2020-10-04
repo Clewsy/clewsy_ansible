@@ -1,7 +1,7 @@
 ---
 - name: Ensure bin directory exists within user's home directory.
   file:
-    dest: "/home/{{ ansible_user }}/bin"
+    dest: "{{ ansible_user_dir }}/bin"
     mode: 0755
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"

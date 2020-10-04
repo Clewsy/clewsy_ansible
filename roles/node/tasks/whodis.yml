@@ -2,7 +2,7 @@
 - name: '[whodis] Copy whodis.sh script to user bin directory.'
   get_url:
     url: "{{ whodis_script_url }}"
-    dest: "/home/{{ ansible_user }}/bin/whodis.sh"
+    dest: "{{ ansible_user_dir }}/bin/whodis.sh"
     force: yes
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"

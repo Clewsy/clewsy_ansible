@@ -1,1 +1,1 @@
-music_dir: "/home/{{ ansible_user }}/Music"
+music_dir: "{{ ansible_user_dir }}/Music"

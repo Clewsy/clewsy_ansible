@@ -4,7 +4,7 @@
 
 - name: '[common_scripts] Ensure bin directory exists within user home directory.'
   file:
-    dest: "/home/{{ ansible_user }}/bin"
+    dest: "{{ ansible_user_dir }}/bin"
     state: directory
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
@@ -14,7 +14,7 @@
 - name: '[common_scripts] Copy bu.sh script to user bin directory.'
   get_url:
     url: "{{ bu_script_url }}"
-    dest: "/home/{{ ansible_user }}/bin/bu.sh"
+    dest: "{{ ansible_user_dir }}/bin/bu.sh"
     force: yes
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
@@ -23,7 +23,7 @@
 - name: '[common_scripts] Create backup file list.'
   copy:
     content: "{{ backup_file_list }}"
-    dest: "/home/{{ ansible_user }}/bin/bu.list"
+    dest: "{{ ansible_user_dir }}/bin/bu.list"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: '0644'
@@ -32,7 +32,7 @@
 - name: '[common_scripts] Copy stuff.sh script to user bin directory.'
   get_url:
     url: "{{ stuff_script_url }}"
-    dest: "/home/{{ ansible_user }}/bin/stuff.sh"
+    dest: "{{ ansible_user_dir }}/bin/stuff.sh"
     force: yes
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
@@ -40,7 +40,7 @@
 
 - name: "[common_scripts] Customize stuff.sh colour theme - desired colour for {{ ansible_hostname }} is {{ theme_colour }}."
   lineinfile:
-    path: "/home/{{ ansible_user }}/bin/stuff.sh"
+    path: "{{ ansible_user_dir }}/bin/stuff.sh"
     regexp: '^COL='
     line: "COL=\"${{ '{' }}{{ theme_colour }}{{ '}' }}\"" #Use jinja expression to "escape" braces.
 
@@ -48,7 +48,7 @@
 - name: '[common_scripts] Copy wami.sh script to user bin directory.'
   get_url:
     url: "{{ wami_script_url }}"
-    dest: "/home/{{ ansible_user }}/bin/wami.sh"
+    dest: "{{ ansible_user_dir }}/bin/wami.sh"
     force: yes
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"

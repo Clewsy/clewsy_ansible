@@ -2,7 +2,7 @@
 - name: '[apt_all] Copy apt_all.sh script to user bin directory.'
   get_url:
     url: "{{ apt_all_script_url }}"
-    dest: "/home/{{ ansible_user }}/bin/apt_all.sh"
+    dest: "{{ ansible_user_dir }}/bin/apt_all.sh"
     force: yes
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"

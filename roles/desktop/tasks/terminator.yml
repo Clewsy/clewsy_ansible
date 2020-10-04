@@ -6,7 +6,7 @@
 
 - name: '[terminator] Ensure terminator config directory exists.'
   file:
-    dest: "/home/{{ ansible_user }}/.config/terminator"
+    dest: "{{ ansible_user_dir }}/.config/terminator"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: '0755'
@@ -15,14 +15,14 @@
 - name: '[terminator] Copy terminator configuration file.'
   copy:
     src: "files/terminator/config_{{ ansible_hostname }}"
-    dest: "/home/{{ ansible_user }}/.config/terminator/config"
+    dest: "{{ ansible_user_dir }}/.config/terminator/config"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: '0664'
 
 - name: '[terminator] Ensure autostart directory exists.'
   file:
-    dest: "/home/{{ ansible_user }}/.config/autostart"
+    dest: "{{ ansible_user_dir }}/.config/autostart"
     mode: '0755'
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
@@ -47,7 +47,7 @@
       Name=Open a New Window
       Exec=terminator
       TargetEnvironment=Unity
-    dest: "/home/{{ ansible_user }}/.config/autostart/terminator.desktop"
+    dest: "{{ ansible_user_dir }}/.config/autostart/terminator.desktop"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: '0664'

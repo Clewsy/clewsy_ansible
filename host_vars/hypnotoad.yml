@@ -3,6 +3,7 @@
 host_name: hypnotoad
 
 ansible_user: osmc
+ansible_user_home_dir: "/home/{{ ansible_user }}"
 
 ansible_python_interpreter: /usr/bin/python3
 

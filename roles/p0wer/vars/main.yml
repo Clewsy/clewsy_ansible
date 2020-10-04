@@ -1,7 +1,7 @@
 ---
 p0wer_repo: "git@gitlab.com:clewsy/p0wer.git"
 #p0wer_repo: "https://gitlab.com/clewsy/p0wer.git" #Use this repo link for https instead of ssh if you don't have a key set up.
-p0wer_repo_keyfile: "{{ ansible_user_dir }}/.ssh/id_rsa"
+p0wer_repo_keyfile: "{{ ansible_user_home_dir }}/.ssh/id_rsa"
 
 p0wer_packages:
   - build-essential

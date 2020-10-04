@@ -1,6 +1,7 @@
 host_name: farnsworth
 
 ansible_user: jc
+ansible_user_home_dir: "/home/{{ ansible_user }}"
 
 ansible_python_interpreter: /usr/bin/python3
 

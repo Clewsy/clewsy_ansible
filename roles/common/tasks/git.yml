@@ -15,7 +15,7 @@
       37303034396362633063303961343933613665336637386239613936353033356632393661346164
       3635303436323333303633386464373134653539333838393263
     decrypt: yes
-    dest: "{{ ansible_user_dir }}/.gitconfig"
+    dest: "{{ ansible_user_home_dir }}/.gitconfig"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: '0664'

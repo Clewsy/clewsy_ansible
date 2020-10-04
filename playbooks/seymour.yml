@@ -37,16 +37,16 @@
     - name: Clone repos to home directory.
       git:
         repo: "{{ repo_root }}/{{ item }}"
-        dest: "{{ ansible_user_dir }}/{{ item }}"
+        dest: "{{ ansible_user_home_dir }}/{{ item }}"
         accept_hostkey: yes
-        key_file: "{{ ansible_user_dir }}/.ssh/id_rsa" #Use key and ssh to clone private repo/s.
+        key_file: "{{ ansible_user_home_dir }}/.ssh/id_rsa" #Use key and ssh to clone private repo/s.
       with_items: "{{ repos }}"
       register: repo_clones
     
     - name: "Ensure cloned repos are owned by {{ ansible_user }}{{ ':' }}{{ ansible_user }}"
       file:
         recurse: yes
-        path: "{{ ansible_user_dir }}/{{ item }}"
+        path: "{{ ansible_user_home_dir }}/{{ item }}"
         state: directory
         owner: "{{ ansible_user }}"
         group: "{{ ansible_user }}"
@@ -59,7 +59,7 @@
           #Disable agent cache
           default-cache-ttl 0
           max-cache-ttl 0
-        dest: "{{ ansible_user_dir }}/.gnupg/gpg-agent.conf"
+        dest: "{{ ansible_user_home_dir }}/.gnupg/gpg-agent.conf"
         owner: "{{ ansible_user }}"
         group: "{{ ansible_user }}"
         mode: '0644'

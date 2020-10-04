@@ -2,7 +2,7 @@
 ########Part 1 - set up user .ssh
 - name: '[ssh] Ensure .ssh folder exists in home directory.'
   file:
-    dest: "{{ ansible_user_dir }}/.ssh"
+    dest: "{{ ansible_user_home_dir }}/.ssh"
     mode: '0700'
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
@@ -11,7 +11,7 @@
 - name: '[ssh] Set up ssh private key.'
   copy:
     content: "{{ ssh_private_key }}"
-    dest: "{{ ansible_user_dir }}/.ssh/id_rsa"
+    dest: "{{ ansible_user_home_dir }}/.ssh/id_rsa"
     mode: '0600'
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
@@ -20,7 +20,7 @@
 - name: '[ssh] Set up ssh public key.'
   copy:
     content: "{{ ssh_public_key }}"
-    dest: "{{ ansible_user_dir }}/.ssh/id_rsa.pub"
+    dest: "{{ ansible_user_home_dir }}/.ssh/id_rsa.pub"
     mode: '0644'
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
@@ -29,7 +29,7 @@
 - name: '[ssh] Set up ssh config file.'
   copy:
     src: files/ssh/config
-    dest: "{{ ansible_user_dir }}/.ssh/config"
+    dest: "{{ ansible_user_home_dir }}/.ssh/config"
     mode: '0644'
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"

@@ -20,7 +20,7 @@
 
 - name: Download homeassistant installation script.
   get_url:
-    url: https://raw.githubusercontent.com/home-assistant/supervised-installer/c674830d8ddc6af9d618755a7995af939dd73fde/installer.sh
+    url: https://raw.githubusercontent.com/home-assistant/supervised-installer/master/installer.sh
     dest: /tmp/homeassistant_installer.sh
     owner: root
     group: root

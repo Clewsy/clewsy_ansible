@@ -1,6 +1,7 @@
 host_name: calculon
 
 ansible_user: b4t
+ansible_user_home_dir: "/home/{{ ansible_user }}"
 
 ansible_python_interpreter: /usr/bin/python3
 
@@ -30,7 +31,7 @@ theme_prompt: "{{ CALCULON }}"
 cron_jobs:
 
 homeassistant:
-  machine: raspberrypi4-64
+  machine: raspberrypi4
   data_share: /home/docker/home-assistant
 
 mounts:

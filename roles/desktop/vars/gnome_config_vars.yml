@@ -1,6 +1,6 @@
 ---
 profile_icon_dest: "{% if ansible_distribution == 'Ubuntu' %}\
-                      {{ ansible_user_dir }}/.face\
+                      {{ ansible_user_home_dir }}/.face\
                     {% elif ansible_distribution == 'Pop!_OS' %}\
                       /var/lib/AccountsService/icons/{{ ansible_user }}\
                     {% else %}\

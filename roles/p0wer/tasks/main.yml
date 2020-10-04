@@ -7,7 +7,7 @@
 - name: Clone p0wer repository to home directory.
   git:
     repo: "{{ p0wer_repo }}"
-    dest: "{{ ansible_user_dir }}/p0wer"
+    dest: "{{ ansible_user_home_dir }}/p0wer"
     accept_hostkey: yes
     key_file: "{{ p0wer_repo_keyfile }}"
   register: p0wer_clone
@@ -15,7 +15,7 @@
 - name: Change owner of any files updated from git repo (from root to {{ ansible_user }}).
   file:
     recurse: yes
-    path: "{{ ansible_user_dir }}/p0wer"
+    path: "{{ ansible_user_home_dir }}/p0wer"
     state: directory
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
@@ -23,12 +23,12 @@
 
 - name: Compile and install the p0wer executable from source. #Note executable will be owned by root:root
   make:
-    chdir: "{{ ansible_user_dir }}/p0wer"
+    chdir: "{{ ansible_user_home_dir }}/p0wer"
     target: install
 
 - name: Set useful p0wer aliases.'
   lineinfile:
-    path: "{{ ansible_user_dir }}/.bash_aliases"
+    path: "{{ ansible_user_home_dir }}/.bash_aliases"
     state: present
     regexp: "{{ item }}"
     line: "{{ item }}"
@@ -45,7 +45,7 @@
 
 - name: Copy webui files to /var/www/html (to be served by apache).
   copy:
-    src: "{{ ansible_user_dir }}/p0wer/webui/"
+    src: "{{ ansible_user_home_dir }}/p0wer/webui/"
     dest: "/var/www/html"
     remote_src: yes
     owner: www-data

@@ -12,7 +12,7 @@
     repo: "{{ ansible_repo }}"
     dest: "{{ ansible_repo_directory }}"
     accept_hostkey: yes
-    key_file: "{{ ansible_user_dir }}/.ssh/id_rsa"
+    key_file: "{{ ansible_user_home_dir }}/.ssh/id_rsa"
   register: ansible_clone
   ignore_errors: True
 

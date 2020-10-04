@@ -22,7 +22,7 @@
 
 - name: Create alias dc for docker-compose.
   lineinfile:
-    path: "{{ ansible_user_dir }}/.bash_aliases"
+    path: "{{ ansible_user_home_dir }}/.bash_aliases"
     line: "alias dc='docker-compose'" 
     state: present
     insertafter: EOF

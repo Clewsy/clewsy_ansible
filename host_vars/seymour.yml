@@ -1,6 +1,7 @@
 host_name: seymour
 
 ansible_user: b4t
+ansible_user_home_dir: "/home/{{ ansible_user }}"
 
 ansible_python_interpreter: /usr/bin/python3
 
@@ -40,21 +41,21 @@ cron_jobs:
     day: "*"
     month: "*"
     weekday: "*"
-    job: "{{ ansible_user_dir }}/bin/ball.sh"
+    job: "{{ ansible_user_home_dir }}/bin/ball.sh"
   - name: "Backup file_cache to sd card daily."
     minute: "30"
     hour: "0"
     day: "*"
     month: "*"
     weekday: "*"
-    job: "cp -r {{ ansible_user_dir }}/file_cache /media/cache/."
+    job: "cp -r {{ ansible_user_home_dir }}/file_cache /media/cache/."
   - name: "Run apt_all daily at 0530hrs."
     minute: "30"
     hour: "5"
     day: "*"
     month: "*"
     weekday: "*"
-    job: "{{ ansible_user_dir }}/bin/apt_all.sh"
+    job: "{{ ansible_user_home_dir }}/bin/apt_all.sh"
 
 mounts:
   - { mount_source: /dev/mmcblk0p1, mount_path: '/media/cache', mount_fstype: 'auto', mount_opts: "auto,rw,async,user,uid={{ ansible_user }},gid={{ ansible_user }},nofail" }

@@ -72,7 +72,7 @@
 
 - name: "Add custom paths to PATH variable for {{ ansible_user }}."
   lineinfile:
-    path: "{{ ansible_user_dir }}/.profile"
+    path: "{{ ansible_user_home_dir }}/.profile"
     state: present
     line: "export PATH=$PATH:{{ item }}"
     insertafter: EOF

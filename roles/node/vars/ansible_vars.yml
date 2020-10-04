@@ -4,7 +4,7 @@ ansible_packages:
 
 ansible_repo: "git@gitlab.com:clewsy/clewsy_ansible"
 
-ansible_repo_directory: "{{ ansible_user_dir }}/ansible"
+ansible_repo_directory: "{{ ansible_user_home_dir }}/ansible"
 
 ansible_vault_key: !vault |
   $ANSIBLE_VAULT;1.1;AES256

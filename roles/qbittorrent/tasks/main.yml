@@ -16,7 +16,7 @@
 - name: Create a symlink to the downloads directory within the user's home directory.
   file:
     src: "{{ qbittorrent_home_dir }}/qbittorrent/downloads"
-    dest: "{{ ansible_user_dir }}/downloads"
+    dest: "{{ ansible_user_home_dir }}/downloads"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     state: link

@@ -10,7 +10,7 @@
 - name: Clone rad10d repository to home directory.
   git:
     repo: "{{ rad10d_repo }}"
-    dest: "{{ ansible_user_dir }}/rad10d"
+    dest: "{{ ansible_user_home_dir }}/rad10d"
     accept_hostkey: yes
     key_file: "{{ rad10d_repo_keyfile }}"
   register: rad10d_clone
@@ -18,7 +18,7 @@
 - name: Change owner of any files updated from git repo (from root to {{ ansible_user }}).
   file:
     recurse: yes
-    path: "{{ ansible_user_dir }}/rad10d"
+    path: "{{ ansible_user_home_dir }}/rad10d"
     state: directory
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
@@ -26,7 +26,7 @@
 
 - name: Compile and install the rad10d executable from source. #Note executable will be owned by root:root
   make:
-    chdir: "{{ ansible_user_dir }}/rad10d"
+    chdir: "{{ ansible_user_home_dir }}/rad10d"
     target: install
 
 - name: If it exists, delete the default apache index.html page.
@@ -36,7 +36,7 @@
 
 - name: Copy webui files to /var/www/html (to be served by apache).
   copy:
-    src: "{{ ansible_user_dir }}/rad10d/webui/"
+    src: "{{ ansible_user_home_dir }}/rad10d/webui/"
     dest: "/var/www/html"
     remote_src: yes
     owner: www-data

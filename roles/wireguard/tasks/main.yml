@@ -24,7 +24,7 @@
 
 - name: Set {{ ansible_user }} aliases for bringing wireguard connections up / down.
   lineinfile:
-    path: "{{ ansible_user_dir }}/.bash_aliases"
+    path: "{{ ansible_user_home_dir }}/.bash_aliases"
     state: present
     regexp: "{{ item }}"
     line: "{{ item }}"

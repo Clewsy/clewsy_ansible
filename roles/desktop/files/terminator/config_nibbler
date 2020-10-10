@@ -38,14 +38,14 @@
       order = 0
       profile = default
       uuid = bdcf2385-f006-4ef8-8146-93c1e418aaca
-      command = ssh b4t@seymour || ssh b4t@clews.pro; bash
+      command = ssh -4 -o StrictHostKeyChecking=no b4t@seymour || ssh -4 -o StrictHostKeyChecking=no b4t@clews.pro; bash
     [[[terminal3]]]
       type = Terminal
       parent = child2
       order = 1
       profile = default
       uuid = 584baa5e-d791-4cce-988b-1a35c3fbf051
-      command = ssh b4t@seymour "/home/b4t/bin/pong.sh" || ssh b4t@clews.pro "/home/b4t/bin/pong.sh"; bash
+      command = ssh -4 -o StrictHostKeyChecking=no b4t@seymour "/home/b4t/bin/pong.sh" || ssh -4 -o StrictHostKeyChecking=no b4t@clews.pro "/home/b4t/bin/pong.sh"; bash
     [[[terminal1]]]
       type = Terminal
       parent = child1

@@ -12,12 +12,14 @@
   include: ssh.yml
 
 - name: Enable passwordless sudo.
-  lineinfile:
-    path: /etc/sudoers
-    state: present
-    regexp: '^%sudo'
-    line: '%sudo ALL=(ALL) NOPASSWD: ALL'
-    validate: 'visudo -cf %s'
+  copy:
+    content: |
+      #Added by ansible.  Enable passwordless sudo for members of group sudo.
+      %sudo ALL=(ALL) NOPASSWD: ALL
+    dest: /etc/sudoers.d/enable-passwordless-sudo
+    owner: 'root'
+    group: 'root'
+    mode: '0440'
 
 - name: Update apt cache and run a full upgrade.
   apt:

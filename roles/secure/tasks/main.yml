@@ -1,48 +1,19 @@
 ---
-- name: Disable ssh root login.
-  lineinfile:
-    path: /etc/ssh/sshd_config
-    regexp: '^PermitRootLogin'
-    line: 'PermitRootLogin no'
-    state: present
-    insertafter: '^#PermitRootLogin'
-  notify: Restart ssh.
+#openssh-server version 1:8 have the ability to "Include" additional configs external to the /etc/ssh/sshd_config file.
+#These late versions are installed with the directory /etc/ssh/sshd_config.d for such configs.
+#Check for and use this directory for sshd customizations.  Otherwise "legacy" modify the sshd_config file.  
+- name: Determine if the installed version of openssh-server can handle configs in /etc/ssh/sshd_config.d.
+  stat:
+    path: '/etc/ssh/sshd_config.d'
+  register: sshd_configs_dir
 
-- name: Disable ssh password authentication.
-  lineinfile:
-    path: /etc/ssh/sshd_config
-    regexp: '^PasswordAuthentication'
-    line: 'PasswordAuthentication no'
-    state: present
-    insertafter: '^#PasswordAuthentication'
-  notify: Restart ssh.
+- name: Configure sshd (create configs in /etc/ssh/sshd_configd.d directory).
+  include: sshd.yml
+  when: sshd_configs_dir.stat.isdir is defined and sshd_configs_dir.stat.isdir
 
-- name: Set ssh to protocol 2 only.
-  lineinfile:
-    path: /etc/ssh/sshd_config
-    regexp: '^Protocol'
-    line: 'Protocol 2'
-    state: present
-    insertafter: '^#Protocol'
-  notify: Restart ssh.
-
-- name: Set ssh client idle timeout.
-  lineinfile:
-    path: /etc/ssh/sshd_config
-    regexp: '^ClientAliveInterval'
-    line: 'ClientAliveInterval 300'
-    state: present
-    insertafter: '^#ClientAliveInterval'
-  notify: Restart ssh.
-
-- name: Disable ssh X11 forwarding..
-  lineinfile:
-    path: /etc/ssh/sshd_config
-    regexp: '^X11Forwarding'
-    line: 'X11Forwarding no'
-    state: present
-    insertafter: '^#X11Forwarding'
-  notify: Restart ssh.
+- name: Configure sshd (legacy config method, alter /etc/ssh/sshd_configs file).
+  include: sshd_legacy.yml
+  when: sshd_configs_dir.stat.isdir is not defined or sshd_configs_dir.stat.isdir == False
 
 - name: Install and configure ufw.
   include: ufw.yml

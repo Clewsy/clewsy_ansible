@@ -1,0 +1,47 @@
+#Currently, the latest debian distro on seymour (beaglebone black) is buster with version 1:7.9p1 of openssh-server.
+#This version does not include the ability to use external config files, so the /etc/ssh/sshd_configs file must be changed directly.
+---
+- name: '[sshd_legacy] Disable ssh root login.'
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^PermitRootLogin'
+    line: 'PermitRootLogin no'
+    state: present
+    insertafter: '^#PermitRootLogin'
+  notify: Restart sshd.
+
+- name: '[sshd_legacy] Disable ssh password authentication.'
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^PasswordAuthentication'
+    line: 'PasswordAuthentication no'
+    state: present
+    insertafter: '^#PasswordAuthentication'
+  notify: Restart sshd.
+
+- name: '[sshd_legacy] Set ssh to protocol 2 only.'
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^Protocol'
+    line: 'Protocol 2'
+    state: present
+    insertafter: '^#Protocol'
+  notify: Restart sshd.
+
+- name: '[sshd_legacy] Set ssh client idle timeout.'
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^ClientAliveInterval'
+    line: 'ClientAliveInterval 300'
+    state: present
+    insertafter: '^#ClientAliveInterval'
+  notify: Restart sshd.
+
+- name: '[sshd_legacy] Disable ssh X11 forwarding.'
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^X11Forwarding'
+    line: 'X11Forwarding no'
+    state: present
+    insertafter: '^#X11Forwarding'
+  notify: Restart sshd.

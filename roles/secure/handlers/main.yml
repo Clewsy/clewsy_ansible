@@ -1,7 +1,7 @@
 ---
-- name: Restart ssh.
+- name: Restart sshd.
   service:
-    name: ssh
+    name: sshd
     state: restarted
 
 - name: Restart ufw.

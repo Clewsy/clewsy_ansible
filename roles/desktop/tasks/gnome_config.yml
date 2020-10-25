@@ -14,3 +14,25 @@
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: '0644'
+
+- name: '[gnome_config] Ensure Wallpapers directory exists.'
+  file:
+    dest: "{{ gnome_config_background_dir }}"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0755'
+
+- name: '[gnome_config] Copy desktop backound image to ~/Pictures/Wallpapers.'
+  copy:
+    src: "files/gnome_config/{{ ansible_hostname }}_background"
+    dest: "{{ gnome_config_background_file }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0664'
+  register: wallpaper
+
+- name: '[gnome_config] Set desktop backound image.'
+  shell: "gsettings set org.gnome.desktop.background picture-uri file://{{ gnome_config_background_file }}"
+  become_user: "{{ ansible_user }}"
+  when: wallpaper is changed

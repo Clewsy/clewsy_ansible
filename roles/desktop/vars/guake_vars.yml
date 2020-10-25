@@ -1,0 +1,5 @@
+---
+guake_prefs:
+  - { key: "/apps/guake/general/gtk-prefer-dark-theme", value: "true" } #Default to dark mode.
+  - { key: "/apps/guake/style/background/transparency", value: "50" }   #Set transparency value (percentage).
+  - { key: "/apps/guake/general/window-losefocus", value: "true" }      #Close drop-down when it loses focus.

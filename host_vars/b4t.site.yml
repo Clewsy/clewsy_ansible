@@ -1,9 +1,6 @@
 host_name: b4t-site
 
 ansible_user: b4t
-ansible_user_home_dir: "/home/{{ ansible_user }}"
-
-ansible_python_interpreter: /usr/bin/python3
 
 ansible_password: !vault |
   $ANSIBLE_VAULT;1.1;AES256
@@ -20,8 +17,6 @@ ansible_sudo_pass: !vault |
   62323661643362326236653438363838636137663532666161363132643764346261633464336238
   3465623165653763610a663064636130316363323638373264333639636132303239633635363962
   3764
-
-local_tz: 'Australia/Melbourne'
 
 aliases:
 
@@ -55,12 +50,6 @@ cron_jobs:
     month: "*"
     weekday: "*"
     job: 'rsync --acls --archive --times --perms --one-file-system --delete --verbose /home/b4t/backups/* /home/b4t/backups_monthly/.'
-
-mounts:
-
-nfs_mounts:
-
-music_dir:
 
 backup_file_list: |
   ~/bin/

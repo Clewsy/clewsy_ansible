@@ -28,7 +28,7 @@
     group: "{{ ansible_user }}"
     state: directory
 
-- name: '[termiantor] Create symbolic link to default terminator autostart entry.'
+- name: '[terminator] Create symbolic link to default terminator autostart entry.'
   file:
     src: "/usr/share/applications/terminator.desktop"
     dest: "{{ ansible_user_home_dir }}/.config/autostart/terminator.desktop"

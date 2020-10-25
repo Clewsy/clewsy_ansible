@@ -1,9 +1,6 @@
 host_name: zapp
 
 ansible_user: b4t
-ansible_user_home_dir: "/home/{{ ansible_user }}"
-
-ansible_python_interpreter: /usr/bin/python3
 
 ansible_password: !vault |
   $ANSIBLE_VAULT;1.1;AES256
@@ -20,8 +17,6 @@ ansible_sudo_pass: !vault |
   61303237376534643734363732336365306537663766393364663531633830356561303063633837
   3338613261623036380a626338393031353265306434383039383339343364373933626361303937
   3335
-
-local_tz: 'Australia/Melbourne' #If ommitted will default to 'Australia/Melbourne'
 
 aliases:
 
@@ -62,7 +57,6 @@ file_server_cifs_shares:
   - { source_path: '/srv/fileb0t/movies', name: 'movies' }
   - { source_path: '/srv/fileb0t/tv', name: 'tv' }
 
-
 rsync_server_syncs:
   - source: 'jc@zoidberg:/home/docker'
     dest: '/srv/cl0ud/zoidberg/'
@@ -101,7 +95,7 @@ backup_file_list: |
 
 mc_skin: modarcon16root-defbg
 
-ssh_public_key: !vault | # $ cat .ssh/id_rsa.pub | ansible-vault encrypt_string
+ssh_public_key: !vault |
   $ANSIBLE_VAULT;1.1;AES256
   34653262346130376662396164646134333364643761393361323862373061646361623963316332
   6137666565626538333635613665363463346132643836330a653532333131623532363535363863
@@ -128,7 +122,7 @@ ssh_public_key: !vault | # $ cat .ssh/id_rsa.pub | ansible-vault encrypt_string
   62633133363563633431663765613836653665636163326231666661646531323066383162386134
   66373439653965626135
 
-ssh_private_key: !vault | # $ cat .ssh/id_rsa | ansible-vault encrypt_string
+ssh_private_key: !vault |
   $ANSIBLE_VAULT;1.1;AES256
   65663764333862363936616663613263656430616639306337383537663164366636316166663166
   6139656436373833356239303139366664303961323162630a306133303337613136366164633365

@@ -26,4 +26,3 @@
     line: "alias dc='docker-compose'" 
     state: present
     insertafter: EOF
-

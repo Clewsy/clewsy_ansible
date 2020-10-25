@@ -1,11 +1,7 @@
 ##Note osmc initial install ssh login is osmc/osmc. 
-
 host_name: hypnotoad
 
 ansible_user: osmc
-ansible_user_home_dir: "/home/{{ ansible_user }}"
-
-ansible_python_interpreter: /usr/bin/python3
 
 ansible_password: !vault |
   $ANSIBLE_VAULT;1.1;AES256
@@ -22,8 +18,6 @@ ansible_sudo_pass: !vault |
   37353139386466663432633965643431653133646464313462353165303039356336383737613939
   6164386130353039660a636534373031646162346534633035646165636537316261646233623066
   6464
-
-local_tz: 'Australia/Melbourne'
 
 theme_colour: YELLOW
 theme_prompt: "{{ HYPNOTOAD }}"

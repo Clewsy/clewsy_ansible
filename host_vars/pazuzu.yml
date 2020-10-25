@@ -1,9 +1,6 @@
 host_name: pazuzu
 
 ansible_user: b4t
-ansible_user_home_dir: "/home/{{ ansible_user }}"
-
-ansible_python_interpreter: /usr/bin/python3
 
 ansible_password: !vault |
   $ANSIBLE_VAULT;1.1;AES256

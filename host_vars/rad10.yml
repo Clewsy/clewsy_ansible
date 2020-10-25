@@ -1,9 +1,6 @@
 host_name: rad10
 
 ansible_user: b4t
-ansible_user_home_dir: "/home/{{ ansible_user }}"
-
-ansible_python_interpreter: /usr/bin/python3
 
 ansible_password: !vault |
   $ANSIBLE_VAULT;1.1;AES256
@@ -20,8 +17,6 @@ ansible_sudo_pass: !vault |
   31353634366335663434373238646338633264623864643439643965663430643133613665663633
   6437393237306538620a353039376230303263613635303435366130633161376430373765366562
   3865
-
-local_tz: 'Australia/Melbourne'
 
 theme_colour: YELLOW
 theme_prompt: "{{ YELLOW_RED }}"

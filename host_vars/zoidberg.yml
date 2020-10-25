@@ -1,9 +1,6 @@
 host_name: zoidberg
 
 ansible_user: jc
-ansible_user_home_dir: "/home/{{ ansible_user }}"
-
-ansible_python_interpreter: /usr/bin/python3
 
 ansible_password: !vault |
   $ANSIBLE_VAULT;1.1;AES256
@@ -21,14 +18,12 @@ ansible_sudo_pass: !vault |
   3738633631356535650a323939396534333134663566323962373035326132306264343233376564
   6532
 
-local_tz: 'Australia/Melbourne'
-
 aliases:
 
 misc_apt_packages:
   install:
     - imagemagick #For image manipulation.
-    - libimage-exiftool-perl #For manipulating exif data embedded in photod (e.g. deleting gps co-ords),
+    - libimage-exiftool-perl #For manipulating exif data embedded in photos (e.g. deleting gps co-ords),
 
 misc_snaps:
 

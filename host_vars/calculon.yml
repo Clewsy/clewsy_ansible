@@ -1,9 +1,6 @@
 host_name: calculon
 
 ansible_user: b4t
-ansible_user_home_dir: "/home/{{ ansible_user }}"
-
-ansible_python_interpreter: /usr/bin/python3
 
 ansible_password: !vault |
   $ANSIBLE_VAULT;1.1;AES256
@@ -21,8 +18,6 @@ ansible_sudo_pass: !vault |
   6662653934633737320a323334383634383636623963666264323666373662373263373065376437
   6563
 
-local_tz: 'Australia/Melbourne'
-
 aliases:
 
 theme_colour: YELLOW
@@ -33,10 +28,6 @@ cron_jobs:
 homeassistant:
   machine: raspberrypi4-64
   data_share: /home/docker/home-assistant
-
-mounts:
-#  - { mount_source: /dev/mmcblk0p1, mount_path: '/media/cache', mount_fstype: 'auto', mount_opts: "auto,rw,async,user,uid={{ ansible_user }},gid={{ ansible_user }},nofail" }
-#  - { mount_source: UUID=EA9EFDBF9EFD847B, mount_path: '/mnt/windoze', mount_fstype: 'auto', mount_opts: 'ro,nosuid,nodev,nofail,x-gvfs-show' }
 
 nfs_mounts:
 #  - { mount_source: 'zapp:/export/data', mount_path: '/mnt/zapp/data' }

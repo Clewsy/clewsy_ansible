@@ -7,7 +7,6 @@
   roles:
 #    - common
     - file_server
-
 #    - secure
 #    - headless
 #    - docker

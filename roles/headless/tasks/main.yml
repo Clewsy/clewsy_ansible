@@ -6,4 +6,3 @@
 
 - name: Install and configure midnight commander.
   include: mc.yml
-

@@ -1,7 +1,5 @@
 host_name: flexo
 
-ansible_python_interpreter: /usr/bin/python3
-
 ansible_password: !vault |
   $ANSIBLE_VAULT;1.1;AES256
   63666139346535366535333065303663626339343263663565323462363934383337323966336635

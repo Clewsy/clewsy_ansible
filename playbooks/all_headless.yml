@@ -1,5 +1,5 @@
 ---
-- name: Run healess role on selected hosts.
+- name: Run headless role on selected hosts.
   hosts: headless
   become: yes
   gather_facts: True

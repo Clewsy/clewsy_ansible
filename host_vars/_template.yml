@@ -7,9 +7,9 @@
 host_name: hostname #fact "ansible_hostname" will be changed to host_name if it doesn't match.
 
 ansible_user: user
-ansible_user_home_dir: "/home/{{ ansible_user }}"
+#ansible_user_home_dir: "/home/{{ ansible_user }}" #Can override here, otherwise defined in group_vars/all.yml.
 
-ansible_python_interpreter: /usr/bin/python3
+#ansible_python_interpreter: /usr/bin/python3 #Can override here, otherwise defined in group_vars/all.yml.
 
 #Only needed until ssh key pairs are installed.
 ansible_password: !vault | #$ ansible-vault encrypt_string 'secret_password'
@@ -29,7 +29,7 @@ ansible_sudo_pass: !vault | #$ ansible-vault encrypt_string 'secret_sudo_passwor
 #  6538
 
 #common role, main.yml.
-local_tz: 'Australia/Melbourne' #If ommitted will default to 'Australia/Melbourne'
+#local_tz: 'Australia/Melbourne'  #Can override here, otherwise defined in group_vars/all.yml.
 
 #common role, aliases.yml.
 aliases:

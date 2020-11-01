@@ -6,4 +6,4 @@ clews_unit_file_source: "https://gitlab.com/clewsy/clews.pro/-/raw/master/clews.
 clews_unit_file_dest: "/etc/systemd/system/clews.service"
 
 clews_docker_backup_host: zapp
-clews_docker_backup_source: "/export/cl0ud/docker_zoidberg/docker/"
+clews_docker_backup_source: "/export/cl0ud/zoidberg/docker/"

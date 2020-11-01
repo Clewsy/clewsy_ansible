@@ -81,8 +81,8 @@ rsync_server_syncs:
     weekday: "*"
   - source: '/srv/cl0ud/file_cache'
     dest: 'b4t@b4t.site:/home/b4t/backups/'
-    minute: "0"
-    hour: "4"
+    minute: "30"
+    hour: "3"
     day: "*"
     month: "*"
     weekday: "*"

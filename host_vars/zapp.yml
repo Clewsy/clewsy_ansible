@@ -56,6 +56,7 @@ file_server_cifs_shares:
   - { source_path: '/srv/fileb0t/mp3s', name: 'mp3s' }
   - { source_path: '/srv/fileb0t/movies', name: 'movies' }
   - { source_path: '/srv/fileb0t/tv', name: 'tv' }
+  - { source_path: '/srv/m0n0l1th', name: 'm0n0l1th' }
 
 rsync_server_syncs:
   - source: 'jc@zoidberg:/home/docker'

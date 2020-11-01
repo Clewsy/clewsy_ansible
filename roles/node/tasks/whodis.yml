@@ -1,9 +1,20 @@
 ---
-- name: '[whodis] Copy whodis.sh script to user bin directory.'
+- name: '[whodis] Copy whodis.sh script to script library.'
   get_url:
     url: "{{ whodis_script_url }}"
-    dest: "{{ ansible_user_home_dir }}/bin/whodis.sh"
+    dest: "{{ scripts_lib }}/whodis.sh"
     force: yes
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+  register: whodis
+
+- name: '[whodis] Copy whodis.sh script to user bin directory.'
+  copy:
+    src: "{{ scripts_lib }}/whodis.sh"
+    dest: "{{ ansible_user_home_dir }}/bin/whodis.sh"
+    remote_src: yes
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: '0755'
+  when: whodis is changed

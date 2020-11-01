@@ -1,4 +1,22 @@
 ---
+- name: Ensure scripts library directory exists ({{ scripts_lib }}).
+  file:
+    dest: "{{ scripts_lib }}"
+    state: directory
+    owner: 'root'
+    group: 'root'
+    mode: '0755'
+
+- name: Copy polly.sh script to script library.'
+  get_url:
+    url: "{{ polly_script_url }}"
+    dest: "{{ scripts_lib }}/polly.sh"
+    force: yes
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+  register: polly
+
 - name: Ensure bin directory exists within user's home directory.
   file:
     dest: "{{ ansible_user_home_dir }}/bin"
@@ -6,23 +24,27 @@
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     state: directory
+  when: polly is changed
 
 - name: Copy polly.sh script for use by {{ ansible_user }}.
-  get_url:
-    url: "{{ polly_script_url }}"
+  copy:
+    src: "{{ scripts_lib }}/polly.sh"
     dest: "{{ polly_script_dest_user }}"
+    remote_src: yes
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: 0755
+  when: polly is changed
 
 - name: Copy polly.sh script for root use.
   copy:
-    remote_src: yes
-    src: "{{ polly_script_dest_user }}"
+    src: "{{ scripts_lib }}/polly.sh"
     dest: "{{ polly_script_dest_root }}"
+    remote_src: yes
     owner: "root"
     group: "root"
     mode: 0755
+  when: polly is changed
 
 - name: Install and enable blink1-tool.
   include: blink1_tool.yml

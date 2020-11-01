@@ -2,14 +2,25 @@
 - name: '[bu] Load bu variables.'
   include_vars: bu_vars.yml
 
-- name: '[bu] Copy bu.sh script to user bin directory.'
+- name: '[bu] Copy bu.sh script to script library.'
   get_url:
     url: "{{ bu_script_url }}"
-    dest: "{{ common_scripts_directory }}/bu.sh"
+    dest: "{{ scripts_lib }}/bu.sh"
     force: yes
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+  register: bu
+
+- name: '[bu] Copy bu.sh script to user bin directory.'
+  copy:
+    src: "{{ scripts_lib }}/bu.sh"
+    dest: "{{ common_scripts_directory }}/bu.sh"
+    remote_src: yes
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: '0755'
+  when: bu is changed
 
 - name: '[bu] Create backup file list.'
   copy:

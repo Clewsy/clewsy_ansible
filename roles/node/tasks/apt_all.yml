@@ -1,9 +1,20 @@
 ---
-- name: '[apt_all] Copy apt_all.sh script to user bin directory.'
+- name: '[apt_all] Copy apt_all.sh script to script library.'
   get_url:
     url: "{{ apt_all_script_url }}"
-    dest: "{{ ansible_user_home_dir }}/bin/apt_all.sh"
+    dest: "{{ scripts_lib }}/apt_all.sh"
     force: yes
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+  register: apt_all
+
+- name: '[apt_all] Copy apt_all.sh script to user bin directory.'
+  copy:
+    src: "{{ scripts_lib }}/apt_all.sh"
+    dest: "{{ ansible_user_home_dir }}/bin/apt_all.sh"
+    remote_src: yes
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: '0755'
+  when: apt_all is changed

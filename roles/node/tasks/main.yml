@@ -4,6 +4,14 @@
     name: "{{ node_packages }}"
     state: latest
 
+- name: "Ensure scripts library directory exists ({{ common_scripts_default_dir }})."
+  file:
+    dest: "{{ scripts_lib }}"
+    state: directory
+    owner: 'root'
+    group: 'root'
+    mode: '0755'
+
 - name: Ensure bin directory exists within user's home directory.
   file:
     dest: "{{ ansible_user_home_dir }}/bin"

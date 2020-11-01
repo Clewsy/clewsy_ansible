@@ -2,17 +2,29 @@
 - name: '[stuff] Load stuff variables.'
   include_vars: stuff_vars.yml
 
-- name: '[stuff] Copy stuff.sh script to user bin directory.'
+- name: '[stuff] Copy stuff.sh script to script library.'
   get_url:
     url: "{{ stuff_script_url }}"
-    dest: "{{ common_scripts_directory }}/stuff.sh"
+    dest: "{{ scripts_lib }}/stuff.sh"
     force: yes
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+  register: stuff
+
+- name: '[stuff] Copy stuff.sh script to user bin directory.'
+  copy:
+    src: "{{ scripts_lib }}/stuff.sh"
+    dest: "{{ common_scripts_directory }}/stuff.sh"
+    remote_src: yes
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: '0755'
+  when: stuff is changed
 
 - name: "[stuff] Customize stuff.sh colour theme - desired colour for {{ ansible_hostname }} is {{ theme_colour }}."
   lineinfile:
     path: "{{ common_scripts_directory }}/stuff.sh"
     regexp: '^COL='
     line: "COL=\"${{ '{' }}{{ theme_colour }}{{ '}' }}\"" #Use jinja expression to "escape" braces.
+  when: stuff is changed

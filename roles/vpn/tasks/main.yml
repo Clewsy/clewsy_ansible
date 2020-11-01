@@ -23,6 +23,24 @@
   with_fileglob:
     - "templates/openvpn/*"
 
+- name: Ensure scripts library directory exists ({{ scripts_lib }}).
+  file:
+    dest: "{{ scripts_lib }}"
+    state: directory
+    owner: 'root'
+    group: 'root'
+    mode: '0755'
+
+- name: Copy vpn.sh script to script library.'
+  get_url:
+    url: "{{ vpn_script_url }}"
+    dest: "{{ scripts_lib }}/vpn.sh"
+    force: yes
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+  register: vpn
+
 - name: Ensure bin directory exists within user's home directory.
   file:
     dest: "{{ ansible_user_home_dir }}/bin"
@@ -30,17 +48,21 @@
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     state: directory
+  when: vpn is changed
 
 - name: Copy vpn.sh script to user's bin directory.
-  get_url:
-    url: "{{ vpn_script_url }}"
+  copy:
+    src: "{{ scripts_lib }}/vpn.sh"
     dest: "{{ ansible_user_home_dir }}/bin/vpn.sh"
+    remote_src: yes
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: '0755'
+  when: vpn is changed
 
 - name: Configure vpn.sh script for host-specific use.
   lineinfile:
     path: "{{ ansible_user_home_dir }}/bin/vpn.sh"
     regexp: '^DEFAULT_CONF='
     line: "DEFAULT_CONF=\"{{ ansible_user_home_dir }}/openvpn/Windscribe-Australia_UDP.ovpn\""
+  when: vpn is changed

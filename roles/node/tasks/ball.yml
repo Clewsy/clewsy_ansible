@@ -1,9 +1,19 @@
 ---
-- name: '[ball] Copy ball.sh script to user bin directory.'
+- name: '[ball] Copy ball.sh script to script library.'
   get_url:
     url: "{{ ball_script_url }}"
-    dest: "{{ ansible_user_home_dir }}/bin/ball.sh"
+    dest: "{{ scripts_lib }}/ball.sh"
     force: yes
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+  register: ball
+
+- name: '[ball] Copy ball.sh script to user bin directory.'
+  copy:
+    src: "{{ scripts_lib }}/ball.sh"
+    dest: "{{ ansible_user_home_dir }}/bin/ball.sh"
+    remote_src: yes
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: '0755'

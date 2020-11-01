@@ -2,11 +2,22 @@
 - name: '[wami] Load wami variables.'
   include_vars: wami_vars.yml
 
-- name: '[wami] Copy wami.sh script to user bin directory.'
+- name: '[wami] Copy wami.sh script to script library.'
   get_url:
     url: "{{ wami_script_url }}"
-    dest: "{{ common_scripts_directory }}/wami.sh"
+    dest: "{{ scripts_lib }}/wami.sh"
     force: yes
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+  register: wami
+
+- name: '[wami] Copy wami.sh script to user bin directory.'
+  copy:
+    src: "{{ scripts_lib }}/wami.sh"
+    dest: "{{ common_scripts_directory }}/wami.sh"
+    remote_src: yes
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: '0755'
+  when: wami is changed

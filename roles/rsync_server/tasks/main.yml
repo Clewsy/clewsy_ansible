@@ -10,10 +10,18 @@
     path: "{{ rsync_server_logfile }}"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
-    mode: '0744'
+    mode: '0644'
     state: touch
   when: rsync_server_syncs.0 is defined
 
+- name: "Configure log rotation for rsync_server logfile ({{ rsync_server_logfile }})."
+  copy:
+    content: "{{ rsync_server_logrotate_file }}"
+    dest: "/etc/logrotate.d/rsync_server"
+    owner: "root"
+    group: "root"
+    mode: '0644'
+  when: rsync_server_syncs.0 is defined
 
 - name: Create crontab entries for rsync tasks.
   cron:

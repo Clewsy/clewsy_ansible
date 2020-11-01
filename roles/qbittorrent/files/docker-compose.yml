@@ -1,5 +1,6 @@
 version: "3"
 services:
+
   qbittorrent:
     image: linuxserver/qbittorrent
     container_name: qbittorrent
@@ -17,4 +18,17 @@ services:
       - 6881:6881/udp
       - 8080:8080
     restart: unless-stopped
-    
+
+  watchtower:
+    image: containrrr/watchtower
+    container_name: watchtower
+    environment:
+      - WATCHTOWER_CLEANUP=true #Remove old images.
+      - WATCHTOWER_INCLUDE_STOPPED=true
+      - WATCHTOWER_REVIVE_STOPPED=true
+      - WATCHTOWER_POLL_INTERVAL=3600 #Hourly
+      - WATCHTOWER_DEBUG=false
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock #Mount docker.sock to give watchtower ability to control docker.
+      - /etc/timezone:/etc/timezone:ro
+    restart: unless-stopped

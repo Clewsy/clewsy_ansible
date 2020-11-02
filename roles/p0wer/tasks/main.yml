@@ -25,6 +25,7 @@
   make:
     chdir: "{{ ansible_user_home_dir }}/p0wer"
     target: install
+  when: p0wer_clone is changed
 
 - name: Set useful p0wer aliases.'
   lineinfile:

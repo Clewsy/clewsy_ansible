@@ -28,6 +28,7 @@
   make:
     chdir: "{{ ansible_user_home_dir }}/rad10d"
     target: install
+  when: rad10d_clone is changed
 
 - name: If it exists, delete the default apache index.html page.
   file:

@@ -20,9 +20,9 @@
 - name: Ensure bin directory exists within user's home directory.
   file:
     dest: "{{ ansible_user_home_dir }}/bin"
-    mode: 0755
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
+    mode: '0755'
     state: directory
   when: polly is changed
 
@@ -33,7 +33,7 @@
     remote_src: yes
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
-    mode: 0755
+    mode: '0755'
   when: polly is changed
 
 - name: Copy polly.sh script for root use.
@@ -43,7 +43,7 @@
     remote_src: yes
     owner: "root"
     group: "root"
-    mode: 0755
+    mode: '0755'
   when: polly is changed
 
 - name: Install and enable blink1-tool.

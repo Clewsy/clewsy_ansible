@@ -1,6 +1,6 @@
 ---
 #https://github.com/home-assistant/supervised-installer
-  # https://blakeniemyjski.com/blog/installing-home-assistant-on-ubuntu/
+
 - name: Ensure all packages required for homeassistant are installed.
   apt:
     name: "{{ homeassistant_packages }}"
@@ -18,14 +18,6 @@
     daemon_reexec: yes
   when: modemmanager_was_installed is changed
 
-- name: Download homeassistant installation script.
-  get_url:
-    url: https://raw.githubusercontent.com/home-assistant/supervised-installer/master/installer.sh
-    dest: /tmp/homeassistant_installer.sh
-    owner: root
-    group: root
-    mode: '0700'
-
 - name: 'Ensure home-assistant data-share directory exists {{ homeassistant.data_share }}.'
   file:
     dest: "{{ homeassistant.data_share }}"
@@ -34,7 +26,37 @@
     group: root
     mode: '0755'
 
+- name: 'Ensure scripts library directory exists ({{ common_scripts_default_dir }}).'
+  file:
+    dest: "{{ scripts_lib }}"
+    state: directory
+    owner: 'root'
+    group: 'root'
+    mode: '0755'
+
+- name: Download homeassistant installation script to scripts library.
+  get_url:
+    url: "{{ homeassistant_supervised_installer_script_url }}"
+    dest: "{{ scripts_lib }}/homeassistant_installer.sh"
+    force: yes #Will download if missing, will replace if changed.
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+  register: homeassistant_installer
+
+- name: 'Copy homeassistant installer script tp /tmp and make executable by root.'
+  copy:
+    src: "{{ scripts_lib }}/homeassistant_installer.sh"
+    dest: /tmp/homeassistant_installer.sh"
+    remote_src: yes
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0744'
+  when: homeassistant_installer is changed
+
 - name: Run homeassistant installer script.
-  shell:
-    cmd: "/tmp/homeassistant_installer.sh --machine {{ homeassistant.machine }} --data-share {{ homeassistant.data_share }}" #" --sysconfdir {{ homeassistant.config_dir }}"
-    
+  expect:
+    command: "/tmp/homeassistant_installer.sh --machine {{ homeassistant.machine }} --data-share {{ homeassistant.data_share }}" #" --sysconfdir {{ homeassistant.config_dir }}"
+    responses:
+      (.*)N/y(.*): 'y'
+  when: homeassistant_installer is changed

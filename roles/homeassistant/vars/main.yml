@@ -10,3 +10,5 @@ homeassistant_packages:
   - network-manager
   - socat
   - software-properties-common
+
+homeassistant_supervised_installer_script_url: https://raw.githubusercontent.com/home-assistant/supervised-installer/master/installer.sh

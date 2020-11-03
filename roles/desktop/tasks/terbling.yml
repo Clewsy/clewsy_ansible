@@ -2,6 +2,24 @@
 - name: '[terbling] Load terbling variables.'
   include_vars: terbling_vars.yml
 
+- name: '[terbling] Ensure scripts library directory exists ({{ common_scripts_default_dir }}).'
+  file:
+    dest: "{{ scripts_lib }}"
+    state: directory
+    owner: 'root'
+    group: 'root'
+    mode: '0755'
+
+- name: '[terbling] Copy terbling.sh script to script library.'
+  get_url:
+    url: "{{ terbling_script_url }}"
+    dest: "{{ scripts_lib }}/terbling.sh"
+    force: yes
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+  register: terbling
+
 - name: '[terbling] Ensure bin directory within user home directory exists.'
   file:
     dest: "{{ ansible_user_home_dir }}/bin"
@@ -9,17 +27,20 @@
     group: "{{ ansible_user }}"
     mode: '0755'
     state: directory
+  when: terbling is changed
 
 - name: '[terbling] Copy terbling.sh script to user bin directory.'
-  get_url:
-    url: "{{ terbling_script_url }}"
+  copy:
+    src: "{{ scripts_lib }}/terbling.sh"
     dest: "{{ ansible_user_home_dir }}/bin/terbling.sh"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: '0755'
+  when: terbling is changed
 
 - name: '[terbling] Customize terbling.sh colour theme - desired colour for {{ host_name }} is {{ theme_colour }}.'
   lineinfile:
     path: "{{ ansible_user_home_dir }}/bin/terbling.sh"
     regexp: '^COL='
     line: "COL=\"${{ '{' }}{{ theme_colour }}{{ '}' }}\"" #Use jinja expression to "escape" braces.
+  when: terbling is changed

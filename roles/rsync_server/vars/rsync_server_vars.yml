@@ -6,6 +6,7 @@ rsync_server_packages:
 
 rsync_server_logrotate_file: |
   {{ rsync_server_logfile }} {
+  	su {{ ansible_user }} {{ ansible_user }}
   	weekly
   	rotate 12
   	compress

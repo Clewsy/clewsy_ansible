@@ -1,4 +1,6 @@
 ---
+### Remember to disable vpn if using the clews.pro role on a machine that isn't zoidberg.
+ 
 - name: Add user to www-data group.
   user:
     name: "{{ ansible_user }}"
@@ -58,11 +60,6 @@
     project_src: "{{ docker_home_dir }}"
     pull: yes
     recreate: smart #Containers will be recreated if a new version is pulled.
-
-- name: Kill openvpn if it is running (will otherwise interfere with running web services).
-  command: pkill openvpn #Returns 1 if openvpn not running.
-  register: command_result
-  failed_when: command_result.rc > 1
 
 - name: Create clews.service unit file.
   get_url:

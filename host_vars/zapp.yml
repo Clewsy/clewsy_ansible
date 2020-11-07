@@ -59,28 +59,32 @@ file_server_cifs_shares:
   - { source_path: '/srv/m0n0l1th', name: 'm0n0l1th' }
 
 rsync_server_syncs:
-  - source: 'jc@zoidberg:/home/docker'
+  - name: 'pull_zoid'
+    source: 'jc@zoidberg:/home/docker'
     dest: '/srv/cl0ud/zoidberg/'
     minute: "0"
     hour: "1"
     day: "*"
     month: "*"
     weekday: "*"
-  - source: '/srv/cl0ud/zoidberg'
+  - name: 'push_zoid'
+    source: '/srv/cl0ud/zoidberg'
     dest: 'b4t@b4t.site:/home/b4t/backups/'
     minute: "0"
     hour: "2"
     day: "*"
     month: "*"
     weekday: "*"
-  - source: 'b4t@seymour:/home/b4t/file_cache'
+  - name: 'pull_file_cache'
+    source: 'b4t@seymour:/home/b4t/file_cache'
     dest: '/srv/cl0ud/'
     minute: "0"
     hour: "3"
     day: "*"
     month: "*"
     weekday: "*"
-  - source: '/srv/cl0ud/file_cache'
+  - name: 'push_file_cache'
+    source: '/srv/cl0ud/file_cache'
     dest: 'b4t@b4t.site:/home/b4t/backups/'
     minute: "30"
     hour: "3"

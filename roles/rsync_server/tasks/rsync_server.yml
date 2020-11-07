@@ -9,10 +9,19 @@
 
 - name: '[rsync_server] Determine if the logfile exists.'
   stat:
-    path: "{{ rsync_server_logfile }}" #.env is gitignored so will not be present on fresh system.
+    path: "{{ rsync_server_logfile }}"
   register: logfile
 
-- name: '[rsync_server] Ensure logfile exists and is accessible by {{ ansible_user }}'
+- name: '[rsync_server] Ensure the log directory ({{ rsync_server_logdir }}) exists.'
+  file:
+    path: "{{ rsync_server_logdir }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0755'
+    state: directory
+  when: logfile.stat.exists == false or logfile.stat.pw_name != ansible_user or logfile.stat.gr_name != ansible_user
+
+- name: '[rsync_server] Ensure logfile {{ rsync_server_logfile }} exists and is accessible by {{ ansible_user }}'
   file:
     path: "{{ rsync_server_logfile }}"
     owner: "{{ ansible_user }}"
@@ -29,15 +38,32 @@
     group: "root"
     mode: '0644'
 
+- name: '[rsync_server] Ensure the manual backup scripts directory ({{ rsync_server_manual_backup_scripts_dir }}) exists.'
+  file:
+    path: "{{ rsync_server_manual_backup_scripts_dir }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0755'
+    state: directory
+
+- name: '[rsync_server] Create manual rsync_server backup scripts.'
+  copy:
+    content: "{{ rsync_server_manual_backup_script }}"
+    dest: "{{ rsync_server_manual_backup_scripts_dir }}/rsync_manual_backup_{{ item.name }}.sh"
+    owner: "root"
+    group: "root"
+    mode: '0755'
+  with_items: "{{ rsync_server_syncs }}"
+
 - name: '[rsync_server] Create crontab entries for rsync tasks.'
   cron:
-    name: 'Role: "rsync_server" - Sync source [{{ item.source }}] to dest [{{ item.dest }}].'
+    name: 'Role: "rsync_server" - {{ item.name }} - Sync source [{{ item.source }}] to dest [{{ item.dest }}].'
     minute: "{{ item.minute }}"
     hour: "{{ item.hour }}"
     weekday: "{{ item.weekday }}"
     day: "{{ item.day }}"
     month: "{{ item.month }}"
     user: "{{ ansible_user }}"
-    job: 'rsync --verbose --archive --delete --acls --human-readable --progress --log-file={{ rsync_server_logfile }} -e "ssh -o StrictHostKeyChecking=no" {{ item.source }} {{ item.dest }}'
+    job: "{{ rsync_server_rsync_job }}"
   with_items: "{{ rsync_server_syncs }}"
   notify: Restart cron.

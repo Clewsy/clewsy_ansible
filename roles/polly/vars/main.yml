@@ -1,4 +1,0 @@
----
-polly_script_url: "https://gitlab.com/clewsy/scripts/-/raw/master/polly.sh"
-polly_script_dest_user: "{{ ansible_user_home_dir }}/bin/polly.sh"
-polly_script_dest_root: "/usr/local/sbin/polly.sh"

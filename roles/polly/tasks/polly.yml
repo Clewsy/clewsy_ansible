@@ -1,0 +1,66 @@
+---
+- name: '[polly] Load polly variables.'
+  include_vars: polly_vars.yml
+
+- name: '[polly] Ensure scripts library directory exists ({{ scripts_lib }}).'
+  file:
+    dest: "{{ scripts_lib }}"
+    state: directory
+    owner: 'root'
+    group: 'root'
+    mode: '0755'
+
+- name: '[polly] Copy polly.sh script to script library.'
+  get_url:
+    url: "{{ polly_script_url }}"
+    dest: "{{ scripts_lib }}/polly.sh"
+    force: yes
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+  register: polly
+
+- name: '[polly] Ensure bin directory exists within user home directory.'
+  file:
+    dest: "{{ ansible_user_home_dir }}/bin"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0755'
+    state: directory
+  when: polly is changed
+
+- name: '[polly] Copy polly.sh script for use by {{ ansible_user }}.'
+  copy:
+    src: "{{ scripts_lib }}/polly.sh"
+    dest: "{{ polly_script_dest_user }}"
+    remote_src: yes
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0755'
+  when: polly is changed
+
+- name: '[polly] Copy polly.sh script for root use.'
+  copy:
+    src: "{{ scripts_lib }}/polly.sh"
+    dest: "{{ polly_script_dest_root }}"
+    remote_src: yes
+    owner: "root"
+    group: "root"
+    mode: '0755'
+  when: polly is changed
+
+- name: '[polly] Create cronjob for polly.sh poll jobs.'
+  cron:
+    name: "Role: \"polly\" - Run polly.sh."
+    minute: "*/5"
+    user: "{{ ansible_user }}"
+    job: "sudo {{ polly_script_dest_root }}"
+  notify: Restart cron.
+
+- name: '[polly] Configure log rotation for polly.log logfile (/var/log/polly.log).'
+  copy:
+    content: "{{ polly_script_logrotate_file }}"
+    dest: "/etc/logrotate.d/polly"
+    owner: "root"
+    group: "root"
+    mode: '0644'

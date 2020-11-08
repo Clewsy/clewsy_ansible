@@ -1,0 +1,39 @@
+---
+- name: '[mpd] Load mpd variables.'
+  include_vars: mpd_vars.yml
+
+- name: '[mpd] Ensure all packages required for using mpd are installed.'
+  apt:
+    name: "{{ mpd_packages }}"
+    state: latest
+
+- name: '[mpd] Create useful command line aliases.'
+  lineinfile:
+    path: "{{ ansible_user_home_dir }}/.bash_aliases"
+    state: present
+    regexp: "{{ item }}"
+    line: "{{ item }}"
+    insertafter: EOF
+    create: yes
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+  with_items: "{{ mpd_aliases }}"
+
+- name: '[mpd] Ensure preferred mpd music files directory exists ({{ music_dir }}).'
+  file:
+    dest: "{{ music_dir }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0755'
+    state: directory
+
+- name: '[mpd] Create /etc/mpd.conf from template.'
+  template:
+    src: templates/mpd.conf
+    dest: "/etc/mpd.conf"
+    owner: root
+    group: root
+    mode: '0644'
+  notify:
+    - Restart mpd.
+    - Rescan music files.

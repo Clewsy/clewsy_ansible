@@ -1,6 +1,6 @@
 ---
 blink1_tool_repo: "https://github.com/todbot/blink1-tool.git"
-blink1_tool_local_clone: "/tmp/blink1-tool"
+blink1_tool_local_clone: "{{ git_repos }}/blink1-tool"
 blink1_tool_executable_dest: "/usr/local/sbin/blink1-tool"
 blink1_tool_packages: #Requisites defined at github repo.
  - build-essential

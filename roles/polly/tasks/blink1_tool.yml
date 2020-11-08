@@ -26,5 +26,5 @@
     dest: "{{ blink1_tool_executable_dest }}"
     owner: root
     group: root
-    mode: 04755 #Note setting setuid bit so that file is executated by user with root permissions.
+    mode: '04755' #Note setting setuid bit so that file is executated by user with root permissions.
   when: blink1_tool_repo_clone is changed

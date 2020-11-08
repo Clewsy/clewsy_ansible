@@ -24,8 +24,9 @@
     dest: "{{ music_dir }}"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
-    mode: '0755'
     state: directory
+  notify:
+    - Rescan music files.
 
 - name: '[mpd] Create /etc/mpd.conf from template.'
   template:

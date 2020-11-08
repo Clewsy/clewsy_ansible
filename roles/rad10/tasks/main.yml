@@ -1,44 +1,6 @@
 ---
-- name: Ensure all packages required for rad10d daemon and webui are installed.
-  apt:
-    name: "{{ rad10_packages }}"
-    state: latest
-
-- name: Install and enable latest pigpio. #Note will clone and make install from source.  Not included in ubuntu repo but could be apt installed on raspios.
+- name: '[pigpio] Install and enable latest pigpio.' #Note will clone and make install from source.  Not included in ubuntu repo but could be apt installed on raspios.
   include: pigpio.yml
 
-- name: Clone rad10d repository to home directory.
-  git:
-    repo: "{{ rad10d_repo }}"
-    dest: "{{ ansible_user_home_dir }}/rad10d"
-    accept_hostkey: yes
-    key_file: "{{ rad10d_repo_keyfile }}"
-  register: rad10d_clone
-
-- name: Change owner of any files updated from git repo (from root to {{ ansible_user }}).
-  file:
-    recurse: yes
-    path: "{{ ansible_user_home_dir }}/rad10d"
-    state: directory
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
-  when: rad10d_clone is changed
-
-- name: Compile and install the rad10d executable from source. #Note executable will be owned by root:root
-  make:
-    chdir: "{{ ansible_user_home_dir }}/rad10d"
-    target: install
-  when: rad10d_clone is changed
-
-- name: If it exists, delete the default apache index.html page.
-  file:
-    path: /var/www/html/index.html
-    state: absent
-
-- name: Copy webui files to /var/www/html (to be served by apache).
-  copy:
-    src: "{{ ansible_user_home_dir }}/rad10d/webui/"
-    dest: "/var/www/html"
-    remote_src: yes
-    owner: www-data
-    group: www-data
+- name: '[rad10] Install and configure rad10d daemon and rad10 webui.'
+  include: rad10.yml

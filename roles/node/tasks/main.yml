@@ -4,7 +4,7 @@
     name: "{{ node_packages }}"
     state: latest
 
-- name: "Ensure scripts library directory exists ({{ common_scripts_default_dir }})."
+- name: "Ensure scripts library directory exists ({{ scripts_lib }})."
   file:
     dest: "{{ scripts_lib }}"
     state: directory

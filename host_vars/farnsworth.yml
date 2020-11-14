@@ -26,6 +26,7 @@ misc_apt_packages:
     - kicad
     - sonata #graphical mpd client
     - libimage-exiftool-perl #package includes exiftool for manipulating photo metadata.
+    - pdftk #manipulate pdf files.
   remove:
     - aisleriot
     - byobu

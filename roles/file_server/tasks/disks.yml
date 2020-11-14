@@ -41,7 +41,7 @@
     src: "LABEL={{ item.disk.label }}"
     path: "/srv/{{ item.disk.label }}"
     fstype: auto
-    opts: 'defaults'
+    opts: 'rw,suid,dev,exec,auto,nouser,async'
     state: mounted
   loop: "{{ label_stat.results }}"
   when: item.stat.exists == true

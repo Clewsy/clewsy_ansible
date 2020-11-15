@@ -37,10 +37,6 @@ cron_jobs:
 mounts:
 
 nfs_mounts:
-  - { mount_source: 'zapp:/export/data', mount_path: '/mnt/zapp/data' }
-  - { mount_source: 'zapp:/export/movies', mount_path: '/mnt/zapp/movies' }
-  - { mount_source: 'zapp:/export/mp3s', mount_path: '/mnt/zapp/mp3s' }
-  - { mount_source: 'zapp:/export/tv', mount_path: '/mnt/zapp/tv' }
   - { mount_source: 'zapp:/export/cl0ud', mount_path: '/mnt/zapp/cl0ud' }
 
 backup_file_list: |

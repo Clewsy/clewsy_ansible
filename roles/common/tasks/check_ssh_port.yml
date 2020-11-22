@@ -1,0 +1,19 @@
+---
+#If the playbook is being run for the first time on a host then the non-standard port used by sshd has not yet been configured.
+#The tasks below will test the non-standard port.  If it fails then the default port will be used for the playbook.
+#The non-standard port will be configured by the secure role.
+
+- name: '[check_ssh_port] Test port as configured in host_vars/{{ host_name }}.yml.'
+  wait_for:
+    host: "{{ host_name }}"
+    port: "{{ sshd_port }}"
+    state: "started"
+    timeout: "5"
+  delegate_to: "localhost"
+  ignore_errors: "yes"
+  register: ssh_port_configured
+
+- name: '[check_ssh_port] Connection failed so revert to default port.'
+  set_fact:
+    ansible_port: "22"
+  when: ssh_port_configured.failed is true

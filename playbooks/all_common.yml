@@ -2,7 +2,7 @@
 - name: Run common role on non_android hosts.
   hosts: not_android
   become: yes
-  gather_facts: True
+  gather_facts: false
 
   roles:
     - common

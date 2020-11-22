@@ -2,7 +2,7 @@
 - name: Configure bender.
   hosts: bender #hostname must be configured in dhcp server.
   become: yes
-  gather_facts: True
+  gather_facts: false
 
   roles:
 #    - common

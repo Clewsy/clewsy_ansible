@@ -2,7 +2,7 @@
 - name: Configure zapp.
   hosts: zapp
   become: yes
-  gather_facts: True
+  gather_facts: false
   roles:
     - common
     - headless

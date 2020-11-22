@@ -2,7 +2,7 @@
 - name: Run headless role on selected hosts.
   hosts: headless
   become: yes
-  gather_facts: True
+  gather_facts: false
 
   roles:
     - headless

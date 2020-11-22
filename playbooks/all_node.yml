@@ -2,7 +2,7 @@
 - name: Run node role on selected hosts.
   hosts: node
   become: yes
-  gather_facts: True
+  gather_facts: false
 
   roles:
     - node

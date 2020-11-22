@@ -1,4 +1,11 @@
 ---
+- name: Determine the correct ssh port for host.
+  include: check_ssh_port.yml
+  when: sshd_port is defined #Only need to check and set the ssh port if the default is overridden in the host-specific vars file.
+
+- name: "Now ssh port is known, manually gather facts."
+  setup:
+
 - name: 'Set hostname ({{ ansible_hostname }}) to {{ host_name }}.'
   hostname:
     name: "{{ host_name }}"

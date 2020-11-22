@@ -11,14 +11,12 @@
     content: "{{ ssh_private_key }}"
     dest: "{{ droid_home_dir }}/.ssh/id_rsa"
     mode: '0600'
-#  notify: Restart ssh.
 
 - name: '[ssh] Set up ssh public key.'
   copy:
     content: "{{ ssh_public_key }}"
     dest: "{{ droid_home_dir }}/.ssh/id_rsa.pub"
     mode: '0644'
-#  notify: Restart ssh.
 
 - name: '[ssh] Set up ssh config file.'
   copy:

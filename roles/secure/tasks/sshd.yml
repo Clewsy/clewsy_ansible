@@ -1,64 +1,82 @@
 ---
-  - name: '[sshd] Ensure files in the /etc/ssh/sshd_config.d/ are included in the sshd configuration.' #Configs within the sshd_conf.d directory override configs in the sshd_config file.
-    lineinfile:
-      path: /etc/ssh/sshd_config
-      regexp: '^Include /etc/ssh/sshd_config.d/*.conf'
-      line: 'Include /etc/ssh/sshd_config.d/*.conf'
-      state: present
-      insertbefore: BOF
-    notify: Restart sshd.
+- name: '[sshd] Ensure files in the /etc/ssh/sshd_config.d/ are included in the sshd configuration.' #Configs within the sshd_conf.d directory override configs in the sshd_config file.
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^Include /etc/ssh/sshd_config.d/*.conf'
+    line: 'Include /etc/ssh/sshd_config.d/*.conf'
+    state: present
+    insertbefore: BOF
+  notify: Restart sshd.
 
-  - name: '[sshd] Disable ssh root login.'
-    copy:
-      content: |
-        #Added by ansible.  Disable root login.
-        PermitRootLogin no
-      dest: /etc/ssh/sshd_config.d/no_root_login.conf
-      owner: 'root'
-      group: 'root'
-      mode: '0440'
-    notify: Restart sshd.
+- name: '[sshd] Disable ssh root login.'
+  copy:
+    content: |
+      #Added by ansible.  Disable root login.
+      PermitRootLogin no
+    dest: /etc/ssh/sshd_config.d/no_root_login.conf
+    owner: 'root'
+    group: 'root'
+    mode: '0440'
+  notify: Restart sshd.
 
-  - name: '[sshd] Disable password authentication.'
-    copy:
-      content: |
-        #Added by ansible.  Disable password authentication.
-        PasswordAuthentication no
-      dest: /etc/ssh/sshd_config.d/no_pass_auth.conf
-      owner: 'root'
-      group: 'root'
-      mode: '0440'
-    notify: Restart sshd.
+- name: '[sshd] Disable password authentication.'
+  copy:
+    content: |
+      #Added by ansible.  Disable password authentication.
+      PasswordAuthentication no
+    dest: /etc/ssh/sshd_config.d/no_pass_auth.conf
+    owner: 'root'
+    group: 'root'
+    mode: '0440'
+  notify: Restart sshd.
 
-  - name: '[sshd] Set sshd to use only protocol 2.'
-    copy:
-      content: |
-        #Added by ansible.  Use protocol 2.
-        Protocol 2
-      dest: /etc/ssh/sshd_config.d/protocol_2_only.conf
-      owner: 'root'
-      group: 'root'
-      mode: '0440'
-    notify: Restart sshd.
+- name: '[sshd] Set sshd to use only protocol 2.'
+  copy:
+    content: |
+      #Added by ansible.  Use protocol 2.
+      Protocol 2
+    dest: /etc/ssh/sshd_config.d/protocol_2_only.conf
+    owner: 'root'
+    group: 'root'
+    mode: '0440'
+  notify: Restart sshd.
 
-  - name: '[sshd] Set client timeout.'
-    copy:
-      content: |
-        #Added by ansible.  Set client timeout.
-        ClientAliveInterval 300
-      dest: /etc/ssh/sshd_config.d/client_timeout.conf
-      owner: 'root'
-      group: 'root'
-      mode: '0440'
-    notify: Restart sshd.
+- name: '[sshd] Set client timeout.'
+  copy:
+    content: |
+      #Added by ansible.  Set client timeout.
+      ClientAliveInterval 300
+    dest: /etc/ssh/sshd_config.d/client_timeout.conf
+    owner: 'root'
+    group: 'root'
+    mode: '0440'
+  notify: Restart sshd.
 
-  - name: '[sshd] Disable X11 forwarding.'
-    copy:
-      content: |
-        #Added by ansible.  Disable X11 forwarding.
-        X11Forwarding no
-      dest: /etc/ssh/sshd_config.d/no_x11_forwarding.conf
-      owner: 'root'
-      group: 'root'
-      mode: '0440'
-    notify: Restart sshd.
+- name: '[sshd] Disable X11 forwarding.'
+  copy:
+    content: |
+      #Added by ansible.  Disable X11 forwarding.
+      X11Forwarding no
+    dest: /etc/ssh/sshd_config.d/no_x11_forwarding.conf
+    owner: 'root'
+    group: 'root'
+    mode: '0440'
+  notify: Restart sshd.
+
+- name: '[sshd] Change the sshd port.'
+  copy:
+    content: |
+      #Added by ansible.  Change sshd port.
+      Port {{ sshd_port|default('22') }}
+    dest: /etc/ssh/sshd_config.d/change_sshd_port.conf
+    owner: 'root'
+    group: 'root'
+    mode: '0440'
+  notify: Restart sshd.
+
+- name: '[sshd] Set ufw rule to allow sshd port.' #Defined in defaults/ufw_defs.yml if not defined elsewhere.
+  ufw:
+    rule: allow
+    port: "{{ sshd_port|default('22') }}"
+    comment: ssh
+  notify: Restart ufw.

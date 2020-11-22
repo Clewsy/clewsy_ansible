@@ -2,7 +2,7 @@
 - name: Run secure role on selected hosts.
   hosts: secure
   become: yes
-  gather_facts: True
+  gather_facts: false
 
   roles:
     - secure

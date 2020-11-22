@@ -2,7 +2,7 @@
 - name: Configure b4t.site.
   hosts: b4t.site
   become: yes
-  gather_facts: True
+  gather_facts: false
   roles:
     - common
     - secure

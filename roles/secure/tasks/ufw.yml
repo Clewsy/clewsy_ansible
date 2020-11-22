@@ -13,9 +13,9 @@
     state: enabled
   notify: Restart ufw.
 
-- name: '[ufw] Set allow rules.' #Defined in defaults/ufw_defs.yml if not defined elsewhere.
+- name: '[ufw] Ensure the default OpenSSH port is not enabled.'
   ufw:
     rule: allow
-    name: "{{ item }}"
-  with_items: "{{ ufw_allows }}"
+    name: OpenSSH
+    delete: yes
   notify: Restart ufw.

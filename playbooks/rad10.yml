@@ -2,7 +2,7 @@
 - name: Configure rad10.
   hosts: rad10
   become: yes
-  gather_facts: True
+  gather_facts: false
   roles:
     - common
     - rad10

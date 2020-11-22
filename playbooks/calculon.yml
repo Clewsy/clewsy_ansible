@@ -2,7 +2,7 @@
 - name: Configure calculon.
   hosts: calculon
   become: yes
-  gather_facts: True
+  gather_facts: false
   roles:
     - common
     - homeassistant

@@ -183,6 +183,15 @@ mc_skin: #modarcon16root-defbg #Override default skin for midnight commander as 
 path_additions: #Add additional paths to user's PATH variable by including in the ~/.profile file.
 #  - ~/.platformio/penv/bin #Path addition for using platformio in vscode terminal (or any terminal).
 
+#secure role
+sshd_port: !vault | #Override the default port listened to by sshd.
+#  $ANSIBLE_VAULT;1.1;AES256
+#  38653538663934386337363738326335323164343738393630653562376531333939396262663162
+#  6435393239326262353231623530646137363565626433320a376566386433303037626532346363
+#  63636637333464623932643837613631613962373062633631386161346537633535666239306165
+#  6332383866343737660a333461663632376361346662393634353134626164363736346462303731
+#  3233
+
 #common role, ssh.yml
 ssh_public_key: !vault | # $ cat .ssh/id_rsa.pub | ansible-vault encrypt_string
 #  $ANSIBLE_VAULT;1.1;AES256

@@ -2,7 +2,7 @@
 - name: Configure hypnotoad.
   hosts: hypnotoad
   become: yes
-  gather_facts: True
+  gather_facts: false
   environment:
     PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin #Needed as default sudo PATH on osmc is overridden by /etc/sudoers.d/osmc-no-secure-path
 

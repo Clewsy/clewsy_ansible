@@ -2,7 +2,7 @@
 - name: Run desktop role on selected hosts.
   hosts: desktop
   become: yes
-  gather_facts: True
+  gather_facts: false
 
   roles:
     - desktop

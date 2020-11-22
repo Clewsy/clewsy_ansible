@@ -6,4 +6,3 @@ local_tz: 'Australia/Melbourne'
 
 backup_file_list: |
   ~/.ssh
-  

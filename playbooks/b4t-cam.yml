@@ -2,7 +2,7 @@
 - name: Configure b4t-cam.
   hosts: b4t-cam
   become: yes
-  gather_facts: True
+  gather_facts: false
   roles:
     - common
     - motion

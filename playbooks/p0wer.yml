@@ -2,7 +2,7 @@
 - name: Configure p0wer.
   hosts: p0wer
   become: yes
-  gather_facts: True
+  gather_facts: false
   roles:
     - common
     - p0wer

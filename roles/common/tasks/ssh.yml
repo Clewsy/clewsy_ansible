@@ -33,6 +33,7 @@
     mode: '0644'
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
+    decrypt: yes
 
 - name: '[ssh] Set up {{ ansible_user }} ssh authorized_keys.'
   authorized_key:

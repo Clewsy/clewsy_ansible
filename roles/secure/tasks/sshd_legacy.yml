@@ -45,3 +45,19 @@
     state: present
     insertafter: '^#X11Forwarding'
   notify: Restart sshd.
+
+- name: '[sshd_legacy] Change the sshd port.'
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^Port'
+    line: "Port {{ sshd_port|default('22') }}"
+    state: present
+    insertafter: '^#Port 22'
+  notify: Restart sshd.
+
+- name: '[sshd_legacy] Set ufw rule to allow sshd port.' #Defined in defaults/ufw_defs.yml if not defined elsewhere.
+  ufw:
+    rule: allow
+    port: "{{ sshd_port|default('22') }}"
+    comment: ssh
+  notify: Restart ufw.

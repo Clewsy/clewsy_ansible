@@ -2,7 +2,7 @@
 - name: Configure hostname.
   hosts: hostname #hostname must be configured in dhcp server.
   become: yes
-  gather_facts: True
+  gather_facts: False #Disable - gather_facts is run manually after confirming ssh port.
 #  environment:
 #    PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin #Include if paths not defined by default after install (e.g. OSMC).
 

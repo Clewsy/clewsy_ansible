@@ -13,4 +13,5 @@
 "explorer.confirmDragAndDrop": false,
 "window.zoomLevel": 0,
 "explorer.confirmDelete": false,
+"workbench.iconTheme": "material-icon-theme",
 }

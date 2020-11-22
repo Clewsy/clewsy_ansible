@@ -2,6 +2,7 @@
 - name: Configure zoidberg.
   hosts: zoidberg
   become: yes
+  gather_facts: false
   roles:
     - common
     - secure

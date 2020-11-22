@@ -56,7 +56,7 @@
 
 - name: Run homeassistant installer script.
   expect:
-    command: "/tmp/homeassistant_installer.sh --machine {{ homeassistant.machine }} --data-share {{ homeassistant.data_share }}" #" --sysconfdir {{ homeassistant.config_dir }}"
+    command: "{{ scripts_lib }}/homeassistant_installer.sh --machine {{ homeassistant.machine }} --data-share {{ homeassistant.data_share }}" #" --sysconfdir {{ homeassistant.config_dir }}"
     responses:
       (.*)N/y(.*): 'y'
   when: homeassistant_installer is changed

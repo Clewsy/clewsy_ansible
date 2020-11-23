@@ -63,7 +63,7 @@
     mode: '0440'
   notify: Restart sshd.
 
-- name: '[sshd] Change the sshd port.'
+- name: '[sshd] Change the sshd port.' #If port is not defined in the host-specific vars file, use the default.
   copy:
     content: |
       #Added by ansible.  Change sshd port.
@@ -74,7 +74,7 @@
     mode: '0440'
   notify: Restart sshd.
 
-- name: '[sshd] Set ufw rule to allow sshd port.' #Defined in defaults/ufw_defs.yml if not defined elsewhere.
+- name: '[sshd] Set ufw rule to allow sshd port.' 
   ufw:
     rule: allow
     port: "{{ sshd_port|default('22') }}"

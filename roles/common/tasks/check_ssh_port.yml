@@ -13,7 +13,11 @@
   ignore_errors: "yes"
   register: ssh_port_configured
 
+- debug:
+    msg: "{{ ssh_port_configured }}"
+
+
 - name: '[check_ssh_port] Connection failed so revert to default port.'
   set_fact:
     ansible_port: "22"
-  when: ssh_port_configured.failed is true
+  when: ssh_port_configured.failed == "true"

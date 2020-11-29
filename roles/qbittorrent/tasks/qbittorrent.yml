@@ -1,0 +1,52 @@
+---
+- name: '[qbittorrent] Load qbittorrent variables.'
+  include_vars: qbittorrent_vars.yml
+  
+- name: "[qbittorrent] Copy docker-compose.yml file to {{ qbittorrent_root_dir }} ready for use by docker-compose."
+  copy:
+    src: files/docker-compose.yml
+    dest: "{{ qbittorrent_docker_compose_yml }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0644'
+
+- name: '[qbittorrent] Pull docker container images listed in docker-compose.yml.'
+  docker_compose:
+    project_src: "{{ qbittorrent_root_dir }}"
+    pull: yes
+    recreate: smart #Containers will be recreated if a new version is pulled.
+  register: qbittorrent_image
+
+- name: "[qbittorrent] Wait until the file {{ qbittorrent_config_file }} is initiated if the container was pulled/restarted."
+  wait_for:
+    path: "{{ qbittorrent_config_file }}"
+  when: qbittorrent_image is changed
+
+- name: '[qbittorrent] Stop qbittorrent to make changes to config.'
+  docker_compose:
+    project_src: "{{ qbittorrent_root_dir }}"
+    stopped: yes
+  when: qbittorrent_image is changed
+
+- name: '[qbittorrent] Configure qbittorrent.conf key values.'
+  ini_file:
+    path: "{{ qbittorrent_config_file }}"
+    section: "{{ item.section }}"
+    option: "{{ item.option }}"
+    value: "{{ item.value }}"
+    create: yes
+  with_items: "{{ qbittorrent_config }}"
+
+- name: '[qbittorrent] Restart qbittorrent to implement changes to config.'
+  docker_compose:
+    project_src: "{{ qbittorrent_root_dir }}"
+    restarted: yes
+  when: qbittorrent_image is changed
+
+- name: '[qbittorrent] Create a symlink to the downloads directory within the home directory.'
+  file:
+    src: "{{ qbittorrent_root_dir }}/qbittorrent/downloads"
+    dest: "{{ ansible_user_home_dir }}/downloads"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    state: link

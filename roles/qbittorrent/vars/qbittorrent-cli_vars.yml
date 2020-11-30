@@ -1,0 +1,27 @@
+---
+#qbittorrent_root_dir: "/home/docker"
+#qbittorrent_docker_compose_yml: "{{ qbittorrent_root_dir }}/docker-compose.yml"
+#qbittorrent_config_file: "{{ qbittorrent_root_dir }}/qbittorrent/config/qBittorrent/qBittorrent.conf"
+
+#qbittorrent_config_options:
+#  - {section: "Preferences", option: WebUI\LocalHostAuth, value: 'false'} #Disable password requirement from localhost.
+#  - {section: "Preferences", option: WebUI\Password_PBKDF2, value: "@ByteArray(1Hhojdbh9XSAUnK121/HRg==:xJYPbfdYYhUnkX8xmQ6j7oAtmHcJzrc1BeDnej7BuHFPNWN/C10bNK+D7ZSJPXlEm5vl+IaOF8de4YZ5XRUu+w==)"}
+#  - {section: "Preferences", option: Downloads\TempPath, value: "/downloads/incomplete/"}
+#  - {section: "Preferences", option: Downloads\TempPathEnabled, value: 'true'}
+
+qbittorrent_cli_packages:
+  - apt-transport-https
+  - ca-certificates
+  - qbittorrent-cli
+
+qbittorrent_cli_apt_repo_gpg_key_url: "https://bintray.com/user/downloadSubjectPublicKey?username=fedarovich"
+qbittorrent_cli_apt_repo: "deb https://dl.bintray.com/fedarovich/qbittorrent-cli-debian {{ ansible_lsb.codename | default('focal') }} main"
+
+qbittorrent_cli_username: admin
+qbittorrent_cli_password: !vault |
+  $ANSIBLE_VAULT;1.1;AES256
+  30343333393665366564386161613161323061346132656566623366303736666366633131366637
+  6566316464383335306530636565333133633662373766300a326334633865653030633932393734
+  35323535646565376330653639623931396339666434383337306634343932303839323530646662
+  3461626163643131640a646333613839383634356630356431363930656365353638353164643831
+  3235

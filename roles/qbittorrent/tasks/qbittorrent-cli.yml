@@ -1,0 +1,37 @@
+---
+- name: '[qbittorrent-cli] Load qbittorrent-cli variables.'
+  include_vars: qbittorrent-cli_vars.yml 
+
+- name: '[qbittorrent-cli] Add apt signing key for qbittorrent-cli repo.'
+  apt_key:
+    url: "{{ qbittorrent_cli_apt_repo_gpg_key_url }}"
+    state: present
+
+- name: '[qbittorrent-cli] Add apt repo for qbittorrent-cli.'
+  apt_repository:
+    repo: "{{ qbittorrent_cli_apt_repo }}"
+    state: present
+    filename: qbittorrent-cli
+    mode: '0644'
+    update_cache: yes #Will update cache if a change occurs.
+
+- name: '[qbittorrent-cli] Install qbittorrent-cli packages.'
+  apt:
+    name: "{{ qbittorrent_cli_packages }}"
+    state: latest
+  register: qbittorrent_install
+
+- name: "[qbittorrent-cli] Set qbt username ({{ qbittorrent_cli_username }}) for {{ ansible_user }}."
+  command: "/usr/bin/qbt settings set username {{ qbittorrent_cli_username }}"
+  when: qbittorrent_install is changed
+  become_user: "{{ ansible_user }}"
+
+- name: "[qbittorrent-cli] Set qbt password for {{ ansible_user }}."
+  expect:
+    command: "/usr/bin/qbt settings set password"
+    responses:
+      (.*)y/N(.*): 'y'
+      (.*)enter the password(.*): "{{ qbittorrent_cli_password }}"
+  when: qbittorrent_install is changed
+  become_user: "{{ ansible_user }}"
+

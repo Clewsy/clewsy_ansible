@@ -22,11 +22,23 @@
     path: "{{ qbittorrent_config_file }}"
   when: qbittorrent_image is changed
 
+- name: '[qbittorrent] Check if changes are needed to qbittorrent.conf key values.'
+  ini_file:
+    path: "{{ qbittorrent_config_file }}"
+    section: "{{ item.section }}"
+    option: "{{ item.option }}"
+    value: "{{ item.value }}"
+    no_extra_spaces: yes
+    create: yes
+  with_items: "{{ qbittorrent_config_options }}"
+  check_mode: yes
+  register: qbittorrent_config
+
 - name: '[qbittorrent] Stop qbittorrent to make changes to config.'
   docker_compose:
     project_src: "{{ qbittorrent_root_dir }}"
     stopped: yes
-  when: qbittorrent_image is changed
+  when: qbittorrent_config is changed
 
 - name: '[qbittorrent] Configure qbittorrent.conf key values.'
   ini_file:
@@ -34,14 +46,16 @@
     section: "{{ item.section }}"
     option: "{{ item.option }}"
     value: "{{ item.value }}"
+    no_extra_spaces: yes
     create: yes
-  with_items: "{{ qbittorrent_config }}"
+  with_items: "{{ qbittorrent_config_options }}"
+  when: qbittorrent_config is changed
 
 - name: '[qbittorrent] Restart qbittorrent to implement changes to config.'
   docker_compose:
     project_src: "{{ qbittorrent_root_dir }}"
     restarted: yes
-  when: qbittorrent_image is changed
+  when: qbittorrent_config is changed
 
 - name: '[qbittorrent] Create a symlink to the downloads directory within the home directory.'
   file:

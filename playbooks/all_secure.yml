@@ -2,7 +2,7 @@
 - name: Run secure role on selected hosts.
   hosts: secure
   become: yes
-  gather_facts: false
+  gather_facts: true #Since common role is not run in this playbook, must begin with gathering facts.  Assumes ssh port has been previously configured.
 
   roles:
     - secure

@@ -2,7 +2,7 @@
 - name: Run common role on non_android hosts.
   hosts: not_android
   become: yes
-  gather_facts: false
+  gather_facts: false #common role will manually gather facts after determining correct ssh port.
 
   roles:
     - common

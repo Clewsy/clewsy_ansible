@@ -35,3 +35,10 @@
   when: qbittorrent_install is changed
   become_user: "{{ ansible_user }}"
 
+- name: '[qbittorrent-cli] Create aliases for common qbt commands.'
+  lineinfile:
+    path: "{{ ansible_user_home_dir }}/.bash_aliases"
+    line: "{{ item }}"
+    state: present
+    insertafter: EOF
+  with_items: "{{ qbittorrent_cli_aliases }}"

@@ -5,7 +5,7 @@
 - name: '[wami] Copy wami.sh script to script library.'
   get_url:
     url: "{{ wami_script_url }}"
-    dest: "{{ scripts_lib }}/wami.sh"
+    dest: "{{ scripts_lib }}/wami"
     force: yes
     owner: 'root'
     group: 'root'
@@ -14,8 +14,8 @@
 
 - name: '[wami] Copy wami.sh script to user bin directory.'
   copy:
-    src: "{{ scripts_lib }}/wami.sh"
-    dest: "{{ common_scripts_directory }}/wami.sh"
+    src: "{{ scripts_lib }}/wami"
+    dest: "{{ common_scripts_directory }}/wami"
     remote_src: yes
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"

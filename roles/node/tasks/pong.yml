@@ -1,4 +1,7 @@
 ---
+- name: '[pong] Load pong variables.'
+  include_vars: pong_vars.yml
+
 - name: '[pong] Copy pong.sh script to script library.'
   get_url:
     url: "{{ pong_script_url }}"

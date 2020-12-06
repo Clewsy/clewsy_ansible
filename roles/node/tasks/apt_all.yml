@@ -1,18 +1,21 @@
 ---
-- name: '[apt_all] Copy apt_all.sh script to script library.'
+- name: '[apt_all] Load apt_all variables.'
+  include_vars: apt_all_vars.yml
+
+- name: '[apt_all] Copy apt_all script to script library.'
   get_url:
     url: "{{ apt_all_script_url }}"
-    dest: "{{ scripts_lib }}/apt_all.sh"
+    dest: "{{ scripts_lib }}/apt_all"
     force: yes
     owner: 'root'
     group: 'root'
     mode: '0644'
   register: apt_all
 
-- name: '[apt_all] Copy apt_all.sh script to user bin directory.'
+- name: '[apt_all] Copy apt_all script to user bin directory.'
   copy:
-    src: "{{ scripts_lib }}/apt_all.sh"
-    dest: "{{ ansible_user_home_dir }}/bin/apt_all.sh"
+    src: "{{ scripts_lib }}/apt_all"
+    dest: "{{ ansible_user_home_dir }}/bin/apt_all"
     remote_src: yes
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"

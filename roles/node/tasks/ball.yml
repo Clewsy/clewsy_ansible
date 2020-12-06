@@ -1,4 +1,7 @@
 ---
+- name: '[ball] Load ball variables.'
+  include_vars: ball_vars.yml
+
 - name: '[ball] Copy ball.sh script to script library.'
   get_url:
     url: "{{ ball_script_url }}"

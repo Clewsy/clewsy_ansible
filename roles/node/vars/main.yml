@@ -1,11 +1,4 @@
 ---
-node_repos_root: "https://gitlab.com/clewsy"
-
-apt_all_script_url: "{{ node_repos_root }}/scripts/-/raw/master/apt_all.sh"
-ball_script_url: "{{ node_repos_root }}/scripts/-/raw/master/ball.sh"
-pong_script_url: "{{ node_repos_root }}/scripts/-/raw/master/pong.sh"
-whodis_script_url: "{{ node_repos_root }}/scripts/-/raw/master/whodis.sh"
-
 node_packages:
   - netdiscover
   - nmap

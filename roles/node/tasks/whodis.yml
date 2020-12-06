@@ -1,4 +1,7 @@
 ---
+- name: '[whodis] Load whodis variables.'
+  include_vars: whodis_vars.yml
+
 - name: '[whodis] Copy whodis.sh script to script library.'
   get_url:
     url: "{{ whodis_script_url }}"

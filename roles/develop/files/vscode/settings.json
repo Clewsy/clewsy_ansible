@@ -1,7 +1,8 @@
 {
-    "editor.tabSize": 8,
-    "editor.insertSpaces": false,
-    "workbench.startupEditor": "newUntitledFile",
+"editor.tabSize": 8,
+"editor.insertSpaces": false,
+"workbench.startupEditor": "newUntitledFile",
+"editor.rulers": [132],
 "workbench.colorTheme": "Material Theme Darker",
 "editor.detectIndentation": false,
 "arduino.path": "/home/jc/arduino-1.8.12",

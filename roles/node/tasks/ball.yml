@@ -2,10 +2,10 @@
 - name: '[ball] Load ball variables.'
   include_vars: ball_vars.yml
 
-- name: '[ball] Copy ball.sh script to script library.'
+- name: '[ball] Copy ball script to script library.'
   get_url:
     url: "{{ ball_script_url }}"
-    dest: "{{ scripts_lib }}/ball.sh"
+    dest: "{{ scripts_lib }}/ball"
     force: yes
     owner: 'root'
     group: 'root'
@@ -14,8 +14,8 @@
 
 - name: '[ball] Copy ball.sh script to user bin directory.'
   copy:
-    src: "{{ scripts_lib }}/ball.sh"
-    dest: "{{ ansible_user_home_dir }}/bin/ball.sh"
+    src: "{{ scripts_lib }}/ball"
+    dest: "{{ ansible_user_home_dir }}/bin/ball"
     remote_src: yes
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"

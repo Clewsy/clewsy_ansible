@@ -1,2 +1,3 @@
 ---
-ball_script_url: "{{ common_scripts_repo_root }}/scripts/-/raw/master/ball.sh"
+ball_script_url: "{{ common_scripts_repo_root }}/scripts/-/raw/master/ball"
+

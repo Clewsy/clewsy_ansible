@@ -26,13 +26,13 @@ theme_colour: CYAN
 theme_prompt: "{{ CYAN_BLUE }}"
 
 cron_jobs:
-  - name: "Run ball.sh daily."
+  - name: "Run ball daily."
     minute: "0"
     hour: "0"
     day: "*"
     month: "*"
     weekday: "*"
-    job: "{{ ansible_user_home_dir }}/bin/ball.sh"
+    job: "{{ ansible_user_home_dir }}/bin/ball"
   - name: "Backup file_cache to sd card daily."
     minute: "30"
     hour: "0"
@@ -46,7 +46,7 @@ cron_jobs:
     day: "*"
     month: "*"
     weekday: "*"
-    job: "{{ ansible_user_home_dir }}/bin/apt_all.sh"
+    job: "{{ ansible_user_home_dir }}/bin/apt_all"
 
 mounts:
   - { mount_source: /dev/mmcblk0p1, mount_path: '/media/cache', mount_fstype: 'auto', mount_opts: "auto,rw,async,user,uid={{ ansible_user }},gid={{ ansible_user }},nofail" }

@@ -1,0 +1,11 @@
+---
+#Assumes app listed under "autostart_applications" has a *.desktop file in /usr/share/applications/
+- name: '[autostart] Create symbolic link to default app autostart entries.'
+  file:
+    src: "/usr/share/applications/{{ item }}.desktop"
+    dest: "{{ ansible_user_home_dir }}/.config/autostart/{{ item }}.desktop"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    state: link
+  with_items: "{{ autostart_appplications }}"
+  when: autostart_appplications.0 is defined

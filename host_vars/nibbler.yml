@@ -45,6 +45,11 @@ nfs_mounts:
 nautilus_bookmarks:
   - "davs://nextcloud.clews.pro/remote.php/dav/files/jadon nextcloud"
 
+autostart_appplications:
+  - terminator
+  - guake
+  - conky
+
 backup_file_list: |
   ##A list of files to be backed up
   ~/.bashrc			  #just in case I customise it

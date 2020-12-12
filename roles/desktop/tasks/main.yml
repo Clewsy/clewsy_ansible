@@ -22,3 +22,6 @@
 
 - name: Install nautilus and configure bookmarks.
   include: nautilus.yml
+
+- name: Configure desired autostart applications.
+  include: autostart.yml

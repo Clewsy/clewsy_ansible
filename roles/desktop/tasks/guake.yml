@@ -22,11 +22,3 @@
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     state: directory
-
-- name: '[guake] Create symbolic link to default guake autostart entry.'
-  file:
-    src: "/usr/share/applications/guake.desktop"
-    dest: "{{ ansible_user_home_dir }}/.config/autostart/guake.desktop"
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
-    state: link

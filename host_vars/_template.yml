@@ -168,6 +168,12 @@ nautilus_bookmarks: #Add bookmarks to nautilus sidebar.
 #  - "file:///mnt/zapp"
 #  - "file:///mnt/windoze"
 
+#desktop role, autostart.yml
+autostart_appplications:
+#  - terminator
+#  - guake
+#  - conky
+
 #secure role, ufw.yml
 ufw_allows: #By default the firewall will be configured to allow OpenSSH (i.e. port 22) if the secure role is used.  This can be overridden or added to here. 
 #  - OpenSSH

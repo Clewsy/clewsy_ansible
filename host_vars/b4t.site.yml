@@ -53,9 +53,7 @@ cron_jobs:
 
 backup_file_list: |
   ~/bin/
-  ~/openvpn_configs
   $HOME/.ssh/
-  ~/wireguard/
 
 sshd_port: !vault |
   $ANSIBLE_VAULT;1.1;AES256

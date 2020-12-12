@@ -1,2 +1,2 @@
 ---
-pong_script_url: "{{ clewsy_repo_root }}/scripts/-/raw/master/pong.sh"
+pong_script_url: "{{ clewsy_repo_root }}/scripts/-/raw/master/pong"

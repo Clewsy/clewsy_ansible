@@ -31,13 +31,13 @@
 - name: Install ansible and clone repo to home directory.
   include: ansible.yml
 
-- name: Install and configure apt_all.sh script.
+- name: Install and configure apt_all script.
   include: apt_all.yml
 
-- name: Install and configure ball.sh script.
+- name: Install and configure ball script.
   include: ball.yml
 
-- name: Install and configure pong.sh script.
+- name: Install and configure pong script.
   include: pong.yml
 
 - name: Install and configure whodis.sh script.

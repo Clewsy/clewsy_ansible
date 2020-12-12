@@ -45,7 +45,7 @@
       order = 1
       profile = default
       uuid = 584baa5e-d791-4cce-988b-1a35c3fbf051
-      command = while ! ping -c 1 -W 1 1.1.1.1 &> /dev/null; do sleep 1; done && ssh -4 -o StrictHostKeyChecking=no b4t@seymour "/home/b4t/bin/pong.sh" || ssh -4 -o StrictHostKeyChecking=no b4t@clews.pro "/home/b4t/bin/pong.sh"; bash
+      command = while ! ping -c 1 -W 1 1.1.1.1 &> /dev/null; do sleep 1; done && ssh -4 -o StrictHostKeyChecking=no b4t@seymour "/home/b4t/bin/pong" || ssh -4 -o StrictHostKeyChecking=no b4t@clews.pro "/home/b4t/bin/pong"; bash
     [[[terminal1]]]
       type = Terminal
       parent = child1

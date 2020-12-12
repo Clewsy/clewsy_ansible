@@ -2,20 +2,20 @@
 - name: '[pong] Load pong variables.'
   include_vars: pong_vars.yml
 
-- name: '[pong] Copy pong.sh script to script library.'
+- name: '[pong] Copy pong script to script library.'
   get_url:
     url: "{{ pong_script_url }}"
-    dest: "{{ scripts_lib }}/pong.sh"
+    dest: "{{ scripts_lib }}/pong"
     force: yes
     owner: 'root'
     group: 'root'
     mode: '0644'
   register: pong
 
-- name: '[pong] Copy pong.sh script to user bin directory.'
+- name: '[pong] Copy pong script to user bin directory.'
   copy:
-    src: "{{ scripts_lib }}/pong.sh"
-    dest: "{{ ansible_user_home_dir }}/bin/pong.sh"
+    src: "{{ scripts_lib }}/pong"
+    dest: "{{ ansible_user_home_dir }}/bin/pong"
     remote_src: yes
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"

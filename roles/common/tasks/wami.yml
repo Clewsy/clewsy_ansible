@@ -2,7 +2,7 @@
 - name: '[wami] Load wami variables.'
   include_vars: wami_vars.yml
 
-- name: '[wami] Copy wami.sh script to script library.'
+- name: '[wami] Copy wami script to script library.'
   get_url:
     url: "{{ wami_script_url }}"
     dest: "{{ scripts_lib }}/wami"
@@ -12,7 +12,7 @@
     mode: '0644'
   register: wami
 
-- name: '[wami] Copy wami.sh script to user bin directory.'
+- name: '[wami] Copy wami script to user bin directory.'
   copy:
     src: "{{ scripts_lib }}/wami"
     dest: "{{ common_scripts_directory }}/wami"

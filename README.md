@@ -75,14 +75,14 @@ The [flexo.yml][link_repo_playbooks_flexo] playbook is a special case.  It will 
 [link_gitlab_clewsy_clews.pro_docker-compose]:https://gitlab.com/clewsy/clews.pro/-/blob/master/docker-compose.yml
 [link_gitlab_clewsy_p0wer]:https://gitlab.com/clewsy/p0wer
 [link_gitlab_clewsy_rad10d]:https://gitlab.com/clewsy/rad10d
-[link_gitlab_clewsy_scripts_apt_all]:https://gitlab.com/clewsy/scripts/-/blob/master/apt_all.sh
-[link_gitlab_clewsy_scripts_ball]:https://gitlab.com/clewsy/scripts/-/blob/master/ball.sh
-[link_gitlab_clewsy_scripts_bu]:https://gitlab.com/clewsy/scripts/-/blob/master/bu.sh
+[link_gitlab_clewsy_scripts_apt_all]:https://gitlab.com/clewsy/scripts/-/blob/master/apt_all
+[link_gitlab_clewsy_scripts_ball]:https://gitlab.com/clewsy/scripts/-/blob/master/ball
+[link_gitlab_clewsy_scripts_bu]:https://gitlab.com/clewsy/scripts/-/blob/master/bu
 [link_gitlab_clewsy_scripts_polly]:https://gitlab.com/clewsy/scripts/-/blob/master/polly.sh
-[link_gitlab_clewsy_scripts_pong]:https://gitlab.com/clewsy/scripts/-/blob/master/pong.sh
+[link_gitlab_clewsy_scripts_pong]:https://gitlab.com/clewsy/scripts/-/blob/master/pong
 [link_gitlab_clewsy_scripts_stuff]:https://gitlab.com/clewsy/scripts/-/blob/master/stuff.sh
 [link_gitlab_clewsy_scripts_terbling]:https://gitlab.com/clewsy/scripts/-/blob/master/terbling.sh
-[link_gitlab_clewsy_scripts_wami]:https://gitlab.com/clewsy/scripts/-/blob/master/wami.sh
+[link_gitlab_clewsy_scripts_wami]:https://gitlab.com/clewsy/scripts/-/blob/master/wami
 [link_gitlab_clewsy_scripts_whodis]:https://gitlab.com/clewsy/scripts/-/blob/master/whodis.sh
 [link_gitlab_clewsy_scripts_vpn]:https://gitlab.com/clewsy/scripts/-/blob/master/vpn.sh
 

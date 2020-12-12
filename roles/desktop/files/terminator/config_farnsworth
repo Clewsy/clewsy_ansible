@@ -49,7 +49,7 @@
       order = 1
       profile = default
       uuid = 54b5b915-fc98-4d08-9e94-5880dcb4ddf2
-      command = ssh -4 -o StrictHostKeyChecking=no b4t@seymour "/home/b4t/bin/pong.sh"; bash
+      command = ssh -4 -o StrictHostKeyChecking=no b4t@seymour "/home/b4t/bin/pong"; bash
     [[[terminal1]]]
       type = Terminal
       parent = child1

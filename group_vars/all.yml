@@ -6,3 +6,5 @@ local_lib_dir: /usr/local/lib
 local_src_dir: /usr/local/src
 scripts_lib: "{{ local_lib_dir }}/clewsy_scripts" #Scripts will be copied here and remain unmodified from the originals in the git repo.
 git_repos: "{{ local_src_dir }}" #Cloned git repos will be copied here for compiling locally.
+
+clewsy_repo_root: "https://gitlab.com/clewsy"

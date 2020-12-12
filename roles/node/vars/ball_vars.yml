@@ -1,3 +1,2 @@
 ---
-ball_script_url: "{{ common_scripts_repo_root }}/scripts/-/raw/master/ball"
-
+ball_script_url: "{{ clewsy_repo_root }}/scripts/-/raw/master/ball"

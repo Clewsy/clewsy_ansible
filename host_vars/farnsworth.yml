@@ -51,7 +51,7 @@ misc_python_packages:
   install:
     - youtube-dl
 
-theme_colour: GREEN
+theme_colour: BLUE
 theme_prompt: "{{ FARNSWORTH }}"
 
 cron_jobs:

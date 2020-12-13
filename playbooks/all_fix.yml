@@ -9,10 +9,10 @@
 
     - name: Delete file
       file:
-        path: /usr/local/lib/clewsy_scripts/bu.sh
+        path: /usr/local/lib/clewsy_scripts/vpn.sh
         state: absent
 
     - name: Delete another file
       file:
-        path: "/home/{{ ansible_user }}/bin/bu.sh"
+        path: "/home/{{ ansible_user }}/bin/vpn.sh"
         state: absent

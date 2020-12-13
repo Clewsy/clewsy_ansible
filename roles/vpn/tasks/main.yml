@@ -31,10 +31,10 @@
     group: 'root'
     mode: '0755'
 
-- name: Copy vpn.sh script to script library.'
+- name: Copy vpn script to script library.'
   get_url:
     url: "{{ vpn_script_url }}"
-    dest: "{{ scripts_lib }}/vpn.sh"
+    dest: "{{ scripts_lib }}/vpn"
     force: yes
     owner: 'root'
     group: 'root'
@@ -50,19 +50,19 @@
     state: directory
   when: vpn is changed
 
-- name: Copy vpn.sh script to user's bin directory.
+- name: Copy vpn script to user's bin directory.
   copy:
-    src: "{{ scripts_lib }}/vpn.sh"
-    dest: "{{ ansible_user_home_dir }}/bin/vpn.sh"
+    src: "{{ scripts_lib }}/vpn"
+    dest: "{{ ansible_user_home_dir }}/bin/vpn"
     remote_src: yes
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: '0755'
   when: vpn is changed
 
-- name: Configure vpn.sh script for host-specific use.
+- name: Configure vpn script for host-specific use.
   lineinfile:
-    path: "{{ ansible_user_home_dir }}/bin/vpn.sh"
+    path: "{{ ansible_user_home_dir }}/bin/vpn"
     regexp: '^DEFAULT_CONF='
     line: "DEFAULT_CONF=\"{{ ansible_user_home_dir }}/openvpn/Windscribe-Australia_UDP.ovpn\""
   when: vpn is changed

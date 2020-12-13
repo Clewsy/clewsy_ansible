@@ -1,2 +1,2 @@
 ---
-vpn_script_url: "{{ clewsy_repo_root }}/scripts/-/raw/master/vpn.sh"
+vpn_script_url: "{{ clewsy_repo_root }}/scripts/-/raw/master/vpn"

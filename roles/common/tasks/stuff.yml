@@ -27,4 +27,3 @@
     path: "{{ common_scripts_directory }}/stuff.sh"
     regexp: '^COL='
     line: "COL=\"${{ '{' }}{{ theme_colour }}{{ '}' }}\"" #Use jinja expression to "escape" braces.
-  when: stuff is changed

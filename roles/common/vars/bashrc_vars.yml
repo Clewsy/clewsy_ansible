@@ -30,6 +30,7 @@ SHELL_COL_BOLD_PINK: '01;38;5;201m'
 SHELL_COL_MAROON: '00;38;5;052m'
 SHELL_COL_BOLD_MAROON: '01;38;5;052m'
 SHELL_COL_DIM_YELLOW: '02;33m'
+SHELL_COL_BROWN: '38;5;94m'
 
 SHELL_COL_RESET: '00m'
 
@@ -118,6 +119,13 @@ HYPNOTOAD:
   colon: "{{ SHELL_COL_DIM_YELLOW }}"
   dir: "{{ SHELL_COL_YELLOW }}"
   prompt: "{{ SHELL_COL_BOLD_WHITE }}"
+HERMES:
+  user: "{{ SHELL_COL_BROWN }}"
+  at: "{{ SHELL_COL_YELLOW }}"
+  host: "{{ SHELL_COL_GREEN }}"
+  colon: "{{ SHELL_COL_RED }}"
+  dir: "{{ SHELL_COL_BOLD_GREEN }}"
+  prompt: "{{ SHELL_COL_RED }}"
 
 prompt_user_colour: "{{ theme_prompt.user }}"
 prompt_at_colour: "{{ theme_prompt.at }}"

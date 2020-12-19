@@ -1,0 +1,7 @@
+---
+- name: Configure hermes.
+  hosts: hermes
+  become: yes
+  gather_facts: False
+  roles:
+    - common

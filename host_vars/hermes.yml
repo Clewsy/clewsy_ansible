@@ -1,8 +1,8 @@
-host_name: hermes #fact "ansible_hostname" will be changed to host_name if it doesn't match.
+host_name: hermes
 
 ansible_user: b4t
 
-ansible_password: !vault | #$ ansible-vault encrypt_string 'secret_password'
+ansible_password: !vault |
   $ANSIBLE_VAULT;1.1;AES256
   61663438383266306664343463316263376465346237363834653561393838373730343662366236
   6230336132393865376636316537633563323862363061660a653539323162373738393531643362
@@ -10,7 +10,7 @@ ansible_password: !vault | #$ ansible-vault encrypt_string 'secret_password'
   3534633137363765300a626230623363353233653237383766656139633462313966386136303239
   3932
 
-ansible_sudo_pass: !vault | #$ ansible-vault encrypt_string 'secret_sudo_password'
+ansible_sudo_pass: !vault |
   $ANSIBLE_VAULT;1.1;AES256
   66653437663761396235306463386163636364386165366532393064313930333764376338303332
   6539303431393261646633613739623139333331326666380a636539366435336663653135336334
@@ -18,57 +18,9 @@ ansible_sudo_pass: !vault | #$ ansible-vault encrypt_string 'secret_sudo_passwor
   3836393266386233390a353737366635646530353938633065386462326665336464336464386534
   6536
 
-#common role, aliases.yml.
-aliases:
-#  - "alias ll='ls -alFh'"
+theme_colour: GREEN
+theme_prompt: "{{ HERMES }}"
 
-#common role, misc_packages.yml
-misc_packages:
-  install:
-#    - ncdu
-#    - imagemagick
-#    - kicad
-#    - asunder
-#    - lame
-#    - easytag
-  remove:
-#    - geary
-
-#common role, misc_packages.yml
-misc_snaps:
-  install:
-#    - gimp
-#    - inkscape
-#    - vlc
-  remove:
-
-#common role, misc_packages.yml
-misc_classic_snaps:
-  install:
-#    - code
-  remove:
-
-#common role, misc_packages.yml
-misc_python_packages:
-  install:
-#    - youtube-dl
-  remove:
-
-#common role, bashrc.yml and common_scripts.yml
-theme_colour: GREEN #Can override setting referenced in common/common_scripts role. Will default to CYAN if ommitted.
-theme_prompt: "{{ HERMES }}" #Can override setting referenced in common/bashrc role.  Will default to {{ CYAN_BLUE }}
-
-#common role, main.yml
-cron_jobs:
-#  - name: "Comment will be added to crontab."
-#    minute: "0"
-#    hour: "*"
-#    day: "*"
-#    month: "*"
-#    weekday: "*"
-#    job: 'echo "hello ansible"'
-
-#cups role, cups.yml
 cups_printers:
   - name: "HL-1110"
     driver_apt_package: printer_driver_brlaser
@@ -77,123 +29,6 @@ cups_printers:
     make_default: true
     share: true
 cups_port: 80 #Will default to 631 if absent.
-
-#motion role, motion.conf template overrides.
-motion: #Can override default settings in motion role.
-#  videodevice: '/dev/video0' #If ommitted, will default to /dev/video0
-#  rotate: '180' #If ommitted, will default to 0 
-#  flip_axis: 'none'  #If ommitted, will default to none
-#  width: '640' #If ommitted, will default to 320
-#  height: '480' #If ommitted, will default to 240
-#  framerate: '100' #If ommitted, will default to 2
-#  ffmpeg_output_movies: 'off' #If ommitted, will default to on
-#  stream_port: '8888' #If ommitted, will default to 8081
-#  stream_quality: '100' #If ommitted, will default to 50 (%)
-#  stream_localhost: 'off' #If ommitted, will default to on (i.e. only stream locally).
-#  picam: false #If omitted, defaults to false (i.e. webcam, not picam).
-
-#homeassistanr role.
-homeassistant: #Can override default settings when running the homeassistant installer script.
-#  machine: raspberrypi4-64 #If ommitted will default to raspberrypi-64
-#  data_share: /home/docker/home-assistant #If ommitted will default to /home/docker/home-assistant
-
-#common role, mounts.yml
-mounts:
-#  - { mount_source: /dev/mmcblk0p1, mount_path: '/media/cache', mount_fstype: 'auto', mount_opts: "auto,rw,async,user,uid={{ ansible_user }},gid={{ ansible_user }},nofail" }
-#  - { mount_source: UUID=EA9EFDBF9EFD847B, mount_path: '/mnt/windoze', mount_fstype: 'auto', mount_opts: 'ro,nosuid,nodev,nofail,x-gvfs-show' }
-
-#common role, mounts.yml
-nfs_mounts:
-#  - { mount_source: 'zapp:/export/data', mount_path: '/mnt/zapp/data' }
-#  - { mount_source: 'zapp:/export/movies', mount_path: '/mnt/zapp/movies' }
-#  - { mount_source: 'zapp:/export/mp3s', mount_path: '/mnt/zapp/mp3s' }
-#  - { mount_source: 'zapp:/export/music_videos', mount_path: '/mnt/zapp/music_videos' }
-#  - { mount_source: 'zapp:/export/tv', mount_path: '/mnt/zapp/tv' }
-#  - { mount_source: 'zapp:/export/cl0ud', mount_path: '/mnt/zapp/cl0ud' }
-#  - { mount_source: 'zapp:/export/m0n0l1th', mount_path: '/mnt/zapp/m0n0l1th' }
-
-#nfs_server role, main.yml
-nfs_server_disks:
-#  - { uuid: '0650992b-c39e-4a30-8cc8-90ac94503b59', label: 'cl0ud' }
-#  - { uuid: '42b9d5de-8e2e-4524-b544-6f988dbff09e', label: 'fileb0t' }
-#  - { uuid: 'bf535493-fb42-4997-b08a-d942e0bad3fe', label: 'm0n0l1th' }
-nfs_server_shares:
-#  - { source_path: '/srv/cl0ud', share_path: '/export/cl0ud' }
-#  - { source_path: '/srv/fileb0t/data', share_path: '/export/data' }
-#  - { source_path: '/srv/fileb0t/movies', share_path: '/export/movies' }
-#  - { source_path: '/srv/fileb0t/mp3s', share_path: '/export/mp3s' }
-#  - { source_path: '/srv/fileb0t/tv', share_path: '/export/tv' }
-#  - { source_path: '/srv/m0n0l1th', share_path: '/export/m0n0l1th' }
-
-#rsync_server role, main.yml
-rsync_server_syncs:
-#  - source: 'jc@zoidberg:/home/docker'
-#    dest: '/srv/cl0ud/zoidberg/'
-#    minute: "0"
-#    hour: "1"
-#    day: "*"
-#    month: "*"
-#    weekday: "*"
-#  - source: '/srv/cl0ud/zoidberg'
-#    dest: 'b4t@b4t.site:/home/b4t/backups/'
-#    minute: "0"
-#    hour: "2"
-#    day: "*"
-#    month: "*"
-#    weekday: "*"
-#  - source: 'b4t@seymour:/home/b4t/file_cache'
-#    dest: '/srv/cl0ud/'
-#    minute: "0"
-#    hour: "3"
-#    day: "*"
-#    month: "*"
-#    weekday: "*"
-#  - source: '/srv/cl0ud/file_cache'
-#    dest: 'b4t@b4t.site:/home/b4t/backups/'
-#    minute: "0"
-#    hour: "4"
-#    day: "*"
-#    month: "*"
-#    weekday: "*"
-
-#mpd role, main.yml
-music_dir: #"{{ ansible_user_home_dir }}/Music" #Can override default setting in mpd role.  If this is an nfs share, ensure nfs role included and share defined above.
-
-#desktop role, nautilus.yml
-nautilus_bookmarks: #Add bookmarks to nautilus sidebar.
-#  - "davs://nextcloud.clews.pro/remote.php/dav/files/jadon jadon"
-#  - "file:///mnt/zapp"
-#  - "file:///mnt/windoze"
-
-#desktop role, autostart.yml
-autostart_appplications:
-#  - terminator
-#  - guake
-#  - conky
-
-#secure role, ufw.yml
-ufw_allows: #By default the firewall will be configured to allow OpenSSH (i.e. port 22) if the secure role is used.  This can be overridden or added to here. 
-#  - OpenSSH
-
-#common role, common_scripts.yml
-backup_file_list: | #Delete completely and the default file list will include only the ~/.ssh directory.
-#  ~/.ssh
-
-#headless role, mc.yml
-mc_skin: #modarcon16root-defbg #Override default skin for midnight commander as configured by headless role.
-
-#common role, main.yml
-path_additions: #Add additional paths to user's PATH variable by including in the ~/.profile file.
-#  - ~/.platformio/penv/bin #Path addition for using platformio in vscode terminal (or any terminal).
-
-#secure role
-sshd_port: !vault | #Override the default port listened to by sshd.
-#  $ANSIBLE_VAULT;1.1;AES256
-#  38653538663934386337363738326335323164343738393630653562376531333939396262663162
-#  6435393239326262353231623530646137363565626433320a376566386433303037626532346363
-#  63636637333464623932643837613631613962373062633631386161346537633535666239306165
-#  6332383866343737660a333461663632376361346662393634353134626164363736346462303731
-#  3233
 
 ssh_public_key: !vault | # $ cat .ssh/id_rsa.pub | ansible-vault encrypt_string
   $ANSIBLE_VAULT;1.1;AES256
@@ -222,7 +57,6 @@ ssh_public_key: !vault | # $ cat .ssh/id_rsa.pub | ansible-vault encrypt_string
   37613163323564393735626261313962313564366164663064343234663637633966316664376664
   35376138643432656230
 
-#common role, ssh.yml
 ssh_private_key: !vault | # $ cat .ssh/id_rsa | ansible-vault encrypt_string
   $ANSIBLE_VAULT;1.1;AES256
   30303134616535636430346566656236373734346461323637373263316335663239623162663735

@@ -1,10 +1,11 @@
 ## A list of systems on the local network.
-b4t@b4t.site			#N/A In Stockholm (may be slow).
+b4t@b4t.site			#N/A In Romania (may be slow).
 b4t@b4t-cam			#077 raspberry pi ip camera.
 #jc@bender			#222 Laptop (may be off).
-b4t@calculon			#100 raspi 4 serving hass.io.
+b4t@calculon			#100 raspi 4 serving homeassistant.
 jc@farnsworth			#200 My desktop system.
 #butt@fartsworth		#N/A A fake host for testing scripts.
+b4t@hermes			#034 Print server (uses cups on an old raspberry pi).
 osmc@hypnotoad			#010 Media center (raspberry pi running osmc).
 jc@nibbler			#123 My amazing XPS 13!
 b4t@p0wer			#042 raspi zero w connected to a gpo remote control.

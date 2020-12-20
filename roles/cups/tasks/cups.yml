@@ -1,0 +1,54 @@
+---
+- name: '[cups] Load cups variables.'
+  include_vars: cups_vars.yml
+
+- name: '[cups] Ensure all packages required for cups are installed.'
+  apt:
+    name: "{{ cups_packages }}"
+    state: latest
+  register: cups
+
+- name: '[cups] Copy cupsd.conf file to host.'
+  template:
+    src: cupsd.conf
+    dest: /etc/cups/cupsd.conf
+    owner: root
+    group: root
+    mode: '0644'
+    backup: yes
+#  notify: Restart cups.
+  register: cupsd_conf
+
+- name: '[cups] Restart cups.'
+  service:
+    name: cups
+    state: restarted
+  when: cupsd_conf is changed
+
+- name: '[cups] Configure printer/s'
+  shell:
+    cmd: "lpadmin -p {{ item.name }} -E -v {{ item.address }} -m {{ item.model }} -u allow:all -o printer-is-shared={{ item.share }}"
+  with_items: "{{ cups_printers }}"
+  when: cups is changed or cupsd_conf is changed
+  register: configure_printers
+
+- name: '[cups] Set default printer'
+  shell:
+    cmd: "lpadmin -d {{ item.name }}"
+  with_items: "{{ cups_printers }}"
+  when: configure_printers is changed and item.make_default == true
+
+#
+#
+#
+#ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+#update_config=1
+#country=AU
+#
+#network={
+#  	ssid="B4T-Cave"
+#  	psk=481dc47d86e2184ec09c6e43674bb16836b8715ef936e7e0d62fb3aef639eb46
+#    key_mgmt=WPA-PSK
+#}
+#
+#EC:22:80:A8:5D:1A

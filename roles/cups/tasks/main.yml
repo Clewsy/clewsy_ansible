@@ -1,0 +1,6 @@
+---
+- name: '[brlaser_driver] Install brlaser_driver.' #This sub-role can be replaced simply by apt package printer-driver-brlaser once debain/raspios bullseye is released.
+  include: brlaser_driver.yml
+
+- name: '[cups] Install and configure cups and printer/s.'
+  include: cups.yml

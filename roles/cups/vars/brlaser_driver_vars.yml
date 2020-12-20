@@ -1,0 +1,7 @@
+---
+brlaser_driver_packages:
+  - cmake
+  - libcups2-dev
+
+brlaser_driver_repo: "https://github.com/pdewacht/brlaser"
+brlaser_driver_local_clone: "{{ git_repos }}/brlaser"

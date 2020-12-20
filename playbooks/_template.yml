@@ -11,6 +11,7 @@
 #    - secure
 #    - headless
 #    - node
+#    - cups
 #    - rsync_server
 #    - file_server
 #    - qbittorrent

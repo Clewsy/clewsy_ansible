@@ -1,4 +1,4 @@
---- #Tbrlaser.yml will build the package printer-driver-brlaser from souce because we need a newer version than that available on the latest raspberry pi os.
+--- #brlaser.yml will build the package printer-driver-brlaser from souce because we need a newer version than that available on the latest raspberry pi os.
 - name: '[brlaser_driver] Load brlaser_driver variables.'
   include_vars: brlaser_driver_vars.yml
 

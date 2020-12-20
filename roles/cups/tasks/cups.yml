@@ -16,7 +16,6 @@
     group: root
     mode: '0644'
     backup: yes
-#  notify: Restart cups.
   register: cupsd_conf
 
 - name: '[cups] Restart cups.'

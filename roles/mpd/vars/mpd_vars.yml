@@ -8,7 +8,7 @@ mpd_aliases:
   - "alias stream_coderadio='mpc clear && mpc add https://coderadio-admin.freecodecamp.org/radio/8010/radio.mp3 && mpc play'"
   - "alias stream_nightridefm='mpc clear && mpc add https://stream.nightride.fm/nightride.m4a && mpc play'"
   - "alias stream_proton='mpc clear && mpc add http://www.protonradio.com:8000/schedule && mpc play'"
-  - "alias stream_triplej='mpc clear && mpc add http://www.abc.net.au/res/streaming/audio/mp3/triplej.pls && mpc play'"
+  - "alias stream_triplej='mpc clear && mpc add http://live-radio01.mediahubaustralia.com/2TJW/mp3/ && mpc play'"
   - "alias stream_rektfm='mpc clear && mpc add https://stream.nightride.fm/rekt.m4a && mpc play'"
   - "alias v0='mpc volume 0'"
   - "alias v1='mpc volume 10'"

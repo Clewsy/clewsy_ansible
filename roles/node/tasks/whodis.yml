@@ -2,20 +2,20 @@
 - name: '[whodis] Load whodis variables.'
   include_vars: whodis_vars.yml
 
-- name: '[whodis] Copy whodis.sh script to script library.'
+- name: '[whodis] Copy whodis script to script library.'
   get_url:
     url: "{{ whodis_script_url }}"
-    dest: "{{ scripts_lib }}/whodis.sh"
+    dest: "{{ scripts_lib }}/whodis"
     force: yes
     owner: 'root'
     group: 'root'
     mode: '0644'
   register: whodis
 
-- name: '[whodis] Copy whodis.sh script to user bin directory.'
+- name: '[whodis] Copy whodis script to user bin directory.'
   copy:
-    src: "{{ scripts_lib }}/whodis.sh"
-    dest: "{{ ansible_user_home_dir }}/bin/whodis.sh"
+    src: "{{ scripts_lib }}/whodis"
+    dest: "{{ ansible_user_home_dir }}/bin/whodis"
     remote_src: yes
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"

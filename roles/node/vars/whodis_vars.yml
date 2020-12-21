@@ -1,2 +1,2 @@
 ---
-whodis_script_url: "{{ clewsy_repo_root }}/scripts/-/raw/master/whodis.sh"
+whodis_script_url: "{{ clewsy_repo_root }}/scripts/-/raw/master/whodis"

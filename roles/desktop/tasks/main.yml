@@ -1,27 +1,28 @@
 ---
-- name: Install and configure non-standard fonts.
+- name: '[fonts] Install and configure non-standard fonts.'
   include: fonts.yml
 
-- name: Install and configure conky.
+- name: '[conky] Install and configure conky.'
   include: conky.yml
 
-- name: Install and configure terbling script.
+- name: '[terbling] Install and configure terbling script.'
   include: terbling.yml
 
-- name: Install and configure terminator.
+- name: '[terminator] Install and configure terminator.'
   include: terminator.yml
 
-- name: Install and configure guake.
+- name: '[guake] Install and configure guake.'
   include: guake.yml
 
-- name: Install and configure gnome_config.
+- name: '[gnome_config] Install and configure gnome_config.'
   include: gnome_config.yml
 
-- name: Install vlc.
+- name: '[vlc] Install vlc.'
   include: vlc.yml
 
-- name: Install nautilus and configure bookmarks.
+- name: '[nautilus] Install nautilus and configure bookmarks.'
   include: nautilus.yml
 
-- name: Configure desired autostart applications.
+- name: '[autostart] Configure desired autostart applications.'
   include: autostart.yml
+ 

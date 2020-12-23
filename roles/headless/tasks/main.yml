@@ -1,8 +1,10 @@
 ---
-- name:  Install general packages useful for a headless system.
-  apt:
-    name: "{{ headless_packages }}"
-    state: latest
+- name: '[headless_packages] Install general packages useful for a headless system'
+  include: headless_packages.yml
 
-- name: Install and configure midnight commander.
+- name: '[mc] Install and configure midnight commander.'
   include: mc.yml
+
+- name: '[pygmentize] Install pygments python package and create ccat & cccat aliases for syntax highlighting.'
+  include: pygmentize.yml
+ 

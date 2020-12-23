@@ -1,0 +1,8 @@
+---
+- name: '[headless_packages] Load headless_packages variables.'
+  include_vars: headless_packages_vars.yml
+
+- name: '[headless_packages] Install generic headless packages.'
+  apt:
+    name: "{{ headless_packages }}"
+    state: latest

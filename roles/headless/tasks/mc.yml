@@ -13,5 +13,5 @@
   lineinfile:
     path: "{{ ansible_user_home_dir }}/.config/mc/ini"
     regexp: '^skin='
-    line: "skin={{ mc_skin }}"
+    line: "skin={{ mc_skin | default('nicedark') }}"
   when: mc_ini.stat.exists == true

@@ -7,11 +7,12 @@ polly_script_logfile: "/var/log/polly.log" #Must match definition within the scr
 polly_script_logrotate_file: |
   {{ polly_script_logfile }} {
     su root root
-  	monthly
-  	rotate 12
-  	compress
-  	delaycompress
-  	missingok
-  	notifempty
-  	create 644 root root
+    monthly
+    rotate 12
+    compress
+    delaycompress
+    missingok
+    notifempty
+    create 644 root root
   }
+

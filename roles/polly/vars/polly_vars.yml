@@ -1,7 +1,7 @@
 ---
-polly_script_url: "https://gitlab.com/clewsy/scripts/-/raw/master/polly.sh"
-polly_script_dest_user: "{{ ansible_user_home_dir }}/bin/polly.sh"
-polly_script_dest_root: "/usr/local/sbin/polly.sh"
+polly_script_url: "https://gitlab.com/clewsy/scripts/-/raw/master/polly"
+polly_script_dest_user: "{{ ansible_user_home_dir }}/bin/polly"
+polly_script_dest_root: "/usr/local/sbin/polly"
 
 polly_script_logfile: "/var/log/polly.log" #Must match definition within the script.
 polly_script_logrotate_file: |

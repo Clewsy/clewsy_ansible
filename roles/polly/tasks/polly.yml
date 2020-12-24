@@ -10,10 +10,10 @@
     group: 'root'
     mode: '0755'
 
-- name: '[polly] Copy polly.sh script to script library.'
+- name: '[polly] Copy polly script to script library.'
   get_url:
     url: "{{ polly_script_url }}"
-    dest: "{{ scripts_lib }}/polly.sh"
+    dest: "{{ scripts_lib }}/polly"
     force: yes
     owner: 'root'
     group: 'root'
@@ -29,9 +29,9 @@
     state: directory
   when: polly is changed
 
-- name: '[polly] Copy polly.sh script for use by {{ ansible_user }}.'
+- name: '[polly] Copy polly script for use by {{ ansible_user }}.'
   copy:
-    src: "{{ scripts_lib }}/polly.sh"
+    src: "{{ scripts_lib }}/polly"
     dest: "{{ polly_script_dest_user }}"
     remote_src: yes
     owner: "{{ ansible_user }}"
@@ -39,9 +39,9 @@
     mode: '0755'
   when: polly is changed
 
-- name: '[polly] Copy polly.sh script for root use.'
+- name: '[polly] Copy polly script for root use.'
   copy:
-    src: "{{ scripts_lib }}/polly.sh"
+    src: "{{ scripts_lib }}/polly"
     dest: "{{ polly_script_dest_root }}"
     remote_src: yes
     owner: "root"
@@ -49,9 +49,9 @@
     mode: '0755'
   when: polly is changed
 
-- name: '[polly] Create cronjob for polly.sh poll jobs.'
+- name: '[polly] Create cronjob for polly poll jobs.'
   cron:
-    name: "Role: \"polly\" - Run polly.sh."
+    name: "Role: \"polly\" - Run polly."
     minute: "*/5"
     user: "{{ ansible_user }}"
     job: "sudo {{ polly_script_dest_root }}"

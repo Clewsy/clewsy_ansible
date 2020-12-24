@@ -10,7 +10,7 @@ LOC_USER="b4t"			# User for attempting local network connection (faster).
 LOC_SERVER="seymour"		# Hostname fo rattempting local network connection.
 REM_USER="b4t"			# User for attempting remote network connection (if local fails)
 REM_SERVER="clews.pro"		# Hostname for remote network connection.
-COMMAND="sudo /home/b4t/bin/polly.sh -s"	# Command to run on server.
+COMMAND="sudo /home/b4t/bin/polly -s"	# Command to run on server.
 
 echo "Desired command on target: \"${COMMAND}\""
 echo "Attempting local connection."

@@ -2,5 +2,5 @@
 - name: '[blink1_tool] Install and enable blink1-tool.'
   include: blink1_tool.yml
 
-- name: '[polly] Install and configure polly.sh.'
+- name: '[polly] Install and configure polly.'
   include: polly.yml

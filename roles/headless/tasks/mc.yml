@@ -1,4 +1,7 @@
 ---
+- name: '[mc] Load mc variables.'
+  include_vars: mc_vars.yml
+
 - name: '[mc] Install midnight commander.'
   apt:
     name: mc
@@ -13,5 +16,5 @@
   lineinfile:
     path: "{{ ansible_user_home_dir }}/.config/mc/ini"
     regexp: '^skin='
-    line: "skin={{ mc_skin | default('nicedark') }}"
+    line: "skin={{ mc_skin | default(mc_default_skin) }}"
   when: mc_ini.stat.exists == true

@@ -1,6 +1,6 @@
 ---
 pygmentize_packages:
-  - python3-pygments
+  - python3-pygments # Alternatively could install pip package "pygmentize".
 
 pygmentize_aliases:
   - "alias ccat='pygmentize -g -O style={{ pygmentize_style }}'"            # Syntax highlight

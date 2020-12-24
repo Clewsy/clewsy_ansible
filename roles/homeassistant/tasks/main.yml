@@ -47,7 +47,7 @@
 - name: 'Copy homeassistant installer script tp /tmp and make executable by root.'
   copy:
     src: "{{ scripts_lib }}/homeassistant_installer.sh"
-    dest: /tmp/homeassistant_installer.sh"
+    dest: "/tmp/homeassistant_installer.sh"
     remote_src: yes
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
@@ -56,7 +56,7 @@
 
 - name: Run homeassistant installer script.
   expect:
-    command: "{{ scripts_lib }}/homeassistant_installer.sh --machine {{ homeassistant.machine }} --data-share {{ homeassistant.data_share }}" #" --sysconfdir {{ homeassistant.config_dir }}"
+    command: "/tmp/homeassistant_installer.sh --machine {{ homeassistant.machine }} --data-share {{ homeassistant.data_share }}" #" --sysconfdir {{ homeassistant.config_dir }}"
     responses:
       (.*)N/y(.*): 'y'
   when: homeassistant_installer is changed

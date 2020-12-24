@@ -2,14 +2,14 @@
 - name: '[pygmentize] Load pygmentize variables.'
   include_vars: pygmentize_vars.yml
 
-- name: '[pygmentize] Ensure pip3 is installed.'
-  apt:
-    name: python3-pip
-    state: latest
+#- name: '[pygmentize] Ensure pip3 is installed.'
+#  apt:
+#    name: python3-pip
+#    state: latest
 
-- name: '[pygmentize] Install pygmentize python packages (pip).'
-  pip:
-    name: "{{ pygmentize_pip_packages }}"
+- name: '[pygmentize] Install pygmentize packages.'
+  apt:
+    name: "{{ pygmentize_packages }}"
     state: latest
 
 - name: '[pygmentize] Set pygmentize aliases for user.'
@@ -25,7 +25,7 @@
     mode: '0644'
   with_items: "{{ pygmentize_aliases }}"
 
-- name: '[entize] Set pygmentize aliases for root.'
+- name: '[pygmentize] Set pygmentize aliases for root.'
   lineinfile:
     path: "/root/.bash_aliases"
     state: present

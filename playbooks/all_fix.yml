@@ -7,12 +7,30 @@
   tasks:
  
 
-    - name: Delete file
-      file:
-        path: /usr/local/lib/clewsy_scripts/whodis.sh
-        state: absent
+#    - name: Delete file
+#      file:
+#        path: /usr/local/lib/clewsy_scripts/whodis.sh
+#        state: absent
+#
+#    - name: Delete another file
+#      file:
+#        path: "/home/{{ ansible_user }}/bin/whodis.sh"
+#        state: absent
+#
+#    - name: Remove a python package
+#      pip:
+#        name: pygments
+#        state: absent
+#
+#    - name: Remove an apt package
+#      apt:
+#        name: python3-pip
+#        state: absent
+#        purge: yes
+#        autoremove: yes
 
-    - name: Delete another file
-      file:
-        path: "/home/{{ ansible_user }}/bin/whodis.sh"
+    - name: Remove a line from a file
+      lineinfile:
+        path: "/home/{{ ansible_user }}/.bash_aliases"
         state: absent
+        regexp: "^alias cccat="

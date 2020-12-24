@@ -1,10 +1,10 @@
 ---
-pygmentize_pip_packages:
-  - pygments
+pygmentize_packages:
+  - python3-pygments
 
 pygmentize_aliases:
   - "alias ccat='pygmentize -g -O style={{ pygmentize_style }}'"            # Syntax highlight
-  - "alias cccat='pygmentize -g -O style={{ pygmentize_style }},linenos=1'" # Syntax highlight and numbered lines.  Currently numbering does not work at terminal but hopefully in the future.
+#  - "alias cccat='pygmentize -g -O style={{ pygmentize_style }},linenos=1'" # Syntax highlight and numbered lines.  Currently numbering does not work at terminal but hopefully in the future.
 
 pygmentize_style: "friendly"
 # Current built-in styles include:

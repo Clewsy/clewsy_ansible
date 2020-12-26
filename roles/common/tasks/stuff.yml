@@ -25,5 +25,5 @@
 - name: "[stuff] Customize stuff.sh colour theme - desired colour for {{ ansible_hostname }} is {{ theme_colour }}."
   lineinfile:
     path: "{{ common_scripts_directory }}/stuff.sh"
-    regexp: '^COL='
-    line: "COL=\"${{ '{' }}{{ theme_colour }}{{ '}' }}\"" #Use jinja expression to "escape" braces.
+    regexp: '^DEFAULT_COL='
+    line: "DEFAULT_COL=\"${{ '{' }}{{ theme_colour }}{{ '}' }}\"" #Use jinja expression to "escape" braces.

@@ -33,11 +33,11 @@
     dest: "{{ droid_home_dir }}/bin/bu.list"
     mode: '0644'
 
-###stuff.sh
-- name: '[common_scripts] Copy stuff.sh script to user bin directory.'
+###stuff
+- name: '[common_scripts] Copy stuff script to user bin directory.'
   get_url:
     url: "{{ stuff_script_url }}"
-    dest: "{{ droid_home_dir }}/bin/stuff.sh"
+    dest: "{{ droid_home_dir }}/bin/stuff"
     mode: '0755'
 
 ###wami

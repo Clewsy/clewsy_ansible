@@ -1,6 +1,6 @@
 ---
 repo_root: "https://gitlab.com/clewsy"
 bu_script_url: "{{ repo_root }}/scripts/-/raw/master/bu"
-stuff_script_url: "{{ repo_root }}/scripts/-/raw/master/stuff.sh"
+stuff_script_url: "{{ repo_root }}/scripts/-/raw/master/stuff"
 wami_script_url: "{{ repo_root }}/scripts/-/raw/master/wami"
 p0wer_switch_script_url: "{{ repo_root }}/scripts/-/raw/master/p0wer_switch.sh"

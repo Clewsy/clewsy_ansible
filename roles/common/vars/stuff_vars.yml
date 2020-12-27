@@ -1,2 +1,2 @@
 ---
-stuff_script_url: "{{ clewsy_repo_root }}/scripts/-/raw/master/stuff.sh"
+stuff_script_url: "{{ clewsy_repo_root }}/scripts/-/raw/master/stuff"

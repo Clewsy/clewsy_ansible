@@ -21,7 +21,7 @@
 - name: Install and configure bu script.
   include: bu.yml
 
-- name: Install and configure stuff.sh script.
+- name: Install and configure stuff script.
   include: stuff.yml
 
 - name: Install and configure wami script.

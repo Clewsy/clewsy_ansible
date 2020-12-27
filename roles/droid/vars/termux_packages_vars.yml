@@ -1,0 +1,11 @@
+---
+termux_pip_packages:
+  - youtube-dl
+
+termux_apt_packages:
+  - bash-completion
+  - vim
+  - termux-api
+  - rsync
+  - htop
+  - man

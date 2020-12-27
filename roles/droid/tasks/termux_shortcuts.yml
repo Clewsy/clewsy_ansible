@@ -1,0 +1,77 @@
+---
+- name: '[termux_shortcuts] Load termux_shortcuts variables.'
+  include_vars: termux_shortcuts_vars.yml
+
+- name: '[termux_shortcuts] Ensure .shortcuts directory exists within user home directory.'
+  file:
+    dest: "~/.shortcuts"
+    state: directory
+    mode: '0755'
+
+- name: '[termux_shortcuts] Copy simple shortcut scripts to .shortcuts.'
+  copy:
+    src: "files/shortcuts/" #Trailing '/' so that contents is copied, not the directory itself.
+    dest: "~/.shortcuts"
+    mode: '0755'
+
+##### Remaining tasks will generate shortcuts using the p0wer_switch script as a template.
+##### Configure with entries in the termux_shortcut_commands variable.
+
+- name: '[termux_shortcuts] Copy template script to bin directory.'
+  get_url:
+    url: "{{ p0wer_switch_script_url }}"
+    dest: "{{ p0wer_switch_script }}"
+    mode: '0755'
+  register: template
+
+- name: '[termux_shortcuts] Get status of shortcuts in library.'
+  stat:
+    path: "~/.shortcuts/{{ item.name }}"
+  with_items: "{{ termux_shortcut_commands }}" 
+  register: shortcut_lib
+
+- name: '[termux_shortcuts] Copy a base template for each shortcut if the template has changed or the listed shortcut does not exist.'
+  copy:
+    src: "{{ p0wer_switch_script }}"
+    dest: "~/.shortcuts//{{ item.item.name }}"
+    remote_src: yes
+    mode: '0644'
+  with_items: "{{ shortcut_lib.results }}" 
+  when: item.stat.exists is false or template is changed
+
+- name: '[termux_shortcuts] Customize shortcut target local user.'
+  lineinfile:
+    path: "~/.shortcuts//{{ item.name }}"
+    regexp: '^LOC_USER='
+    line: "LOC_USER=\"{{ item.user }}\""
+  with_items: "{{ termux_shortcut_commands }}" 
+
+- name: '[termux_shortcuts] Customize shortcut target local host.'
+  lineinfile:
+    path: "~/.shortcuts//{{ item.name }}"
+    regexp: '^LOC_SERVER='
+    line: "LOC_SERVER=\"{{ item.host }}\""
+  with_items: "{{ termux_shortcut_commands }}" 
+
+- name: '[termux_shortcuts] Customize shortcut target command.'
+  lineinfile:
+    path: "~/.shortcuts//{{ item.name }}"
+    regexp: '^COMMAND='
+    line: "COMMAND=\"{{ item.command }}\""
+  with_items: "{{ termux_shortcut_commands }}" 
+
+- name: '[termux_shortcuts] Disable autoquit if set to false for shortcut.'
+  lineinfile:
+    path: "~/.shortcuts//{{ item.name }}"
+    line: "read -n 1 -s -r -p \"Press any key to continue.\""
+    insertbefore: '^exit 0'
+  with_items: "{{ termux_shortcut_commands }}" 
+  when: item.autoquit is false
+
+- name: '[termux_shortcuts] Enable autoquit if set to true for shortcut.'
+  lineinfile:
+    path: "~/.shortcuts//{{ item.name }}"
+    line: "read -n 1 -s -r -p \"Press any key to continue.\""
+    state: absent
+  with_items: "{{ termux_shortcut_commands }}" 
+  when: item.autoquit is true

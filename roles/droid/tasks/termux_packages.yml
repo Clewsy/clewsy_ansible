@@ -1,0 +1,20 @@
+---
+- name: Load termux_packages variables.
+  include_vars: termux_packages_vars.yml
+
+- name: Upgrade pip for installing python packages.
+  pip:
+    name: pip
+    state: latest
+
+- name: Install common python packages.
+  pip:
+    name: "{{ termux_pip_packages }}"
+    state: latest
+
+- name: Update apt cache and run a full upgrade.
+  command: "pkg upgrade -y"
+
+- name: Install common packages.
+  command: "pkg install {{ item }} -y"
+  with_items: "{{ termux_apt_packages }}"

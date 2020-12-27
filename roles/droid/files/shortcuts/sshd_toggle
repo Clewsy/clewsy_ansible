@@ -1,6 +1,5 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
-pgrep -x sshd 	&& pkill sshd \
-		|| sshd
+pkill sshd || sshd && pgrep -x sshd
 
 read -n 1 -s -r -p "Press any key to continue."

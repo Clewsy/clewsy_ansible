@@ -1,0 +1,9 @@
+---
+p0wer_switch_script_url: "{{ clewsy_repo_root }}/scripts/-/raw/master/p0wer_switch"
+p0wer_switch_script: "~/bin/p0wer_switch"
+
+termux_shortcut_commands:
+  - { name: 'polly_reset', user: b4t, host: 'seymour', command: "sudo /usr/local/sbin/polly -r && ssh zoid 'sudo /usr/local/sbin/polly -r'", autoquit: true }
+  - { name: 'polly_status', user: b4t, host: 'seymour', command: "sudo /usr/local/sbin/polly -s", autoquit: false }
+  - { name: 'tv_off', user: osmc, host: 'hypnotoad', command: "/home/osmc/bin/tv_off.sh", autoquit: true }
+  - { name: 'tv_on', user: osmc, host: 'hypnotoad', command: "/home/osmc/bin/tv_n.sh", autoquit: true }

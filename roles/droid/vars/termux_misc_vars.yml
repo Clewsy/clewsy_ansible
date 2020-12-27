@@ -1,0 +1,13 @@
+---
+termux_home_dir: "/data/data/com.termux/files/home"
+
+termux_motd: "TERMUX!\n\nWelcome to flexo.\n\n"
+
+termux_profile: |
+  alias ll="ls -alFh"
+  alias gps="termux-location -p gps -r last"
+  PATH=${PATH}:/data/data/com.termux/files/home/bin
+
+termux_vim_config: |
+  colo elflord
+  syntax on

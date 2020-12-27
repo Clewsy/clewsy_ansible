@@ -1,0 +1,21 @@
+---
+- name: '[termux_misc] Load termux_misc variables.'
+  include_vars: termux_misc_vars.yml
+
+- name: '[termux_misc] Create motd.'
+  copy:
+    content: "{{ termux_motd }}"
+    dest: "/data/data/com.termux/files/usr/etc/motd"
+    mode: '0600'
+
+- name: '[termux_misc] Configure vim.'
+  copy:
+    content: "{{ termux_vim_config }}"
+    dest: "~/.vimrc"
+    mode: '0644'
+
+- name: '[termux_misc] Configure .profile file.'
+  copy:
+    content: "{{ termux_profile }}"
+    dest: "~/.profile"
+    mode: '0644'

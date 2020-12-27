@@ -1,49 +1,15 @@
 ---
-- name: Add keys and configure ssh.
-  include: ssh.yml
+- name: '[termux_ssh] Add keys and configure ssh.'
+  include: termux_ssh.yml
 
-- name: Upgrade pip for installing python packages.
-  pip:
-    name: pip
-    state: latest
+- name: '[termux_packages] Install packages.'
+  include: termux_packages.yml
 
-- name: Install common python packages.
-  pip:
-    name: "{{ droid_pip_packages }}"
-    state: latest
+- name: '[termux_scripts] Termux miscellaneous configutation.'
+  include: termux_scripts.yml
 
-- name: Update apt cache and run a full upgrade.
-  command: "pkg upgrade -y"
+- name: '[termux_misc] Termux miscellaneous configutation.'
+  include: termux_misc.yml
 
-- name: Install common packages.
-  command: "pkg install {{ item }} -y"
-  with_items: "{{ droid_apt_packages }}"
-
-- name: Create motd.
-  copy:
-    content: "{{ droid_motd }}"
-    dest: "/data/data/com.termux/files/usr/etc/motd"
-    mode: '0600'
-
-- name: Configure vim.
-  copy:
-    content: |
-      colo elflord
-      syntax on
-    dest: "~/.vimrc"
-    mode: '0644'
-
-- name: Configure .profile file.
-  copy:
-    content: "{{ droid_profile }}"
-    dest: ~/.profile
-    mode: '0644'
-
-- name: Install and configure common scripts.
-  include: common_scripts.yml
-
-- name: Install termux shortcuts.
-  copy:
-    src: "files/shortcuts/" #Trailing '/' so that contents is copied, not the directory itself.
-    dest: "{{ droid_home_dir }}/.shortcuts"
-    mode: '0700'
+- name: '[termux_shortcuts] Termux miscellaneous configutation.'
+  include: termux_shortcuts.yml

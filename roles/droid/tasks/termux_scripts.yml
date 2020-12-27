@@ -1,0 +1,48 @@
+---
+- name: '[termux_scripts] Load common_scripts variables.'
+  include_vars: termux_scripts_vars.yml
+
+- name: '[termux_scripts] Ensure bin directory exists within user home directory.'
+  file:
+    dest: "{{ termux_scripts_dir }}"
+    state: directory
+    mode: '0755'
+
+###bu
+- name: '[termux_scripts] Copy bu script to user bin directory.'
+  get_url:
+    url: "{{ bu_script_url }}"
+    dest: "{{ termux_scripts_dir }}/bu"
+    mode: '0755'
+
+- name: '[termux_scripts] Customize bu script to work with termux - relocate temp file.'
+  lineinfile:
+    path: "{{ termux_scripts_dir }}/bu"
+    regexp: '^TEMP_BU_FILE_LIST'
+    line: 'TEMP_BU_FILE_LIST="/data/data/com.termux/files/home/bin/temp_bu_file_list"'
+
+- name: '[termux_scripts] Customize bu script to work with termux - correct hostname.'
+  lineinfile:
+    path: "{{ termux_scripts_dir }}/bu"
+    regexp: '^BU_REMOTE_DIR'
+    line: 'BU_REMOTE_DIR="/home/$BU_USER/file_cache/flexo"'
+
+- name: '[termux_scripts] Create backup file list.'
+  copy:
+    content: "{{ backup_file_list }}"
+    dest: "{{ termux_scripts_dir }}/bu.list"
+    mode: '0644'
+
+###stuff
+- name: '[termux_scripts] Copy stuff script to user bin directory.'
+  get_url:
+    url: "{{ stuff_script_url }}"
+    dest: "{{ termux_scripts_dir }}/stuff"
+    mode: '0755'
+
+###wami
+- name: '[termux_scripts] Copy wami script to user bin directory.'
+  get_url:
+    url: "{{ wami_script_url }}"
+    dest: "{{ termux_scripts_dir }}/wami"
+    mode: '0755'

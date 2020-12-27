@@ -56,5 +56,5 @@
       order = 1
       profile = default
       uuid = 41cca8d7-f397-459b-afcc-352ac6157aa7
-      command = bash /home/jc/bin/terbling.sh; bash
+      command = bash /home/jc/bin/terbling; bash
 [plugins]

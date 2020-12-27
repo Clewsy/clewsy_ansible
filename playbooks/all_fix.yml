@@ -9,12 +9,12 @@
 
     - name: Delete file
       file:
-        path: /usr/local/lib/clewsy_scripts/stuff.sh
+        path: /usr/local/lib/clewsy_scripts/terbling.sh
         state: absent
 
     - name: Delete another file
       file:
-        path: "/home/{{ ansible_user }}/bin/stuff.sh"
+        path: "/home/{{ ansible_user }}/bin/terbling.sh"
         state: absent
 #
 #    - name: Remove a python package

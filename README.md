@@ -84,7 +84,7 @@ The [flexo.yml][link_repo_playbooks_flexo] playbook is a special case.  It will 
 [link_gitlab_clewsy_scripts_polly]:https://gitlab.com/clewsy/scripts/-/blob/master/polly
 [link_gitlab_clewsy_scripts_pong]:https://gitlab.com/clewsy/scripts/-/blob/master/pong
 [link_gitlab_clewsy_scripts_stuff]:https://gitlab.com/clewsy/scripts/-/blob/master/stuff
-[link_gitlab_clewsy_scripts_terbling]:https://gitlab.com/clewsy/scripts/-/blob/master/terbling.sh
+[link_gitlab_clewsy_scripts_terbling]:https://gitlab.com/clewsy/scripts/-/blob/master/terbling
 [link_gitlab_clewsy_scripts_wami]:https://gitlab.com/clewsy/scripts/-/blob/master/wami
 [link_gitlab_clewsy_scripts_whodis]:https://gitlab.com/clewsy/scripts/-/blob/master/whodis
 [link_gitlab_clewsy_scripts_vpn]:https://gitlab.com/clewsy/scripts/-/blob/master/vpn

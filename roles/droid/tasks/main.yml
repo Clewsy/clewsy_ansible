@@ -5,11 +5,11 @@
 - name: '[termux_packages] Install packages.'
   include: termux_packages.yml
 
-- name: '[termux_scripts] Termux miscellaneous configutation.'
+- name: '[termux_scripts] Install and customize scripts for use with termux.'
   include: termux_scripts.yml
 
-- name: '[termux_misc] Termux miscellaneous configutation.'
+- name: '[termux_misc] Termux miscellaneous configuration.'
   include: termux_misc.yml
 
-- name: '[termux_shortcuts] Termux miscellaneous configutation.'
+- name: '[termux_shortcuts] Configure shortcuts for use with the Termux widget.'
   include: termux_shortcuts.yml

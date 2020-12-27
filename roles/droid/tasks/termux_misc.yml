@@ -19,3 +19,14 @@
     content: "{{ termux_profile }}"
     dest: "~/.profile"
     mode: '0644'
+
+- name: '[termux_misc] Check if termux-setup-storage has been run - determined by presense of ~/storage directory.'
+  stat:
+    path: ~/storage
+  register: storage
+
+- name: '[termux_misc] Upload files.'
+  copy:
+    src: "{{ item.source }}"
+    dest: "{{ item.dest }}"
+  with_items: "{{ termux_uploads }}"

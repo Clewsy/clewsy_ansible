@@ -1,20 +1,46 @@
 ---
-- name: Load termux_packages variables.
+- name: '[termux_packages] Load termux_packages variables.'
   include_vars: termux_packages_vars.yml
 
-- name: Upgrade pip for installing python packages.
+- name: '[termux_packages] Upgrade pip for installing python packages.'
   pip:
     name: pip
     state: latest
 
-- name: Install common python packages.
+- name: '[termux_packages] Install common python packages.'
   pip:
     name: "{{ termux_pip_packages }}"
     state: latest
 
-- name: Update apt cache and run a full upgrade.
-  command: "pkg upgrade -y"
+####################################################################################################################################
+## The following python package installation is a workaround until the python3-apt package is available for termux.
+## See issue: https://github.com/termux/termux-packages/issues/4568
+## The python3-apt package is required for using the ansible apt module.
+## Also git must be installed sto be able to use pip to install from the external git repo.
 
-- name: Install common packages.
-  command: "pkg install {{ item }} -y"
-  with_items: "{{ termux_apt_packages }}"
+- name: '[termux_packages] See if git is installed by looking for the executable.'
+  stat:
+    path: "/data/data/com.termux/files/usr/bin/git"
+  register: git
+
+- name: '[termux_packages] Manually install git.'
+  command: "pkg install git"
+  when: git.stat.exists == false
+
+- name: '[termux_packages] Manually Install python3-apt.'
+  pip:
+    name: git+https://salsa.debian.org/apt-team/python-apt.git#egg=python-apt
+####################################################################################################################################
+
+- name: '[termux_packages] Update apt cache and run a full upgrade.'
+  apt:
+    upgrade: 'full'
+    update_cache: yes
+    autoremove: yes
+    autoclean: yes
+    cache_valid_time: 86400 #Cache is valid for 24 hours.
+
+- name: '[termux_packages] Install common termux apt packages.'
+  apt:
+    name: "{{ termux_apt_packages }}"
+    state: latest

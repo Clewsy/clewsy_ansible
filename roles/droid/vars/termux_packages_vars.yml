@@ -1,6 +1,7 @@
 ---
 termux_pip_packages:
   - youtube-dl
+#  - python3-apt #Needed to enable ansible apt module..  Not yet available for Termux.
 
 termux_apt_packages:
   - bash-completion

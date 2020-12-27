@@ -9,21 +9,30 @@
     mode: '0755'
 
 ###bu
-- name: '[termux_scripts] Copy bu script to user bin directory.'
+- name: '[termux_scripts] Copy bu script to user bin directory (not executable, need to customize).'
   get_url:
     url: "{{ bu_script_url }}"
     dest: "{{ termux_scripts_dir }}/bu"
-    mode: '0755'
+    mode: '0644'
+  register: bu
 
-- name: '[termux_scripts] Customize bu script to work with termux - relocate temp file.'
+- name: '[termux_scripts] Create a custom script called termux_bu based on bu.'
+  copy:
+    src: "{{ termux_scripts_dir }}/bu"
+    dest: "{{ termux_scripts_dir }}/termux_bu"
+    remote_src: yes
+    mode: '0755'
+  when: bu is changed
+
+- name: '[termux_scripts] Customize termux_bu script to work with termux - relocate temp file.'
   lineinfile:
-    path: "{{ termux_scripts_dir }}/bu"
+    path: "{{ termux_scripts_dir }}/termux_bu"
     regexp: '^TEMP_BU_FILE_LIST'
     line: 'TEMP_BU_FILE_LIST="/data/data/com.termux/files/home/bin/temp_bu_file_list"'
 
-- name: '[termux_scripts] Customize bu script to work with termux - correct hostname.'
+- name: '[termux_scripts] Customize bu termux_bu to work with termux - correct hostname.'
   lineinfile:
-    path: "{{ termux_scripts_dir }}/bu"
+    path: "{{ termux_scripts_dir }}/termux_bu"
     regexp: '^BU_REMOTE_DIR'
     line: 'BU_REMOTE_DIR="/home/$BU_USER/file_cache/flexo"'
 

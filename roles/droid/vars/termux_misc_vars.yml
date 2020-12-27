@@ -1,7 +1,5 @@
 ---
-termux_home_dir: "/data/data/com.termux/files/home"
-
-termux_motd: "TERMUX!\n\nWelcome to flexo.\n\n"
+termux_motd: "TERMUX!\n\nWelcome to {{ host_name }}.\n\n"
 
 termux_profile: |
   alias ll="ls -alFh"
@@ -11,3 +9,9 @@ termux_profile: |
 termux_vim_config: |
   colo elflord
   syntax on
+
+termux_uploads:
+  - { source: "files/uploads/notification_carme.mp3", dest: "/sdcard/Notifications/notification_carme.mp3" }
+  - { source: "files/uploads/ringtone_callisto.m4a", dest: "/sdcard/Ringtones/ringtone_callisto.m4a" }
+  - { source: "files/uploads/ocean_waves.mp3", dest: "/sdcard/Alarms/ocean_waves.mp3" }
+  - { source: "files/uploads/rain_thunder.mp3", dest: "/sdcard/Alarms/rain_thunder.mp3" }

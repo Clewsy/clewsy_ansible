@@ -43,7 +43,7 @@
     classic: yes
   when: packages.classic_snaps.install.0 is defined
 
-- name: '[misc_papackagesckages] Install pip3.'
+- name: '[packages] Install pip3.'
   apt:
     name: python3-pip
     state: latest

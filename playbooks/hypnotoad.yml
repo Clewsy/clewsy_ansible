@@ -6,6 +6,9 @@
   environment:
     PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin #Needed as default sudo PATH on osmc is overridden by /etc/sudoers.d/osmc-no-secure-path
 
+  handlers:
+    - import_tasks: handlers/handlers.yml
+
   roles:
     - common
 

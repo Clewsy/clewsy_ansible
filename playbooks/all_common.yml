@@ -4,5 +4,8 @@
   become: yes
   gather_facts: false #common role will manually gather facts after determining correct ssh port.
 
+  handlers:
+    - import_tasks: handlers/handlers.yml
+
   roles:
     - common

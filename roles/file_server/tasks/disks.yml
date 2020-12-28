@@ -7,14 +7,16 @@
     name: "{{ disks_packages }}"
     state: latest
 
-- stat: #Check for the existence of disks by label as defined in host specific variables (file_server_disks).
+- name: '[disks] Check for the existence of disks by label as defined in host specific variables (file_server_disks).'
+  stat:
     path: "/dev/disk/by-label/{{ disk.label }}"
   loop: "{{ file_server_disks }}"
   loop_control:
     loop_var: disk
   register: label_stat
 
-- stat: #If disk not found by label, check for its existence by uuid as defined in host variables (file_server_disks).
+- name: '[disks] If disk not found by label, check for its existence by uuid as defined in host variables (file_server_disks).'
+  stat:
     path: "/dev/disk/by-uuid/{{ item.disk.uuid }}"
   loop: "{{ label_stat.results }}"
   register: uuid_stat
@@ -25,7 +27,8 @@
   loop: "{{ uuid_stat.results }}"
   when: item is not skipped and item.stat.exists == true #Will only run e2label if label wasn't found but uuid was.
 
-- stat: #Re-check for the existence of disks by label after e2label has been run.
+- name: '[disks] Re-check for the existence of disks by label after e2label has been run.'
+  stat:
     path: "/dev/disk/by-label/{{ disk.label }}"
   loop: "{{ file_server_disks }}"
   loop_control:

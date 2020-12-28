@@ -38,7 +38,7 @@
 
 - name: '[termux_scripts] Create backup file list.'
   copy:
-    content: "{{ backup_file_list }}"
+    content: "{{ backup_file_list | default ('~/.ssh') }}"
     dest: "{{ termux_scripts_dir }}/bu.list"
     mode: '0644'
 

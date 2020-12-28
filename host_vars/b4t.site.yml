@@ -18,20 +18,6 @@ ansible_sudo_pass: !vault |
   3465623165653763610a663064636130316363323638373264333639636132303239633635363962
   3764
 
-aliases:
-
-misc_apt_packages:
-  install:
-  remove:
-
-misc_snaps:
-  install:
-  remove:
-
-misc_classic_snaps:
-  install:
-  remove:
-
 theme_colour: WHITE
 theme_prompt: "{{ B4T }}"
 

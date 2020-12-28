@@ -1,8 +1,0 @@
----
-theme_colour: CYAN
-theme_prompt: "{{ CYAN_BLUE }}"
-
-local_tz: 'Australia/Melbourne'
-
-backup_file_list: |
-  ~/.ssh

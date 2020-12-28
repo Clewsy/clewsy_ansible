@@ -127,11 +127,11 @@ HERMES:
   dir: "{{ SHELL_COL_BOLD_GREEN }}"
   prompt: "{{ SHELL_COL_RED }}"
 
-prompt_user_colour: "{{ theme_prompt.user }}"
-prompt_at_colour: "{{ theme_prompt.at }}"
-prompt_host_colour: "{{ theme_prompt.host }}"
-prompt_colon_colour: "{{ theme_prompt.colon }}"
-prompt_dir_colour: "{{ theme_prompt.dir }}"
-prompt_prompt_colour: "{{ theme_prompt.prompt }}"
+prompt_user_colour: "{{ theme_prompt.user | default(SHELL_COL_BOLD_CYAN) }}"
+prompt_at_colour: "{{ theme_prompt.at | default(SHELL_COL_BOLD_WHITE) }}"
+prompt_host_colour: "{{ theme_prompt.host | default(SHELL_COL_BOLD_CYAN) }}"
+prompt_colon_colour: "{{ theme_prompt.colon | default(SHELL_COL_BOLD_WHITE) }}"
+prompt_dir_colour: "{{ theme_prompt.dir | default(SHELL_COL_BLUE) }}"
+prompt_prompt_colour: "{{ theme_prompt.prompt | default(SHELL_COL_BOLD_WHITE) }}"
 
 bash_prompt: PS1="${debian_chroot:+($debian_chroot)}\[\033[{{ prompt_user_colour }}\]\u\[\033[{{ prompt_at_colour }}\]@\[\033[{{ prompt_host_colour }}\]\h\[\033[{{ prompt_colon_colour }}\]:\[\033[{{ prompt_dir_colour }}\]\w\[\033[{{ prompt_prompt_colour }}\]\$ \[\033[{{ SHELL_COL_RESET }}\]"

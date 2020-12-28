@@ -3,6 +3,10 @@
   hosts: rad10
   become: yes
   gather_facts: false
+
+  handlers:
+    - import_tasks: handlers/handlers.yml
+
   roles:
     - common
     - rad10

@@ -35,41 +35,36 @@ ansible_sudo_pass: !vault | #$ ansible-vault encrypt_string 'secret_sudo_passwor
 aliases:
 #  - "alias ll='ls -alFh'"
 
-#common role, misc_packages.yml
-misc_packages:
-  install:
-#    - ncdu
-#    - imagemagick
-#    - kicad
-#    - asunder
-#    - lame
-#    - easytag
-  remove:
-#    - geary
+#common role, packages.yml.  Configure to install/remove packages of various types (apt, snap, classin snap or pip).
+packages:
+  apt:
+    install:
+#      - ncdu
+#      - imagemagick
+#      - kicad
+#      - asunder
+#      - lame
+#      - easytag
+    remove:
+#      - geary
+  snaps:
+    install:
+#      - gimp
+#      - inkscape
+#      - vlc
+    remove:
+  classic_snap:
+    install:
+#      - code
+    remove:
+  pip:
+    install:
+#      - youtube-dl
+    remove:
 
-#common role, misc_packages.yml
-misc_snaps:
-  install:
-#    - gimp
-#    - inkscape
-#    - vlc
-  remove:
-
-#common role, misc_packages.yml
-misc_classic_snaps:
-  install:
-#    - code
-  remove:
-
-#common role, misc_packages.yml
-misc_python_packages:
-  install:
-#    - youtube-dl
-  remove:
-
-#common role, bashrc.yml and common_scripts.yml
-theme_colour: CYAN #Can override setting referenced in common/common_scripts role. Will default to CYAN if ommitted.
-theme_prompt: "{{ CYAN_BLUE }}" #Can override setting referenced in common/bashrc role.  Will default to {{ CYAN_BLUE }}
+#common role, bashrc.yml & common_scripts.yml and desktop role, terbling.yml. 
+theme_colour: #CYAN #Will default to CYAN if ommitted.  Used to set default colour for stuff and terbling scripts.
+theme_prompt: #"{{ CYAN_BLUE }}" #Will default to {{ CYAN_BLUE }}.  Used to set bash prompt according to themes in common/vars/bashrc_vars.yml.
 
 #common role, main.yml
 cron_jobs:
@@ -194,10 +189,6 @@ backup_file_list: | #Delete completely and the default file list will include on
 
 #headless role, mc.yml
 mc_skin: #modarcon16root-defbg #Override default skin for midnight commander as configured by headless role.
-
-#common role, main.yml
-path_additions: #Add additional paths to user's PATH variable by including in the ~/.profile file.
-#  - ~/.platformio/penv/bin #Path addition for using platformio in vscode terminal (or any terminal).
 
 #secure role
 sshd_port: !vault | #Override the default port listened to by sshd.

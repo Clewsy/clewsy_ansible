@@ -18,18 +18,18 @@ ansible_sudo_pass: !vault |
   3763323834386262310a653530313061313032363133386335643636386663626330633764656333
   3034
 
-misc_apt_packages:
-  install:
-    - imagemagick #Command line image manipulation.
-    - asunder     #Rip CDs
-    - lame        #Encoder used by asunder to create mp3s
-    - easytag     #Edit mp3 id3 tags.
-  remove:
-    - geary       #Unwanted email client.
-
-misc_python_packages:
-  install:
-    - youtube-dl
+packages:
+  apt:
+    install:
+      - imagemagick #Command line image manipulation.
+      - asunder     #Rip CDs
+      - lame        #Encoder used by asunder to create mp3s
+      - easytag     #Edit mp3 id3 tags.
+    remove:
+      - geary       #Unwanted email client.
+  pip:
+    install:
+      - youtube-dl
 
 theme_colour: ORANGE
 theme_prompt: "{{ NIBBLER }}"

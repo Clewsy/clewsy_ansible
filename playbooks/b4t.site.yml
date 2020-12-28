@@ -3,6 +3,10 @@
   hosts: b4t.site
   become: yes
   gather_facts: false
+  
+  handlers:
+    - import_tasks: handlers/handlers.yml
+
   roles:
     - common
     - secure

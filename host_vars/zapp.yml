@@ -18,23 +18,13 @@ ansible_sudo_pass: !vault |
   3338613261623036380a626338393031353265306434383039383339343364373933626361303937
   3335
 
-aliases:
-
-misc_apt_packages:
-  install:
-
-misc_python_packages:
-  install:
-    - youtube-dl
+packages:
+  pip:
+    install:
+      - youtube-dl
 
 theme_colour: RED
 theme_prompt: "{{ ZAPP }}" 
-
-cron_jobs:
-
-mounts:
-
-nfs_mounts:
 
 file_server_disks:
   - { uuid: '0650992b-c39e-4a30-8cc8-90ac94503b59', label: 'cl0ud' }    #240GB SSD (2*240GB Kingston SSD in raid1).

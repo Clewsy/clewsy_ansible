@@ -18,43 +18,38 @@ ansible_sudo_pass: !vault |
   6238363063616265300a383138343862333466643661343831613661663230363833363065646435
   3331
 
-aliases:
-
-misc_apt_packages:
-  install:
-    - imagemagick
-    - kicad
-    - sonata #graphical mpd client
-    - libimage-exiftool-perl #package includes exiftool for manipulating photo metadata.
-    - pdftk #manipulate pdf files.
-  remove:
-    - aisleriot
-    - byobu
-    - cheese
-    - gnome-mines
-    - gnome-mahjongg
-    - gnome-todo
-    - gnome-sudoku
-    - remmina
-    - rhythmbox
-    - shotwell
-    - thunderbird
-    - transmission-common
-    - transmission-gtk
-
-misc_snaps:
-  install:
-    - gimp
-    - inkscape
-
-misc_python_packages:
-  install:
-    - youtube-dl
+packages:
+  apt:
+    install:
+      - imagemagick
+      - kicad
+      - sonata #graphical mpd client
+      - libimage-exiftool-perl #package includes exiftool for manipulating photo metadata.
+      - pdftk #manipulate pdf files.
+    remove:
+      - aisleriot
+      - byobu
+      - cheese
+      - gnome-mines
+      - gnome-mahjongg
+      - gnome-todo
+      - gnome-sudoku
+      - remmina
+      - rhythmbox
+      - shotwell
+      - thunderbird
+      - transmission-common
+      - transmission-gtk
+  snap:
+    install:
+      - gimp
+      - inkscape
+  pip:
+    install:
+      - youtube-dl
 
 theme_colour: BLUE
 theme_prompt: "{{ FARNSWORTH }}"
-
-cron_jobs:
 
 mounts:
   - { mount_source: UUID=EA9EFDBF9EFD847B, mount_path: '/mnt/windoze', mount_fstype: 'auto', mount_opts: 'ro,nosuid,nodev,nofail,x-gvfs-show' }

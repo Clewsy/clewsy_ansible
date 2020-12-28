@@ -74,10 +74,6 @@ backup_file_list: | #Delete completely and the default file list will include on
 
 mc_skin: modarcon16root-defbg
 
-#common role, main.yml
-path_additions: #Add additional paths to user's PATH variable by including in the ~/.profile file.
-#  - ~/.platformio/penv/bin #Path addition for using platformio in vscode terminal (or any terminal).
-
 ssh_public_key: !vault |
   $ANSIBLE_VAULT;1.1;AES256
   36643436653835316336346539613530366462663833633864346533666661613338653832386333

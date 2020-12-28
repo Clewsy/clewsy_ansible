@@ -1,0 +1,10 @@
+---
+- name: '[sudo] Enable passwordless sudo.'
+  copy:
+    content: |
+      #Added by ansible.  Enable passwordless sudo for members of group sudo.
+      %sudo ALL=(ALL) NOPASSWD: ALL
+    dest: /etc/sudoers.d/enable-passwordless-sudo
+    owner: 'root'
+    group: 'root'
+    mode: '0440'

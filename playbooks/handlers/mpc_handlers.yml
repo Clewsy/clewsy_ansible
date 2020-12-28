@@ -1,0 +1,4 @@
+---
+- name: Rescan music files.
+  command: mpc rescan
+  

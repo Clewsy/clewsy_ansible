@@ -11,5 +11,5 @@ ansible-playbook playbooks/p0wer.yml		&&
 ansible-playbook playbooks/pazuzu.yml		&&
 ansible-playbook playbooks/rad10.yml		&&
 ansible-playbook playbooks/seymour.yml		&&
-ansible-playbook playbooks/zapp.yml		&&
+ansible-playbook playbooks/zapp.yml	    	&&
 ansible-playbook playbooks/zoidberg.yml

@@ -3,6 +3,10 @@
   hosts: hermes
   become: yes
   gather_facts: False
+
+  handlers:
+    - import_tasks: handlers/handlers.yml
+
   roles:
     - common
     - cups

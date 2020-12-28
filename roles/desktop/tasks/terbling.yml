@@ -38,8 +38,8 @@
     mode: '0755'
   when: terbling is changed
 
-- name: '[terbling] Customize terbling colour theme - desired colour for {{ host_name }} is {{ theme_colour }}.'
+- name: '[terbling] Customize terbling colour theme - desired colour for {{ host_name }} is {{ theme_colour | default(CYAN) }}.'
   lineinfile:
     path: "{{ ansible_user_home_dir }}/bin/terbling"
     regexp: '^DEFAULT_COL='
-    line: "DEFAULT_COL=\"${{ '{' }}{{ theme_colour }}{{ '}' }}\"" #Use jinja expression to "escape" braces.
+    line: "DEFAULT_COL=\"${{ '{' }}{{ theme_colour | default(CYAN) }}{{ '}' }}\"" #Use jinja expression to "escape" braces.

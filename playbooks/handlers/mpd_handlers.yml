@@ -3,7 +3,3 @@
   service:
     name: mpd
     state: restarted
-
-- name: Rescan music files.
-  command: mpc rescan
-  

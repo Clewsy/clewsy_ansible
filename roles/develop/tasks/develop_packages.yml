@@ -1,0 +1,8 @@
+---
+- name: '[develop_packages] Load develop_packages variables.'
+  include_vars: develop_packages_vars.yml
+
+- name: '[develop_packages] Ensure all additional develop packages are installed.'
+  apt:
+    name: "{{ develop_packages }}"
+    state: latest

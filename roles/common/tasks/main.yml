@@ -1,92 +1,46 @@
 ---
-- name: Determine the correct ssh port for host.
+- name: '[check_ssh_port] Determine the correct ssh port for host.'
   include: check_ssh_port.yml
   when: sshd_port is defined #Only need to check and set the ssh port if the default is overridden in the host-specific vars file.
 
-- name: "Now ssh port is known, manually gather facts."
+- name: '[gather_facts] Now ssh port is known, manually gather facts.'
   setup:
 
-- name: 'Set hostname ({{ ansible_hostname }}) to {{ host_name }}.'
-  hostname:
-    name: "{{ host_name }}"
-    use: systemd
+- name: '[host_identity] Configure basic host information.'
+  include: host_identity.yml
 
-- name: Set local timezone to {{ local_tz }}.
-  timezone:
-    name: "{{ local_tz }}"
-
-- name: Add keys and configure ssh.
+- name: '[ssh] Add keys and configure ssh.'
   include: ssh.yml
 
-- name: Enable passwordless sudo.
-  copy:
-    content: |
-      #Added by ansible.  Enable passwordless sudo for members of group sudo.
-      %sudo ALL=(ALL) NOPASSWD: ALL
-    dest: /etc/sudoers.d/enable-passwordless-sudo
-    owner: 'root'
-    group: 'root'
-    mode: '0440'
+- name: '[sudo] Configure sudo.'
+  include: sudo.yml
 
-- name: Update apt cache and run a full upgrade.
-  apt:
-    upgrade: 'full'
-    update_cache: yes
-    autoremove: yes
-    autoclean: yes
-    cache_valid_time: 86400 #Cache is valid for 24 hours.
+- name: '[packages] Install host-specific miscellaneous packages.'
+  include: packages.yml
 
-- name: Install common packages.
-  apt:
-    name: "{{ common_packages }}"
-    state: latest
-    
-- name: Install and configure vim.
+- name: '[vim] Install and configure vim.'
   include: vim.yml
 
-- name: Install and configure git.
+- name: '[git] Install and configure git.'
   include: git.yml
 
-- name: Install and configure lm-sensors.
+- name: '[lm-sensors] Install and configure lm-sensors.'
   include: lm-sensors.yml
 
-- name: Install host-specific miscellaneous packages.
-  include: misc_packages.yml
-
-- name: Set custom motd.
+- name: '[motd] Set custom motd.'
   include: motd.yml
 
-- name: Configure .bashrc file.
+- name: '[basrc] Configure .bashrc file.'
   include: bashrc.yml
 
-- name: Configure aliases.
+- name: '[aliases] Configure aliases.'
   include: aliases.yml
 
-- name: Configure cron jobs.
-  cron:
-    name: "{{ item.name }}"
-    minute: "{{ item.minute }}"
-    hour: "{{ item.hour }}"
-    weekday: "{{ item.weekday }}"
-    day: "{{ item.day }}"
-    month: "{{ item.month }}"
-    user: "{{ ansible_user }}"
-    job: "{{ item.job }}"
-  with_items: "{{ cron_jobs }}"
-  when: cron_jobs.0 is defined
-  notify: Restart cron.
+- name: '[cron] Configure cron jobs.'
+  include: cron.yml
 
-- name: Configure mounts.
+- name: '[mounts] Configure mounts.'
   include: mounts.yml
 
-- name: "Add custom paths to PATH variable for {{ ansible_user }}."
-  lineinfile:
-    path: "{{ ansible_user_home_dir }}/.profile"
-    state: present
-    line: "export PATH=$PATH:{{ item }}"
-    insertafter: EOF
-  with_items: "{{ path_additions }}"
-  when: path_additions.0 is defined
-
-- name: Install and configure common scripts.
+- name: '[common_scripts] Install and configure common scripts.'
   include: common_scripts.yml

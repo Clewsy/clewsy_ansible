@@ -18,12 +18,8 @@ ansible_sudo_pass: !vault |
   6662653934633737320a323334383634383636623963666264323666373662373263373065376437
   6563
 
-aliases:
-
 theme_colour: YELLOW
 theme_prompt: "{{ CALCULON }}"
-
-cron_jobs:
 
 homeassistant:
   machine: raspberrypi4-64

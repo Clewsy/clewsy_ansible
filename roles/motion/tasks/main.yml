@@ -33,6 +33,6 @@
     owner: root
     group: root
     mode: '0755'
-  notify: Reboot pi.
+  notify: Reboot.
   when: motion.picam is defined and motion.picam
   

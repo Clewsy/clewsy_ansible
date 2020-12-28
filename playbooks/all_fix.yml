@@ -4,6 +4,9 @@
   become: yes
   gather_facts: true
 
+  handlers:
+    - import_tasks: handlers/handlers.yml
+
   tasks:
  
 

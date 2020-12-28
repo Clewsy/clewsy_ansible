@@ -37,8 +37,6 @@ cron_jobs:
     weekday: "*"
     job: 'sudo /usr/local/sbin/p0wer a off'
 
-nfs_mounts:
-
 backup_file_list: |
   ~/p0wer			#p0wer project folder - synced to gitlab.
   /usr/local/sbin/p0wer	#The p0wer executable.

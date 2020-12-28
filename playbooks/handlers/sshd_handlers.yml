@@ -3,8 +3,3 @@
   service:
     name: sshd
     state: restarted
-
-- name: Restart ufw.
-  service:
-    name: ufw
-    state: restarted

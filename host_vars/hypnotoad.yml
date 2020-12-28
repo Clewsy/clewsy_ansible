@@ -22,12 +22,10 @@ ansible_sudo_pass: !vault |
 theme_colour: YELLOW
 theme_prompt: "{{ HYPNOTOAD }}"
 
-mounts:
-
 nfs_mounts: #Note on OSMC, media shares are managed through the gui.
 
 backup_file_list: |
-  $HOME/bin/
+  $HOME/bin/  #Have some hypnotoad-specific scripts here.
   $HOME/.ssh/
 
 ssh_public_key: !vault |

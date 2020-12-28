@@ -6,6 +6,9 @@
 #  environment:
 #    PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin #Include if paths not defined by default after install (e.g. OSMC).
 
+  handlers:
+    - import_tasks: handlers/handlers.yml
+
   roles:
 #    - common
 #    - secure

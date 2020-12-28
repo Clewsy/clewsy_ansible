@@ -18,13 +18,6 @@ ansible_sudo_pass: !vault |
   3833346263356565340a303531373162656462623039363336393164393162383065643966383030
   6437
 
-aliases:
-
-misc_apt_packages:
-
-theme_colour: CYAN
-theme_prompt: "{{ CYAN_BLUE }}"
-
 cron_jobs:
   - name: "Run ball daily."
     minute: "0"

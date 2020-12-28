@@ -1,0 +1,6 @@
+---
+- name: Restart cifs server.
+  service:
+    name: smbd
+    state: restarted
+ 

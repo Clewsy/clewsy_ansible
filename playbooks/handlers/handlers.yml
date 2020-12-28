@@ -1,0 +1,17 @@
+---
+- import_tasks: cifs_handlers.yml
+- import_tasks: cron_handlers.yml
+- import_tasks: docker_handlers.yml
+- import_tasks: motion_handlers.yml
+- import_tasks: mpc_handlers.yml
+- import_tasks: mpd_handlers.yml
+- import_tasks: nfs_handlers.yml
+- import_tasks: snapd_handlers.yml
+- import_tasks: ssh_handlers.yml
+- import_tasks: sshd_handlers.yml
+- import_tasks: ufw_handlers.yml
+- import_tasks: wireguard_handlers.yml
+
+- name: Reboot.
+  reboot:
+  

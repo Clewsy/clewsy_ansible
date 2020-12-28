@@ -1,0 +1,9 @@
+---
+- name: "[host_identity] Set hostname ({{ ansible_hostname }}) to {{ host_name }}."
+  hostname:
+    name: "{{ host_name }}"
+    use: systemd
+
+- name: "[host_identity] Set local timezone to {{ local_tz | default('Australia/Melbourne') }}."
+  timezone:
+    name: "{{ local_tz | default('Australia/Melbourne') }}"

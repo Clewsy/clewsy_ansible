@@ -38,3 +38,12 @@
   notify:
     - Restart mpd.
     - Rescan music files.
+
+- name: '[mpd] Allow mpd client access through the firewall.'
+  ufw:
+    rule: allow
+    to_port: "{{ mpd.port }}"
+    proto: tcp
+    comment: mpd
+  notify: Restart ufw.
+  when: mpd.port is defined

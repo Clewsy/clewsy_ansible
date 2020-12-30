@@ -9,12 +9,12 @@
 
   roles:
     - common
-#    - secure
-##    - clews.pro
-#    - headless
-#    - node
-#    - docker
-#    - vpn
-#    - mpd
-#    - desktop
-#    - develop
+    - secure
+#    - clews.pro
+    - headless
+    - node
+    - docker
+    - vpn
+    - mpd
+    - desktop
+    - develop

@@ -24,7 +24,9 @@ theme_prompt: "{{ YELLOW_RED }}"
 nfs_mounts:
   - { mount_source: 'zapp:/export/mp3s', mount_path: '/mnt/zapp/mp3s' }
 
-music_dir: "/mnt/zapp/mp3s"
+mpd:
+  music_dir: "/mnt/zapp/mp3s"
+#  port: 6600
 
 backup_file_list: |
   ~/rad10d

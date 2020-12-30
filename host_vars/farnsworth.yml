@@ -65,7 +65,9 @@ nfs_mounts:
   - { mount_source: 'zapp:/export/t4nk', mount_path: '/mnt/zapp/t4nk' }
   - { mount_source: 'zapp:/export/y4nk', mount_path: '/mnt/zapp/y4nk' }
 
-music_dir: "/mnt/zapp/mp3s"
+mpd:
+  music_dir: "/mnt/zapp/mp3s"
+  port: 6660
 
 nautilus_bookmarks:
   - "davs://nextcloud.clews.pro/remote.php/dav/files/jadon nextcloud"

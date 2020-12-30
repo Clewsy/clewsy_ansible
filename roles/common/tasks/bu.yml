@@ -24,7 +24,7 @@
 
 - name: '[bu] Create backup file list.'
   copy:
-    content: "{{ backup_file_list | default ('~/.ssh') }}" #Defaults to just ~/.ssh dir if not defined in host's vars file.
+    content: "{{ backup_file_list | default (bu_default_file_list) }}" #Defaults to just ~/.ssh dir if not defined in host's vars file.
     dest: "{{ common_scripts_directory }}/bu.list"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"

@@ -15,20 +15,20 @@
 - name: '[rsync_server] Ensure the log directory ({{ rsync_server_logdir }}) exists.'
   file:
     path: "{{ rsync_server_logdir }}"
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
+    owner: "root"
+    group: "root"
     mode: '0755'
     state: directory
   when: logfile.stat.exists == false or logfile.stat.pw_name != ansible_user or logfile.stat.gr_name != ansible_user
 
-- name: '[rsync_server] Ensure logfile {{ rsync_server_logfile }} exists and is accessible by {{ ansible_user }}'
-  file:
-    path: "{{ rsync_server_logfile }}"
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
-    mode: '0644'
-    state: touch
-  when: logfile.stat.exists == false or logfile.stat.pw_name != ansible_user or logfile.stat.gr_name != ansible_user
+#- name: '[rsync_server] Ensure logfile {{ rsync_server_logfile }} exists and is accessible by {{ ansible_user }}'
+#  file:
+#    path: "{{ rsync_server_logfile }}"
+#    owner: "root"
+#    group: "root"
+#    mode: '0644'
+#    state: touch
+#  when: logfile.stat.exists == false or logfile.stat.pw_name != ansible_user or logfile.stat.gr_name != ansible_user
 
 - name: '[rsync_server] Configure log rotation for rsync_server logfile ({{ rsync_server_logfile }}).'
   copy:
@@ -38,18 +38,18 @@
     group: "root"
     mode: '0644'
 
-- name: '[rsync_server] Ensure the manual backup scripts directory ({{ rsync_server_manual_backup_scripts_dir }}) exists.'
+- name: '[rsync_server] Ensure the backup scripts directory exists ({{ rsync_server_backup_scripts_lib_dir }}).'
   file:
-    path: "{{ rsync_server_manual_backup_scripts_dir }}"
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
+    path: "{{ rsync_server_backup_scripts_lib_dir }}"
+    owner: "root"
+    group: "root"
     mode: '0755'
     state: directory
 
-- name: '[rsync_server] Create manual rsync_server backup scripts.'
+- name: '[rsync_server] Create rsync_server backup scripts.'
   copy:
-    content: "{{ rsync_server_manual_backup_script }}"
-    dest: "{{ rsync_server_manual_backup_scripts_dir }}/rsync_manual_backup_{{ item.name }}.sh"
+    content: "{{ rsync_server_backup_script }}"
+    dest: "{{ rsync_server_backup_scripts_lib_dir }}/rsync_backup_{{ item.name }}.sh"
     owner: "root"
     group: "root"
     mode: '0755'
@@ -63,7 +63,23 @@
     weekday: "{{ item.weekday }}"
     day: "{{ item.day }}"
     month: "{{ item.month }}"
-    user: "{{ ansible_user }}"
-    job: "{{ rsync_server_rsync_job }}"
+    user: "root"
+    job: "{{ rsync_server_backup_scripts_lib_dir }}/rsync_backup_{{ item.name }}.sh"
   with_items: "{{ rsync_server_syncs }}"
   notify: Restart cron.
+
+- name: '[rsync_server] Ensure the backup script links directory exists ({{ rsync_server_backup_scripts_user_dir }}).'
+  file:
+    path: "{{ rsync_server_backup_scripts_user_dir }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0755'
+    state: directory
+
+- name: '[rsync_server] Make links to the backup scripts in the user home directory. ({{ rsync_server_backup_scripts_user_dir }}).'
+  file:
+    src: "{{ rsync_server_backup_scripts_lib_dir }}/rsync_backup_{{ item.name }}.sh"
+    path: "{{ rsync_server_backup_scripts_user_dir }}/rsync_backup_{{ item.name }}.sh"
+    mode: '0755'
+    state: link
+  with_items: "{{ rsync_server_syncs }}"

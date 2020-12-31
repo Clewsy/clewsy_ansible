@@ -48,7 +48,7 @@ file_server_cifs_shares:
   - { source_path: '/srv/fileb0t/tv', name: 'tv' }
   - { source_path: '/srv/m0n0l1th', name: 'm0n0l1th' }
 
-rsync_server_syncs:
+rsync_server_syncs: #Jobs will be added to the root crontab.
   - name: 'pull_zoid'
     source: 'jc@zoidberg:/home/docker'
     dest: '/srv/cl0ud/zoidberg/'

@@ -67,7 +67,7 @@ theme_colour: #CYAN #Will default to CYAN if ommitted.  Used to set default colo
 theme_prompt: #"{{ CYAN_BLUE }}" #Will default to {{ CYAN_BLUE }}.  Used to set bash prompt according to themes in common/vars/bashrc_vars.yml.
 
 #common role, main.yml
-cron_jobs:
+cron_jobs: #Note, jobs will be added to the root crontab.
 #  - name: "Comment will be added to crontab."
 #    minute: "0"
 #    hour: "*"

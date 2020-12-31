@@ -25,8 +25,6 @@
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     state: directory
-  notify:
-    - Rescan music files.
 
 - name: '[mpd] Create /etc/mpd.conf from template.'
   template:
@@ -36,10 +34,35 @@
     group: root
     mode: '0644'
   notify:
-    - Restart mpd.
-    - Rescan music files.
+    - Restart mpd.service
+    - Rescan music files
 
-- name: '[mpd] Allow mpd client access through the firewall.'
+- name: '[mpd] Change the port defined in the mpd.socket unit file (i.e. port listened to for client connections).'
+  lineinfile:
+    path: "/lib/systemd/system/mpd.socket"
+    state: present
+    regexp: "^ListenStream=[1-9]"
+    line: "ListenStream={{ mpd.port }}"
+  when: mpd.port is defined
+  register: mpd_port
+
+- name: '[mpd] Stop mpd.socket to load new socket port.'
+  systemd:
+    name: mpd.socket
+    state: stopped
+  notify:
+    - Restart mpd.socket
+  when: mpd_port is changed
+
+- name: '[mpd] Stop mpd.service to load new socket port.  Must stop .service so that .socket can be reloaded.'
+  systemd:
+    name: mpd.service
+    state: stopped
+  notify:
+    - Restart mpd.service
+  when: mpd_port is changed
+
+- name: '[mpd] Allow mpd client access through the firewall.' #Note, will not enable ufw.
   ufw:
     rule: allow
     to_port: "{{ mpd.port }}"

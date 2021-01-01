@@ -1,24 +1,30 @@
 ---
-- name: '[fonts] Install and configure non-standard fonts.'
-  include: fonts.yml
-
 - name: '[conky] Install and configure conky.'
   include: conky.yml
-
-- name: '[terbling] Install and configure terbling script.'
-  include: terbling.yml
-
-- name: '[terminator] Install and configure terminator.'
-  include: terminator.yml
+  when: desktop.install.conky is defined and desktop.install.conky
 
 - name: '[guake] Install and configure guake.'
   include: guake.yml
+  when: desktop.install.guake is defined and desktop.install.guake
 
-- name: '[gnome_config] Install and configure gnome_config.'
-  include: gnome_config.yml
+- name: '[sonata] Install and configure sonata.'
+  include: sonata.yml
+  when: desktop.install.sonata is defined and desktop.install.sonata
+
+- name: '[terbling] Install and configure terbling script.'
+  include: terbling.yml
+  when: desktop.install.terbling is defined and desktop.install.terbling
+
+- name: '[terminator] Install and configure terminator.'
+  include: terminator.yml
+  when: desktop.install.terminator is defined and desktop.install.terminator
 
 - name: '[vlc] Install vlc.'
   include: vlc.yml
+  when: desktop.install.vlc is defined and desktop.install.vlc
+
+- name: '[gnome_config] Install and configure gnome_config.'
+  include: gnome_config.yml
 
 - name: '[nautilus] Install nautilus and configure bookmarks.'
   include: nautilus.yml

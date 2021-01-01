@@ -23,7 +23,7 @@ packages:
     install:
       - imagemagick
       - kicad
-      - sonata #graphical mpd client
+#      - sonata #graphical mpd client
       - libimage-exiftool-perl #package includes exiftool for manipulating photo metadata.
       - pdftk #manipulate pdf files.
     remove:
@@ -69,18 +69,25 @@ mpd:
   music_dir: "/mnt/zapp/mp3s"
   port: 6660
 
-nautilus_bookmarks:
-  - "davs://nextcloud.clews.pro/remote.php/dav/files/jadon nextcloud"
-  - "file:///home/jc/projects projects"
-  - "file:///mnt/zapp"
-  - "file:///mnt/windoze windoze"
-
-autostart_appplications:
-  - terminator
-  - guake
-  - conky
-  - sonata
-  - firefox
+desktop:
+  install:
+    conky: true
+    guake: true
+    sonata: true
+    terbling: true
+    terminator: true
+    vlc: true
+  nautilus_bookmarks: #Add bookmarks to nautilus sidebar.
+    - "davs://nextcloud.clews.pro/remote.php/dav/files/jadon nextcloud"
+    - "file:///home/jc/projects projects"
+    - "file:///mnt/zapp"
+    - "file:///mnt/windoze windoze"
+  autostart_appplications:
+    - terminator
+    - guake
+    - conky
+    - sonata
+    - firefox
 
 backup_file_list: |
   #a list of files and/or directories to be backed up from farnsworth to seymour

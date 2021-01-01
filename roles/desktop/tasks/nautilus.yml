@@ -18,5 +18,5 @@
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: '0664'
-  with_items: "{{ nautilus_bookmarks }}"
-  when: nautilus_bookmarks.0 is defined
+  with_items: "{{ desktop.nautilus_bookmarks }}"
+  when: desktop.nautilus_bookmarks.0 is defined

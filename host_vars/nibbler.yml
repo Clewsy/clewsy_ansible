@@ -42,13 +42,20 @@ nfs_mounts:
   - { mount_source: 'zapp:/export/cl0ud', mount_path: '/mnt/zapp/cl0ud' }
   - { mount_source: 'zapp:/export/m0n0l1th', mount_path: '/mnt/zapp/m0n0l1th' }
 
-nautilus_bookmarks:
-  - "davs://nextcloud.clews.pro/remote.php/dav/files/jadon nextcloud"
-
-autostart_appplications:
-  - terminator
-  - guake
-  - conky
+desktop:
+  install:
+    conky: true
+    guake: true
+    sonata: false
+    terbling: true
+    terminator: true
+    vlc: true
+  nautilus_bookmarks: #Add bookmarks to nautilus sidebar.
+    - "davs://nextcloud.clews.pro/remote.php/dav/files/jadon nextcloud"
+  autostart_appplications:
+    - terminator
+    - guake
+    - conky
 
 backup_file_list: |
   ##A list of files to be backed up

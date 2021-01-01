@@ -1,5 +1,5 @@
 ---
-conky_config_url: "{{ clewsy_repo_root }}/conky_configs/-/raw/master/conky_{{ ansible_hostname }}/.conkyrc"
+conky_configs_repo: "{{ clewsy_repo_root }}/conky_configs"
 
 conky_fonts:
   - { font_name: 'OpenLogos.ttf', font_source: 'http://fontsfree.net//wp-content/fonts/dingbats/logos/FontsFree-Net-openlogos.ttf' }

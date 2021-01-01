@@ -2,20 +2,19 @@
 - name: Configure farnsworth.
   hosts: farnsworth
   become: yes
-#  gather_facts: false #Disable - gather_facts is run manually aftyer confirming ssh port.
-  gather_facts: true #Disable - gather_facts is run manually aftyer confirming ssh port.
+  gather_facts: false #Disable - gather_facts is run manually aftyer confirming ssh port.
 
   handlers:
     - import_tasks: handlers/handlers.yml
 
   roles:
-#    - common
-#    - secure
-##    - clews.pro
-#    - headless
-#    - node
-#    - docker
-#    - vpn
-#    - mpd
+    - common
+    - secure
+#    - clews.pro
+    - headless
+    - node
+    - docker
+    - vpn
+    - mpd
     - desktop
-#    - develop
+    - develop

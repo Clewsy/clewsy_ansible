@@ -23,13 +23,29 @@
     name: conky
     state: latest
 
+- name: '[conky] Clone conky configurations repo.'
+  git:
+    repo: "{{ conky_configs_repo }}"
+    dest: "{{ local_lib_dir }}/conky_configs"
+    accept_hostkey: yes
+    key_file: "{{ ansible_user_home_dir }}/.ssh/id_rsa"
+  register: conky_configs_clone
+
 - name: '[conky] Copy conky configuration file.'
-  get_url:
-    url: "{{ conky_config_url }}"
+  copy:
+    src: "{{ local_lib_dir }}/conky_configs/conky_{{ host_name }}/.conkyrc"
     dest: "{{ ansible_user_home_dir }}/.conkyrc"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: '0640'
+  when: conky_configs_clone is changed
+
+- name: '[conky] Change mpd port if required.'
+  lineinfile:
+    path: "{{ ansible_user_home_dir }}/.conkyrc"
+    regexp: 'mpd_port = '
+    line: "\tmpd_port = {{ mpd.port }},"
+  when: mpd.port is defined
 
 - name: '[conky] Ensure autostart directory exists.'
   file:

@@ -1,0 +1,8 @@
+---
+sshd_legacy_configs:
+  - { regexp: 'PermitRootLogin', line: 'PermitRootLogin no'}
+  - { regexp: 'PasswordAuthentication', line: 'PasswordAuthentication no'}
+  - { regexp: 'Protocol', line: 'Protocol 2'}
+  - { regexp: 'ClientAliveInterval', line: 'ClientAliveInterval 300'}
+  - { regexp: 'X11Forwarding', line: 'X11Forwarding no'}
+  - { regexp: 'Port', line: "Port {{ sshd_port|default('22') }}"}

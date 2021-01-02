@@ -1,0 +1,26 @@
+---
+sshd_configs:
+  - name: 'no_root_login.conf'
+    content: |
+      #Added by ansible.  Disable root login.
+      PermitRootLogin no
+  - name: 'no_pass_auth.conf'
+    content: |
+      #Added by ansible.  Disable password authentication.
+      PasswordAuthentication no
+  - name: 'protocol_2_only.conf'
+    content: |
+      #Added by ansible.  Use protocol 2.
+      Protocol 2
+  - name: 'client_timeout.conf'
+    content: |
+      #Added by ansible.  Set client timeout.
+      ClientAliveInterval 300
+  - name: 'no_x11_forwarding.conf'
+    content: |
+      #Added by ansible.  Disable X11 forwarding.
+      X11Forwarding no
+  - name: 'change_sshd_port.conf'
+    content: |
+      #Added by ansible.  Change sshd port.
+      Port {{ sshd_port|default('22') }}

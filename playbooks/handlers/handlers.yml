@@ -4,7 +4,6 @@
 - import_tasks: docker_handlers.yml
 - import_tasks: motion_handlers.yml
 - import_tasks: mpd_handlers.yml
-- import_tasks: mpc_handlers.yml #Define mpc handlers after mpd handlers in case both are notified .
 - import_tasks: nfs_handlers.yml
 - import_tasks: snapd_handlers.yml
 - import_tasks: ssh_handlers.yml

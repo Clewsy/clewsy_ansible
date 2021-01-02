@@ -26,7 +26,7 @@
   apt:
     name: snapd
     state: latest
-  notify: Enable and start snapd.
+  notify: enable and start snapd
   when: packages.snap.install.0 is defined or packages.classic_snap.install.0 is defined
 
 - name: '[packages] Install miscellaneous, host-specific snap packages.'

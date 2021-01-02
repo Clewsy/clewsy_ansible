@@ -6,7 +6,7 @@
   apt:
     name: "{{ cifs_packages }}"
     state: latest
-  notify: Restart cifs server.
+  notify: restart cifs server
 
 - name: '[cifs] Check for the existence of the source_path directory.'
   stat:
@@ -32,4 +32,4 @@
     insertafter: EOF
   with_items: "{{ source_stat.results }}"
   when: item.stat.exists == true #Will only run if the source_path directory exists.
-  notify: Restart cifs server.
+  notify: restart cifs server

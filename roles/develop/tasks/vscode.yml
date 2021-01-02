@@ -3,7 +3,7 @@
   apt:
     name: snapd
     state: latest
-  notify: Enable and start snapd.
+  notify: enable and start snapd
 
 - name: '[vscode] Install vscode.'
   snap:

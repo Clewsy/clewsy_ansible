@@ -11,11 +11,11 @@
   ufw:
     default: deny
     state: enabled
-  notify: Restart ufw.
+  notify: restart ufw
 
 - name: '[ufw] Ensure the default OpenSSH port is not enabled.'
   ufw:
     rule: allow
     name: OpenSSH
     delete: yes
-  notify: Restart ufw.
+  notify: restart ufw

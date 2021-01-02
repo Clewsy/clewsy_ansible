@@ -15,7 +15,7 @@
     mode: '0600'
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
-  notify: Restart ssh.
+  notify: restart ssh
 
 - name: '[ssh] Set up ssh public key.'
   copy:
@@ -24,7 +24,7 @@
     mode: '0644'
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
-  notify: Restart ssh.
+  notify: restart ssh
 
 - name: '[ssh] Set up ssh config file.'
   copy:
@@ -58,7 +58,7 @@
     mode: '0600'
     owner: root
     group: root
-  notify: Restart ssh.
+  notify: restart ssh
 
 - name: '[ssh] Set up root ssh public key.'
   copy:
@@ -67,7 +67,7 @@
     mode: '0644'
     owner: root
     group: root
-  notify: Restart ssh.
+  notify: restart ssh
 
 - name: '[ssh] Set up root ssh config file.'
   copy:

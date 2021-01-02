@@ -55,7 +55,7 @@
     minute: "*/5"
     user: "{{ ansible_user }}"
     job: "sudo {{ polly_script_dest_root }}"
-  notify: Restart cron.
+  notify: restart cron
 
 - name: '[polly] Configure log rotation for polly.log logfile (/var/log/polly.log).'
   copy:

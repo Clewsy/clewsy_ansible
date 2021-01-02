@@ -8,7 +8,7 @@
     line: 'PermitRootLogin no'
     state: present
     insertafter: '^#PermitRootLogin'
-  notify: Restart sshd.
+  notify: restart sshd
 
 - name: '[sshd_legacy] Disable ssh password authentication.'
   lineinfile:
@@ -17,7 +17,7 @@
     line: 'PasswordAuthentication no'
     state: present
     insertafter: '^#PasswordAuthentication'
-  notify: Restart sshd.
+  notify: restart sshd
 
 - name: '[sshd_legacy] Set ssh to protocol 2 only.'
   lineinfile:
@@ -26,7 +26,7 @@
     line: 'Protocol 2'
     state: present
     insertafter: '^#Protocol'
-  notify: Restart sshd.
+  notify: restart sshd
 
 - name: '[sshd_legacy] Set ssh client idle timeout.'
   lineinfile:
@@ -35,7 +35,7 @@
     line: 'ClientAliveInterval 300'
     state: present
     insertafter: '^#ClientAliveInterval'
-  notify: Restart sshd.
+  notify: restart sshd
 
 - name: '[sshd_legacy] Disable ssh X11 forwarding.'
   lineinfile:
@@ -44,7 +44,7 @@
     line: 'X11Forwarding no'
     state: present
     insertafter: '^#X11Forwarding'
-  notify: Restart sshd.
+  notify: restart sshd
 
 - name: '[sshd_legacy] Change the sshd port.'
   lineinfile:
@@ -53,11 +53,11 @@
     line: "Port {{ sshd_port|default('22') }}"
     state: present
     insertafter: '^#Port 22'
-  notify: Restart sshd.
+  notify: restart sshd
 
 - name: '[sshd_legacy] Set ufw rule to allow sshd port.' #Defined in defaults/ufw_defs.yml if not defined elsewhere.
   ufw:
     rule: allow
     port: "{{ sshd_port|default('22') }}"
     comment: ssh
-  notify: Restart ufw.
+  notify: restart ufw

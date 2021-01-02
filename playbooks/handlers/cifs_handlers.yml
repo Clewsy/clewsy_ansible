@@ -1,5 +1,5 @@
 ---
-- name: Restart cifs server.
+- name: restart cifs server
   service:
     name: smbd
     state: restarted

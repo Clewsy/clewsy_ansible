@@ -4,7 +4,7 @@
     name: "{{ docker_packages }}"
     state: latest
   register: docker_not_installed
-  notify: Enable and start docker service. 
+  notify: enable and start docker service
 
 - name: Add user to docker group.
   user:

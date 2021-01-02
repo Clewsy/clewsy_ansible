@@ -10,7 +10,7 @@
     port: "{{ wireguard_port }}"
     proto: udp
     comment: Wireguard
-  notify: Restart ufw.
+  notify: restart ufw
 
 - name: Enable ipv4 routing on the server with net.ipv4.ip_forward = 1 entry in /etc/sysctl.d/ansible_wireguard_server.conf
   sysctl:
@@ -20,7 +20,7 @@
     sysctl_set: yes
     state: present
     reload: yes
-  notify: Restart wg-quick@wg0.
+  notify: restart wg-quick@wg0
 
 - name: Enable ipv6 routing on the server with net.ipv6.conf.all.forwarding = 1 entry in /etc/sysctl.d/ansible_wireguard_server.conf
   sysctl:
@@ -30,7 +30,7 @@
     sysctl_set: yes
     state: present
     reload: yes
-  notify: Restart wg-quick@wg0.
+  notify: restart wg-quick@wg0
 
 - name: Copy wireguard server configuration file.
   copy:
@@ -40,10 +40,10 @@
     owner: "root"
     group: "root"
     mode: '0600'
-  notify: Restart wg-quick@wg0.
+  notify: restart wg-quick@wg0
 
 - name: Enable and start wireguard service wg-quick@wg0.
   service:
     name: wg-quick@wg0
     enabled: yes
-  notify: Restart wg-quick@wg0.
+  notify: restart wg-quick@wg0

@@ -6,7 +6,7 @@
     line: 'Include /etc/ssh/sshd_config.d/*.conf'
     state: present
     insertbefore: BOF
-  notify: Restart sshd.
+  notify: restart sshd
 
 - name: '[sshd] Disable ssh root login.'
   copy:
@@ -17,7 +17,7 @@
     owner: 'root'
     group: 'root'
     mode: '0440'
-  notify: Restart sshd.
+  notify: restart sshd
 
 - name: '[sshd] Disable password authentication.'
   copy:
@@ -28,7 +28,7 @@
     owner: 'root'
     group: 'root'
     mode: '0440'
-  notify: Restart sshd.
+  notify: restart sshd
 
 - name: '[sshd] Set sshd to use only protocol 2.'
   copy:
@@ -39,7 +39,7 @@
     owner: 'root'
     group: 'root'
     mode: '0440'
-  notify: Restart sshd.
+  notify: restart sshd
 
 - name: '[sshd] Set client timeout.'
   copy:
@@ -50,7 +50,7 @@
     owner: 'root'
     group: 'root'
     mode: '0440'
-  notify: Restart sshd.
+  notify: restart sshd
 
 - name: '[sshd] Disable X11 forwarding.'
   copy:
@@ -61,7 +61,7 @@
     owner: 'root'
     group: 'root'
     mode: '0440'
-  notify: Restart sshd.
+  notify: restart sshd
 
 - name: '[sshd] Change the sshd port.' #If port is not defined in the host-specific vars file, use the default.
   copy:
@@ -72,11 +72,11 @@
     owner: 'root'
     group: 'root'
     mode: '0440'
-  notify: Restart sshd.
+  notify: restart sshd
 
 - name: '[sshd] Set ufw rule to allow sshd port.' 
   ufw:
     rule: allow
     port: "{{ sshd_port|default('22') }}"
     comment: ssh
-  notify: Restart ufw.
+  notify: restart ufw

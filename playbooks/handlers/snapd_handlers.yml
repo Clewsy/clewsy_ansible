@@ -1,5 +1,5 @@
 ---
-- name: Enable and start snapd.
+- name: enable and start snapd
   service:
     name: snapd
     enabled: yes

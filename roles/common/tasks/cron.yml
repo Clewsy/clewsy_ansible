@@ -11,4 +11,4 @@
     job: "{{ item.job }}"
   with_items: "{{ cron_jobs }}"
   when: cron_jobs.0 is defined
-  notify: Restart cron.
+  notify: restart cron

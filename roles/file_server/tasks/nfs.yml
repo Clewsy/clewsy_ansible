@@ -6,7 +6,7 @@
   apt:
     name: "{{ nfs_packages }}"
     state: latest
-  notify: Restart nfs server.
+  notify: restart nfs server
 
 - stat: #Check for the existence of the source_path directory.
     path: "{{ mount.source_path }}"
@@ -41,4 +41,4 @@
     line: "{{ item.mount.share_path }} {{ nfs_network }}(rw,sync,no_root_squash,no_subtree_check)"
   with_items: "{{ source_stat.results }}"
   when: item.stat.exists == true #Will only run if the source_path directory exists.
-  notify: Restart nfs server.
+  notify: restart nfs server

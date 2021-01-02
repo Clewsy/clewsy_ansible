@@ -13,7 +13,7 @@
     owner: root
     group: root
     mode: '0644'
-  notify: Restart motion.
+  notify: restart motion
 
 - name: 'Create /etc/motion/motion.conf from template.'
   template:
@@ -22,7 +22,7 @@
     owner: root
     group: root
     mode: '0644'
-  notify: Restart motion.
+  notify: restart motion
 
 - name: 'Enable the raspberry pi camera if used (defined by variable motion.picam: {{ motion.picam | default("not defined") }}).'
   blockinfile:
@@ -33,6 +33,6 @@
     owner: root
     group: root
     mode: '0755'
-  notify: Reboot.
+  notify: reboot
   when: motion.picam is defined and motion.picam
   

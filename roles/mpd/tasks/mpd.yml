@@ -72,7 +72,7 @@
   lineinfile:
     path: "/etc/mpd.conf"
     state: present
-    regexp: "#\tmixer_control\t\"PCM\"\t\t# optional"
+    regexp: "mixer_control"
     firstmatch: yes #The regexp will match twice in the default conf file.
     line: "{{ mpd_raspberry_pi_mixer_device }}"
   when: ansible_architecture == 'armv7l' or ansible_architecture == 'aarch64'

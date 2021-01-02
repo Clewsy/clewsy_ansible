@@ -2,8 +2,6 @@
 rsync_server_packages:
   - rsync
 
-#rsync_server_logdir: "/var/log/rsync_server"
-#rsync_server_logfile: "{{ rsync_server_logdir }}/rsync_server.log"
 rsync_server_logdir: "/var/log"
 rsync_server_logfile: "{{ rsync_server_logdir }}/rsync_server.log"
 
@@ -18,9 +16,12 @@ rsync_server_backup_script: |
   # Check for sudo.
   if [[ "${EUID}" != 0 ]]; then printf "%b" "Must be run as root.  Quitting\n" && exit 1; fi
 
-  printf "%b" "---------- Job Started : $(date +%Y-%m-%d\ %T) ----------\n" >> {{ rsync_server_logfile }}
+  printf "%b" "---------------------------------------------------------\n" >> {{ rsync_server_logfile }}
+  printf "%b" "---------- Job Name : {{ item.name }}\n" >> {{ rsync_server_logfile }}
+  printf "%b" "---------- Job Started : $(date +%Y-%m-%d\ %T)\n" >> {{ rsync_server_logfile }}
   {{ rsync_server_rsync_job }}
-  printf "%b" "---------- Job Completed : $(date +%Y-%m-%d\ %T) ----------\n" >> {{ rsync_server_logfile }}
+  printf "%b" "---------- Job Completed : $(date +%Y-%m-%d\ %T)\n" >> {{ rsync_server_logfile }}
+  printf "%b" "---------------------------------------------------------\n" >> {{ rsync_server_logfile }}
 
 rsync_server_logrotate_file: |
   {{ rsync_server_logfile }} {

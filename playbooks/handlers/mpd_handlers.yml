@@ -1,12 +1,33 @@
 ---
-- name: Restart mpd.service
+- name: stop mpd.socket
+  systemd:
+    name: mpd.socket
+    state: stopped
+
+- name: stop mpd.service
+  systemd:
+    name: mpd.socket
+    state: stopped
+
+- name: kill mpd #Remember killing the service doesn't stop the process.
+  shell: killall mpd
+
+- name: restart mpd.socket
+  systemd:
+    name: mpd.socket
+    daemon_reload: yes
+    state: restarted
+
+- name: restart mpd.service
   systemd:
     name: mpd.service
     daemon_reload: yes
     state: restarted
 
-- name: Restart mpd.socket
-  systemd:
-    name: mpd.socket
-    daemon_reload: yes
-    state: restarted
+- name: rescan music files
+  command: mpc rescan
+
+##Note order above is important.  If all notified then they will be run in order listed here.
+##Must stop mpd.socket to avoid restarting mpd.service.
+##Must stop mpd.service to avoid starting mpd.
+##Must kill mpd to successfully restart mpd.socket.

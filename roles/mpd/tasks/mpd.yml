@@ -6,6 +6,7 @@
   apt:
     name: "{{ mpd_packages }}"
     state: latest
+  register: mpd_installation ##Only needed for the bug fix tasks below.
 
 - name: '[mpd] Create useful command line aliases.'
   lineinfile:
@@ -19,48 +20,55 @@
     group: "{{ ansible_user }}"
   with_items: "{{ mpd_aliases }}"
 
-- name: '[mpd] Ensure preferred mpd music files directory exists ({{ music_dir }}).'
+- name: "[mpd] Ensure preferred mpd music files directory exists ({{ mpd.music_dir | default(ansible_user_home_dir + '/music') }})."
   file:
-    dest: "{{ music_dir }}"
+    dest: "{{ mpd.music_dir | default(ansible_user_home_dir + '/music') }}"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     state: directory
 
-- name: '[mpd] Create /etc/mpd.conf from template.'
-  template:
-    src: templates/mpd.conf
-    dest: "/etc/mpd.conf"
-    owner: root
-    group: root
-    mode: '0644'
+- name: '[mpd] Change settings in /etc/mpd.conf.'
+  lineinfile:
+    path: '/etc/mpd.conf'
+    regexp: "^{{ item.setting }}"
+    line: "{{ item.setting }}\t\t\"{{ item.value }}\""
   notify:
-    - Restart mpd.service
-    - Rescan music files
+    - stop mpd.socket
+    - stop mpd.service
+    - kill mpd
+    - restart mpd.socket
+    - restart mpd.service
+    - rescan music files
+  with_items: "{{ mpd_configs.change }}"
 
-- name: '[mpd] Change the port defined in the mpd.socket unit file (i.e. port listened to for client connections).'
+- name: '[mpd] Add settings in /etc/mpd.conf.'
+  lineinfile:
+    path: '/etc/mpd.conf'
+    insertafter: "^{{ item.setting }}"
+    line: "{{ item.setting }}\t\t\"{{ item.value }}\""
+  notify:
+    - stop mpd.socket
+    - stop mpd.service
+    - kill mpd
+    - restart mpd.socket
+    - restart mpd.service
+    - rescan music files
+  with_items: "{{ mpd_configs.add }}"
+
+- name: '[mpd] Change the port defined in the /lib/systemd/system/mpd.socket unit file (i.e. listen port for client connections).'
   lineinfile:
     path: "/lib/systemd/system/mpd.socket"
     state: present
     regexp: "^ListenStream=[1-9]"
     line: "ListenStream={{ mpd.port }}"
   when: mpd.port is defined
-  register: mpd_port
-
-- name: '[mpd] Stop mpd.socket to load new socket port.'
-  systemd:
-    name: mpd.socket
-    state: stopped
   notify:
-    - Restart mpd.socket
-  when: mpd_port is changed
-
-- name: '[mpd] Stop mpd.service to load new socket port.  Must stop .service so that .socket can be reloaded.'
-  systemd:
-    name: mpd.service
-    state: stopped
-  notify:
-    - Restart mpd.service
-  when: mpd_port is changed
+    - stop mpd.socket
+    - stop mpd.service
+    - kill mpd
+    - restart mpd.socket
+    - restart mpd.service
+    - rescan music files
 
 - name: '[mpd] Allow mpd client access through the firewall.' #Note, will not enable ufw.
   ufw:
@@ -68,5 +76,5 @@
     to_port: "{{ mpd.port }}"
     proto: tcp
     comment: mpd
-  notify: Restart ufw.
+  notify: restart ufw
   when: mpd.port is defined

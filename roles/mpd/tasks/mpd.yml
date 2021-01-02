@@ -22,9 +22,7 @@
 
 - name: "[mpd] Ensure preferred mpd music files directory exists ({{ mpd.music_dir | default(ansible_user_home_dir + '/music') }})."
   file:
-    dest: "{{ mpd.music_dir | default(ansible_user_home_dir + '/music') }}"
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
+    dest: "{{ mpd.music_dir | default(ansible_user_home_dir + '/Music') }}"
     state: directory
 
 - name: '[mpd] Change settings in /etc/mpd.conf.'
@@ -69,6 +67,21 @@
     - restart mpd.socket
     - restart mpd.service
     - rescan music files
+
+- name: '[mpd] Change the audio_output mixer_control setting to allow client volume control.  Needed on Raspberry Pi.'
+  lineinfile:
+    path: "/etc/mpd.conf"
+    state: present
+    regexp: "#\tmixer_control\t\"PCM\"\t\t# optional"
+    firstmatch: yes #The regexp will match twice in the default conf file.
+    line: "{{ mpd_raspberry_pi_mixer_device }}"
+  when: ansible_architecture == 'armv7l' or ansible_architecture == 'aarch64'
+  notify:
+    - stop mpd.socket
+    - stop mpd.service
+    - kill mpd
+    - restart mpd.socket
+    - restart mpd.service
 
 - name: '[mpd] Allow mpd client access through the firewall.' #Note, will not enable ufw.
   ufw:

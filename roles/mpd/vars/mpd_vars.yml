@@ -22,12 +22,6 @@ mpd_aliases:
   - "alias v9='mpc volume 90'"
   - "alias v10='mpc volume 100'"
   
-mpd_mixer_config: "{% if (ansible_architecture == 'armv7l' or ansible_architecture == 'aarch64') %}\
-                      \tmixer_control	\"Headphone\"\t# REQUIRED FOR MPD VOLUME CONTROL WITH RASPBERRY PI\
-                    {% else %}\
-                      #\tmixer_control\t\"PCM\"\t\t# optional\
-                    {% endif %}"  #Need to set the mixer_control to "Headphone" so that mpd can control the volume on a raspberry pi.
-
 mpd_configs:
   change: #Existing config that matches "setting" will be replaced.
     - { setting: 'music_directory', value: "{{ mpd.music_dir | default('/var/lib/mpd/music') }}" }
@@ -35,3 +29,4 @@ mpd_configs:
   add: #Additional config "setting" will be added in the line after last match to "setting".
     - { setting: 'bind_to_address', value: "0.0.0.0:{{ mpd.port | default('6600') }}" }
 
+mpd_raspberry_pi_mixer_device: "\tmixer_control	\"Headphone\"\t# REQUIRED FOR MPD VOLUME CONTROL WITH RASPBERRY PI"

@@ -1,0 +1,31 @@
+---
+- name: '[docker] Load docker variables.'
+  include_vars: docker_vars.yml
+
+- name: '[docker] Install packages for docker.'
+  apt:
+    name: "{{ docker_packages }}"
+    state: latest
+  register: docker_not_installed
+  notify: enable and start docker service
+
+- name: "[docker] Add {{ ansible_user }} to docker group."
+  user:
+    name: "{{ ansible_user }}"
+    groups: docker
+    append: yes
+
+- name: '[docker] Create docker-compose staging area.'
+  file:
+    path: "{{ docker_home_dir }}"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: u=rwx,g=rx,o=rx
+
+- name: '[docker] Create alias dc for docker-compose.'
+  lineinfile:
+    path: "{{ ansible_user_home_dir }}/.bash_aliases"
+    line: "alias dc='docker-compose'" 
+    state: present
+    insertafter: EOF

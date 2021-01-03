@@ -1,0 +1,16 @@
+---
+motion_packages:
+  - motion
+
+motion_configs: #Defaults are below but can be overridden in host's _vars.yml file with motion.X values.
+  - { setting: 'daemon', value: "{{ motion.daemon | default('on') }}" } #Installed default is off.
+  - { setting: 'videodevice', value: "{{ motion.videodevice | default('/dev/video0') }}" }
+  - { setting: 'rotate', value: "{{ motion.rotate | default('0') }}" }
+  - { setting: 'flip_axis', value: "{{ motion.flip_axis | default('none') }}" }
+  - { setting: 'width', value: "{{ motion.width | default('320') }}" }
+  - { setting: 'height', value: "{{ motion.height | default('240') }}" }
+  - { setting: 'framerate', value: "{{ motion.framerate | default('2') }}" }
+  - { setting: 'ffmpeg_output_movies', value: "{{ motion.ffmpeg_output_movies | default('off') }}" } #Installed default is on.
+  - { setting: 'stream_port', value: "{{ motion.stream_port | default('8081') }}" }
+  - { setting: 'stream_quality', value: "{{ motion.stream_quality | default('50') }}" }
+  - { setting: 'stream_localhost', value: "{{ motion.stream_localhost | default('off') }}" } #Installed default is on.

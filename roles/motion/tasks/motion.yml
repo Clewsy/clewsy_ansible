@@ -1,0 +1,41 @@
+---
+- name: '[motion] Load motion variables.'
+  include_vars: motion_vars.yml
+
+- name: '[motion] Ensure all packages required for motion are installed.'
+  apt:
+    name: "{{ motion_packages }}"
+    state: latest
+
+- name: '[motion] Enable motion daemon autostart.'
+  copy:
+    content: |
+      # set to 'yes' to enable the motion daemon
+      start_motion_daemon=yes
+    dest: /etc/default/motion
+    owner: root
+    group: root
+    mode: '0644'
+  notify: restart motion
+
+- name: '[motion] Change settings in /etc/motion/motion.conf.'
+  lineinfile:
+    path: '/etc/motion/motion.conf'
+    regexp: "^{{ item.setting }}"
+    line: "{{ item.setting }} {{ item.value }}"
+  notify:
+    - restart motion
+  with_items: "{{ motion_configs }}"
+
+- name: "[motion] Enable the raspberry pi camera if used (defined by variable motion.picam: {{ motion.picam | default('not defined') }})."
+  blockinfile:
+    path: "/boot/config.txt"
+    block: |
+      start_x=1
+      gpu_mem=128
+    owner: root
+    group: root
+    mode: '0755'
+  notify: reboot
+  when: motion.picam is defined and motion.picam
+  

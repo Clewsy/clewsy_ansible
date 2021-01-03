@@ -1,0 +1,8 @@
+---
+- name: '[node_packages] Load node_packages variables.'
+  include_vars: node_packages_vars.yml
+  
+- name: '[node_packages] Ensure all miscellaneous node packages are installed.'
+  apt:
+    name: "{{ node_packages }}"
+    state: latest

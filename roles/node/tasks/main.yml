@@ -1,44 +1,9 @@
 ---
-- name: Ensure all miscellaneous node packages are installed.
-  apt:
-    name: "{{ node_packages }}"
-    state: latest
+- name: '[node_packages] Install node packages.'
+  include: node_packages.yml
 
-- name: "Ensure scripts library directory exists ({{ scripts_lib }})."
-  file:
-    dest: "{{ scripts_lib }}"
-    state: directory
-    owner: 'root'
-    group: 'root'
-    mode: '0755'
-
-- name: Ensure bin directory exists within user's home directory.
-  file:
-    dest: "{{ ansible_user_home_dir }}/bin"
-    mode: '0755'
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
-    state: directory
-
-- name: Copy default list of hosts to {{ ansible_user_home_dir }}/bin/my_hosts.list.
-  copy:
-    src: "files/my_hosts.list"
-    dest: "{{ ansible_user_home_dir }}/bin/my_hosts.list"
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
-    mode: '0644'
-
-- name: Install ansible and clone repo to home directory.
+- name: '[ansible] Install ansible and clone repo to home directory.'
   include: ansible.yml
 
-- name: Install and configure apt_all script.
-  include: apt_all.yml
-
-- name: Install and configure ball script.
-  include: ball.yml
-
-- name: Install and configure pong script.
-  include: pong.yml
-
-- name: Install and configure whodis.sh script.
-  include: whodis.yml
+- name: '[node_scripts] Install node scripts.'
+  include: node_scripts.yml

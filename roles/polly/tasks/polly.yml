@@ -12,7 +12,7 @@
 
 - name: '[polly] Copy polly script to script library.'
   get_url:
-    url: "{{ polly_script_url }}"
+    url: "{{ polly_url }}"
     dest: "{{ scripts_lib }}/polly"
     force: yes
     owner: 'root'
@@ -20,29 +20,10 @@
     mode: '0644'
   register: polly
 
-- name: '[polly] Ensure bin directory exists within user home directory.'
-  file:
-    dest: "{{ ansible_user_home_dir }}/bin"
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
-    mode: '0755'
-    state: directory
-  when: polly is changed
-
-- name: '[polly] Copy polly script for use by {{ ansible_user }}.'
-  copy:
-    src: "{{ scripts_lib }}/polly"
-    dest: "{{ polly_script_dest_user }}"
-    remote_src: yes
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
-    mode: '0755'
-  when: polly is changed
-
 - name: '[polly] Copy polly script for root use.'
   copy:
     src: "{{ scripts_lib }}/polly"
-    dest: "{{ polly_script_dest_root }}"
+    dest: "{{ polly_dest }}"
     remote_src: yes
     owner: "root"
     group: "root"
@@ -53,14 +34,14 @@
   cron:
     name: "Role: \"polly\" - Run polly."
     minute: "*/5"
-    user: "{{ ansible_user }}"
-    job: "sudo {{ polly_script_dest_root }}"
+    user: "root"
+    job: "{{ polly_dest }} -p"
   notify: restart cron
 
-- name: '[polly] Configure log rotation for polly.log logfile (/var/log/polly.log).'
+- name: '[polly] Configure log rotation for polly.log logfile'
   copy:
-    content: "{{ polly_script_logrotate_file }}"
-    dest: "/etc/logrotate.d/polly"
+    content: "{{ polly_logrotate_file_content }}"
+    dest: "{{ polly_logrotate_file }}"
     owner: "root"
     group: "root"
     mode: '0644'

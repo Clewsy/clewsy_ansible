@@ -3,4 +3,5 @@
 "workbench.colorTheme": "Material Theme Darker",
 "editor.detectIndentation": true,
 "workbench.iconTheme": "material-icon-theme",
+"editor.tabSize": 8,
 }

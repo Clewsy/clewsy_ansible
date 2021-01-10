@@ -18,7 +18,7 @@
 ## The python3-apt package is required for using the ansible apt module.
 ## Also git must be installed sto be able to use pip to install from the external git repo.
 
-- name: '[termux_packages] See if git is installed by looking for the executable.'
+- name: '[termux_packages] Check if git is installed by looking for the executable.'
   stat:
     path: "/data/data/com.termux/files/usr/bin/git"
   register: git

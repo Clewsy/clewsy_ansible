@@ -55,3 +55,10 @@
     url: "{{ wami_script_url }}"
     dest: "{{ termux_scripts_dir }}/wami"
     mode: '0755'
+
+###wami
+- name: '[termux_scripts] Copy ytdl script to user bin directory.'
+  get_url:
+    url: "{{ ytdl_script_url }}"
+    dest: "{{ termux_scripts_dir }}/ytdl"
+    mode: '0755'

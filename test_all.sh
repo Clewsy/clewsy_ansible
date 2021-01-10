@@ -5,7 +5,8 @@ ansible-playbook playbooks/b4t.site.yml		&&
 ansible-playbook playbooks/calculon.yml		&&
 ansible-playbook playbooks/farnsworth.yml	&&
 #ansible-playbook playbooks/flexo.yml		&&
-ansible-playbook playbooks/hypnotoad.yml	&&
+ansible-playbook playbooks/hermes.yml	        &&
+ansible-playbook playbooks/hypnotoad.yml        &&
 #ansible-playbook playbooks/nibbler.yml		&&
 ansible-playbook playbooks/p0wer.yml		&&
 ansible-playbook playbooks/pazuzu.yml		&&

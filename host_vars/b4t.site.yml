@@ -28,14 +28,14 @@ cron_jobs:
     day: "*"
     month: "*"
     weekday: "1"
-    job: 'mkdir --parents /home/b4t/backups_weekly && rsync --acls --archive --times --perms --one-file-system --delete --verbose /home/b4t/backups/* /home/b4t/backups_weekly/.'
+    job: 'mkdir --parents /home/b4t/backups_weekly && echo "--------------------------------------------------------------------------------" >> /home/b4t/backups_weekly/backups_weekly_rsync.log && rsync --verbose --archive --delete --acls --human-readable --progress --log-file=/home/b4t/backups_weekly/backups_weekly_rsync.log /home/b4t/backups/* /home/b4t/backups_weekly/.'
   - name: 'Monthly copy of backups - 0400hrs, eleventh day of every month.'
     minute: "0"
     hour: "4"
     day: "11"
     month: "*"
     weekday: "*"
-    job: 'mkdir --parents /home/b4t/backups_monthly && rsync --acls --archive --times --perms --one-file-system --delete --verbose /home/b4t/backups/* /home/b4t/backups_monthly/.'
+    job: 'mkdir --parents /home/b4t/backups_monthly && echo "--------------------------------------------------------------------------------" >> /home/b4t/backups_monthly/backups_monthly_rsync.log && rsync --verbose --archive --delete --acls --human-readable --progress --log-file=/home/b4t/backups_monthly/backups_monthly_rsync.log /home/b4t/backups/* /home/b4t/backups_monthly/.'
 
 backup_file_list: |
   ~/bin/

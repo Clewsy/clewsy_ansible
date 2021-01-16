@@ -7,6 +7,14 @@
     name: "{{ nautilus_packages }}"
     state: latest
 
+- name: '[nautilus] Configure dautilus dconf settings'
+  dconf:
+    key: "{{ item.key }}"
+    value: "{{ item.value | string }}" #Add string filter to prevent weird conversions/warnings.
+    state: present
+  become_user: "{{ ansible_user }}"
+  with_items: "{{ nautilus_prefs }}"
+
 - name: '[nautilus] Set host-specific nautilus bookmarks.'
   lineinfile:
     path: "{{ nautilus_bookmarks_path }}"

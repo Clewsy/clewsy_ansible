@@ -55,11 +55,11 @@
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: '0744'
-  when: homeassistant_installer is changed
+#  when: homeassistant_installer is changed
 
 - name: '[homeassistant] Run homeassistant installer script.'
   expect:
-    command: "/tmp/homeassistant_installer.sh --machine {{ homeassistant.machine }} --data-share {{ homeassistant.data_share }}"
+    command: "/tmp/homeassistant_installer.sh --machine {{ homeassistant.machine | default('raspberrypi4-64') }} --data-share {{ homeassistant.data_share | default('/home/docker/home-assistant') }}"
     responses:
       (.*)N/y(.*): 'y'
-  when: homeassistant_installer is changed
+#  when: homeassistant_installer is changed

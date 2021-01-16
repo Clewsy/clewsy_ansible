@@ -33,6 +33,15 @@
   register: wallpaper
 
 - name: '[gnome_config] Set desktop backound image.'
-  shell: "gsettings set org.gnome.desktop.background picture-uri file://{{ gnome_config_background_file }}"
+  dconf:
+    key: "/org/gnome/desktop/background/picture-uri"
+    value: "'file://{{ gnome_config_background_file }}'"
+    state: present
   become_user: "{{ ansible_user }}"
-  when: wallpaper is changed
+
+- name: '[gnome_config] Clock should be in 24-hour format.'
+  dconf:
+    key: "/org/gnome/desktop/interface/clock-format"
+    value: "'24h'"
+    state: present
+  become_user: "{{ ansible_user }}"

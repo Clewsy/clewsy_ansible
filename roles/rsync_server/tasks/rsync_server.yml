@@ -19,16 +19,7 @@
     group: "root"
     mode: '0755'
     state: directory
-  when: logfile.stat.exists == false or logfile.stat.pw_name != ansible_user or logfile.stat.gr_name != ansible_user
-
-#- name: '[rsync_server] Ensure logfile {{ rsync_server_logfile }} exists and is accessible by {{ ansible_user }}'
-#  file:
-#    path: "{{ rsync_server_logfile }}"
-#    owner: "root"
-#    group: "root"
-#    mode: '0644'
-#    state: touch
-#  when: logfile.stat.exists == false or logfile.stat.pw_name != ansible_user or logfile.stat.gr_name != ansible_user
+  when: logfile.stat.exists == false or logfile.stat.pw_name != 'root' or logfile.stat.gr_name != 'root'
 
 - name: '[rsync_server] Configure log rotation for rsync_server logfile ({{ rsync_server_logfile }}).'
   copy:

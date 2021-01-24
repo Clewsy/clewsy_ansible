@@ -22,8 +22,8 @@
   when: logfile.stat.exists == false or logfile.stat.pw_name != 'root' or logfile.stat.gr_name != 'root'
 
 - name: '[rsync_server] Configure log rotation for rsync_server logfile ({{ rsync_server_logfile }}).'
-  copy:
-    content: "{{ rsync_server_logrotate_file }}"
+  template:
+    src: "templates/rsync_server_logrotate_file"
     dest: "/etc/logrotate.d/rsync_server"
     owner: "root"
     group: "root"
@@ -38,8 +38,8 @@
     state: directory
 
 - name: '[rsync_server] Create rsync_server backup scripts.'
-  copy:
-    content: "{{ rsync_server_backup_script }}"
+  template:
+    src: "templates/rsync_server_backup_script.sh"
     dest: "{{ rsync_server_backup_scripts_lib_dir }}/rsync_backup_{{ item.name }}.sh"
     owner: "root"
     group: "root"

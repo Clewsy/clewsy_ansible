@@ -24,13 +24,13 @@ backup_file_list: |
   ~/bin
   ~/.shortcuts
   ~/storage/downloads/wireguard-export.zip
-  ~/storage/downloads/AntennaPodBackup.db**
-  ~/storage/downloads/antennapod-feeds.html**
-  ~/storage/downloads/antennapod-feeds.opml**
+  ~/storage/downloads/AntennaPodBackup**
+  ~/storage/downloads/antennapod-feeds**
+  ~/storage/downloads/antennapod-favorites**
   ~/storage/downloads/otp_accounts.json.aes**
   ~/storage/downloads/NewPipeData-**
   ~/storage/downloads/newpipe_subscriptions_**
-  ~/storage/downloads/favourites.gpx
+  ~/storage/downloads/favourites.gpx**
 
 ssh_public_key: !vault |
   $ANSIBLE_VAULT;1.1;AES256

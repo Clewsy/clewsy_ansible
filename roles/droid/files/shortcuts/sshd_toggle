@@ -1,5 +1,7 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
-killall sshd || sshd && pgrep -x sshd
+printf "%s\n" "You may need to disable wireguard/vpn."
+
+killall sshd 2> /dev/null || sshd && pgrep -x sshd
 
 read -n 1 -s -r -p "Press any key to continue."

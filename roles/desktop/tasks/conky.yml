@@ -45,7 +45,7 @@
     path: "{{ ansible_user_home_dir }}/.conkyrc"
     regexp: 'mpd_port = '
     line: "\tmpd_port = {{ mpd.port }},"
-  when: mpd.port is defined
+  when: mpd.port is defined and mpd.port
 
 - name: '[conky] Ensure autostart directory exists.'
   file:

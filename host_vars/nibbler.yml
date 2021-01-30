@@ -42,6 +42,10 @@ nfs_mounts:
   - { mount_source: 'zapp:/export/cl0ud', mount_path: '/mnt/zapp/cl0ud' }
   - { mount_source: 'zapp:/export/m0n0l1th', mount_path: '/mnt/zapp/m0n0l1th' }
 
+mpd:
+  music_dir: "{{ ansible_user_home_dir }}/music"
+  port: #6600 #Will default to 6600 if ommitted.
+
 desktop:
   install:
     conky: true

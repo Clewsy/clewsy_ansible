@@ -25,7 +25,7 @@ mpd_aliases:
 mpd_configs:
   change: #Existing config that matches "setting" will be replaced.
     - { setting: 'music_directory', value: "{{ mpd.music_dir | default('/var/lib/mpd/music') }}" }
-    - { setting: 'playlist_directory', value: "{{ mpd.music_dir | default('/var/lib/mpd/') }}/playlists" }
+    - { setting: 'playlist_directory', value: "{{ mpd.music_dir | default('/var/lib/mpd') }}/playlists" }
   add: #Additional config "setting" will be added in the line after last match to "setting".
     - { setting: 'bind_to_address', value: "0.0.0.0:{{ mpd.port | default('6600') }}" }
 

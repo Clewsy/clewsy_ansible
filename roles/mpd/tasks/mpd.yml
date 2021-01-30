@@ -22,7 +22,7 @@
 
 - name: "[mpd] Ensure preferred mpd music files directory exists ({{ mpd.music_dir | default(ansible_user_home_dir + '/music') }})."
   file:
-    dest: "{{ mpd.music_dir | default(ansible_user_home_dir + '/Music') }}"
+    dest: "{{ mpd.music_dir | default(ansible_user_home_dir + '/music') }}"
     state: directory
 
 - name: '[mpd] Change settings in /etc/mpd.conf.'
@@ -59,7 +59,7 @@
     state: present
     regexp: "^ListenStream=[1-9]"
     line: "ListenStream={{ mpd.port }}"
-  when: mpd.port is defined and mpd.port`
+  when: mpd.port is defined and mpd.port
   notify:
     - stop mpd.socket
     - stop mpd.service

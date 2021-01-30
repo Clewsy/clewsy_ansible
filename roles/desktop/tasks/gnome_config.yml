@@ -15,7 +15,7 @@
     group: "{{ ansible_user }}"
     mode: '0644'
 
-- name: '[gnome_config] Ensure Wallpapers directory exists.'
+- name: '[gnome_config] Ensure wallpapers directory exists.'
   file:
     dest: "{{ gnome_config_background_dir }}"
     state: directory
@@ -23,7 +23,7 @@
     group: "{{ ansible_user }}"
     mode: '0755'
 
-- name: '[gnome_config] Copy desktop backound image to ~/Pictures/Wallpapers.'
+- name: '[gnome_config] Copy desktop backound image to ~/pictures/wallpapers.'
   copy:
     src: "files/gnome_config/{{ ansible_hostname }}_background"
     dest: "{{ gnome_config_background_file }}"

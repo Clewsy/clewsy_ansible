@@ -1,0 +1,20 @@
+---
+- name: '[dir_names] Load dir_names variables.'
+  include_vars: dir_names_vars.yml
+
+- name: '[dir_names] Delete unwanted default directories.'
+  file:
+    path: "{{ ansible_user_home_dir }}/{{ item }}" #.env is gitignored so will not be present on fresh system.
+    state: absent
+  with_items: "{{ dir_names.delete }}"
+
+- name: '[dir_names] Determine if default directory names begin with capital letters.'
+  stat:
+    path: "{{ ansible_user_home_dir }}/{{ item.old_name }}" #.env is gitignored so will not be present on fresh system.
+  register: old_dirs
+  with_items: "{{ dir_names.rename }}"
+
+- name: '[dir_names] Rename default directories (make all lower-case).'
+  command: mv "{{ item.item.old_name }}" "{{ item.item.new_name }}"
+  with_items: "{{ old_dirs.results }}"
+  when: item.stat.exists and item.stat.isdir

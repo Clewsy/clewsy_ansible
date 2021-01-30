@@ -11,5 +11,5 @@ gnome_packages:
   - gnome-tweaks
   - gnome-shell-extensions
 
-gnome_config_background_dir: "{{ ansible_user_home_dir }}/Pictures/Wallpapers"
+gnome_config_background_dir: "{{ ansible_user_home_dir }}/pictures/wallpapers"
 gnome_config_background_file: "{{ gnome_config_background_dir }}/background.jpg"

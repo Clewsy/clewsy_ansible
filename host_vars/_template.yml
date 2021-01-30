@@ -166,7 +166,7 @@ rsync_server_syncs:
 
 #mpd role, mpd.yml
 mpd:
-  music_dir: #"{{ ansible_user_home_dir }}/Music" #Can override default setting in mpd role.  If this is an nfs share, ensure nfs role included and share defined above.
+  music_dir: #"{{ ansible_user_home_dir }}/music" #Can override default setting in mpd role.  If this is an nfs share, ensure nfs role included and share defined above.
   port: #6600 #Will default to 6600 if ommitted.
 
 #desktop role.

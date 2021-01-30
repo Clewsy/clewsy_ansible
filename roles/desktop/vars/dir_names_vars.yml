@@ -1,0 +1,12 @@
+---
+dir_names:
+  delete:
+    - "Desktop"
+    - "Public"
+    - "Templates"
+    - "Videos"
+  rename:
+    - { old_name: "Documents", new_name: "documents" }
+    - { old_name: "Downloads", new_name: "downloads" }
+    - { old_name: "Music", new_name: "music" }
+    - { old_name: "Pictures", new_name: "pictures" }

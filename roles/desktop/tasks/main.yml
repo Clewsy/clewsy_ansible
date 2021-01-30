@@ -29,6 +29,9 @@
 - name: '[nautilus] Install nautilus and configure bookmarks.'
   include: nautilus.yml
 
+- name: '[dir_names] Configure directory names as installed in home directory.'
+  include: dir_names.yml
+
 - name: '[autostart] Configure desired autostart applications.'
   include: autostart.yml
  

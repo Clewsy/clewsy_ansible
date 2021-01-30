@@ -59,7 +59,7 @@
     state: present
     regexp: "^ListenStream=[1-9]"
     line: "ListenStream={{ mpd.port }}"
-  when: mpd.port is defined and mpd.port
+  when: mpd.port is defined and mpd.port`
   notify:
     - stop mpd.socket
     - stop mpd.service

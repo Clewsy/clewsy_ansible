@@ -1,12 +1,14 @@
 ---
 dir_names:
   delete:
-    - "Desktop"
-    - "Public"
-    - "Templates"
-    - "Videos"
+    - { xdg_name: "DESKTOP", old_name: "Desktop" }
+    - { xdg_name: "PUBLICSHARE", old_name: "Public" }
+    - { xdg_name: "TEMPLATES", old_name: "Templates" }
+    - { xdg_name: "VIDEOS", old_name: "Videos" }
   rename:
-    - { old_name: "Documents", new_name: "documents" }
-    - { old_name: "Downloads", new_name: "downloads" }
-    - { old_name: "Music", new_name: "music" }
-    - { old_name: "Pictures", new_name: "pictures" }
+    - { xdg_name: "DOCUMENTS", old_name: "Documents", new_name: "documents" }
+    - { xdg_name: "DOWNLOAD", old_name: "Downloads", new_name: "downloads" }
+    - { xdg_name: "MUSIC", old_name: "Music", new_name: "music" }
+    - { xdg_name: "PICTURES", old_name: "Pictures", new_name: "pictures" }
+
+dir_names_bookmarks_path: "{{ ansible_user_home_dir }}/.config/gtk-3.0/bookmarks"

@@ -4,13 +4,34 @@
 
 - name: '[dir_names] Delete unwanted default directories.'
   file:
-    path: "{{ ansible_user_home_dir }}/{{ item }}" #.env is gitignored so will not be present on fresh system.
+    path: "{{ ansible_user_home_dir }}/{{ item }}"
     state: absent
   with_items: "{{ dir_names.delete }}"
 
+####################################################################################################################################
+#This task required as some apps still generate unwanted directorie (particularly ~/Desktop and ~/Downloads).
+#Kind of a hack - I can't figure out what is still creating these directories. :(
+- name: '[dir_names] Ammend .bashrc file to delete unwanted directories at login.'
+  lineinfile:
+    path: "{{ ansible_user_home_dir }}/.bashrc"
+    line: "[ -d {{ ansible_user_home_dir }}/{{ item.old_name }} ] && rmdir {{ ansible_user_home_dir }}/{{ item.old_name }}"
+  with_items:
+    - "{{ dir_names.delete }}"
+    - "{{ dir_names.rename }}"
+####################################################################################################################################
+
+- name: '[dir_names] Remove directories from nautilus bookmarks if they exist.'
+  lineinfile:
+    path: "{{ dir_names_bookmarks_path }}"
+    regexp: "{{ item.old_name }}$"
+    state: absent
+  with_items:
+    - "{{ dir_names.delete }}"
+    - "{{ dir_names.rename }}"
+
 - name: '[dir_names] Determine if default directory names begin with capital letters.'
   stat:
-    path: "{{ ansible_user_home_dir }}/{{ item.old_name }}" #.env is gitignored so will not be present on fresh system.
+    path: "{{ ansible_user_home_dir }}/{{ item.old_name }}"
   register: old_dirs
   with_items: "{{ dir_names.rename }}"
 
@@ -18,3 +39,29 @@
   command: mv "{{ item.item.old_name }}" "{{ item.item.new_name }}"
   with_items: "{{ old_dirs.results }}"
   when: item.stat.exists and item.stat.isdir
+
+- name: '[dir_names] Ensure user-dirs.conf file exists with "enabled=false" set (needed to survive next login).'
+  lineinfile:
+    path: "{{ ansible_user_home_dir }}/.config/user-dirs.conf"
+    regexp: "enabled=false"
+    line: "enabled=false"
+    create: yes
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0644'
+
+#This task will not be applied until next user login.
+- name: '[dir_names] Redirect xdg-user-dirs.'
+  lineinfile:
+    path: "{{ ansible_user_home_dir }}/.config/user-dirs.dirs"
+    regexp: "^XDG_{{ item.xdg_name }}*"
+    line: "XDG_{{ item.xdg_name }}_DIR=\"$HOME/{{ item.new_name }}\""
+  with_items: "{{ dir_names.rename }}"
+
+#This task will not be applied until next user login.
+- name: '[dir_names] Remove unwanted xdg-user-dirs.'
+  replace:
+    path: "{{ ansible_user_home_dir }}/.config/user-dirs.dirs"
+    regexp: "^XDG_{{ item.xdg_name }}"
+    replace: "#XDG_{{ item.xdg_name }}"
+  with_items: "{{ dir_names.delete }}"

@@ -5,5 +5,6 @@ nautilus_packages:
 nautilus_bookmarks_path: "{{ ansible_user_home_dir }}/.config/gtk-3.0/bookmarks"
 
 nautilus_prefs:
+  - { key: "/org/gnome/desktop/background/show-desktop-icons", value: "false" }
   - { key: "/org/gnome/nautilus/list-view/use-tree-view", value: "true" }
   - { key: "/org/gnome/nautilus/list-view/default-visible-columns", value: "['name', 'size', 'date_modified', 'type', 'detailed_type']" }

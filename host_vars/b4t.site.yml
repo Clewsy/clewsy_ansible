@@ -32,7 +32,7 @@ rsync_server_syncs:
     weekday: "1"
   - name: 'monthly_duplication'
     source: '/home/b4t/backups/'
-    dest: '/home/b4t/monthly/'
+    dest: '/home/b4t/backups_monthly/'
     minute: "0"
     hour: "4"
     day: "11"

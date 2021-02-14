@@ -12,10 +12,14 @@ sshd_configs:
     content: |
       #Added by ansible.  Use protocol 2.
       Protocol 2
-  - name: 'client_timeout.conf'
+  - name: 'client_alive_inteval.conf'
     content: |
-      #Added by ansible.  Set client timeout.
-      ClientAliveInterval 300
+      #Added by ansible.  Set interval before sending null message to client to check for a response.
+      ClientAliveInterval 60
+  - name: 'client_alive_count.conf'
+    content: |
+      #Added by ansible.  Set how many times a null message will be sent before closing the connection.
+      ClientAliveCountMax 3
   - name: 'no_x11_forwarding.conf'
     content: |
       #Added by ansible.  Disable X11 forwarding.

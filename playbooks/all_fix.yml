@@ -12,13 +12,13 @@
 
     - name: Delete file
       file:
-        path: /usr/local/lib/clewsy_scripts/terbling.sh
+        path: /etc/ssh/sshd_config.d/client_timeout.conf
         state: absent
 
-    - name: Delete another file
-      file:
-        path: "/home/{{ ansible_user }}/bin/terbling.sh"
-        state: absent
+#    - name: Delete another file
+#      file:
+#        path: "/home/{{ ansible_user }}/bin/terbling.sh"
+#        state: absent
 #
 #    - name: Remove a python package
 #      pip:

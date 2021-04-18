@@ -33,8 +33,9 @@
 
 - name: '[conky] Copy conky configuration file.'
   copy:
-    src: "{{ local_lib_dir }}/conky_configs/conky_{{ host_name }}/.conkyrc"
+    src: "{{ local_lib_dir }}/conky_configs/{{ host_name }}/.conkyrc"
     dest: "{{ ansible_user_home_dir }}/.conkyrc"
+    remote_src: yes
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: '0640'

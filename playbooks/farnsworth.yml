@@ -13,7 +13,7 @@
 #    - clews.pro
     - headless
     - node
-    - docker
+#    - docker
     - vpn
     - mpd
     - desktop

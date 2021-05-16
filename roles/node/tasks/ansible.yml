@@ -7,6 +7,11 @@
     name: "{{ ansible_packages }}"
     state: latest
 
+- name: '[ansible] Enu=sure any pip modules required by ansible are installed.'
+  pip:
+    name: "{{ ansible_pip_modules }}"
+    state: latest
+
 - name: '[ansible] Clone repo to home directory.'
   git:
     repo: "{{ ansible_repo }}"

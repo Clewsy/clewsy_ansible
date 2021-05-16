@@ -2,6 +2,9 @@ ansible_packages:
   - ansible
   - sshpass
 
+ansible_pip_modules:
+  - psutil #Needed on remote system so ansible can use the dconf module.
+
 ansible_repo: "git@gitlab.com:clewsy/clewsy_ansible"
 
 ansible_repo_directory: "{{ ansible_user_home_dir }}/ansible"

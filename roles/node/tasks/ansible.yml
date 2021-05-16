@@ -12,6 +12,14 @@
     name: "{{ ansible_pip_modules }}"
     state: latest
 
+- name: '[ansible] Ensure log file directory exists.'
+  file:
+    dest: "{{ ansible_user_home_dir }}/.log"
+    mode: '0755'
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    state: directory
+
 - name: '[ansible] Clone repo to home directory.'
   git:
     repo: "{{ ansible_repo }}"

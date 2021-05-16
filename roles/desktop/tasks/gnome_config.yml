@@ -39,9 +39,10 @@
     state: present
   become_user: "{{ ansible_user }}"
 
-- name: '[gnome_config] Clock should be in 24-hour format.'
+- name: '[gnome_config] Configure gnome desktop dconf settings'
   dconf:
-    key: "/org/gnome/desktop/interface/clock-format"
-    value: "'24h'"
+    key: "{{ item.key }}"
+    value: "{{ item.value }}"
     state: present
   become_user: "{{ ansible_user }}"
+  with_items: "{{ gnome_config_prefs }}"

@@ -23,7 +23,6 @@ packages:
     install:
       - imagemagick
       - kicad
-#      - sonata #graphical mpd client
       - libimage-exiftool-perl #package includes exiftool for manipulating photo metadata.
       - pdftk #manipulate pdf files.
     remove:

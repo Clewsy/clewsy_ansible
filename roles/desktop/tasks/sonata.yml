@@ -2,10 +2,18 @@
 - name: '[sonata] Load sonata variables.'
   include_vars: sonata_vars.yml
 
-- name: '[sonata] Install guake.'
+- name: '[sonata] Install sonata.'
   apt:
     name: sonata
     state: latest
+
+- name: '[sonata] Ensure config file directory exists.'
+  file:
+    dest: "{{ ansible_user_home_dir }}/.config/sonata"
+    mode: '0755'
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    state: directory
 
 - name: '[sonata] Configure Sonata profile.'
   ini_file:
@@ -13,4 +21,6 @@
     section: 'profiles'
     option: "{{ item.name }}"
     value:  "{{ item.value }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
   with_items: "{{ sonata_configs }}"

@@ -6,7 +6,7 @@
   apt:
     name: "{{ mpd_packages }}"
     state: latest
-  register: mpd_installation ##Only needed for the bug fix tasks below.
+#  register: mpd_installation ##Only needed for the bug fix tasks below.
 
 - name: '[mpd] Create useful command line aliases.'
   lineinfile:

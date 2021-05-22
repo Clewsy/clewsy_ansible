@@ -67,6 +67,11 @@ nfs_mounts:
 mpd:
   music_dir: "/mnt/zapp/mp3s"
   port: 6660
+#  audio_output: |
+#    audio_output {
+#      type  "alsa"
+#      name  "alsa_device"
+#    }
 
 desktop:
   install:

@@ -31,3 +31,9 @@ mpd_configs:
     - { setting: 'bind_to_address', value: "0.0.0.0:{{ mpd.port | default('6600') }}" }
 
 mpd_raspberry_pi_mixer_device: "\tmixer_control	\"Headphone\"\t# REQUIRED FOR MPD VOLUME CONTROL WITH RASPBERRY PI"
+
+mpd_default_audio_output: |
+  audio_output {
+    type  "alsa"
+    name  "alsa_device"
+  }

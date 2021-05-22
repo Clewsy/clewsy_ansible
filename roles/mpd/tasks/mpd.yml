@@ -68,20 +68,29 @@
     - restart mpd.service
     - rescan music files
 
-- name: '[mpd] Change the audio_output mixer_control setting to allow client volume control.  Needed on Raspberry Pi.'
-  lineinfile:
+- name: '[mpd] Configure host-specific audio device.'
+  blockinfile:
     path: "/etc/mpd.conf"
     state: present
-    regexp: "mixer_control"
-    firstmatch: yes #The regexp will match twice in the default conf file.
-    line: "{{ mpd_raspberry_pi_mixer_device }}"
-  when: ansible_architecture == 'armv7l' or ansible_architecture == 'aarch64'
+    marker: "##Audio output device inserted by ansible.##"
+    block: "{{ mpd.audio_output | default(mpd_default_audio_output)}}"
   notify:
-    - stop mpd.socket
-    - stop mpd.service
-    - kill mpd
-    - restart mpd.socket
     - restart mpd.service
+
+#- name: '[mpd] Change the audio_output mixer_control setting to allow client volume control.  Needed on Raspberry Pi.'
+#  lineinfile:
+#    path: "/etc/mpd.conf"
+#    state: present
+#    regexp: "mixer_control"
+#    firstmatch: yes #The regexp will match twice in the default conf file.
+#    line: "{{ mpd_raspberry_pi_mixer_device }}"
+#  when: ansible_architecture == 'armv7l' or ansible_architecture == 'aarch64'
+#  notify:
+#    - stop mpd.socket
+#    - stop mpd.service
+#    - kill mpd
+#    - restart mpd.socket
+#    - restart mpd.service
 
 - name: '[mpd] Allow mpd client access through the firewall.' #Note, will not enable ufw.
   ufw:

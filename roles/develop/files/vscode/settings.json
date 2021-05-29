@@ -1,7 +1,5 @@
 {
 "editor.rulers": [132],
-"workbench.colorTheme": "Material Theme Darker",
-"editor.detectIndentation": true,
-"workbench.iconTheme": "material-icon-theme",
+"workbench.colorTheme": "Monokai Dimmed",
 "editor.tabSize": 8,
 }

@@ -168,6 +168,11 @@ rsync_server_syncs:
 mpd:
   music_dir: #"{{ ansible_user_home_dir }}/music" #Can override default setting in mpd role.  If this is an nfs share, ensure nfs role included and share defined above.
   port: #6600 #Will default to 6600 if ommitted.
+#  audio_output: | #Configure the audio output device.
+#    audio_output {
+#      type  "alsa"
+#      name  "alsa_device"
+#    }
 
 #desktop role.
 desktop:

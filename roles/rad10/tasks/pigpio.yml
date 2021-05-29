@@ -2,6 +2,11 @@
 - name: '[pigpio] Load pigpio variables.'
   include_vars: pigpio_vars.yml
 
+- name: '[pigpio] Ensure all packages required for pigpio are installed.'
+  apt:
+    name: "{{ pigpio_packages }}"
+    state: latest
+
 - name: '[pigpio] Clone pigpio repo.'
   git:
     repo: "{{ pigpio_repo }}"

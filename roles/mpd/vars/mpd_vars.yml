@@ -30,8 +30,8 @@ mpd_configs:
   add: #Additional config "setting" will be added in the line after last match to "setting".
     - { setting: 'bind_to_address', value: "0.0.0.0:{{ mpd.port | default('6600') }}" }
 
-mpd_raspberry_pi_mixer_device: "\tmixer_control	\"Headphone\"\t# REQUIRED FOR MPD VOLUME CONTROL WITH RASPBERRY PI"
-
+## Default audio device here works (and is required) for mpd to work on farnsworth as of May 2021 (Ubuntu 21.04, mpd 0.22.6)
+## This can be overridden in the host_vars file by a value defined as "mpd.audio_output".
 mpd_default_audio_output: |
   audio_output {
     type  "alsa"

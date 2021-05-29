@@ -27,6 +27,12 @@ nfs_mounts:
 mpd:
   music_dir: "/mnt/zapp/mp3s"
 #  port: 6600
+  audio_output: | #Configure the audio output device.
+    audio_output {
+      type           "alsa"
+      name           "alsa_device"
+      mixer_control  "Headphone"
+    }
 
 backup_file_list: |
   ~/rad10d

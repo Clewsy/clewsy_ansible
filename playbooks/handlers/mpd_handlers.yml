@@ -11,6 +11,7 @@
 
 - name: kill mpd #Remember killing the service doesn't stop the process.
   shell: killall mpd
+  ignore_errors: True #Ignore error when mpd is not already running.
 
 - name: restart mpd.socket
   systemd:

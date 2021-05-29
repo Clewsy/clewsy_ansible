@@ -2,12 +2,11 @@
 - name: Configure rad10.
   hosts: rad10
   become: yes
-#  gather_facts: false
-  gather_facts: true
+  gather_facts: false
 
   handlers:
     - import_tasks: handlers/handlers.yml
 
   roles:
-#    - common
+    - common
     - rad10

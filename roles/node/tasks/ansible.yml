@@ -7,10 +7,16 @@
     name: "{{ ansible_packages }}"
     state: latest
 
-- name: '[ansible] Ensure any pip modules required by ansible are installed.'
-  pip:
-    name: "{{ ansible_pip_modules }}"
-    state: latest
+## Not sure I need this any more.
+#- name: '[packages] Install pip3.' #Needed for next task - installing pip modules.
+#  apt:
+#    name: python3-pip
+#    state: latest
+#
+#- name: '[ansible] Ensure any pip modules required by ansible are installed.'
+#  pip:
+#    name: "{{ ansible_pip_modules }}"
+#    state: latest
 
 - name: '[ansible] Ensure log file directory exists.'
   file:

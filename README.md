@@ -6,15 +6,15 @@ A playbook and variables file exists for each host machine.  When run, the host-
 1. Operating system installed.
 2. User exists as defined in host variables file (*host_vars/hostname.yml*).
 	* User must have sudo access.
-	* Sudo password must be as defined by the host-specific *setup-password* variabe.
-3. Static IP must be assigned to the MAC address of the machine's network interface.  A hosts file on my dhcp server is used so all these machines are identified by hostname, not ip address.
+	* Sudo password must be as defined by the host-specific *setup-password* variable.
+3. Static IP must be assigned to the MAC address of the machine's network interface.  A hosts file on my dhcp server is used, so all these machines are identified by hostname, not ip address.
 
 The [flexo.yml][link_repo_playbooks_flexo] playbook is a special case.  It will configure my smartphone via [Termux][link_web_termux] and as such, has some additional pre-requisites:
 1. Termux must be installed.
 2. Within termux, a couple of packages need to be manually installed:
 	* python
 	* openssh
-3. Termux ssh sessions don't really have a "user" in the traditional sense, but a password must be configured.
+3. Termux ssh sessions don't really have a "user" in the traditional sense, but a password must be configured (```$ passwd```).
 4. sshd must be executed from Termux.  By default, the ssh daemon will serve on port 8022.
 
 

@@ -18,7 +18,7 @@ ansible_sudo_pass: !vault |
   3465623165653763610a663064636130316363323638373264333639636132303239633635363962
   3764
 
-theme_colour: WHITE
+theme_colour: GRAY
 theme_prompt: "{{ B4T }}"
 
 rsync_server_syncs:

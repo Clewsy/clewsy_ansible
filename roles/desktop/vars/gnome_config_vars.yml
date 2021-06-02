@@ -5,7 +5,7 @@ profile_icon_dest: "{% if ansible_distribution == 'Ubuntu' %}\
                       /var/lib/AccountsService/icons/{{ ansible_user }}\
                     {% else %}\
                       /var/lib/AccountsService/icons/{{ ansible_user }}\
-                    {% endif %}"  #Expected location of user profile icon varies depending on the distribution,
+                    {% endif %}"  #Expected location of user profile icon varies depending on the distribution.
 
 gnome_packages:
   - gnome-tweaks
@@ -16,4 +16,10 @@ gnome_config_background_file: "{{ gnome_config_background_dir }}/background.jpg"
 
 gnome_config_prefs:
   - { key: "/org/gnome/desktop/interface/clock-format", value: "'24h'" }     #24-hour time.
-  - { key: "/org/gnome/desktop/interface/gtk-theme", value: "'Yaru-dark'" }  #Dark mode (Yaru).
+  - { key: "/org/gnome/desktop/interface/gtk-theme", value: "{% if ansible_distribution == 'Ubuntu' %}\
+                                                               'Yaru-dark'\
+                                                             {% elif ansible_distribution == 'Pop!_OS' %}\
+                                                               'Pop-dark'\
+                                                             {% else %}\
+                                                               'Yaru-dark'\
+                                                             {% endif %}" } #Dark mode (Yaru on Ubuntu, Pop on Pop_os).

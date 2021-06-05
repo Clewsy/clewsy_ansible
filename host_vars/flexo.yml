@@ -26,7 +26,6 @@ backup_file_list: |
   ~/storage/downloads/wireguard-export.zip
   ~/storage/downloads/AntennaPodBackup**
   ~/storage/downloads/antennapod-feeds**
-  ~/storage/downloads/antennapod-favorites**
   ~/storage/downloads/otp_accounts.json.aes**
   ~/storage/downloads/NewPipeData-**
   ~/storage/downloads/newpipe_subscriptions_**

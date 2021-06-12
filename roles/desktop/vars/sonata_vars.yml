@@ -1,5 +1,7 @@
 ---
 sonata_configs:
-  - { name: 'names[0]', value: "{{ host_name }}" }
-  - { name: 'ports[0]', value: "{{ mpd.port | default('6600') }}" }
-  - { name: 'musicdirs[0]', value: "{{ mpd.music_dir | default(ansible_user_home_dir + '/music') }}" }
+  - { section: 'profiles', name: 'names[0]', value: "{{ host_name }}" }
+  - { section: 'profiles', name: 'ports[0]', value: "{{ mpd.port | default('6600') }}" }
+  - { section: 'profiles', name: 'musicdirs[0]', value: "{{ mpd.music_dir | default(ansible_user_home_dir + '/music') }}" }
+  - { section: 'currformat', name: 'currsong2', value: "by %A from %B (%Y)" }
+  - { section: 'player', name: 'notification', value: "True" }

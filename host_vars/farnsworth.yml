@@ -99,7 +99,7 @@ backup_file_list: |
   #$HOME/.conkyrc_tux           #secondary conky config (mpd info if playing, otherwise just a picture of Tux)
   #~/.bashrc                    #added a custom splash (b4t)
   #$HOME/.bash_aliases          #persistent aliases
-  #~/bin/                       #scripts for use on farnsworth
+  ~/bin/                       #scripts for use on farnsworth
   #~/.gitconfig                 #git settings (user, email, etc)
   #$HOME/openvpn                #quick access vpn configurations (windscribe servers in various countries)
   #~/projects/                  #kind of a working directory for ongoing projects

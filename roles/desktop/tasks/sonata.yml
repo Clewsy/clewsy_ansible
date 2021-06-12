@@ -18,9 +18,9 @@
 - name: '[sonata] Configure Sonata profile.'
   ini_file:
     path: "{{ ansible_user_home_dir }}/.config/sonata/sonatarc"
-    section: 'profiles'
+    section: "{{ item.section }}"
     option: "{{ item.name }}"
-    value:  "{{ item.value }}"
+    value:  "{{ item.value | string }}" #String filter used to prevent warning when converting bool "True" or "False" to a string.
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
   with_items: "{{ sonata_configs }}"

@@ -12,6 +12,6 @@ $ viu -t b4t-cam.png -w 80 | sed 's/\x1b\[/\x5c\x30\x33\x33\[/g' > motd_b4t-cam
 
 # Test output file:
 ```shell
-$IFS='%' #Temporarily change internal field separator to allow output of consolidated whitespace.
-$echo -e $(cat motd_b4t-cam)
+$ IFS='%' #Temporarily change internal field separator to allow output of consolidated whitespace.
+$ echo -e $(cat motd_b4t-cam)
 ```

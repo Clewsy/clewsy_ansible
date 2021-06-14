@@ -18,7 +18,7 @@
     - "{{ motioneye_config_dir }}"
     - "{{ motioneye_files_dir }}"
 
-- name: '[motioneye] Create camera action_button script files.'
+- name: '[motioneye] Copy motioneye preferences file (prefs.json).'
   copy:
     src: files/prefs.json
     dest: "{{ motioneye_config_dir }}/prefs.json"

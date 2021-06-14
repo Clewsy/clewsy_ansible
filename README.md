@@ -31,8 +31,9 @@ The [flexo.yml][link_repo_playbooks_flexo] playbook is a special case.  It will 
 |[droid][link_repo_roles_droid]				|A special role created to configure an android smartphone running [Termux][link_web_termux].  This role has tasks similar to *common* that had to be implemented dfferently (configure ssh, install packages, install scripts).  It also installs some termux "shortcuts" which are basically scripts that can be run from a widget.  |
 |[file_server][link_repo_roles_file_server]		|Mounts a number of disks and configures specified disks or directories as [nfs][link_web_nfs] shares for access over the local network. |
 |[headless][link_repo_roles_headless]			|Install and configure some [ncurses][link_web_ncurses] apps useful for headless systems and systems that are often accessed remotely.  Includes [htop][link_web_htop], [iftop][link_web_iftop], [ncdu][link_web_ncdu], [tmux][link_web_tmux] and [Midnight Commander][link_web_mc]. |  
-|[homeassistant][link_repo_roles_homeassistant]		|First configure docker role as a pre-requisite.  Then install/remove certain packages as required by the [home assistant supervised installer script][link_web_home_assistant_supervised_installer].  Finally download and run the installer script that will install [home assistant supervised][link_web_home_assistant] |
+|[homeassistant][link_repo_roles_homeassistant]		|First configure docker role as a pre-requisite.  Then install/remove certain packages as required by the [home assistant supervised installer script][link_web_home_assistant_supervised_installer].  Finally download and run the [home assistant supervised][link_web_home_assistant] installer script.  Currently not in use. |
 |[motion][link_repo_roles_motion]			|Turn a [raspberry pi][link_web_raspberry_pi] into a web-cam.  Install, configure and enable [motion][link_web_motion] for streaming over the lan. |
+|[motioneye][link_repo_roles_motioneye]			|Turn a [raspberry pi][link_web_raspberry_pi] into a cctv/surveilance webserver using [motioneye][link_web_motioneye] as the client.  Network (and/or local) camera streams are configured so that they are all accessible through the motioneye webUI. |
 |[mpd][link_repo_roles_mpd]				|Use on boxes that will be used for streaming audio or playing mp3s.  Install the required and useful packages ([mpd][link_web_mpd], [mpc][link_web_mpc], [ncmpc][link_web_ncmpc]) then configure and run the mpd daemon. |
 |[node][link_repo_roles_node]				|Set up some common packages and scripts on key boxes that are used for maintaining other boxes.  Install networking packages ([netdiscover][link_web_netdiscover], [nmap][link_web_nmap]), install [ansible][link_web_ansible], clone this repository and install some custom scripts ([apt_all][link_gitlab_clewsy_scripts_apt_all], [ball][link_gitlab_clewsy_scripts_ball], [pong][link_gitlab_clewsy_scripts_pong], [whodis][link_gitlab_clewsy_scripts_whodis]). |
 |[p0wer][link_repo_roles_p0wer]				|Configure a [raspberry pi][link_web_raspberry_pi] with gpio connected to an RF remote control used to switch on or off mains-connected devices from scripts or a webui.  Clone [p0wer repo][link_gitlab_clewsy_p0wer], compile executable, install webserver packages ([Apache][link_web_apache]) and copy html/php files. |
@@ -48,11 +49,11 @@ The [flexo.yml][link_repo_playbooks_flexo] playbook is a special case.  It will 
 
 ## Hosts
 
-|Hostname					|Base OS					|Description																																	|Roles|
-|-----------------------------------------------|-----------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----|
+|Hostname					|Base OS				|Description																																			|Roles|
+|-----------------------------------------------|---------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----|
 |[b4t-cam][link_repo_playbooks_b4t-cam]		|[raspberry pi os][link_web_raspios]	|An old raspberry pi 2 with a wifi dongle and an old usb webcam.<br />Configured as an ip cam and accessed via a [motioneye][link_web_motioneye] server.																	|<ul><li>common</li><li>motion</li></ul> |
 |[b4t.site][link_repo_playbooks_b4t.site]	|[ubuntu][link_web_ubuntu]		|Off-site box (VPS) used as a [wireguard][link_web_wireguard] endpoint and backup storage.																									|<ul><li>common</li><li>docker</li><li>headless</li><li>rsync_server</li><li>secure</li><li>wireguard_server</li></ul> |
-|[calculon][link_repo_playbooks_calculon]	|[ubuntu][link_web_ubuntu]		|Home automation stuff.<br />A raspberry pi 4 with containerised [home assistant][link_web_home_assistant] (supervised) on top of an ubuntu base.																		|<ul><li>common</li><li>homeassistant</li></ul> |
+|[calculon][link_repo_playbooks_calculon]	|[ubuntu for raspi][link_web_ubuntu_pi]	|Home automation stuff.<br />A raspberry pi 4 with containerised [home assistant][link_web_home_assistant] (supervised) on top of an ubuntu base.  Not currently in service.															|<ul><li>common</li><li>homeassistant</li></ul> |
 |[farnsworth][link_repo_playbooks_farnsworth]	|[ubuntu][link_web_ubuntu]		|My main desktop machine.																																	|<ul><li>clews.pro</li><li>common</li><li>desktop</li><li>develop</li><li>docker</li><li>headless</li><li>mpd</li><li>node</li><li>secure</li><li>vpn</li></ul> |
 |[flexo][link_repo_playbooks_flexo]		|[lineageOS][link_web_lineageos]	|My smartphone.																																			|<ul><li>droid</li></ul> |
 |[hermes][link_repo_playbooks_hermes]		|[raspberry pi os][link_web_raspios]	|Old raspberry pi 2 now serving as a network printer thanks to [cups][link_web_cups] and a USB-connected laser printer.																						|<ul><li>common</li><li>cups</li></ul> |
@@ -60,7 +61,8 @@ The [flexo.yml][link_repo_playbooks_flexo] playbook is a special case.  It will 
 |[nibbler][link_repo_playbooks_nibbler]		|[pop_os][link_web_pop_os]		|My laptop.																																			|<ul><li>common</li><li>desktop</li><li>develop</li><li>mpd</li><li>node</li><li>secure</li><li>vpn</li><li>wireguard</li></ul> |
 |[p0wer][link_repo_playbooks_p0wer]		|[raspberry pi os][link_web_raspios]	|A raspberry pi zero W with additional hardware connected to the gpio.  Used to control gpio outlets over wifi.<br />Refer to the [p0wer][link_clews_projects_p0wer] project page or [gitlab repo][link_gitlab_clewsy_p0wer].									|<ul><li>common</li><li>p0wer</li></ul> |
 |[pazuzu][link_repo_playbooks_pazuzu]		|[raspberry pi os][link_web_raspios]	|Raspberry pi zero W connected to a raspberry pi cam.<br />Configured as an ip cam and accessed via a [motioneye][link_web_motioneye] server.																			|<ul><li>common</li><li>motion</li></ul> |
-|[rad10][link_repo_playbooks_rad10]		|[raspberry pi os][link_web_raspios]	|A raspberry pi 3 with additional hardware connected to the gpio plus a small amplifier and speaker.  Effectively a custom internet radio.<br />Refer to the [rad10][link_clews_projects_rad10] project page or [gitlab repo][link_gitlab_clewsy_rad10d].					|<ul><li>common</li><li>mpd</li><li>rad10</li></ul> |
+|[rad10][link_repo_playbooks_rad10]		|[ubuntu for raspi][link_web_ubuntu_pi]	|A raspberry pi 3 with additional hardware connected to the gpio plus a small amplifier and speaker.  Effectively a custom internet radio.<br />Refer to the [rad10][link_clews_projects_rad10] project page or [gitlab repo][link_gitlab_clewsy_rad10d].					|<ul><li>common</li><li>mpd</li><li>rad10</li></ul> |
+|[scruffy][link_repo_playbooks_scruffy]		|[ubuntu for raspi][link_web_ubuntu_pi]	|A raspberry pi 4 configured to serve the [motioneye][link_web_motioneye] web client for collectively monitoring various webcams.																				|<ul><li>common</li><li>docker</li><li>motioneye</li><li>secure</li></ul> |
 |[seymour][link_repo_playbooks_seymour]		|[debian][link_web_debian] 		|[Beaglebone Black][link_web_beaglebone_black] SBC connected to the LAN via ethernet.<br />Always-on box that serves as a network admin node and runs some custom scripts and cron jobs.													|<ul><li>common</li><li>headless</li><li>node</li><li>polly</li><li>secure</li></ul> |
 |[zapp][link_repo_playbooks_zapp]		|[ubuntu][link_web_ubuntu]		|File-server and backup storage.<br />Contains network shares and acts as an rsync server for local and remote backups.<br />Also runs a torrent client.<br />Formerly I used [openmediavault][link_web_openmediavault], but since chose to manually configure a minimal ubuntu installation.	|<ul><li>common</li><li>docker</li><li>file_server</li><li>headless</li><li>qbittorrent</li><li>rsync_server</li><li>vpn</li></ul> |
 |[zoidberg][link_repo_playbooks_zoidberg]	|[ubuntu][link_web_ubuntu]		|Web server machine.<br />Serves various web sites and web apps.<br />Refer to the [clews.pro][link_clews_projects_clews] project page or [gitlab repo][link_gitlab_clewsy_clews.pro].														|<ul><li>clews.pro</li><li>common</li><li>docker</li><li>headless</li><li>polly</li><li>secure</li></ul> |
@@ -101,6 +103,7 @@ The [flexo.yml][link_repo_playbooks_flexo] playbook is a special case.  It will 
 [link_repo_playbooks_pazuzu]:playbooks/pazuzu.yml
 [link_repo_playbooks_rad10]:playbooks/rad10.yml
 [link_repo_playbooks_seymour]:playbooks/seymour.yml
+[link_repo_playbooks_scruffy]:playbooks/scruffy.yml
 [link_repo_playbooks_zapp]:playbooks/zapp.yml
 [link_repo_playbooks_zoidberg]:playbooks/zoidberg.yml
 [link_repo_roles_clews.pro]:roles/clews.pro
@@ -114,6 +117,7 @@ The [flexo.yml][link_repo_playbooks_flexo] playbook is a special case.  It will 
 [link_repo_roles_headless]:roles/headless
 [link_repo_roles_homeassistant]:roles/homeassistant
 [link_repo_roles_motion]:roles/motion
+[link_repo_roles_motioneye]:roles/motioneye
 [link_repo_roles_mpd]:roles/mpd
 [link_repo_roles_node]:roles/node
 [link_repo_roles_p0wer]:roles/p0wer
@@ -168,6 +172,7 @@ The [flexo.yml][link_repo_playbooks_flexo] playbook is a special case.  It will 
 [link_web_termux]:https://termux.com/
 [link_web_tmux]:https://github.com/tmux/tmux/wiki
 [link_web_ubuntu]:https://ubuntu.com/
+[link_web_ubuntu_pi]:https://ubuntu.com/raspberry-pi
 [link_web_ufw]:https://launchpad.net/ufw
 [link_web_vim]:https://www.vim.org/
 [link_web_vscode]:https://code.visualstudio.com/

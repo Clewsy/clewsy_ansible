@@ -1,0 +1,84 @@
+---
+- name: '[motioneye] Load motioneye variables.'
+  include_vars: motioneye_vars.yml
+  
+- name: "[motioneye] Copy {{ motioneye_docker_compose_yml }} file to {{ motioneye_root_dir }} ready for use by docker-compose."
+  copy:
+    src: "files/{{ motioneye_docker_compose_yml }}"
+    dest: "{{ motioneye_root_dir }}{{ motioneye_docker_compose_yml }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0644'
+
+- name: "[motioneye] Ensure motioneye config and files directories exist."
+  file:
+    dest: "{{ item }}"
+    state: directory
+  with_items:
+    - "{{ motioneye_config_dir }}"
+    - "{{ motioneye_files_dir }}"
+
+- name: '[motioneye] Create camera action_button script files.'
+  copy:
+    src: files/prefs.json
+    dest: "{{ motioneye_config_dir }}/prefs.json"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0644'
+  notify:
+  - restart motioneye
+
+- name: '[motioneye] Create motioneye conf file (motion.conf) from template.'
+  template:
+    src: templates/motion.conf
+    dest: "{{ motioneye_config_dir }}/motion.conf"
+    force: no #Do not overwrite if it already exists.
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0644'
+  notify:
+  - restart motioneye
+
+- name: '[motioneye] Add camera config file references to motion.conf.'
+  lineinfile:
+    path: "{{ motioneye_config_dir }}/motion.conf"
+    line: "camera camera-{{ item.id }}.conf"
+    insertafter: EOF
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0644'
+  with_items: "{{ motioneye.cameras }}"
+  notify:
+  - restart motioneye
+
+- name: '[motioneye] Create camera conf files from template.'
+  template:
+    src: templates/camera.conf
+    dest: "{{ motioneye_config_dir }}/camera-{{ item.id }}.conf"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0644'
+  with_items: "{{ motioneye.cameras }}"
+  notify:
+  - restart motioneye
+
+- name: '[motioneye] Create camera action_button script files.'
+  copy:
+    content: |
+      #!/bin/bash
+      {{ item.command }}
+    dest: "{{ motioneye_config_dir }}/{{ item.action }}_{{ item.id }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0755'
+  with_items: "{{ motioneye.action_buttons }}"
+  notify:
+  - restart motioneye
+
+- name: '[motioneye] Pull docker container images listed in motioneye_docker-compose.yml.'
+  docker_compose:
+    project_src: "{{ motioneye_root_dir }}"
+    state: present
+    files: "{{ motioneye_docker_compose_yml }}"
+    pull: yes
+    recreate: smart #Containers will be recreated if a new version is pulled.

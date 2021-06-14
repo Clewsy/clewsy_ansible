@@ -31,10 +31,34 @@ SHELL_COL_MAROON: '00;38;5;052m'
 SHELL_COL_BOLD_MAROON: '01;38;5;052m'
 SHELL_COL_DIM_YELLOW: '02;33m'
 SHELL_COL_BROWN: '38;5;94m'
+SHELL_COL_DARK_GREENISH: '00;38;5;024m'
+SHELL_COL_DARK_RED: '00;38;5;052m'
+SHELL_COL_LIGHT_GRAY: '00;38;5;245m'
 
 SHELL_COL_RESET: '00m'
 
 ## Different command prompt colour themes.
+YELLOW_RED:
+  user: "{{ SHELL_COL_BOLD_YELLOW }}"
+  at: "{{ SHELL_COL_BOLD_YELLOW }}"
+  host: "{{ SHELL_COL_BOLD_YELLOW }}"
+  colon: "{{ SHELL_COL_BOLD_WHITE }}"
+  dir: "{{ SHELL_COL_BOLD_RED }}"
+  prompt: "{{ SHELL_COL_BOLD_RED }}"
+CYAN_BLUE:
+  user: "{{ SHELL_COL_BOLD_CYAN }}"
+  at: "{{ SHELL_COL_BOLD_WHITE }}"
+  host: "{{ SHELL_COL_BOLD_CYAN }}"
+  colon: "{{ SHELL_COL_BOLD_WHITE }}"
+  dir: "{{ SHELL_COL_BLUE }}"
+  prompt: "{{ SHELL_COL_BOLD_WHITE }}"
+BLUE_WHITE:
+  user: "{{ SHELL_COL_BOLD_BLUE }}"
+  at: "{{ SHELL_COL_BOLD_WHITE }}"
+  host: "{{ SHELL_COL_BOLD_BLUE }}"
+  colon: "{{ SHELL_COL_BOLD_WHITE }}"
+  dir: "{{ SHELL_COL_BOLD_BLUE }}"
+  prompt: "{{ SHELL_COL_BOLD_WHITE }}"
 B4T:
   user: "{{ SHELL_COL_BOLD_WHITE }}"
   at: "{{ SHELL_COL_GRAY }}"
@@ -63,20 +87,6 @@ NIBBLER:
   colon: "{{ SHELL_COL_BOLD_WHITE }}"
   dir: "{{ SHELL_COL_ORANGE }}"
   prompt: "{{ SHELL_COL_BOLD_WHITE }}"
-YELLOW_RED:
-  user: "{{ SHELL_COL_BOLD_YELLOW }}"
-  at: "{{ SHELL_COL_BOLD_YELLOW }}"
-  host: "{{ SHELL_COL_BOLD_YELLOW }}"
-  colon: "{{ SHELL_COL_BOLD_WHITE }}"
-  dir: "{{ SHELL_COL_BOLD_RED }}"
-  prompt: "{{ SHELL_COL_BOLD_RED }}"
-CYAN_BLUE:
-  user: "{{ SHELL_COL_BOLD_CYAN }}"
-  at: "{{ SHELL_COL_BOLD_WHITE }}"
-  host: "{{ SHELL_COL_BOLD_CYAN }}"
-  colon: "{{ SHELL_COL_BOLD_WHITE }}"
-  dir: "{{ SHELL_COL_BLUE }}"
-  prompt: "{{ SHELL_COL_BOLD_WHITE }}"
 ZOIDBERG:
   user: "{{ SHELL_COL_BOLD_RED }}"
   at: "{{ SHELL_COL_BOLD_GREENISHBLUE }}"
@@ -84,13 +94,6 @@ ZOIDBERG:
   colon: "{{ SHELL_COL_BOLD_RED }}"
   dir: "{{ SHELL_COL_BOLD_GREENISHBLUE }}"
   prompt: "{{ SHELL_COL_BOLD_RED }}"
-BLUE_WHITE:
-  user: "{{ SHELL_COL_BOLD_BLUE }}"
-  at: "{{ SHELL_COL_BOLD_WHITE }}"
-  host: "{{ SHELL_COL_BOLD_BLUE }}"
-  colon: "{{ SHELL_COL_BOLD_WHITE }}"
-  dir: "{{ SHELL_COL_BOLD_BLUE }}"
-  prompt: "{{ SHELL_COL_BOLD_WHITE }}"
 PAZUZU:
   user: "{{ SHELL_COL_MAROON }}"
   at: "{{ SHELL_COL_BOLD_ORANGE }}"
@@ -126,6 +129,13 @@ HERMES:
   colon: "{{ SHELL_COL_RED }}"
   dir: "{{ SHELL_COL_BOLD_GREEN }}"
   prompt: "{{ SHELL_COL_RED }}"
+SCRUFFY:
+  user: "{{ SHELL_COL_DARK_RED }}"
+  at: "{{ SHELL_COL_TAN }}"
+  host: "{{ SHELL_COL_LIGHT_GRAY }}"
+  colon: "{{ SHELL_COL_TAN }}"
+  dir: "{{ SHELL_COL_DARK_GREENISH }}"
+  prompt: "{{ SHELL_COL_BROWN }}"
 
 prompt_user_colour: "{{ theme_prompt.user | default(SHELL_COL_BOLD_CYAN) }}"
 prompt_at_colour: "{{ theme_prompt.at | default(SHELL_COL_BOLD_WHITE) }}"

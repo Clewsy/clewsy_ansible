@@ -4,3 +4,7 @@
 
 - name: '[develop_packages] Install additional development packages.'
   include: develop_packages.yml
+
+- name: '[pygmentize] Install pygments python package and create ccat & cccat aliases for syntax highlighting.'
+  include: pygmentize.yml
+ 

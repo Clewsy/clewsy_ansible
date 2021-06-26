@@ -68,6 +68,10 @@ backup_file_list: |
   ~/.ssh/				  #ssh keys and authorised hosts
   $HOME/.conkyrc  #conky config set for DELL XPS 13 9360
 
+wireguard:
+  client: true
+  server: false
+
 sshd_port: !vault |
   $ANSIBLE_VAULT;1.1;AES256
   66333336353436336135373836373034623339613833323736663336633533623666373037306638

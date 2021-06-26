@@ -2,15 +2,10 @@
 - name: '[wireguard_server] Load wireguard_server variables.'
   include_vars: wireguard_server_vars.yml
 
-- name: '[wireguard_server] Ensure all packages required for using wireguard are installed.'
-  apt:
-    name: "{{ wireguard_packages }}"
-    state: latest
-
 - name: '[wireguard_server] Open wireguard port in firewall.'
   ufw:
     rule: allow
-    port: "{{ wireguard_port }}"
+    port: "{{ wireguard.server_port }}"
     proto: udp
     comment: Wireguard
   notify: restart ufw
@@ -26,35 +21,9 @@
   with_items: "{{ wireguard_server_sysctl_configs }}"
   notify: restart wg-quick@wg0
 
-
-#
-#
-#
-#
-#
-#- name: '[wireguard_server] Enable ipv4 routing on the server with net.ipv4.ip_forward = 1 entry in /etc/sysctl.d/ansible_wireguard_server.conf'
-#  sysctl:
-#    name: net.ipv4.ip_forward
-#    value: '1'
-#    sysctl_file: '/etc/sysctl.d/ansible_wireguard_server.conf'
-#    sysctl_set: yes
-#    state: present
-#    reload: yes
-#  notify: restart wg-quick@wg0
-#
-#- name: '[wireguard_server] Enable ipv6 routing on the server with net.ipv6.conf.all.forwarding = 1 entry in /etc/sysctl.d/ansible_wireguard_server.conf'
-#  sysctl:
-#    name: net.ipv6.conf.all.forwarding
-#    value: '1'
-#    sysctl_file: '/etc/sysctl.d/ansible_wireguard_server.conf'
-#    sysctl_set: yes
-#    state: present
-#    reload: yes
-#  notify: restart wg-quick@wg0
-
 - name: '[wireguard_server] Copy wireguard server configuration file.'
   copy:
-    src: "files/wg_{{ ansible_hostname }}_server.conf"
+    src: "files/wg_{{ ansible_hostname }}/wg_{{ ansible_hostname }}_server.conf"
     decrypt: yes
     dest: "/etc/wireguard/wg0.conf"
     owner: "root"

@@ -1,0 +1,62 @@
+---
+- name: '[wireguard_client] Load wireguard_client variables.'
+  include_vars: wireguard_client_vars.yml
+
+- name: '[wireguard_client] Ensure all packages required for using wireguard are installed.'
+  apt:
+    name: "{{ wireguard_packages }}"
+    state: latest
+
+- name: '[wireguard_client] Copy wireguard configuration file - client connect to clews.pro (interface wg_clews).'
+  copy:
+    src: "files/wg_clews/wg_clews_client_{{ ansible_hostname }}.conf"
+    decrypt: yes
+    dest: "/etc/wireguard/wg_clews.conf"
+    owner: "root"
+    group: "root"
+    mode: '0644'
+
+- name: '[wireguard_client] Copy wireguard configuration file - client connect to b4t.site (interface wg_b4t).'
+  copy:
+    src: "files/wg_b4t-site/wg_b4t-site_client_{{ ansible_hostname }}.conf"
+    decrypt: yes
+    dest: "/etc/wireguard/wg_b4t.conf"
+    owner: "root"
+    group: "root"
+    mode: '0644'
+
+####
+#- name: '[wireguard_client] Copy wireguard configuration files - client connect to various windscribe servers.'
+#  copy:
+#    src: "files/wg_windscribe/{{ item.conf_filename }}"
+#    decrypt: yes
+#    dest: "/etc/wireguard/{{ item.name }}.conf"
+#    owner: "root"
+#    group: "root"
+#    mode: '0644'
+#  with_items: "{{  }}"
+####
+
+- name: "[wireguard_client] Set {{ ansible_user }} aliases for bringing wireguard connections up / down."
+  lineinfile:
+    path: "{{ ansible_user_home_dir }}/.bash_aliases"
+    state: present
+    regexp: "{{ item }}"
+    line: "{{ item }}"
+    insertafter: EOF
+    create: yes
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+  with_items: "{{ wireguard_client_aliases }}"
+
+- name: '[wireguard_client] Set root aliases for bringing wireguard connections up / down.'
+  lineinfile:
+    path: "/root/.bash_aliases"
+    state: present
+    regexp: "{{ item }}"
+    line: "{{ item }}"
+    insertafter: EOF
+    create: yes
+    owner: "root"
+    group: "root"
+  with_items: "{{ wireguard_client_aliases }}"

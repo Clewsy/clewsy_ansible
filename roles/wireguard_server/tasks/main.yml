@@ -1,3 +1,0 @@
----
-- name: '[wireguard_server] Install and configure wireguard as an endpoint for traffic passthrough.'
-  include: wireguard_server.yml

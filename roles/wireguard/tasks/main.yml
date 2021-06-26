@@ -1,3 +1,11 @@
 ---
-- name: '[wireguard] Install wireguard and configure connection profiles.'
+- name: '[wireguard] Install wireguard.'
   include: wireguard.yml
+
+- name: '[wireguard_client] Configure wireguard client connection profiles.'
+  include: wireguard_client.yml
+  when: wireguard.client is defined and wireguard.client
+
+- name: '[wireguard_server] Configure wireguard server connection profile.'
+  include: wireguard_server.yml
+  when: wireguard.server is defined and wireguard.server

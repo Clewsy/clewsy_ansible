@@ -13,4 +13,4 @@
     - headless
     - docker
     - rsync_server
-    - wireguard_server
+    - wireguard

@@ -227,6 +227,18 @@ backup_file_list: | #Delete completely and the default file list will include on
 #headless role, mc.yml
 mc_skin: #modarcon16root-defbg #Override default skin for midnight commander as configured by headless role.
 
+#wireguard role, wiregaurd_client.yml & wireguard_server.yml
+wireguard:
+#  client: false  #Set true to configure client access to wg servers.  Requires appropriately named wireguard .conf file.
+#  server: true   #Set true to configure as a wg server.  Requires appropriately named wireguard .conf file.
+#  server_port: !vault | #Must match port defined in wg .conf file.
+#    $ANSIBLE_VAULT;1.1;AES256
+#    31343666643162356265356661346337616438386532663664613130383762373237383238633637
+#    3963346539393136333763633465383537333235616132300a313633363838623335656264626232
+#    35653639303033336237613162316563643962646235343263326565313235626238303133386130
+#    3735643632623136650a356563636663393138346430613934323039356338366337626237333862
+#    3234
+
 #secure role
 sshd_port: !vault | #Override the default port listened to by sshd.
 #  $ANSIBLE_VAULT;1.1;AES256

@@ -1,0 +1,6 @@
+---
+wireguard_client_aliases:
+  - "alias clewsup='sudo wg-quick up wg_clews'"
+  - "alias clewsdn='sudo wg-quick down wg_clews'"
+  - "alias b4tup='sudo wg-quick up wg_b4t'"
+  - "alias b4tdn='sudo wg-quick down wg_b4t'"

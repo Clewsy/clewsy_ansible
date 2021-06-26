@@ -1,9 +1,4 @@
 ---
-- name: restart ufw
-  service:
-    name: ufw
-    state: restarted
-
 - name: restart wg-quick@wg0
   service:
     name: wg-quick@wg0

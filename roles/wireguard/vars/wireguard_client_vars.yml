@@ -4,3 +4,14 @@ wireguard_client_aliases:
   - "alias clewsdn='sudo wg-quick down wg_clews'"
   - "alias b4tup='sudo wg-quick up wg_b4t'"
   - "alias b4tdn='sudo wg-quick down wg_b4t'"
+
+wireguard_client_ws_configs:
+  - {name: wg_ws_bucharest, conf_filename: wg_ws_bucharest_no_vampires.conf, alias: buch}
+  - {name: wg_ws_melb_pt_p, conf_filename: wg_ws_melbourne_port_phillip.conf, alias: melb1}
+  - {name: wg_ws_melb_yar, conf_filename: wg_ws_melbourne_yarra.conf, alias: melb2}
+  - {name: wg_ws_new_york, conf_filename: wg_ws_new_york_gotham.conf, alias: ny}
+  - {name: wg_ws_perth, conf_filename: wg_ws_perth_kings_park.conf, alias: perth}
+  - {name: wg_ws_san_fran, conf_filename: wg_ws_san_francisco_sanitation.conf, alias: sanfran}
+  - {name: wg_ws_singapore, conf_filename: wg_ws_singapore_garden.conf, alias: singa}
+  - {name: wg_ws_stockholm, conf_filename: wg_ws_stockholm_syndrome.conf, alias: stock}
+  - {name: wg_ws_tokyo, conf_filename: wg_ws_tokyo_kaiju.conf, alias: tokyo}

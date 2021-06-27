@@ -43,8 +43,7 @@ The [flexo.yml][link_repo_playbooks_flexo] playbook is a special case.  It will 
 |[rsync_server][link_repo_roles_rsync_server]		|Creates a series of [cron][link_web_cron] jobs that use [rsync][link_web_rsync] to create specified local and remote backups to/from various machines. |
 |[secure][link_repo_roles_secure]			|Configure some basic settings for ssh security and enable/configure a firewall (using [ufw][link_web_ufw]). |
 |[vpn][link_repo_roles_vpn]				|Install [openvpn][link_web_openvpn] and copy some custom vpn configuration files.  Also copy and configure a custom [vpn][link_gitlab_clewsy_scripts_vpn] initialisation script. |
-|[wireguard][link_repo_roles_wireguard]			|Install [wireguard][link_web_wireguard] and create custom "client" connection configurations.  Also create some aliases for quickly bringing wireguard up/down from the command line. |
-|[wireguard_server][link_repo_roles_wireguard_server]	|Configure a box as a [wireguard][link_web_wireguard] "server" endpoint. |
+|[wireguard][link_repo_roles_wireguard]			|Install [wireguard][link_web_wireguard] and create custom "client" connection configurations.  If enabled, can configure host to operate as a wireguard "server" endpoint.  Also create some aliases for quickly bringing wireguard up/down from the command line. |
 
 
 ## Hosts
@@ -52,9 +51,9 @@ The [flexo.yml][link_repo_playbooks_flexo] playbook is a special case.  It will 
 |Hostname					|Base OS				|Description																																			|Roles|
 |-----------------------------------------------|---------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----|
 |[b4t-cam][link_repo_playbooks_b4t-cam]		|[raspberry pi os][link_web_raspios]	|An old raspberry pi 2 with a wifi dongle and an old usb webcam.<br />Configured as an ip cam and accessed via a [motioneye][link_web_motioneye] server.																	|<ul><li>common</li><li>motion</li></ul> |
-|[b4t.site][link_repo_playbooks_b4t.site]	|[ubuntu][link_web_ubuntu]		|Off-site box (VPS) used as a [wireguard][link_web_wireguard] endpoint and backup storage.																									|<ul><li>common</li><li>docker</li><li>headless</li><li>rsync_server</li><li>secure</li><li>wireguard_server</li></ul> |
+|[b4t.site][link_repo_playbooks_b4t.site]	|[ubuntu][link_web_ubuntu]		|Off-site box (VPS) used as a [wireguard][link_web_wireguard] endpoint and backup storage.																									|<ul><li>common</li><li>docker</li><li>headless</li><li>rsync_server</li><li>secure</li><li>wireguard</li></ul> |
 |[calculon][link_repo_playbooks_calculon]	|[ubuntu for raspi][link_web_ubuntu_pi]	|Home automation stuff.<br />A raspberry pi 4 with containerised [home assistant][link_web_home_assistant] (supervised) on top of an ubuntu base.  Not currently in service.															|<ul><li>common</li><li>homeassistant</li></ul> |
-|[farnsworth][link_repo_playbooks_farnsworth]	|[ubuntu][link_web_ubuntu]		|My main desktop machine.																																	|<ul><li>clews.pro</li><li>common</li><li>desktop</li><li>develop</li><li>docker</li><li>headless</li><li>mpd</li><li>node</li><li>secure</li><li>vpn</li></ul> |
+|[farnsworth][link_repo_playbooks_farnsworth]	|[ubuntu][link_web_ubuntu]		|My main desktop machine.																																	|<ul><li>clews.pro</li><li>common</li><li>desktop</li><li>develop</li><li>docker</li><li>headless</li><li>mpd</li><li>node</li><li>secure</li><li>vpn</li><li>wireguard</li></ul> |
 |[flexo][link_repo_playbooks_flexo]		|[lineageOS][link_web_lineageos]	|My smartphone.																																			|<ul><li>droid</li></ul> |
 |[hermes][link_repo_playbooks_hermes]		|[raspberry pi os][link_web_raspios]	|Old raspberry pi 2 now serving as a network printer thanks to [cups][link_web_cups] and a USB-connected laser printer.																						|<ul><li>common</li><li>cups</li></ul> |
 |[hypnotoad][link_repo_playbooks_hypnotoad]	|[osmc][link_web_osmc]			|Media server installed on a pi connected to a tv.<br />Serves media stored on zapp using nfs shares.<br />Refer to the [media_center][link_clews_projects_media_center] project page.														|<ul><li>common</li></ul> |
@@ -64,7 +63,7 @@ The [flexo.yml][link_repo_playbooks_flexo] playbook is a special case.  It will 
 |[rad10][link_repo_playbooks_rad10]		|[ubuntu for raspi][link_web_ubuntu_pi]	|A raspberry pi 3 with additional hardware connected to the gpio plus a small amplifier and speaker.  Effectively a custom internet radio.<br />Refer to the [rad10][link_clews_projects_rad10] project page or [gitlab repo][link_gitlab_clewsy_rad10d].					|<ul><li>common</li><li>mpd</li><li>rad10</li></ul> |
 |[scruffy][link_repo_playbooks_scruffy]		|[ubuntu for raspi][link_web_ubuntu_pi]	|A raspberry pi 4 configured to serve the [motioneye][link_web_motioneye] web client for collectively monitoring various webcams.																				|<ul><li>common</li><li>docker</li><li>motioneye</li><li>secure</li></ul> |
 |[seymour][link_repo_playbooks_seymour]		|[debian][link_web_debian] 		|[Beaglebone Black][link_web_beaglebone_black] SBC connected to the LAN via ethernet.<br />Always-on box that serves as a network admin node and runs some custom scripts and cron jobs.													|<ul><li>common</li><li>headless</li><li>node</li><li>polly</li><li>secure</li></ul> |
-|[zapp][link_repo_playbooks_zapp]		|[ubuntu][link_web_ubuntu]		|File-server and backup storage.<br />Contains network shares and acts as an rsync server for local and remote backups.<br />Also runs a torrent client.<br />Formerly I used [openmediavault][link_web_openmediavault], but since chose to manually configure a minimal ubuntu installation.	|<ul><li>common</li><li>docker</li><li>file_server</li><li>headless</li><li>qbittorrent</li><li>rsync_server</li><li>vpn</li></ul> |
+|[zapp][link_repo_playbooks_zapp]		|[ubuntu][link_web_ubuntu]		|File-server and backup storage.<br />Contains network shares and acts as an rsync server for local and remote backups.<br />Also runs a torrent client.<br />Formerly I used [openmediavault][link_web_openmediavault], but since chose to manually configure a minimal ubuntu installation.	|<ul><li>common</li><li>docker</li><li>file_server</li><li>headless</li><li>qbittorrent</li><li>rsync_server</li><li>vpn</li><li>wireguard</li></ul> |
 |[zoidberg][link_repo_playbooks_zoidberg]	|[ubuntu][link_web_ubuntu]		|Web server machine.<br />Serves various web sites and web apps.<br />Refer to the [clews.pro][link_clews_projects_clews] project page or [gitlab repo][link_gitlab_clewsy_clews.pro].														|<ul><li>clews.pro</li><li>common</li><li>docker</li><li>headless</li><li>polly</li><li>secure</li></ul> |
 
 [link_clews]:https://clews.pro
@@ -128,7 +127,6 @@ The [flexo.yml][link_repo_playbooks_flexo] playbook is a special case.  It will 
 [link_repo_roles_secure]:roles/secure
 [link_repo_roles_vpn]:roles/vpn
 [link_repo_roles_wireguard]:roles/wireguard
-[link_repo_roles_wireguard_server]:roles/wireguard_server
 
 [link_web_apache]:https://httpd.apache.org/
 [link_web_avrdude]:https://www.nongnu.org/avrdude/

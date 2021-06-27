@@ -14,4 +14,4 @@
     - file_server
     - rsync_server
     - vpn
-
+    - wireguard

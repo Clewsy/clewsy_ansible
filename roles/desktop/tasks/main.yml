@@ -1,4 +1,16 @@
 ---
+- name: '[desktop] Install pip3.  Needed to install python package psutil'
+  apt:
+    name: python3-pip
+    state: latest
+
+- name: '[desktop] Install python module psutil - needed so ansible can use the dconf module.'
+  pip:
+    name: "psutil"
+    state: latest
+
+######
+
 - name: '[conky] Install and configure conky.'
   include: conky.yml
   when: desktop.install.conky is defined and desktop.install.conky

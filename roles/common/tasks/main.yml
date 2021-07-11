@@ -12,6 +12,9 @@
 - name: '[ssh] Add keys and configure ssh.'
   include: ssh.yml
 
+- name: '[hosts] Add lan hostnames and corresponding ip addresses to the /etc/hosts file.'
+  include: hosts.yml
+
 - name: '[sudo] Configure sudo.'
   include: sudo.yml
 

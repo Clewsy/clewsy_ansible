@@ -61,7 +61,6 @@ nfs_mounts:
   - { mount_source: 'zapp:/export/cl0ud', mount_path: '/mnt/zapp/cl0ud' }
   - { mount_source: 'zapp:/export/m0n0l1th', mount_path: '/mnt/zapp/m0n0l1th' }
   - { mount_source: 'zapp:/export/downloads', mount_path: '/mnt/zapp/downloads' }
-  - { mount_source: 'zapp:/export/t4nk', mount_path: '/mnt/zapp/t4nk' }
   - { mount_source: 'zapp:/export/y4nk', mount_path: '/mnt/zapp/y4nk' }
 
 mpd:

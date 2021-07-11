@@ -47,15 +47,18 @@
     group: "{{ ansible_user }}"
   when: data.stat.exists == false #Only needs fixing if cloned to fresh system as owner will be root.
 
-- name: '[clews.pro] Sync data from backup if it does not exist on host (pull to destination).'
-  synchronize:
-    set_remote_user: no #Use .ssh/config to define user.  Remember, rsync command will be run as root on delegate.
-    mode: push  #I.e. localhost or delegate is source.
-    rsync_opts: "--update"
-    src: "{{ clews_docker_backup_source }}"  ##Location of data.
-    dest: "{{ docker_home_dir }}"  ##Where to put data.
-  delegate_to: "{{ clews_docker_backup_host }}"
-  when: data.stat.exists == false #Only needs restoring to fresh system (i.e. .env not present).
+#Will require sshpass to be installed on clews_docker_backup_host.
+#Recommend running a manual sync instead and monitoring progress (exclude .env file if syncing before running playbook).
+#I.e. vaultwarden-app, nextcloud-bu, navidrome-app, calibre-app, nginx-proxy and various nginx dirs (i.e. contents of .gitignore).
+#- name: '[clews.pro] Sync data from backup if it does not exist on host (pull to destination).'
+#  synchronize:
+#    set_remote_user: no #Use .ssh/config to define user.  Remember, rsync command will be run as root on delegate.
+#    mode: push  #I.e. localhost or delegate is source.
+#    rsync_opts: "--update"
+#    src: "{{ clews_docker_backup_source }}"  ##Location of data.
+#    dest: "{{ docker_home_dir }}"  ##Where to put data.
+#  delegate_to: "{{ clews_docker_backup_host }}"
+#  when: data.stat.exists == false #Only needs restoring to fresh system (i.e. .env not present).
 
 - name: '[clews.pro] Pull docker container images listed in docker.compose.yml.'
   docker_compose:

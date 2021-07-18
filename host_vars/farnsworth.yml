@@ -43,6 +43,7 @@ packages:
     install:
       - gimp
       - inkscape
+      - signal-desktop
   pip:
     install:
       - youtube-dl

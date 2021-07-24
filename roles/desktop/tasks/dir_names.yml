@@ -9,15 +9,15 @@
   with_items: "{{ dir_names.delete }}"
 
 ####################################################################################################################################
-#This task required as some apps still generate unwanted directorie (particularly ~/Desktop and ~/Downloads).
+#This task required as some apps still generate unwanted directories (particularly ~/Desktop and ~/Downloads).
 #Kind of a hack - I can't figure out what is still creating these directories. :(
-- name: '[dir_names] Ammend .bashrc file to delete unwanted directories at login.'
-  lineinfile:
-    path: "{{ ansible_user_home_dir }}/.bashrc"
-    line: "[ -d {{ ansible_user_home_dir }}/{{ item.old_name }} ] && rmdir {{ ansible_user_home_dir }}/{{ item.old_name }}"
-  with_items:
-    - "{{ dir_names.delete }}"
-    - "{{ dir_names.rename }}"
+#- name: '[dir_names] Ammend .bashrc file to delete unwanted directories at login.'
+#  lineinfile:
+#    path: "{{ ansible_user_home_dir }}/.bashrc"
+#    line: "[ -d {{ ansible_user_home_dir }}/{{ item.old_name }} ] && rmdir {{ ansible_user_home_dir }}/{{ item.old_name }}"
+#  with_items:
+#    - "{{ dir_names.delete }}"
+#    - "{{ dir_names.rename }}"
 ####################################################################################################################################
 
 - name: '[dir_names] Remove directories from nautilus bookmarks if they exist.'
@@ -39,6 +39,14 @@
   command: mv "{{ item.item.old_name }}" "{{ item.item.new_name }}"
   with_items: "{{ old_dirs.results }}"
   when: item.stat.exists and item.stat.isdir
+
+- name: '[dir_names] Ensure defualt dirs are owned by {{ ansible_user }}.'
+  file:
+    path: "{{ ansible_user_home_dir }}/{{ item.new_name }}"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+  with_items: "{{ dir_names.rename }}"
 
 - name: '[dir_names] Ensure user-dirs.conf file exists with "enabled=false" set (needed to survive next login).'
   lineinfile:

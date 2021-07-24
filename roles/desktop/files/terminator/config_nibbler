@@ -17,7 +17,7 @@
       maximised = False
       fullscreen = False
       size = 1759, 1016
-      title = jc@nibbler: ~
+      title = nibbler
       last_active_term = bdcf2385-f006-4ef8-8146-93c1e418aaca
       last_active_window = True
     [[[child1]]]
@@ -45,12 +45,12 @@
       order = 1
       profile = default
       uuid = 584baa5e-d791-4cce-988b-1a35c3fbf051
-      command = while ! ping -c 1 -W 1 1.1.1.1 &> /dev/null; do sleep 1; done && /home/jc/bin/pong; bash
+      command = while ! ping -c 1 -W 1 1.1.1.1 &> /dev/null; do sleep 1; done && $HOME/bin/pong; bash
     [[[terminal1]]]
       type = Terminal
       parent = child1
       order = 1
       profile = default
       uuid = 9582f43e-0ef4-48ad-a754-857e68ecbb15
-      command = bash /home/jc/bin/terbling; bash
+      command = bash $HOME/bin/terbling; bash
 [plugins]

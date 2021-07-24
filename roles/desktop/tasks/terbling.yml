@@ -2,7 +2,7 @@
 - name: '[terbling] Load terbling variables.'
   include_vars: terbling_vars.yml
 
-- name: '[terbling] Ensure scripts library directory exists ({{ common_scripts_default_dir }}).'
+- name: '[terbling] Ensure scripts library directory exists ({{ scripts_lib }}).'
   file:
     dest: "{{ scripts_lib }}"
     state: directory

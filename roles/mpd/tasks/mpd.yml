@@ -6,7 +6,6 @@
   apt:
     name: "{{ mpd_packages }}"
     state: latest
-#  register: mpd_installation ##Only needed for the bug fix tasks below.
 
 - name: '[mpd] Create useful command line aliases.'
   lineinfile:
@@ -24,6 +23,13 @@
   file:
     dest: "{{ mpd.music_dir | default(ansible_user_home_dir + '/music') }}"
     state: directory
+
+- name: "[mpd] Ensure user mpd is a member of the group with access to the music library  (needed if music dir is in user's home dir)."
+  user:
+    name: mpd
+    groups: "{{ mpd.music_dir_group }}"
+    append: yes
+  when: mpd.music_dir_group is defined and mpd.music_dir_group
 
 - name: '[mpd] Change settings in /etc/mpd.conf.'
   lineinfile:

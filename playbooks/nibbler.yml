@@ -2,17 +2,18 @@
 - name: Configure nibbler.
   hosts: nibbler
   become: yes
-  gather_facts: false
+  gather_facts: true
+#  gather_facts: false
 
   handlers:
     - import_tasks: handlers/handlers.yml
 
   roles:
-    - common
-    - secure
-    - node
-    - vpn
-    - wireguard
+#    - common
+#    - secure
+#    - node
+#    - vpn
+#    - wireguard
     - mpd
-    - desktop
-    - develop
+#    - desktop
+#    - develop

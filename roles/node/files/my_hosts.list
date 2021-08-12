@@ -2,14 +2,14 @@
 b4t@b4t.site			#N/A In Romania (may be slow).
 b4t@b4t-cam			#077 raspberry pi ip camera.
 #jc@bender			#222 Laptop (may be off).
-jc@farnsworth			#200 My desktop system.
+#STORED jc@farnsworth			#200 My desktop system.
 #butt@fartsworth		#N/A A fake host for testing scripts.
 b4t@hermes			#034 Print server (uses cups on an old raspberry pi).
 osmc@hypnotoad			#010 Media center (raspberry pi running osmc).
 clewsy@nibbler			#123 My amazing XPS 13!
 b4t@p0wer			#042 raspi zero w connected to a gpo remote control.
-b4t@pazuzu			#079 basically another webcam - pi zero w with pi cam.
-b4t@rad10			#111 raspi running mpd and clients with hardware control.
+#STORED b4t@pazuzu			#079 basically another webcam - pi zero w with pi cam.
+#STORED b4t@rad10			#111 raspi running mpd and clients with hardware control.
 b4t@scruffy			#100 raspi 4 serving motioneye.
 b4t@seymour			#007 node (beaglebone black).
 b4t@zapp			#012 The file server.

@@ -59,7 +59,7 @@
   with_items: "{{ wireguard_client_ws_configs }}"
 
 ## Configure down aliases for windscribe wireguard configs.
-- name: "[wireguard_client] Set {{ ansible_user }} aliases for bringing indscribe wireguard connections down."
+- name: "[wireguard_client] Set {{ ansible_user }} aliases for bringing windscribe wireguard connections down."
   lineinfile:
     path: "{{ ansible_user_home_dir }}/.bash_aliases"
     state: present

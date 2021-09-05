@@ -1,6 +1,6 @@
 ---
-- name: Configure zoidberg.
-  hosts: zoidberg
+- name: Configure clews.
+  hosts: clews.pro
   become: yes
   gather_facts: false
 
@@ -11,5 +11,6 @@
     - common
     - secure
     - headless
+    - docker
 #    - clews.pro
 #    - polly

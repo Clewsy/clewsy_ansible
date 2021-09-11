@@ -1,13 +1,10 @@
 ---
 ### Remember to disable vpn if using the clews.pro role on a machine that isn't zoidberg.
+### This playbook will reinstate clews.pro and other containers on a fresh install, but other data will have to be manually restored.
+### I.e. nginx certs, vaultwarden db, nextcloud data, navidrome music.
+
 - name: '[clews.pro] Load clews.pro variables.'
   include_vars: clews.pro_vars.yml
-
-- name: '[clews.pro] Add user to www-data group.'
-  user:
-    name: "{{ ansible_user }}"
-    groups: www-data
-    append: yes
 
 - name: '[clews.pro] Sync clews.pro repo ready for use by docker-compose.'
   git:
@@ -23,12 +20,7 @@
     msg: "Did not clone repo.  Possibly already exists with changes."
   when: clews_clone is failed
 
-- name: Determine if data is already present or needs to be restored from backup.'
-  stat:
-    path: "{{ docker_home_dir }}/.env" #.env is gitignored so will not be present on fresh system.
-  register: data
-
-- name: '[clews.pro] Copy and decrypt .env file to new install.'
+- name: '[clews.pro] Copy and decrypt .env file.'
   copy:
     src: "files/.env"
     decrypt: yes
@@ -36,7 +28,7 @@
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: '0640'
-  when: data.stat.exists == false #Only needs restoring to fresh system (i.e. .env not present).
+  when: clews_clone is changed
 
 - name: '[clews.pro] Change owner of any files updated from git repo (from root to user).'
   file:
@@ -45,20 +37,7 @@
     state: directory
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
-  when: data.stat.exists == false #Only needs fixing if cloned to fresh system as owner will be root.
-
-#Will require sshpass to be installed on clews_docker_backup_host.
-#Recommend running a manual sync instead and monitoring progress (exclude .env file if syncing before running playbook).
-#I.e. vaultwarden-app, nextcloud-bu, navidrome-app, calibre-app, nginx-proxy and various nginx dirs (i.e. contents of .gitignore).
-#- name: '[clews.pro] Sync data from backup if it does not exist on host (pull to destination).'
-#  synchronize:
-#    set_remote_user: no #Use .ssh/config to define user.  Remember, rsync command will be run as root on delegate.
-#    mode: push  #I.e. localhost or delegate is source.
-#    rsync_opts: "--update"
-#    src: "{{ clews_docker_backup_source }}"  ##Location of data.
-#    dest: "{{ docker_home_dir }}"  ##Where to put data.
-#  delegate_to: "{{ clews_docker_backup_host }}"
-#  when: data.stat.exists == false #Only needs restoring to fresh system (i.e. .env not present).
+  when: clews_clone is changed
 
 - name: '[clews.pro] Pull docker container images listed in docker.compose.yml.'
   docker_compose:

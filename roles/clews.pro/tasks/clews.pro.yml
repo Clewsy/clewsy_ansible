@@ -6,6 +6,12 @@
 - name: '[clews.pro] Load clews.pro variables.'
   include_vars: clews.pro_vars.yml
 
+- name: "[clews.pro] Add user ({{ ansible_user }}) to www-data group for read access to docker volumes (e.g. nextcloud data)."
+  user:
+    name: "{{ ansible_user }}"
+    groups: www-data
+    append: yes
+
 - name: '[clews.pro] Sync clews.pro repo ready for use by docker-compose.'
   git:
     repo: "{{ clews_repo }}"

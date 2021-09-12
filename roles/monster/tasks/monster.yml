@@ -1,0 +1,61 @@
+---
+- name: '[monster] Load monster variables.'
+  include_vars: monster_vars.yml
+  
+- name: "[monster] Copy docker-compose.yml file to {{ monster_root_dir }}/ ready for use by docker-compose."
+  copy:
+    src: "files/docker-compose.yml"
+    decrypt: yes
+    dest: "{{ monster_root_dir }}/docker-compose.yml"
+    owner: "root"
+    group: "root"
+    mode: '0644'
+
+- name: "[monster] Ensure required container volume directories exist."
+  file:
+    dest: "{{ item }}"
+    state: directory
+  with_items:
+    - "{{ monster_root_dir }}/authelia"
+    - "{{ monster_root_dir }}/swag/proxy-confs"
+
+- name: '[monster] Copy authelia config files.'
+  copy:
+    src: "files/{{ item }}"
+    decrypt: yes
+    dest: "{{ monster_root_dir }}/authelia/{{ item }}"
+    owner: "root"
+    group: "root"
+    mode: '0600'
+  with_items:
+    - configuration.yml
+    - users_database.yml
+
+- name: '[monster] Copy swag proxy-conf files.'
+  copy:
+    src: "files/{{ item }}"
+    decrypt: yes
+    dest: "{{ monster_root_dir }}/swag/proxy-confs/{{ item }}"
+    owner: "root"
+    group: "root"
+    mode: '0644'
+  with_items:
+    - monster.subdomain.conf
+
+- name: '[monster] Copy monster html/css.'
+  copy:
+    src: "files/www"
+    dest: "{{ monster_root_dir }}/swag" #Will copy www dir and contents indo swag dir.
+    owner: "root"
+    group: "root"
+    mode: '0644'
+  with_items:
+    - monster.subdomain.conf
+
+- name: '[monster] Pull docker container images listed in docker-compose.yml.'
+  docker_compose:
+    project_src: "{{ monster_root_dir }}"
+    state: present
+    files: "docker-compose.yml"
+    pull: yes
+    recreate: smart #Containers will be recreated if a new version is pulled.

@@ -1,0 +1,3 @@
+---
+- name: '[monster] Install, configure and enable monster containers.'
+  include: monster.yml

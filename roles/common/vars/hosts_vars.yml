@@ -14,4 +14,4 @@ hosts:
   - {name: 'hermes', ip: '192.168.1.34'}
   - {name: 'flexo', ip: '192.168.1.142'}
   - {name: 'farnsworth', ip: '192.168.1.200'}
-  - {name: 'b4t-cam', ip: '192.168.1.1'}
+  - {name: 'b4t-cam', ip: '192.168.1.77'}

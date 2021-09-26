@@ -67,8 +67,7 @@ network_shares:
   - { path: '/' }
 
 
-backup_file_list: | #Delete completely and the default file list will include only the ~/.ssh directory.
-  $HOME/.ssh/
+backup_file_list: |
   /etc/fstab
   /etc/cron.d
 

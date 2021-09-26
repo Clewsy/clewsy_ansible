@@ -39,10 +39,6 @@ rsync_server_syncs:
     month: "*"
     weekday: "*"
 
-backup_file_list: |
-  ~/bin/
-  $HOME/.ssh/
-
 wireguard:
   client: false
   server: true

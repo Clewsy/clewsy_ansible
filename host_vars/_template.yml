@@ -223,8 +223,8 @@ ufw_allows: #By default the firewall will be configured to allow OpenSSH (i.e. p
 #  - OpenSSH
 
 #common role, common_scripts.yml
-backup_file_list: | #Delete completely and the default file list will include only the ~/.ssh directory.
-#  ~/.ssh
+backup_file_list: | #Delete completely and the default file list will include only the ~/.bashrc file.
+#  ~/.bashrc
 
 #headless role, mc.yml
 mc_skin: #modarcon16root-defbg #Override default skin for midnight commander as configured by headless role.

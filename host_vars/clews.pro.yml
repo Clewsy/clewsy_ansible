@@ -30,9 +30,6 @@ theme_prompt: "{{ CYAN_BLUE }}"
 mounts: #Docker volumes and docker-compose.yml will go here.  Ensure the mount_source is configured!
   - { mount_source: /dev/disk/by-id/scsi-0Linode_Volume_docker_vol, mount_path: /home/docker, mount_fstype: ext4, mount_opts: "defaults,noatime,nofail" }
 
-#backup_file_list: |
-#  /etc/systemd/system/clews.service	#service created to ensure docker containers are restarted at boot.
-
 wireguard:
   client: false
   server: true

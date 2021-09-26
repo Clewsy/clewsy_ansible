@@ -28,9 +28,6 @@ theme_prompt: "{{ ZOIDBERG }}"
 nfs_mounts:
 #  - { mount_source: 'zapp:/export/cl0ud', mount_path: '/mnt/zapp/cl0ud' }
 
-backup_file_list: |
-#  $HOME/.ssh/
-
 mc_skin: modarin256-defbg
 
 sshd_port: !vault |

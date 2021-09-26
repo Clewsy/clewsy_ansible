@@ -57,7 +57,6 @@ backup_file_list: |
   ~/bin/
   $HOME/docs/
   /etc/fstab
-  ~/.ssh/
   $HOME/.gnupg/gpg-agent.conf	#gpg settings that prevent any temporary saving of keys after decrypting.
 
 sshd_port: !vault |

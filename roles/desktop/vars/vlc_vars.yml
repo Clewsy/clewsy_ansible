@@ -48,8 +48,3 @@ vlc_filetypes:
   - "video/x-flic"
   - "video/x-mjpeg"
   - "video/x-totem-stream"
-
-#  - { file_type: 'ports[0]', value: "{{ mpd.port | default('6600') }}" }
-#  - { file_type: 'musicdirs[0]', value: "{{ mpd.music_dir | default(ansible_user_home_dir + '/music') }}" }
-#  - { file_type: 'currsong2', value: "by %A from %B (%Y)" }
-#  - { file_type: 'notification', value: "True" }

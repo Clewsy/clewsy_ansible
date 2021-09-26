@@ -1,4 +1,7 @@
 ---
+- name: '[vlc] Load vlc variables.'
+  include_vars: vlc_vars.yml
+
 - name: '[vlc] Ensure snapd is installed.'
   apt:
     name: snapd
@@ -10,3 +13,16 @@
     name: "vlc"
     state: present
     classic: no
+
+- name: "[vlc] Make vlc the default video player for {{ ansible_user }}."
+  ini_file:
+    path: "/home/{{ ansible_user }}/.config/mimeapps.list"
+    section: "Default Applications"
+    option: "{{ item }}"
+    value: "vlc_vlc.desktop"
+    no_extra_spaces: yes
+    create: yes
+    mode: '0600'
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+  with_items: "{{ vlc_filetypes }}"

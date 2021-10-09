@@ -16,7 +16,7 @@
 ## The following python package installation is a workaround until the python3-apt package is available for termux.
 ## See issue: https://github.com/termux/termux-packages/issues/4568
 ## The python3-apt package is required for using the ansible apt module.
-## Also git must be installed sto be able to use pip to install from the external git repo.
+## Also git must be installed to be able to use pip to install from the external git repo.
 
 - name: '[termux_packages] Check if git is installed by looking for the executable.'
   stat:
@@ -24,7 +24,7 @@
   register: git
 
 - name: '[termux_packages] Manually install git.'
-  command: "pkg install git"
+  command: "pkg install -y git"
   when: git.stat.exists == false
 
 - name: '[termux_packages] Manually Install python3-apt.'

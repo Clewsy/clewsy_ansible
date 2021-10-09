@@ -1,8 +1,8 @@
 ---
 #Pre-requisites:
 # - obviously termux
-# - apt install python
-# - apt install openssh
+# - apt update
+# - apt install python openssh
 # - run passwd - must match setup_pasword in playbook.
 # - run sshd
 # - dhcp configured for hostname b4t-phone

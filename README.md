@@ -32,6 +32,7 @@ The [flexo.yml][link_repo_playbooks_flexo] playbook is a special case.  It will 
 |[file_server][link_repo_roles_file_server]		|Mounts a number of disks and configures specified disks or directories as [nfs][link_web_nfs] shares for access over the local network. |
 |[headless][link_repo_roles_headless]			|Install and configure some [ncurses][link_web_ncurses] apps useful for headless systems and systems that are often accessed remotely.  Includes [htop][link_web_htop], [iftop][link_web_iftop], [ncdu][link_web_ncdu], [tmux][link_web_tmux] and [Midnight Commander][link_web_mc]. |  
 |[homeassistant][link_repo_roles_homeassistant]		|First configure docker role as a pre-requisite.  Then install/remove certain packages as required by the [home assistant supervised installer script][link_web_home_assistant_supervised_installer].  Finally download and run the [home assistant supervised][link_web_home_assistant] installer script.  Currently not in use. |
+|[monster][link_repo_roles_monster]			|Spins up a few docker containers including a web-server ([clews.monster][link_clews_monster]) and some other miscellaneous web-apps. |
 |[motion][link_repo_roles_motion]			|Turn a [raspberry pi][link_web_raspberry_pi] into a web-cam.  Install, configure and enable [motion][link_web_motion] for streaming over the lan. |
 |[motioneye][link_repo_roles_motioneye]			|Turn a [raspberry pi][link_web_raspberry_pi] into a cctv/surveilance webserver using [motioneye][link_web_motioneye] (in a docker container) as the client.  Network (and/or local) camera streams are configured so that they are all accessible through the motioneye webUI. |
 |[mpd][link_repo_roles_mpd]				|Use on boxes that will be used for streaming audio or playing mp3s.  Install the required and useful packages ([mpd][link_web_mpd], [mpc][link_web_mpc], [ncmpc][link_web_ncmpc]) then configure and run the mpd daemon. |
@@ -53,6 +54,7 @@ The [flexo.yml][link_repo_playbooks_flexo] playbook is a special case.  It will 
 |[b4t-cam][link_repo_playbooks_b4t-cam]		|[raspberry pi os][link_web_raspios]	|An old raspberry pi 2 with a wifi dongle and an old usb webcam.<br />Configured as an ip cam and accessed via a [motioneye][link_web_motioneye] server.																	|<ul><li>common</li><li>motion</li></ul> |
 |[b4t.site][link_repo_playbooks_b4t.site]	|[ubuntu][link_web_ubuntu]		|Off-site box (VPS) used as a [wireguard][link_web_wireguard] endpoint and backup storage.																									|<ul><li>common</li><li>docker</li><li>headless</li><li>rsync_server</li><li>secure</li><li>wireguard</li></ul> |
 |[calculon][link_repo_playbooks_calculon]	|[ubuntu for raspi][link_web_ubuntu_pi]	|Home automation stuff.<br />A raspberry pi 4 with containerised [home assistant][link_web_home_assistant] (supervised) on top of an ubuntu base.  Not currently in service.															|<ul><li>common</li><li>homeassistant</li></ul> |
+|[clews.pro][link_repo_playbooks_clews.pro]	|[ubuntu][link_web_ubuntu]		|Remote VPS web server machine.<br />Serves various web sites and web apps.<br />Refer to the [clews.pro][link_clews_projects_clews] project page or [gitlab repo][link_gitlab_clewsy_clews.pro].														|<ul><li>clews.pro</li><li>common</li><li>docker</li><li>headless</li><li>polly</li><li>secure</li><li>wireguard</li></ul> |
 |[farnsworth][link_repo_playbooks_farnsworth]	|[ubuntu][link_web_ubuntu]		|My main desktop machine.																																	|<ul><li>clews.pro</li><li>common</li><li>desktop</li><li>develop</li><li>docker</li><li>headless</li><li>mpd</li><li>node</li><li>secure</li><li>vpn</li><li>wireguard</li></ul> |
 |[flexo][link_repo_playbooks_flexo]		|[lineageOS][link_web_lineageos]	|My smartphone.																																			|<ul><li>droid</li></ul> |
 |[hermes][link_repo_playbooks_hermes]		|[raspberry pi os][link_web_raspios]	|Old raspberry pi 2 now serving as a network printer thanks to [cups][link_web_cups] and a USB-connected laser printer.																						|<ul><li>common</li><li>cups</li></ul> |
@@ -64,7 +66,7 @@ The [flexo.yml][link_repo_playbooks_flexo] playbook is a special case.  It will 
 |[scruffy][link_repo_playbooks_scruffy]		|[ubuntu for raspi][link_web_ubuntu_pi]	|A raspberry pi 4 configured to serve the [motioneye][link_web_motioneye] web client for collectively monitoring various webcams.																				|<ul><li>common</li><li>docker</li><li>motioneye</li><li>secure</li></ul> |
 |[seymour][link_repo_playbooks_seymour]		|[debian][link_web_debian] 		|[Beaglebone Black][link_web_beaglebone_black] SBC connected to the LAN via ethernet.<br />Always-on box that serves as a network admin node and runs some custom scripts and cron jobs.													|<ul><li>common</li><li>headless</li><li>node</li><li>polly</li><li>secure</li></ul> |
 |[zapp][link_repo_playbooks_zapp]		|[ubuntu][link_web_ubuntu]		|File-server and backup storage.<br />Contains network shares and acts as an rsync server for local and remote backups.<br />Also runs a torrent client.<br />Formerly I used [openmediavault][link_web_openmediavault], but since chose to manually configure a minimal ubuntu installation.	|<ul><li>common</li><li>docker</li><li>file_server</li><li>headless</li><li>qbittorrent</li><li>rsync_server</li><li>vpn</li><li>wireguard</li></ul> |
-|[zoidberg][link_repo_playbooks_zoidberg]	|[ubuntu][link_web_ubuntu]		|Web server machine.<br />Serves various web sites and web apps.<br />Refer to the [clews.pro][link_clews_projects_clews] project page or [gitlab repo][link_gitlab_clewsy_clews.pro].														|<ul><li>clews.pro</li><li>common</li><li>docker</li><li>headless</li><li>polly</li><li>secure</li></ul> |
+|[zoidberg][link_repo_playbooks_zoidberg]	|[ubuntu][link_web_ubuntu]		|Another web server machine.<br />Serves various web sites/apps.														|<ul><li>common</li><li>docker</li><li>headless</li><li>secure</li><li>monster</li></ul> |
 
 [link_clews]:https://clews.pro
 [link_clews_projects_clews]:https://clews.pro/projects/clews.php
@@ -72,6 +74,7 @@ The [flexo.yml][link_repo_playbooks_flexo] playbook is a special case.  It will 
 [link_clews_projects_media_center]:https://clews.pro/projects/media_center.php
 [link_clews_projects_p0wer]:https://clews.pro/projects/p0wer.php
 [link_clews_projects_rad10]:https://clews.pro/projects/rad10.php
+[link_clews_monster]:https://clews.monster
 
 [link_dockerhub_qbittorrent]:https://hub.docker.com/r/linuxserver/qbittorrent
 
@@ -93,6 +96,7 @@ The [flexo.yml][link_repo_playbooks_flexo] playbook is a special case.  It will 
 [link_repo_playbooks_b4t-cam]:playbooks/b4t-cam.yml
 [link_repo_playbooks_b4t.site]:playbooks/b4t.site.yml
 [link_repo_playbooks_calculon]:playbooks/calculon.yml
+[link_repo_playbooks_clews.pro]:playbooks/clews.pro.yml
 [link_repo_playbooks_farnsworth]:playbooks/farnsworth.yml
 [link_repo_playbooks_flexo]:playbooks/flexo.yml
 [link_repo_playbooks_hermes]:playbooks/hermes.yml
@@ -116,6 +120,7 @@ The [flexo.yml][link_repo_playbooks_flexo] playbook is a special case.  It will 
 [link_repo_roles_headless]:roles/headless
 [link_repo_roles_homeassistant]:roles/homeassistant
 [link_repo_roles_motion]:roles/motion
+[link_repo_roles_monster]:roles/monster
 [link_repo_roles_motioneye]:roles/motioneye
 [link_repo_roles_mpd]:roles/mpd
 [link_repo_roles_node]:roles/node

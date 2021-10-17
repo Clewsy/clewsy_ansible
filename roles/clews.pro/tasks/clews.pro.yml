@@ -45,6 +45,15 @@
     group: "{{ ansible_user }}"
   when: clews_clone is changed
 
+- name: '[clews.pro] Configure firewall rule to allow inter-container comms.' #Needed for collabora<->nextcloud.
+  ufw:
+    rule: allow
+    src: 172.0.0.0/8
+    dest: any
+    proto: tcp
+    comment: clews.pro
+  notify: restart ufw
+
 - name: '[clews.pro] Pull docker container images listed in docker.compose.yml.'
   docker_compose:
     project_src: "{{ docker_home_dir }}"

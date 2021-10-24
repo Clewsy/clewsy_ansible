@@ -24,8 +24,8 @@ packages:
       - imagemagick #For image manipulation.
       - libimage-exiftool-perl #For manipulating exif data embedded in photos (e.g. deleting gps co-ords),
 
-theme_colour: BLUE
-theme_prompt: "{{ CYAN_BLUE }}"
+theme_colour: GREEN
+theme_prompt: "{{ GREEN_GREEN }}"
 
 mounts: #Docker volumes and docker-compose.yml will go here.  Ensure the mount_source is configured!
   - { mount_source: /dev/disk/by-id/scsi-0Linode_Volume_docker_vol, mount_path: /home/docker, mount_fstype: ext4, mount_opts: "defaults,noatime,nofail" }

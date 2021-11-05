@@ -25,6 +25,7 @@ packages:
       - asunder     #Rip CDs
       - lame        #Encoder used by asunder to create mp3s
       - easytag     #Edit mp3 id3 tags.
+      - ffmpeg      #Manipulate video files.
     remove:
       - geary       #Unwanted email client.
   pip:

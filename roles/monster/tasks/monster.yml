@@ -59,3 +59,21 @@
     files: "docker-compose.yml"
     pull: yes
     recreate: smart #Containers will be recreated if a new version is pulled.
+
+- name: '[monster] Create monster.service unit file.'
+  copy:
+    src: files/monster.service
+    dest: /etc/systemd/system/monster.service
+    mode: '0644'
+    owner: root
+    group: root
+
+- name: '[monster] Enable monster.service.'
+  service:
+    name: monster
+    enabled: yes
+
+- name: '[monster] Start monster.service (will spin up containers if not already up).'
+  service:
+    name: monster
+    state: started

@@ -1,0 +1,19 @@
+# /etc/systemd/system/monster.service
+# Created to spin up containers after a reboot.
+# enable with:	$ sudo systemctl enable monster
+# start with:	$ sudo systemctl start monster
+[Unit]
+Description=monster Service
+After=docker.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+StandardError=null
+StandardOutput=null
+WorkingDirectory=/home/docker
+ExecStart=/usr/bin/docker-compose -f /home/docker/docker-compose.yml up -d
+ExecStop=/usr/bin/docker-compose -f /home/docker/docker-compose.yml down
+
+[Install]
+WantedBy=multi-user.target

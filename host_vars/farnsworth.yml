@@ -79,6 +79,7 @@ desktop:
   install:
     conky: true
     guake: true
+    mpdevil: false
     sonata: true
     terbling: true
     terminator: true

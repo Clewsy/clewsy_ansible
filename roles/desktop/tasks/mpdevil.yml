@@ -1,0 +1,17 @@
+---
+#- name: '[mpdevil] Load mpdevil variables.'
+#  include_vars: mpdevil_vars.yml
+
+- name: '[mpdevil] Ensure flatpak is installed.'
+  apt:
+    name: flatpak
+    state: latest
+
+- name: '[mpdevil] Install mpdevil.'
+  flatpak:
+    name: https://dl.flathub.org/repo/appstream/org.mpdevil.mpdevil.flatpakref
+    state: present
+    method: system
+
+# For future reference if you want to use ansible to configure mpdevil settings,
+# keyfile is located at ~/.var/app/org.mpdevil.mpdevil/config/glib-2.0/settings/keyfile

@@ -19,6 +19,10 @@
   include: guake.yml
   when: desktop.install.guake is defined and desktop.install.guake
 
+- name: '[mpdevil] Install and configure mpdevil.'
+  include: mpdevil.yml
+  when: desktop.install.mpdevil is defined and desktop.install.mpdevil
+
 - name: '[sonata] Install and configure sonata.'
   include: sonata.yml
   when: desktop.install.sonata is defined and desktop.install.sonata

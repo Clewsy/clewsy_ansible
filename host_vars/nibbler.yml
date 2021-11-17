@@ -50,6 +50,7 @@ mpd:
 
 desktop:
   install:
+    calibre: true
     conky: true
     guake: true
     mpdevil: true

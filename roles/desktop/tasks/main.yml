@@ -11,6 +11,10 @@
 
 ######
 
+- name: '[calibre] Install and configure calibre.'
+  include: calibre.yml
+  when: desktop.install.calibre is defined and desktop.install.calibre
+
 - name: '[conky] Install and configure conky.'
   include: conky.yml
   when: desktop.install.conky is defined and desktop.install.conky

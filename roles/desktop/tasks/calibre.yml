@@ -1,0 +1,19 @@
+---
+#- name: '[calibre] Load calibre variables.'
+#  include_vars: calibre_vars.yml
+
+- name: '[calibre] Ensure flatpak is installed.'
+  apt:
+    name: flatpak
+    state: latest
+
+- name: '[calibre] Install calibre.'
+  flatpak:
+    name: https://dl.flathub.org/repo/appstream/com.calibre_ebook.calibre.flatpakref
+    state: present
+    method: system
+
+- name: '[calibre] Enable dark-mode for future sessions.' #Will not take affect until next login.
+  lineinfile:
+    path: "{{ ansible_user_home_dir }}/.profile"
+    line: export CALIBRE_USE_DARK_PALETTE=1

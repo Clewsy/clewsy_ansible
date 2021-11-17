@@ -203,6 +203,7 @@ mpd:
 #desktop role.
 desktop:
   install:
+    #calibre: false
     #conky: true
     #guake: true
     #mpdevil: true

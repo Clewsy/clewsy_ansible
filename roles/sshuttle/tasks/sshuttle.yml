@@ -1,0 +1,20 @@
+---
+- name: '[sshuttle] Load sshuttle variables.'
+  include_vars: sshuttle_vars.yml
+
+- name: '[sshuttle] Ensure all additional sshuttle packages are installed.'
+  apt:
+    name: "{{ sshuttle_packages }}"
+    state: latest
+
+- name: '[sshuttle] Create sshuttle command line aliases.'
+  lineinfile:
+    path: "{{ ansible_user_home_dir }}/.bash_aliases"
+    state: present
+    regexp: "{{ item }}"
+    line: "{{ item }}"
+    insertafter: EOF
+    create: yes
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+  with_items: "{{ sshuttle_aliases }}"

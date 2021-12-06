@@ -43,6 +43,7 @@ The [flexo.yml][link_repo_playbooks_flexo] playbook is a special case.  It will 
 |[rad10][link_repo_roles_rad10]				|Configure a [raspberry pi][link_web_raspberry_pi] as an internet radio/music streamer with hardware control and a webui.  First run the mpd role, then clone [rad10d repo][link_gitlab_clewsy_rad10d], compile the daemon and configure a unit-file for auto-starting.  Will also install web server packages ([Apache][link_web_apache]) and copy the html/php files for the rad10 webui. |
 |[rsync_server][link_repo_roles_rsync_server]		|Creates a series of [cron][link_web_cron] jobs that use [rsync][link_web_rsync] to create specified local and remote backups to/from various machines. |
 |[secure][link_repo_roles_secure]			|Configure some basic settings for ssh security and enable/configure a firewall (using [ufw][link_web_ufw]). |
+|[sshuttle][link_repo_roles_sshuttle]			|Install [sshuttle][link_web_sshuttle] and create some aliases for initialising poor-person's vpns over ssh. |
 |[vpn][link_repo_roles_vpn]				|Install [openvpn][link_web_openvpn] and copy some custom vpn configuration files.  Also copy and configure a custom [vpn][link_gitlab_clewsy_scripts_vpn] initialisation script. |
 |[wireguard][link_repo_roles_wireguard]			|Install [wireguard][link_web_wireguard] and create custom "client" connection configurations.  If enabled, can configure host to operate as a wireguard "server" endpoint.  Also create some aliases for quickly bringing wireguard up/down from the command line. |
 
@@ -59,7 +60,7 @@ The [flexo.yml][link_repo_playbooks_flexo] playbook is a special case.  It will 
 |[flexo][link_repo_playbooks_flexo]		|[lineageOS][link_web_lineageos]	|My smartphone.																																			|<ul><li>droid</li></ul> |
 |[hermes][link_repo_playbooks_hermes]		|[raspberry pi os][link_web_raspios]	|Old raspberry pi 2 now serving as a network printer thanks to [cups][link_web_cups] and a USB-connected laser printer.																						|<ul><li>common</li><li>cups</li></ul> |
 |[hypnotoad][link_repo_playbooks_hypnotoad]	|[osmc][link_web_osmc]			|Media server installed on a pi connected to a tv.<br />Serves media stored on zapp using nfs shares.<br />Refer to the [media_center][link_clews_projects_media_center] project page.														|<ul><li>common</li></ul> |
-|[nibbler][link_repo_playbooks_nibbler]		|[pop_os][link_web_pop_os]		|My laptop.																																			|<ul><li>common</li><li>desktop</li><li>develop</li><li>docker</li><li>headless</li><li>mpd</li><li>node</li><li>secure</li><li>vpn</li><li>wireguard</li></ul> |
+|[nibbler][link_repo_playbooks_nibbler]		|[pop_os][link_web_pop_os]		|My laptop.																																			|<ul><li>common</li><li>desktop</li><li>develop</li><li>docker</li><li>headless</li><li>mpd</li><li>node</li><li>secure</li><li>sshuttle</li><li>vpn</li><li>wireguard</li></ul> |
 |[p0wer][link_repo_playbooks_p0wer]		|[raspberry pi os][link_web_raspios]	|A raspberry pi zero W with additional hardware connected to the gpio.  Used to control gpio outlets over wifi.<br />Refer to the [p0wer][link_clews_projects_p0wer] project page or [gitlab repo][link_gitlab_clewsy_p0wer].									|<ul><li>common</li><li>p0wer</li></ul> |
 |[pazuzu][link_repo_playbooks_pazuzu]		|[raspberry pi os][link_web_raspios]	|Raspberry pi zero W connected to a raspberry pi cam.<br />Configured as an ip cam and accessed via a [motioneye][link_web_motioneye] server.																			|<ul><li>common</li><li>motion</li></ul> |
 |[rad10][link_repo_playbooks_rad10]		|[ubuntu for raspi][link_web_ubuntu_pi]	|A raspberry pi 3 with additional hardware connected to the gpio plus a small amplifier and speaker.  Effectively a custom internet radio.<br />Refer to the [rad10][link_clews_projects_rad10] project page or [gitlab repo][link_gitlab_clewsy_rad10d].					|<ul><li>common</li><li>mpd</li><li>rad10</li></ul> |
@@ -130,6 +131,7 @@ The [flexo.yml][link_repo_playbooks_flexo] playbook is a special case.  It will 
 [link_repo_roles_rad10]:roles/rad10
 [link_repo_roles_rsync_server]:/roles/rsync_server
 [link_repo_roles_secure]:roles/secure
+[link_repo_roles_sshuttle]:roles/sshuttle
 [link_repo_roles_vpn]:roles/vpn
 [link_repo_roles_wireguard]:roles/wireguard
 
@@ -171,6 +173,7 @@ The [flexo.yml][link_repo_playbooks_flexo] playbook is a special case.  It will 
 [link_web_raspberry_pi]:https://www.raspberrypi.org/
 [link_web_raspios]:https://www.raspberrypi.org/software/
 [link_web_rsync]:https://rsync.samba.org/
+[link_web_sshuttle]:https://github.com/sshuttle/sshuttle
 [link_web_terminator]:https://github.com/software-jessies-org/jessies/wiki/Terminator
 [link_web_termux]:https://termux.com/
 [link_web_tmux]:https://github.com/tmux/tmux/wiki

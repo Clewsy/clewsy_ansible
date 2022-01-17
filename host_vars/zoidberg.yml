@@ -21,6 +21,9 @@ ansible_sudo_pass: !vault |
 packages:
   apt:
     install:
+  pip:
+    install:
+      - youtube-dl #antarctica
 
 theme_colour: RED
 theme_prompt: "{{ ZOIDBERG }}"

@@ -144,6 +144,13 @@ SCRUFFY:
   colon: "{{ SHELL_COL_TAN }}"
   dir: "{{ SHELL_COL_DARK_GREENISH }}"
   prompt: "{{ SHELL_COL_BROWN }}"
+FRY:
+  user: "{{ SHELL_COL_BOLD_ORANGE }}"
+  at: "{{ SHELL_COL_TAN }}"
+  host: "{{ SHELL_COL_TAN }}"
+  colon: "{{ SHELL_COL_BOLD_RED }}"
+  dir: "{{ SHELL_COL_TAN }}"
+  prompt: "{{ SHELL_COL_BLUE }}"
 
 prompt_user_colour: "{{ theme_prompt.user | default(SHELL_COL_BOLD_CYAN) }}"
 prompt_at_colour: "{{ theme_prompt.at | default(SHELL_COL_BOLD_WHITE) }}"

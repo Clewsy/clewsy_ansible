@@ -2,7 +2,8 @@
 b4t@b4t.site			#N/A In Romania (may be slow).
 b4t@b4t-cam			#077 raspberry pi ip camera.
 #jc@bender			#222 Laptop (may be off).
-#STORED jc@farnsworth			#200 My desktop system.
+#jc@farnsworth			#200 My desktop system.
+b4t@fry				#    My antarctic node.
 #butt@fartsworth		#N/A A fake host for testing scripts.
 b4t@hermes			#034 Print server (uses cups on an old raspberry pi).
 osmc@hypnotoad			#010 Media center (raspberry pi running osmc).

@@ -2,13 +2,14 @@
 - name: '[packages] Load packages variables.'
   include_vars: packages_vars.yml
 
-- name: '[packages] Update apt cache and run a full upgrade.'
-  apt:
-    upgrade: 'full'
-    update_cache: yes
-    autoremove: yes
-    autoclean: yes
-    cache_valid_time: 86400 #Cache is valid for 24 hours.
+# disabled for antarctica
+#- name: '[packages] Update apt cache and run a full upgrade.'
+#  apt:
+#    upgrade: 'full'
+#    update_cache: yes
+#    autoremove: yes
+#    autoclean: yes
+#    cache_valid_time: 86400 #Cache is valid for 24 hours.
 
 - name: '[packages] Install common packages.'
   apt:

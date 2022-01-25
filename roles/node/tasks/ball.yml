@@ -15,8 +15,8 @@
 - name: '[ball] Copy ball script to user bin directory.'
   copy:
     src: "{{ scripts_lib }}/ball"
-    dest: "{{ ansible_user_home_dir }}/bin/ball"
     remote_src: yes
+    dest: "{{ ansible_user_home_dir }}/bin/ball"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: '0755'

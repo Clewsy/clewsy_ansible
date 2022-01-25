@@ -15,8 +15,8 @@
 - name: '[pong] Copy pong script to user bin directory.'
   copy:
     src: "{{ scripts_lib }}/pong"
-    dest: "{{ ansible_user_home_dir }}/bin/pong"
     remote_src: yes
+    dest: "{{ ansible_user_home_dir }}/bin/pong"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: '0755'

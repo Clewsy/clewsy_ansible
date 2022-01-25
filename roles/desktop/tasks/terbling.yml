@@ -32,6 +32,7 @@
 - name: '[terbling] Copy terbling script to user bin directory.'
   copy:
     src: "{{ scripts_lib }}/terbling"
+    remote_src: yes
     dest: "{{ ansible_user_home_dir }}/bin/terbling"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"

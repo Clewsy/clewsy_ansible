@@ -15,8 +15,8 @@
 - name: '[whodis] Copy whodis script to user bin directory.'
   copy:
     src: "{{ scripts_lib }}/whodis"
-    dest: "{{ ansible_user_home_dir }}/bin/whodis"
     remote_src: yes
+    dest: "{{ ansible_user_home_dir }}/bin/whodis"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: '0755'

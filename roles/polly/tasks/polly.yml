@@ -23,8 +23,8 @@
 - name: '[polly] Copy polly script for root use.'
   copy:
     src: "{{ scripts_lib }}/polly"
-    dest: "{{ polly_dest }}"
     remote_src: yes
+    dest: "{{ polly_dest }}"
     owner: "root"
     group: "root"
     mode: '0755'

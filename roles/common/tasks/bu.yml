@@ -15,8 +15,8 @@
 - name: '[bu] Copy bu script to user bin directory.'
   copy:
     src: "{{ scripts_lib }}/bu"
-    dest: "{{ common_scripts_directory }}/bu"
     remote_src: yes
+    dest: "{{ common_scripts_directory }}/bu"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: '0755'

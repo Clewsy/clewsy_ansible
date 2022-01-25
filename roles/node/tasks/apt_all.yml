@@ -15,8 +15,8 @@
 - name: '[apt_all] Copy apt_all script to user bin directory.'
   copy:
     src: "{{ scripts_lib }}/apt_all"
-    dest: "{{ ansible_user_home_dir }}/bin/apt_all"
     remote_src: yes
+    dest: "{{ ansible_user_home_dir }}/bin/apt_all"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: '0755'

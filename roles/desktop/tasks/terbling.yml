@@ -44,3 +44,4 @@
     path: "{{ ansible_user_home_dir }}/bin/terbling"
     regexp: '^DEFAULT_COL='
     line: "DEFAULT_COL=\"${{ '{' }}{{ theme_colour | default(CYAN) }}{{ '}' }}\"" #Use jinja expression to "escape" braces.
+  when: terbling is changed

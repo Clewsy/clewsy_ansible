@@ -1,0 +1,56 @@
+---
+- name: '[sneak] Load sneak variables.'
+  include_vars: sneak_vars.yml
+
+- name: '[sneak] Ensure scripts library directory exists ({{ scripts_lib }}).'
+  file:
+    dest: "{{ scripts_lib }}"
+    state: directory
+    owner: 'root'
+    group: 'root'
+    mode: '0755'
+
+- name: '[sneak] Ensure bin directory exists within user home directory.'
+  file:
+    dest: "{{ common_scripts_directory }}"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0755'
+
+- name: '[sneak] Ensure logfile directory exists within user home directory.'
+  file:
+    dest: "{{ ansible_user_home_dir }}/.log"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0755'
+
+- name: '[sneak] Ensure transfer directory exists within user home directory.'
+  file:
+    dest: "{{ ansible_user_home_dir }}/transfer"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0755'
+
+- name: '[sneak] Copy sneak script to script library.'
+  get_url:
+    url: "{{ sneak_url }}"
+    dest: "{{ scripts_lib }}/sneak"
+    force: yes
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+  register: sneak
+
+- name: '[sneak] Copy sneak script into user bin directory.'
+  copy:
+    src: "{{ scripts_lib }}/sneak"
+    remote_src: yes
+    dest: "{{ ansible_user_home_dir }}/bin/sneak"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0755'
+  when: sneak is changed
+

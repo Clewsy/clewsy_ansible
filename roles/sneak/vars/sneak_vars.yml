@@ -1,0 +1,4 @@
+---
+sneak_url: "https://gitlab.com/clewsy/scripts/-/raw/master/sneak"
+sneak_dest: "/usr/local/sbin/sneak"
+

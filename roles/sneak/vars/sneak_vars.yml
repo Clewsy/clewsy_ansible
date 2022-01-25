@@ -9,7 +9,7 @@ sneak_cron_jobs:
     day: "*"
     month: "*"
     weekday: "*"
-    job: "{{ ansible_user_home_dir }}/bin/sneak"
+    job: "{{ ansible_user_home_dir }}/bin/sneak -v"
   - name: "Cancel rsync."
     minute: "0"
     hour: "6"

@@ -2,3 +2,19 @@
 sneak_url: "https://gitlab.com/clewsy/scripts/-/raw/master/sneak"
 sneak_dest: "/usr/local/sbin/sneak"
 
+sneak_cron_jobs:
+  - name: "Initiate sneak."
+    minute: "0"
+    hour: "23"
+    day: "*"
+    month: "*"
+    weekday: "*"
+    job: "{{ ansible_user_home_dir }}/bin/sneak"
+  - name: "Cancel rsync."
+    minute: "0"
+    hour: "6"
+    day: "*"
+    month: "*"
+    weekday: "*"
+    job: "sudo killall rsync"
+

@@ -54,3 +54,16 @@
     mode: '0755'
   when: sneak is changed
 
+- name: '[sneak] Configure cron jobs.'
+  cron:
+    name: "{{ item.name }}"
+    minute: "{{ item.minute }}"
+    hour: "{{ item.hour }}"
+    weekday: "{{ item.weekday }}"
+    day: "{{ item.day }}"
+    month: "{{ item.month }}"
+    user: "{{ ansible_user }}"
+    job: "{{ item.job }}"
+  with_items: "{{ sneak_cron_jobs }}"
+  notify: restart cron
+

@@ -1,15 +1,14 @@
 ---
-- name: '[vscode] Ensure snapd is installed.'
+- name: '[vscode] Ensure flatpak is installed.'
   apt:
-    name: snapd
+    name: flatpak
     state: latest
-  notify: enable and start snapd
 
 - name: '[vscode] Install vscode.'
-  snap:
-    name: "code"
+  flatpak:
+    name: https://dl.flathub.org/repo/appstream/com.visualstudio.code.flatpakref
     state: present
-    classic: yes
+    method: system
 
 - name: '[vscode] Ensure vscode user settings directory exists.'
   file:

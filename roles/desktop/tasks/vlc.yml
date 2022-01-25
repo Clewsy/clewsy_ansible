@@ -2,17 +2,16 @@
 - name: '[vlc] Load vlc variables.'
   include_vars: vlc_vars.yml
 
-- name: '[vlc] Ensure snapd is installed.'
+- name: '[vlc] Ensure flatpak is installed.'
   apt:
-    name: snapd
+    name: flatpak
     state: latest
-  notify: enable and start snapd
 
 - name: '[vlc] Install vlc.'
-  snap:
-    name: "vlc"
+  flatpak:
+    name: https://dl.flathub.org/repo/appstream/org.videolan.VLC.flatpakref
     state: present
-    classic: no
+    method: system
 
 - name: "[vlc] Make vlc the default video player for {{ ansible_user }}."
   ini_file:

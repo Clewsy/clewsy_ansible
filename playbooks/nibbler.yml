@@ -15,7 +15,8 @@
     - vpn
     - wireguard
     - sshuttle
-    - mpd
     - desktop
     - develop
     - docker
+    - mpd
+

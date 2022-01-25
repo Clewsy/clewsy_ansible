@@ -1,14 +1,18 @@
 ---
-- name: '[vscode] Ensure flatpak is installed.'
-  apt:
-    name: flatpak
-    state: latest
+- name: '[vscode] Add microsoft repository key for apt.'
+  apt_key:
+    url: https://packages.microsoft.com/keys/microsoft.asc
+    state: present
+
+- name: '[vscode] Add microsoft repo for apt.'
+  apt_repository:
+    repo: deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main
+    state: present
 
 - name: '[vscode] Install vscode.'
-  flatpak:
-    name: https://dl.flathub.org/repo/appstream/com.visualstudio.code.flatpakref
+  apt:
+    name: code
     state: present
-    method: system
 
 - name: '[vscode] Ensure vscode user settings directory exists.'
   file:

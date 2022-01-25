@@ -89,8 +89,7 @@
 - name: '[mpd] Allow mpd client access through the firewall.' #Note, will not enable ufw.
   ufw:
     rule: allow
-    to_port: "{{ mpd.port }}"
+    to_port: "{{ mpd.port | default('6600'} }"
     proto: tcp
     comment: mpd
   notify: restart ufw
-  when: mpd.port is defined

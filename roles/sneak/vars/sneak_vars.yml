@@ -17,4 +17,3 @@ sneak_cron_jobs:
     month: "*"
     weekday: "*"
     job: "sudo killall rsync"
-

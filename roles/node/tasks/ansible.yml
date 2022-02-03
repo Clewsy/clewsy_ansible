@@ -47,7 +47,7 @@
     state: directory
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
-  when: ansible_clone is changed
+#  when: ansible_clone is changed
 
 - name: '[ansible] Install the vault key file.'
   copy:

@@ -76,6 +76,10 @@ wireguard:
   client: true
   server: false
 
+antarctica:
+  sshuttle: true
+  sneak: false
+
 # antarctic modification.
 sshd_port: !vault |
   $ANSIBLE_VAULT;1.1;AES256

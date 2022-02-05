@@ -12,7 +12,7 @@
     - secure
     - headless
     - node
-    - sshuttle
+    - antarctica
 
   # Run tasks specific only to fry.
   tasks:

@@ -243,6 +243,11 @@ wireguard:
 #    3735643632623136650a356563636663393138346430613934323039356338366337626237333862
 #    3234
 
+#antarctica role - some tasks useful for the restricted network and bandwidth.
+antarctica:
+#  sshuttle: true
+#  sneak: true
+
 #secure role
 sshd_port: !vault | #Override the default port listened to by sshd.
 #  $ANSIBLE_VAULT;1.1;AES256

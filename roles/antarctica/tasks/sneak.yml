@@ -66,4 +66,3 @@
     job: "{{ item.job }}"
   with_items: "{{ sneak_cron_jobs }}"
   notify: restart cron
-

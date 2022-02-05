@@ -14,10 +14,8 @@
     - node
     - vpn
     - wireguard
-    - sshuttle
+    - antarctica
     - desktop
     - develop
     - docker
     - mpd
-    - sneak
-

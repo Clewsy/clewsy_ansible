@@ -17,6 +17,7 @@
 #    - docker
 #    - vpn
 #    - wireguard
+    - antarctica
     - desktop
     - develop
 #    - mpd

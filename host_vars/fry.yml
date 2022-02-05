@@ -45,6 +45,10 @@ backup_file_list: |
   ~/.bashrc
   ~/bin/
 
+antarctica:
+  sshuttle: true
+  sneak: false
+
 sshd_port: !vault |
   $ANSIBLE_VAULT;1.1;AES256
   61303661646436343130396536653566613663373839316234616230356134393930376330386662

@@ -108,6 +108,10 @@ backup_file_list: |
 
 mc_skin: modarcon16-defbg
 
+antarctica:
+  sshuttle: true
+  sneak: true
+
 sshd_port: !vault |
   $ANSIBLE_VAULT;1.1;AES256
   33626466303634386462306264386466376632623663383632363731346664616362666533643731

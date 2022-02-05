@@ -1,3 +1,0 @@
----
-- name: '[sneak] Install and configure sneak.'
-  include: sneak.yml

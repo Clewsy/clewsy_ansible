@@ -1,4 +1,0 @@
----
-- name: '[sshuttle] Install and configure sshuttle.'
-  include: sshuttle.yml
- 

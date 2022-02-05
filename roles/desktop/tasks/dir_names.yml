@@ -4,7 +4,7 @@
 
 - name: '[dir_names] Delete unwanted default directories.'
   file:
-    path: "{{ ansible_user_home_dir }}/{{ item }}"
+    path: "{{ ansible_user_home_dir }}/{{ item.old_name }}"
     state: absent
   with_items: "{{ dir_names.delete }}"
 

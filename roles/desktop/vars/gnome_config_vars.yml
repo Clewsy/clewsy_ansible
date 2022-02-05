@@ -10,6 +10,7 @@ profile_icon_dest: "{% if ansible_distribution == 'Ubuntu' %}\
 gnome_packages:
   - gnome-tweaks
   - gnome-shell-extensions
+  - dconf-editor
 
 gnome_config_background_dir: "{{ ansible_user_home_dir }}/pictures/wallpapers"
 gnome_config_background_file: "{{ gnome_config_background_dir }}/background.jpg"
@@ -24,3 +25,5 @@ gnome_config_prefs:
                                                              {% else %}\
                                                                'Yaru-dark'\
                                                              {% endif %}" } #Dark mode (Yaru on Ubuntu, Pop on Pop_os).
+  - { key: "/org/gnome/shell/extensions/dash-to-dock/show-favorites", value: "false" }  #Remove favourites shortcuts from ubuntu dock.
+  - { key: "/org/gnome/shell/extensions/dash-to-dock/show-trash", value: "false" }  #Remove trash shortcut from ubuntu dock.

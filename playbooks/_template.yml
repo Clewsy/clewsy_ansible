@@ -21,6 +21,7 @@
 #    - vpn
 #    - wireguard
 #    - sshuttle
+#    - sneak
 #    - homeassistant
 #    - desktop
 #    - develop

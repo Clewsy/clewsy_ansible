@@ -13,5 +13,11 @@
     state: present
     method: system
 
+- name: '[mpdevil] Create alias mpdevil for "flatpak run org.mpdevil.mpdevil".'
+  lineinfile:
+    path: "{{ ansible_user_home_dir }}/.bash_aliases"
+    line: "alias mpdevil='flatpak run org.mpdevil.mpdevil'" 
+    state: present
+
 # For future reference if you want to use ansible to configure mpdevil settings,
 # keyfile is located at ~/.var/app/org.mpdevil.mpdevil/config/glib-2.0/settings/keyfile

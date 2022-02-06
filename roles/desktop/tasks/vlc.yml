@@ -13,6 +13,13 @@
     state: present
     method: system
 
+- name: '[vlc] Create alias vlc for "flatpak run org.videolan.VLC".'
+  lineinfile:
+    path: "{{ ansible_user_home_dir }}/.bash_aliases"
+    line: "alias vlc='flatpak run org.videolan.VLC'" 
+    state: present
+
+
 - name: "[vlc] Make vlc the default video player for {{ ansible_user }}."
   ini_file:
     path: "/home/{{ ansible_user }}/.config/mimeapps.list"

@@ -13,12 +13,10 @@
 #    - clews.pro
     - headless
     - node
-#    - antarctica
 #    - docker
 #    - vpn
 #    - wireguard
     - antarctica
     - desktop
     - develop
-#    - mpd
-
+    - mpd

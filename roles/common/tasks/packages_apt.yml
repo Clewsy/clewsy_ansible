@@ -1,0 +1,33 @@
+---
+- name: '[packages_apt] Load packages_apt variables.'
+  include_vars: packages_apt_vars.yml
+
+# disabled for antarctica
+#- name: '[packages] Update apt cache and run a full upgrade.'
+#  apt:
+#    upgrade: 'full'
+#    update_cache: yes
+#    autoremove: yes
+#    autoclean: yes
+#    cache_valid_time: 86400 #Cache is valid for 24 hours.
+
+- name: '[packages_apt] Install common packages.'
+  apt:
+    name: "{{ common_apt_packages }}"
+    state: latest
+
+########### Installation of apps that don't come pre-installed.
+- name: '[packages_apt] Install miscellaneous, host-specific apt packages.'
+  apt:
+    name: "{{ packages.apt.install }}"
+    state: latest
+  when: packages.apt.install.0 is defined
+
+########### Removal of apps that do come pre-installed.
+- name: '[packages_apt] Remove miscellaneous, host-specific, pre-installed apt packages.'
+  apt:
+    name: "{{ packages.apt.remove }}"
+    state: absent
+    purge: yes
+    autoremove: yes
+  when: packages.apt.remove.0 is defined

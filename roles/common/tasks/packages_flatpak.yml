@@ -1,0 +1,30 @@
+---
+- name: '[packages_flatpak] Ensure flatpak is installed.'
+  apt:
+    name: flatpak
+    state: latest
+  when: packages.flatpak.install.0 is defined
+
+- name: '[packages_flatpak] Add the flathub flatpak repository remote.'
+  flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+  when: packages.flatpak.install.0 is defined
+
+########### Installation of apps that don't come pre-installed.
+- name: '[packages_flatpak] Install miscellaneous, host-specific flatpak packages.'
+  flatpak:
+    name: '{{ item }}'
+    state: present
+    method: system
+  with_items: "{{ packages.flatpak.install }}"
+  when: packages.flatpak.install.0 is defined
+
+########### Removal of apps that do come pre-installed.
+- name: '[packages_flatpak] Install miscellaneous, host-specific flatpak packages.'
+  flatpak:
+    name: "{{ item }}"
+    state: absent
+  with_items: "{{ packages.flatpak.remove }}"
+  when: packages.flatpak.remove.0 is defined

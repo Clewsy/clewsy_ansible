@@ -1,0 +1,37 @@
+---
+- name: '[packages_snap] Install snapd.'
+  apt:
+    name: snapd
+    state: latest
+  notify: enable and start snapd
+  when: packages.snap.install.0 is defined or packages.classic_snap.install.0 is defined
+
+########### Installation of apps that don't come pre-installed.
+- name: '[packages_snap] Install miscellaneous, host-specific snap packages.'
+  snap:
+    name: "{{ packages.snap.install }}"
+    state: present
+    classic: no
+  when: packages.snap.install.0 is defined
+
+- name: '[packages_snap] Install miscellaneous, host-specific classic snap packages.'
+  snap:
+    name: "{{ packages.classic_snap.install }}"
+    state: present
+    classic: yes
+  when: packages.classic_snaps.install.0 is defined
+
+########### Removal of apps that do come pre-installed.
+- name: '[packages_snap] Remove miscellaneous, host-specific, pre-installed snap packages.'
+  snap:
+    name: "{{ packages.snaps.remove }}"
+    state: absent
+    classic: no
+  when: packages.snaps.remove.0 is defined
+
+- name: '[packages_snap] Remove miscellaneous, host-specific, pre-installed classic snap packages.'
+  snap:
+    name: "{{ packages.classic_snaps.remove }}"
+    state: absent
+    classic: yes
+  when: packages.classic_snaps.remove.0 is defined

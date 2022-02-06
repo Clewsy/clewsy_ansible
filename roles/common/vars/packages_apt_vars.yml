@@ -1,5 +1,5 @@
 ---
-common_packages:
+common_apt_packages:
   - rsync
   - curl
   - iperf3

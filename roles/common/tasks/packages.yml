@@ -1,86 +1,17 @@
 ---
-- name: '[packages] Load packages variables.'
-  include_vars: packages_vars.yml
 
-# disabled for antarctica
-#- name: '[packages] Update apt cache and run a full upgrade.'
-#  apt:
-#    upgrade: 'full'
-#    update_cache: yes
-#    autoremove: yes
-#    autoclean: yes
-#    cache_valid_time: 86400 #Cache is valid for 24 hours.
+- name: '[packages_apt] Install/remove apt packages.'
+  include: packages_apt.yml
+  when: packages.apt.install.0 is defined or packages.apt.remove.0 is defined
 
-- name: '[packages] Install common packages.'
-  apt:
-    name: "{{ common_packages }}"
-    state: latest
+- name: '[packages_snap] Install/remove snap packages.'
+  include: packages_snap.yml
+  when: packages.snap.install.0 is defined or packages.snap.remove.0 is defined or packages.classic_snap.install.0 is defined or packages.classic_snap.remove.0 is defined
 
-########### Installation of apps that don't come pre-installed.
-- name: '[packages] Install miscellaneous, host-specific apt packages.'
-  apt:
-    name: "{{ packages.apt.install }}"
-    state: latest
-  when: packages.apt.install.0 is defined
+- name: '[packages_flatpak] Install/remove flatpak packages.'
+  include: packages_flatpak.yml
+  when: packages.flatpak.install.0 is defined or packages.flatpak.remove.0 is defined
 
-- name: '[packages] Install snapd.'
-  apt:
-    name: snapd
-    state: latest
-  notify: enable and start snapd
-  when: packages.snap.install.0 is defined or packages.classic_snap.install.0 is defined
-
-- name: '[packages] Install miscellaneous, host-specific snap packages.'
-  snap:
-    name: "{{ packages.snap.install }}"
-    state: present
-    classic: no
-  when: packages.snap.install.0 is defined
-
-- name: '[packages] Install miscellaneous, host-specific classic snap packages.'
-  snap:
-    name: "{{ packages.classic_snap.install }}"
-    state: present
-    classic: yes
-  when: packages.classic_snaps.install.0 is defined
-
-- name: '[packages] Install pip3.'
-  apt:
-    name: python3-pip
-    state: latest
-  when: packages.pip.install.0 is defined
-
-- name: '[packages] Install miscellaneous, host-specific python packages (pip).'
-  pip:
-    name: "{{ packages.pip.install }}"
-    state: latest
-  when: packages.pip.install.0 is defined
-
-########### Removal of apps that do come pre-installed.
-- name: '[packages] Remove miscellaneous, host-specific, pre-installed apt packages.'
-  apt:
-    name: "{{ packages.apt.remove }}"
-    state: absent
-    purge: yes
-    autoremove: yes
-  when: packages.apt.remove.0 is defined
-
-- name: '[packages] Remove miscellaneous, host-specific, pre-installed snap packages.'
-  snap:
-    name: "{{ packages.snaps.remove }}"
-    state: absent
-    classic: no
-  when: packages.snaps.remove.0 is defined
-
-- name: '[packages] Remove miscellaneous, host-specific, pre-installed classic snap packages.'
-  snap:
-    name: "{{ packages.classic_snaps.remove }}"
-    state: absent
-    classic: yes
-  when: packages.classic_snaps.remove.0 is defined
-
-- name: '[packages] Remove miscellaneous, host-specific, pre-installed packages (pip).'
-  pip:
-    name: "{{ packages.pip.remove }}"
-    state: absent
-  when: packages.pip.remove.0 is defined
+- name: '[packages_pip] Install/remove pip packages.'
+  include: packages_pip.yml
+  when: packages.pip.install.0 is defined or packages.pip.remove.0 is defined

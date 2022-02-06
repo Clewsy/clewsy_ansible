@@ -26,9 +26,11 @@ packages:
 ## antarctic mod - removed below
 #      - asunder     #Rip CDs
 #      - lame        #Encoder used by asunder to create mp3s
-#      - easytag     #Edit mp3 id3 tags.
     remove:
       - geary       #Unwanted email client.
+  flatpak:
+    install:
+      - org.gnome.EasyTAG #Edit mp3 id3 tags.
   pip:
     install:
       - youtube-dl

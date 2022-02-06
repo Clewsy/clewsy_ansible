@@ -1,0 +1,20 @@
+---
+- name: '[packages_pip] Install pip3.'
+  apt:
+    name: python3-pip
+    state: latest
+  when: packages.pip.install.0 is defined
+
+########### Installation of apps that don't come pre-installed.
+- name: '[packages_pip] Install miscellaneous, host-specific python packages (pip).'
+  pip:
+    name: "{{ packages.pip.install }}"
+    state: latest
+  when: packages.pip.install.0 is defined
+
+########### Removal of apps that do come pre-installed.
+- name: '[packages_pip] Remove miscellaneous, host-specific, pre-installed python packages (pip).'
+  pip:
+    name: "{{ packages.pip.remove }}"
+    state: absent
+  when: packages.pip.remove.0 is defined

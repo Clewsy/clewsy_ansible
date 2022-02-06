@@ -1,6 +1,6 @@
 ---
 develop_packages:
-#  - kicad #antarctic change
+#  - kicad #antarctic change - is available on flathub
   - android-tools-adb
   - android-tools-fastboot
   - avrdude #avrdude, gcc-avr, binutils-avr & avr-libc for direct compiling and programming avr micros.

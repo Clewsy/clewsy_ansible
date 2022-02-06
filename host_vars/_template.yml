@@ -44,14 +44,17 @@ packages:
 #      - kicad
 #      - asunder
 #      - lame
-#      - easytag
     remove:
 #      - geary
-  snaps:
+  flatpak:
+    install:
+#      - org.gnome.EasyTAG
+#      - vlc
+    remove:
+  snap:
     install:
 #      - gimp
 #      - inkscape
-#      - vlc
     remove:
   classic_snap:
     install:

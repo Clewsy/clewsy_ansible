@@ -22,6 +22,14 @@
   with_items: "{{ node_repos }}"
   when: repo_clones is changed
 
+- name: '[node_repos] Ensure .gnupg directory exists with the home directory.'
+  file:
+    dest: "{{ ansible_user_home_dir }}/.gnupg"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0755'
+
 - name: '[node_repos] Disable gnupg key cacheing.'
   copy:
     content: |

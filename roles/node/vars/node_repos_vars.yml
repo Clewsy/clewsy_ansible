@@ -1,0 +1,7 @@
+---
+node_repos_root: "git@gitlab.com:clewsy"
+
+node_repos:
+  - scripts
+  - misc
+  - docs

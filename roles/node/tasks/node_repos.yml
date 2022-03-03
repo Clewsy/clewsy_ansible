@@ -1,0 +1,34 @@
+---
+- name: '[node_repos] Load node_repos variables.'
+  include_vars: node_repos_vars.yml
+
+- name: '[node_repos] Clone repos to home directory.'
+  git:
+    repo: "{{ node_repos_root }}/{{ item }}"
+    dest: "{{ ansible_user_home_dir }}/{{ item }}"
+    accept_hostkey: yes
+    key_file: "{{ ansible_user_home_dir }}/.ssh/id_rsa" #Use key and ssh to clone private repo/s.
+    ssh_opts: "-o StrictHostKeyChecking=no"
+  with_items: "{{ node_repos }}"
+  register: repo_clones
+
+- name: "[node_repos] Ensure cloned repos are owned by {{ ansible_user }}{{ ':' }}{{ ansible_user }}"
+  file:
+    recurse: yes
+    path: "{{ ansible_user_home_dir }}/{{ item }}"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+  with_items: "{{ node_repos }}"
+  when: repo_clones is changed
+
+- name: '[node_repos] Disable gnupg key cacheing.'
+  copy:
+    content: |
+      #Disable agent cache
+      default-cache-ttl 0
+      max-cache-ttl 0
+    dest: "{{ ansible_user_home_dir }}/.gnupg/gpg-agent.conf"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0644'

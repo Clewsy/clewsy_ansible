@@ -5,5 +5,8 @@
 - name: '[ansible] Install ansible and clone repo to home directory.'
   include: ansible.yml
 
+- name: '[node_repos] Clone various repos to the home directory.'
+  include: node_repos.yml
+
 - name: '[node_scripts] Install node scripts.'
   include: node_scripts.yml

@@ -16,10 +16,10 @@
       type = Window
       parent = ""
       order = 0
-      position = 3840:27
+      position = 1954:27
       maximised = False
       fullscreen = False
-      size = 1920, 2096
+      size = 1886, 2096
       title = clewsy@farnsworth: ~
       last_active_term = 54b5b915-fc98-4d08-9e94-5880dcb4ddf2
       last_active_window = True

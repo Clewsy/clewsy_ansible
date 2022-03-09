@@ -24,7 +24,7 @@
     state: directory
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
-    mode: '0755'
+    mode: '0700'
 
 - name: '[sneak] Ensure transfer directory exists within user home directory.'
   file:

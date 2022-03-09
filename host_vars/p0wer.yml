@@ -22,14 +22,14 @@ theme_colour: BLUE
 theme_prompt: "{{ BLUE_WHITE }}"
 
 cron_jobs:
-  - name: "Turn on lounge lamp in the evening (1800hrs)."
+  - name: "Turn on lounge lamp in the evening."
     minute: "0"
     hour: "18"
     day: "*"
     month: "*"
     weekday: "*"
     job: 'sudo /usr/local/sbin/p0wer a on'
-  - name: "Turn off lounge lamp in the evening (2100hrs)."
+  - name: "Turn off lounge lamp in the evening."
     minute: "0"
     hour: "22"
     day: "*"

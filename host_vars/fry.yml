@@ -2,6 +2,8 @@ host_name: fry
 
 ansible_user: b4t
 
+local_tz: Australia/Perth
+
 ansible_password: !vault |
   $ANSIBLE_VAULT;1.1;AES256
   61306339396436346662653837313430313032366433396639396539396333336632356465616632

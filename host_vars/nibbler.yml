@@ -2,6 +2,8 @@ host_name: nibbler
 
 ansible_user: clewsy
 
+local_tz: Australia/Perth
+
 ansible_password: !vault |
   $ANSIBLE_VAULT;1.1;AES256
   36383061393434613262313632303134626661393338353966306438626439363263346534366331

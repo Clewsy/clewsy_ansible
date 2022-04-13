@@ -3,6 +3,7 @@
   include_vars: node_repos_vars.yml
 
 - name: '[node_repos] Clone repos to home directory.'
+  become_user: "{{ ansible_user }}"
   git:
     repo: "{{ node_repos_root }}/{{ item }}"
     dest: "{{ ansible_user_home_dir }}/{{ item }}"
@@ -11,16 +12,6 @@
     ssh_opts: "-o StrictHostKeyChecking=no"
   with_items: "{{ node_repos }}"
   register: repo_clones
-
-- name: "[node_repos] Ensure cloned repos are owned by {{ ansible_user }}{{ ':' }}{{ ansible_user }}"
-  file:
-    recurse: yes
-    path: "{{ ansible_user_home_dir }}/{{ item }}"
-    state: directory
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
-  with_items: "{{ node_repos }}"
-  when: repo_clones is changed
 
 - name: '[node_repos] Ensure .gnupg directory exists with the home directory.'
   file:

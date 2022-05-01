@@ -249,7 +249,9 @@ wireguard:
 #antarctica role - some tasks useful for the restricted network and bandwidth.
 antarctica:
 #  sshuttle: true
-#  sneak: true
+  sneak:
+    install: true
+    cron: true
 
 #secure role
 sshd_port: !vault | #Override the default port listened to by sshd.

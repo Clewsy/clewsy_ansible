@@ -49,7 +49,9 @@ backup_file_list: |
 
 antarctica:
   sshuttle: true
-  sneak: true
+  sneak: 
+    install: true
+    cron: true
 
 sshd_port: !vault |
   $ANSIBLE_VAULT;1.1;AES256

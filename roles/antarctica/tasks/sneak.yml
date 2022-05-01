@@ -42,7 +42,7 @@
     owner: 'root'
     group: 'root'
     mode: '0644'
-  register: sneak
+  register: sneak_script
 
 - name: '[sneak] Copy sneak script into user bin directory.'
   copy:
@@ -52,7 +52,7 @@
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: '0755'
-  when: sneak is changed
+  when: sneak_script is changed
 
 - name: '[sneak] Configure cron jobs.'
   cron:
@@ -65,4 +65,5 @@
     user: "{{ ansible_user }}"
     job: "{{ item.job }}"
   with_items: "{{ sneak_cron_jobs }}"
+  when: antarctica.sneak.cron is defined and antarctica.sneak.cron
   notify: restart cron

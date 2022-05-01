@@ -5,4 +5,4 @@
 
 - name: '[sneak] Install and configure sneak.'
   include: sneak.yml
-  when: antarctica.sneak is defined and antarctica.sneak
+  when: antarctica.sneak.install is defined and antarctica.sneak.install

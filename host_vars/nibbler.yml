@@ -82,7 +82,9 @@ wireguard:
 
 antarctica:
   sshuttle: true
-  sneak: false
+  sneak: 
+    install: false
+    cron: false
 
 # antarctic modification.
 sshd_port: !vault |

@@ -27,6 +27,7 @@
     state: directory
 
 - name: '[ansible] Clone repo to home directory.'
+  become_user: "{{ ansible_user }}"
   git:
     repo: "{{ ansible_repo }}"
     dest: "{{ ansible_repo_directory }}"
@@ -39,15 +40,6 @@
   debug: 
     msg: "Did not clone repo.  Already exists with changes."
   when: ansible_clone is failed
-
-- name: '[ansible] Ensure cloned ansible repo is owned by {{ ansible_user }}'
-  file:
-    recurse: yes
-    path: "{{ ansible_repo_directory }}"
-    state: directory
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
-#  when: ansible_clone is changed
 
 - name: '[ansible] Install the vault key file.'
   copy:

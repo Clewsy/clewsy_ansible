@@ -85,7 +85,7 @@ desktop:
     calibre: false
     conky: true
     guake: true
-    mpdevil: false
+    mpdevil: true
     sonata: false
     terbling: true
     terminator: true

@@ -7,9 +7,16 @@
     name: flatpak
     state: latest
 
+- name: '[calibre] Ensure the flathub flatpak repository remote is added.'
+  flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+
 - name: '[calibre] Install calibre.'
   flatpak:
-    name: https://dl.flathub.org/repo/appstream/com.calibre_ebook.calibre.flatpakref
+#    name: https://dl.flathub.org/repo/appstream/com.calibre_ebook.calibre.flatpakref
+    name: com.calibre_ebook.calibre
     state: present
     method: system
 

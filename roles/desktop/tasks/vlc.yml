@@ -7,9 +7,16 @@
     name: flatpak
     state: latest
 
+- name: '[vlc] Ensure the flathub flatpak repository remote is added.'
+  flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+
 - name: '[vlc] Install vlc.'
   flatpak:
-    name: https://dl.flathub.org/repo/appstream/org.videolan.VLC.flatpakref
+#    name: https://dl.flathub.org/repo/appstream/org.videolan.VLC.flatpakref
+    name: org.videolan.VLC 
     state: present
     method: system
 

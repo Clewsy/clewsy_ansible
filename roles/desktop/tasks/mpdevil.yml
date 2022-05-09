@@ -7,9 +7,16 @@
     name: flatpak
     state: latest
 
+- name: '[mpdevil] Ensure the flathub flatpak repository remote is added.'
+  flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+
 - name: '[mpdevil] Install mpdevil.'
   flatpak:
-    name: https://dl.flathub.org/repo/appstream/org.mpdevil.mpdevil.flatpakref
+    name: org.mpdevil.mpdevil
+ #   name: https://dl.flathub.org/repo/appstream/org.mpdevil.mpdevil.flatpakref
     state: present
     method: system
 

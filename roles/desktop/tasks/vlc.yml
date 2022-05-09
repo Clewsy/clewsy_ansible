@@ -19,16 +19,10 @@
     line: "alias vlc='flatpak run org.videolan.VLC'" 
     state: present
 
-
 - name: "[vlc] Make vlc the default video player for {{ ansible_user }}."
-  ini_file:
-    path: "/home/{{ ansible_user }}/.config/mimeapps.list"
-    section: "Default Applications"
-    option: "{{ item }}"
-    value: "vlc_vlc.desktop"
-    no_extra_spaces: yes
-    create: yes
-    mode: '0600'
+  copy:
+    src: "files/vlc/mimeapps.list"
+    dest: "{{ vlc_mimeapps_list_location }}"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
-  with_items: "{{ vlc_filetypes }}"
+    mode: '0664'

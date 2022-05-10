@@ -15,7 +15,6 @@
 
 - name: '[vlc] Install vlc.'
   flatpak:
-#    name: https://dl.flathub.org/repo/appstream/org.videolan.VLC.flatpakref
     name: org.videolan.VLC 
     state: present
     method: system

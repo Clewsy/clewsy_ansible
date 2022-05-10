@@ -16,7 +16,6 @@
 - name: '[mpdevil] Install mpdevil.'
   flatpak:
     name: org.mpdevil.mpdevil
- #   name: https://dl.flathub.org/repo/appstream/org.mpdevil.mpdevil.flatpakref
     state: present
     method: system
 

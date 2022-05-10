@@ -51,7 +51,7 @@ packages:
     install:
       - youtube-dl
 
-theme_colour: BLUE
+theme_colour: ORANGE
 theme_prompt: "{{ FARNSWORTH }}"
 
 mounts:

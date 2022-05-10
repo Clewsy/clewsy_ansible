@@ -32,9 +32,16 @@
     mode: '0664'
   register: wallpaper
 
-- name: '[gnome_config] Set desktop backound image.'
+- name: '[gnome_config] Set desktop backound image (default/light theme).'
   dconf:
     key: "/org/gnome/desktop/background/picture-uri"
+    value: "'file://{{ gnome_config_background_file }}'"
+    state: present
+  become_user: "{{ ansible_user }}"
+
+- name: '[gnome_config] Set desktop backound image (dark theme).'
+  dconf:
+    key: "/org/gnome/desktop/background/picture-uri-dark"
     value: "'file://{{ gnome_config_background_file }}'"
     state: present
   become_user: "{{ ansible_user }}"

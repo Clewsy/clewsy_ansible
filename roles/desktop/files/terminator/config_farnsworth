@@ -16,10 +16,10 @@
       type = Window
       parent = ""
       order = 0
-      position = 1954:27
+      position = 1957:27
       maximised = False
       fullscreen = False
-      size = 1886, 2096
+      size = 1883, 2096
       title = clewsy@farnsworth: ~
       last_active_term = 54b5b915-fc98-4d08-9e94-5880dcb4ddf2
       last_active_window = True
@@ -33,8 +33,8 @@
       type = HPaned
       parent = child1
       order = 0
-      position = 960
-      ratio = 0.5013054830287206
+      position = 939
+      ratio = 0.5
     [[[terminal3]]]
       type = Terminal
       parent = child2

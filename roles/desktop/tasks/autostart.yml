@@ -4,8 +4,8 @@
   file:
     src: "/usr/share/applications/{{ item }}.desktop"
     dest: "{{ ansible_user_home_dir }}/.config/autostart/{{ item }}.desktop"
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
+    owner: root
+    group: root
     state: link
   with_items: "{{ desktop.autostart_appplications }}"
   when: desktop.autostart_appplications.0 is defined

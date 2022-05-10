@@ -51,7 +51,6 @@ nfs_mounts:
 mpd:
   music_dir: "{{ ansible_user_home_dir }}/music"
   music_dir_group: "{{ ansible_user }}"
-#  port: #6600 #Will default to 6600 if ommitted, but don't leave empty (will create ufw rule for any port).
 
 desktop:
   install:

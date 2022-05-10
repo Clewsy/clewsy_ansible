@@ -26,7 +26,7 @@ nfs_mounts:
 
 mpd:
   music_dir: "/mnt/zapp/mp3s"
-#  port: 6600
+#  music_dir_group: "{{ ansible_user }}"
   audio_output: | #Configure the audio output device.
     audio_output {
       type           "alsa"

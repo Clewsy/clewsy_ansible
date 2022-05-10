@@ -72,7 +72,6 @@ mpd:
 #  music_dir: "/mnt/zapp/mp3s" #Changed for antarctica
   music_dir: "/home/clewsy/music"
   music_dir_group: "{{ ansible_user }}"
-  port: 6600
   audio_output: |
     audio_output {
       type   "alsa"

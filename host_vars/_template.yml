@@ -195,7 +195,6 @@ rsync_server_syncs:
 mpd:
   music_dir: #"{{ ansible_user_home_dir }}/music" #Can override default setting in mpd role.  If this is an nfs share, ensure nfs role included and share defined above.
   music_dir_group: #"{{ ansible_user }}"  #The mpd user needs read access to music files and read/execute access to music direcories.  Set this to add the mpd user to the group with permission to access the music library. 
-  port: #6600 #Will default to 6600 if ommitted.
 #  audio_output: | #Configure the audio output device.  Determine "device" from options listed with command "aplay -l"
 #    audio_output {
 #      type   "alsa"

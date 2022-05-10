@@ -37,41 +37,23 @@
     regexp: "^{{ item.setting }}"
     line: "{{ item.setting }}\t\t\"{{ item.value }}\""
   notify:
-    - stop mpd.socket
-    - stop mpd.service
-    - kill mpd
-    - restart mpd.socket
     - restart mpd.service
     - rescan music files
   with_items: "{{ mpd_configs.change }}"
 
-- name: '[mpd] Add settings in /etc/mpd.conf.'
-  lineinfile:
-    path: '/etc/mpd.conf'
-    insertafter: "^{{ item.setting }}"
-    line: "{{ item.setting }}\t\t\"{{ item.value }}\""
-  notify:
-    - stop mpd.socket
-    - stop mpd.service
-    - kill mpd
-    - restart mpd.socket
-    - restart mpd.service
-    - rescan music files
-  with_items: "{{ mpd_configs.add }}"
-
-- name: '[mpd] Change the port defined in the /lib/systemd/system/mpd.socket unit file (i.e. listen port for client connections).'
-  lineinfile:
-    path: "/lib/systemd/system/mpd.socket"
-    state: present
-    regexp: "^ListenStream=[1-9]"
-    line: "ListenStream={{ mpd.port }}"
-  when: mpd.port is defined and mpd.port
-  notify:
-    - stop mpd.socket
-    - stop mpd.service
-    - kill mpd
-    - restart mpd.socket
-    - restart mpd.service
+#- name: '[mpd] Add settings in /etc/mpd.conf.'
+#  lineinfile:
+#    path: '/etc/mpd.conf'
+#    insertafter: "^{{ item.setting }}"
+#    line: "{{ item.setting }}\t\t\"{{ item.value }}\""
+#  notify:
+#    - stop mpd.socket
+#    - stop mpd.service
+#    - kill mpd
+#    - restart mpd.socket
+#    - restart mpd.service
+#    - rescan music files
+#  with_items: "{{ mpd_configs.add }}"
 
 - name: '[mpd] Configure host-specific audio device.'
   blockinfile:
@@ -80,16 +62,12 @@
     marker: "##{mark}## Audio output device inserted by ansible."
     block: "{{ mpd.audio_output | default(mpd_default_audio_output)}}"
   notify:
-    - stop mpd.socket
-    - stop mpd.service
-    - kill mpd
-    - restart mpd.socket
     - restart mpd.service
 
-- name: '[mpd] Allow mpd client access through the firewall.' #Note, will not enable ufw.
-  ufw:
-    rule: allow
-    to_port: "{{ mpd.port | default('6600') }}"
-    proto: tcp
-    comment: mpd
-  notify: restart ufw
+#- name: '[mpd] Allow mpd client access through the firewall.' #Note, will not enable ufw.
+#  ufw:
+#    rule: allow
+#    to_port: 6600 #Default mpd port.
+#    proto: tcp
+#    comment: mpd
+#  notify: restart ufw

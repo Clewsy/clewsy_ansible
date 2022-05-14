@@ -24,6 +24,13 @@
     dest: "{{ mpd.music_dir | default(ansible_user_home_dir + '/music') }}"
     state: directory
 
+- name: "[mpd] Ensure preferred mpd music playlists directory exists."
+  file:
+    dest: "{{ mpd.music_dir | default(ansible_user_home_dir + '/music') }}/playlists"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ mpd.music_dir_group }}"
+
 - name: "[mpd] Ensure user mpd is a member of the group with access to the music library  (needed if music dir is in user's home dir)."
   user:
     name: mpd

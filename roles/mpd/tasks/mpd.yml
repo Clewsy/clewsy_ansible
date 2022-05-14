@@ -31,6 +31,12 @@
     append: yes
   when: mpd.music_dir_group is defined and mpd.music_dir_group
 
+- name: "[mpd] Ensure members of music directory group can write to playlist directory (so mpd/mpc can save/modify playlists)."
+  file:
+    path: "{{ mpd.music_dir }}/playlists"
+    mode: g+w
+  when: mpd.music_dir is defined
+
 - name: '[mpd] Change settings in /etc/mpd.conf.'
   lineinfile:
     path: '/etc/mpd.conf'

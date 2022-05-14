@@ -22,7 +22,7 @@
   when: packages.flatpak.install.0 is defined
 
 ########### Removal of apps that do come pre-installed.
-- name: '[packages_flatpak] Install miscellaneous, host-specific flatpak packages.'
+- name: '[packages_flatpak] Remove miscellaneous, host-specific flatpak packages.'
   flatpak:
     name: "{{ item }}"
     state: absent

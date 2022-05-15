@@ -5,3 +5,4 @@ guake_prefs:
   - { key: "/apps/guake/general/window-losefocus", value: "true" }      #Close drop-down when it loses focus.
   - { key: "/apps/guake/general/start-at-login", value: "true" }        #Run guake when gnome starts.
   - { key: "/apps/guake/general/use-popup", value: "false" }            #Disable notification when guake starts.
+  - { key: "/apps/guake/general/use-trayicon", value: "false" }         #Disable tray icon.

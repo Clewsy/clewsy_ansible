@@ -4,3 +4,4 @@ guake_prefs:
   - { key: "/apps/guake/style/background/transparency", value: "50" }   #Set transparency value (percentage).
   - { key: "/apps/guake/general/window-losefocus", value: "true" }      #Close drop-down when it loses focus.
   - { key: "/apps/guake/general/start-at-login", value: "true" }        #Run guake when gnome starts.
+  - { key: "/apps/guake/general/use-popup", value: "false" }            #Disable notification when guake starts.

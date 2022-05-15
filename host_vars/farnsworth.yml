@@ -97,7 +97,6 @@ desktop:
     - "file:///mnt/windoze windoze"
   autostart_appplications:
     - terminator
-    - guake
     - conky
 #    - sonata
 

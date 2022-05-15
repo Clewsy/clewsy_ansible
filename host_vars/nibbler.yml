@@ -66,7 +66,6 @@ desktop:
     - "davs://nextcloud.clews.pro/remote.php/dav/files/jadon nextcloud"
   autostart_appplications:
     - terminator
-    - guake
     - conky
 
 #backup_file_list: |

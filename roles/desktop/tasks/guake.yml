@@ -23,24 +23,3 @@
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     state: directory
-
-#####################################################################################################
-############# Temporary fix for guake installation bug - guake.desktop link points to wrong location.
-############# Refer to issue on github: https://github.com/Guake/guake/issues/2048
-############# When this is no longer needed, remember to delete "register: quake_install" above..
-############# This workaround implemented 2022-05-10.
-- name: '[guake] Delete bad guake.desktop link'
-  file:
-    path: /usr/share/applications/guake.desktop
-    state: absent
-  when: guake_install is changed
-
-- name: '[guake] Create fixed guake.desktop link'
-  file:
-    path: /usr/share/applications/guake.desktop
-    state: link
-    src: /usr/share/guake/autostart-guake.desktop
-    owner: root
-    group: root
-  when: guake_install is changed
-#####################################################################################################

@@ -219,7 +219,7 @@ desktop:
   #  - "file:///mnt/windoze"
   autostart_appplications:
   #  - terminator
-  #  - guake
+  ##  - guake #Don't use desktop.autostart for quake - the guake tasks will enable autostart with dconf setting.
   #  - conky
 
 #secure role, ufw.yml

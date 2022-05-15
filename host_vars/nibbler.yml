@@ -69,11 +69,11 @@ desktop:
     - guake
     - conky
 
-backup_file_list: |
-  ##A list of files to be backed up
-  ~/.bashrc			  #just in case I customise it
-  ~/bin/				  #my home-made executables
-  $HOME/.conkyrc  #conky config set for DELL XPS 13 9360
+#backup_file_list: |
+#  ##A list of files to be backed up
+#  ~/.bashrc			  #just in case I customise it
+#  ~/bin/				  #my home-made executables
+#  $HOME/.conkyrc  #conky config set for DELL XPS 13 9360
 
 wireguard:
   client: true

@@ -26,11 +26,3 @@
 
 - name: Install and configure wami script.
   include: wami.yml
-
-
-
-
-
-
-
-

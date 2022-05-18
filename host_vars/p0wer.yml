@@ -24,14 +24,21 @@ theme_colour: BLUE
 theme_prompt: "{{ BLUE_WHITE }}"
 
 cron_jobs:
-  - name: "Turn on lounge lamp in the evening."
-    minute: "0"
-    hour: "18"
+  - name: "Turn on lamp in the morning."
+    minute: "30"
+    hour: "8"
     day: "*"
     month: "*"
     weekday: "*"
     job: 'sudo /usr/local/sbin/p0wer a on'
-  - name: "Turn off lounge lamp in the evening."
+  - name: "Turn on lamp in the evening."
+    minute: "0"
+    hour: "15" #It's getting dark pretty dang early now.
+    day: "*"
+    month: "*"
+    weekday: "*"
+    job: 'sudo /usr/local/sbin/p0wer a on'
+  - name: "Turn off lamp in the evening."
     minute: "0"
     hour: "22"
     day: "*"

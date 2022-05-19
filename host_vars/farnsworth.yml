@@ -28,6 +28,7 @@ packages:
       - imagemagick
       - libimage-exiftool-perl #package includes exiftool for manipulating photo metadata.
       - pdftk #manipulate pdf files.
+      - ffmpeg #manipulate video files.
     remove:
 #      - aisleriot
 #      - cheese

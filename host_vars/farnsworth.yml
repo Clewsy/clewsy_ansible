@@ -25,8 +25,8 @@ packages:
   apt:
     install:
       - nvidia-driver-510 #farnsworth currently has a nvidia geforce rtx 3070.
-      - imagemagick
       - libimage-exiftool-perl #package includes exiftool for manipulating photo metadata.
+      - imagemagick #manipulate image files.
       - pdftk #manipulate pdf files.
       - ffmpeg #manipulate video files.
     remove:

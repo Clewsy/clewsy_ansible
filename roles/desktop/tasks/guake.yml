@@ -15,11 +15,3 @@
     state: present
   become_user: "{{ ansible_user }}"
   with_items: "{{ guake_prefs }}"
-
-- name: '[guake] Ensure autostart directory exists.'
-  file:
-    dest: "{{ ansible_user_home_dir }}/.config/autostart"
-    mode: '0755'
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
-    state: directory

@@ -1,3 +1,11 @@
 ---
 - name: '[mpd] Install and configure mpd.'
   include: mpd.yml
+
+- name: '[mpd_user] Configure mpd to be run as a user service.'
+  include: mpd_user.yml
+  when: mpd.run_as == "user"
+
+- name: '[mpd_system] Configure mpd yo be run as a system service.'
+  include: mpd_system.yml
+  when: mpd.run_as == "system"

@@ -193,14 +193,14 @@ rsync_server_syncs:
 
 #mpd role, mpd.yml
 mpd:
+  run_as: "user" #Options are either "user" to run mpd as a logged-in user (can use pulse or pipewire), or "system" to run mpd as a system service (can run without a login).
   music_dir: #"{{ ansible_user_home_dir }}/music" #Can override default setting in mpd role.  If this is an nfs share, ensure nfs role included and share defined above.
-  music_dir_group: #"{{ ansible_user }}"  #The mpd user needs read access to music files and read/execute access to music direcories.  Set this to add the mpd user to the group with permission to access the music library. 
-#  audio_output: | #Configure the audio output device.  Determine "device" from options listed with command "aplay -l"
-#    audio_output {
-#      type   "alsa"
-#      name   "alsa_device"
-#      device "hw:1,0"
-#    }
+  audio_output: | #Will default to no audio_output entry if this is ommitted.  I.e. mpd will attempt to auto-detect.
+    audio_output {
+      type       "pulse"
+      name       "pulse_device"
+      mixer_type "software"
+    }
 
 #desktop role.
 desktop:

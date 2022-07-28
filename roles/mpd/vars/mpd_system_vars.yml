@@ -1,0 +1,10 @@
+---
+mpd_system_configs:
+    - { setting: 'music_directory', value: "{{ mpd.music_dir | default('/var/lib/mpd/music') }}" }
+    - { setting: 'playlist_directory', value: "{{ mpd.music_dir | default('/var/lib/mpd') }}/playlists" }
+#    - { setting: 'db_file', value: "{{ mpd_user_conf_dir | default('/var/lib/mpd') }}/tag_cache" }
+#    - { setting: 'log_file', value: "{{ mpd_user_conf_dir | default('/var/lib/mpd') }}/mpd.log" }
+#    - { setting: 'pid_file', value: "{{ mpd_user_conf_dir | default('/var/lib/mpd') }}/pid" }
+#    - { setting: 'state_file', value: "{{ mpd_user_conf_dir | default('/var/lib/mpd') }}/state" }
+#    - { setting: 'sticker_file', value: "{{ mpd_user_conf_dir | default('/var/lib/mpd') }}/sticker.sql" }
+#    - { setting: 'user', value: "{{ ansible_user }}" }

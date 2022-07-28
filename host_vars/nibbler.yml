@@ -49,8 +49,13 @@ nfs_mounts:
 #  - { mount_source: 'zapp:/export/m0n0l1th', mount_path: '/mnt/zapp/m0n0l1th' }
 
 mpd:
-  music_dir: "{{ ansible_user_home_dir }}/music"
-  music_dir_group: "{{ ansible_user }}"
+  run_as: "user"
+  music_dir: "/home/{{ ansible_user }}/music"
+  audio_output: | #Default (autodetection) does not work with nibbler.  Pipewire is enabled on pop_os.
+    audio_output {
+      type       "pipewire"
+      name       "pipewire_device"
+    }
 
 desktop:
   install:

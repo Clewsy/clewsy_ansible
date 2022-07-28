@@ -1,0 +1,51 @@
+---
+- name: "[mpd_system] Ensure preferred mpd music files directory exists ({{ mpd.music_dir | default('/var/lib/mpd/music') }})."
+  file:
+    dest: "{{ mpd.music_dir | default('/var/lib/mpd/music') }}"
+    state: directory
+    owner: "mpd"
+    group: "audio"
+    mode: '0755'
+
+- name: "[mpd_system] Ensure preferred mpd music playlists directory exists."
+  file:
+    dest: "{{ mpd.music_dir | default('/var/lib/mpd') }}/playlists"
+    state: directory
+    owner: "mpd"
+    group: "audio"
+    mode: '0755'
+
+- name: "[mpd_system] Change settings in the system mpd config file (/etc/mpd.conf)."
+  lineinfile:
+    path: "/etc/mpd.conf"
+    regexp: "^{{ item.setting }}"
+    line: "{{ item.setting }}\t\t\"{{ item.value }}\""
+  notify:
+    - restart system mpd.service
+    - rescan music files
+  with_items: "{{ mpd_system_configs }}"
+
+- name: '[mpd_system] Configure host-specific audio device.'
+  blockinfile:
+    path: "/etc/mpd.conf"
+    state: present
+    marker: "##{mark}## Audio output device inserted by ansible."
+    block: "{{ mpd.audio_output }}"
+  notify:
+    - restart system mpd.service
+  when: mpd.audio_ouput is defined
+
+#- name: '[mpd_system] Allow mpd client access through the firewall.' #Note, will not enable ufw.
+#  ufw:
+#    rule: allow
+#    to_port: 6600 #Default mpd port.
+#    proto: tcp
+#    comment: mpd
+#  notify: restart ufw
+
+- name: "[mpd_system] Enable and start the mpd systemd system service."
+  systemd:
+    name: mpd
+    scope: system
+    state: started
+    enabled: yes

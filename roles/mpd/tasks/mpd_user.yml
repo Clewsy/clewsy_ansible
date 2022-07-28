@@ -1,0 +1,76 @@
+---
+- name: '[mpd-user] Load mpd_user variables.'
+  include_vars: mpd_user_vars.yml
+
+- name: "[mpd] Ensure preferred mpd music files directory exists ({{ mpd.music_dir | default(ansible_user_home_dir + '/music') }})."
+  file:
+    dest: "{{ mpd.music_dir | default(ansible_user_home_dir + '/music') }}"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0755'
+
+- name: "[mpd] Ensure preferred mpd music playlists directory exists."
+  file:
+    dest: "{{ mpd.music_dir | default(ansible_user_home_dir + '/music') }}/playlists"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0755'
+
+- name: "[mpd-user] Ensure user's mpd config directory exists ({{ mpd_user_conf_dir }})."
+  file:
+    dest: "{{ mpd_user_conf_dir }}"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0755'
+
+- name: "[mpd-user] Determine if the user's mpd.conf file exists.  If not, copy the default /etc/mpd.conf configuration file to user's .config directory ({{ mpd_user_conf_dir }})."
+  stat:
+    path: "{{ mpd_user_conf_dir }}/mpd.conf"
+  register: mpd_user_conf_file
+
+- name: "[mpd-user] Copy the default /etc/mpd.conf configuration file to user's .config directory ({{ mpd_user_conf_dir }})."
+  copy:
+    remote_src: yes
+    src: "//etc/mpd.conf"
+    dest: "{{ mpd_user_conf_dir }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0640'
+  when: mpd_user_conf_file.stat.exists != true
+
+- name: "[mpd-user] Change settings in user's config file ({{ mpd_user_conf_dir }}/mpd.conf)."
+  lineinfile:
+    path: "{{ mpd_user_conf_dir }}/mpd.conf"
+    regexp: "^{{ item.setting }}"
+    line: "{{ item.setting }}\t\t\"{{ item.value }}\""
+  notify:
+    - restart user mpd.service
+    - rescan music files
+  with_items: "{{ mpd_user_configs }}"
+
+- name: '[mpd-user] Configure host-specific audio device.'
+  blockinfile:
+    path: "{{ mpd_user_conf_dir }}/mpd.conf"
+    state: present
+    marker: "##{mark}## Audio output device inserted by ansible."
+    block: "{{ mpd.audio_output }}"
+  notify:
+    - restart user mpd.service
+  when: mpd.audio_output is defined
+
+- name: "[mpd-user] Ensure the system service is stopped and disabled (We want to run mpd as a user)."
+  systemd:
+    name: mpd
+    state: stopped
+    enabled: no
+
+- name: "[mpd-user] Enable and start the mpd systemd user service."
+  systemd:
+    name: mpd
+    scope: user
+    state: started
+    enabled: yes
+  become_user: "{{ ansible_user }}"

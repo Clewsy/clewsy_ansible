@@ -68,14 +68,14 @@ nfs_mounts:
 #  - { mount_source: 'zapp:/export/y4nk', mount_path: '/mnt/zapp/y4nk' }
 
 mpd:
+  run_as: "user"
 #  music_dir: "/mnt/zapp/mp3s" #Changed for antarctica
-  music_dir: "/home/clewsy/music"
-  music_dir_group: "{{ ansible_user }}"
-  audio_output: |
+  music_dir: "/home/{{ ansible_user }}/music"
+  audio_output: | #Default (autodetection) works with farnsworth except for volume control hence need do define mixer_type.
     audio_output {
-      type   "alsa"
-      name   "alsa_device"
-      device "hw:1,0"
+      type       "pulse"
+      name       "pulse_device"
+      mixer_type "software"
     }
 
 #a few antarctic changes below.
@@ -91,7 +91,7 @@ desktop:
     vlc: true
   nautilus_bookmarks: #Add bookmarks to nautilus sidebar.
     - "davs://nextcloud.clews.pro/remote.php/dav/files/jadon nextcloud"
-    - "file:///home/jc/projects projects"
+    - "file:///home/{{ ansible_user }}/projects projects"
     - "file:///mnt/zapp"
     - "file:///mnt/windoze windoze"
   autostart_appplications:

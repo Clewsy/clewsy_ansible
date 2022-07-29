@@ -20,6 +20,11 @@ ansible_sudo_pass: !vault |
   3466623933363434300a663537343736653931666661313933646462316436336238396436353665
   3738
 
+packages:
+  apt:
+    remove:
+      - snapd
+
 theme_colour: ORANGE
 theme_prompt: "{{ FRY }}"
 

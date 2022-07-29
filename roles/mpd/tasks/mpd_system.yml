@@ -1,19 +1,40 @@
 ---
-- name: "[mpd_system] Ensure preferred mpd music files directory exists ({{ mpd.music_dir | default('/var/lib/mpd/music') }})."
+- name: '[mpd-mpd_system] Load mpd_system variables.'
+  include_vars: mpd_system_vars.yml
+
+- name: "[mpd_system] Ensure preferred mpd music files directory exists ({{ mpd.music_dir | default('/var/lib/mpd/music') }}).  Give group write access."
   file:
     dest: "{{ mpd.music_dir | default('/var/lib/mpd/music') }}"
     state: directory
     owner: "mpd"
     group: "audio"
-    mode: '0755'
+    mode: '0775'
 
-- name: "[mpd_system] Ensure preferred mpd music playlists directory exists."
+- name: "[mpd_system] Ensure preferred mpd music playlists directory exists ({{ mpd.music_dir | default('/var/lib/mpd') }}/playlists).  Give group write access."
   file:
     dest: "{{ mpd.music_dir | default('/var/lib/mpd') }}/playlists"
     state: directory
     owner: "mpd"
     group: "audio"
-    mode: '0755'
+    mode: '0775'
+
+- name: "[mpd_system] Create a symlink to the system music directory from the user's home directory."
+  file:
+    src: "{{ mpd.music_dir | default('/var/lib/mpd/music') }}"
+    dest: "{{ ansible_user_home_dir }}/music"
+    state: link
+
+- name: "[mpd_system] Create a symlink to the system playlists directory from the user's home directory."
+  file:
+    src: "{{ mpd.music_dir | default('/var/lib/mpd') }}/playlists"
+    dest: "{{ ansible_user_home_dir }}/playlists"
+    state: link
+
+- name: '[mpd_system] Ensure the user is a member of the audio group.'
+  user:
+    name: "{{ ansible_user }}"
+    groups: "audio"
+    append: yes #Defaults to no which would remove user from groups not listed.
 
 - name: "[mpd_system] Change settings in the system mpd config file (/etc/mpd.conf)."
   lineinfile:
@@ -33,7 +54,7 @@
     block: "{{ mpd.audio_output }}"
   notify:
     - restart system mpd.service
-  when: mpd.audio_ouput is defined
+  when: mpd.audio_output is defined
 
 #- name: '[mpd_system] Allow mpd client access through the firewall.' #Note, will not enable ufw.
 #  ufw:

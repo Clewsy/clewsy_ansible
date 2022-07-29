@@ -21,10 +21,10 @@
     target: install
   when: pigpio_repo_clone is changed
 
-##########################################################################################################
-## Needed until bugfix to ubunto 21.04: https://bugs.launchpad.net/ubuntu/+source/linux-raspi/+bug/1927505
-## See also: https://github.com/joan2937/pigpio/issues/461
-- name: '[rad10] Probe module vcio.'
-  shell: 'modprobe vcio'
-  when: pigpio_repo_clone is changed
-##########################################################################################################
+###########################################################################################################
+### Needed until bugfix to ubunto 21.04: https://bugs.launchpad.net/ubuntu/+source/linux-raspi/+bug/1927505
+### See also: https://github.com/joan2937/pigpio/issues/461
+#- name: '[rad10] Probe module vcio.'
+#  shell: 'modprobe vcio'
+#  when: pigpio_repo_clone is changed
+###########################################################################################################

@@ -2,6 +2,8 @@ host_name: rad10
 
 ansible_user: b4t
 
+local_tz: Australia/Perth
+
 ansible_password: !vault |
   $ANSIBLE_VAULT;1.1;AES256
   61353433396362316661643565623466623030383561316434616164353234626366643437663763
@@ -18,16 +20,20 @@ ansible_sudo_pass: !vault |
   6437393237306538620a353039376230303263613635303435366130633161376430373765366562
   3865
 
+packages:
+  apt:
+    remove:
+      - snapd
+
 theme_colour: YELLOW
 theme_prompt: "{{ YELLOW_RED }}"
 
 nfs_mounts:
-  - { mount_source: 'zapp:/export/mp3s', mount_path: '/mnt/zapp/mp3s' }
+#  - { mount_source: 'zapp:/export/mp3s', mount_path: '/mnt/zapp/mp3s' }
 
 mpd:
-  music_dir: "/mnt/zapp/mp3s"
-#  music_dir_group: "{{ ansible_user }}"
-  audio_output: | #Configure the audio output device.
+  run_as: "system" #Options are either "user" to run mpd as a logged-in user (can use pulse or pipewire), or "system" to run mpd as a system service (can run without a login).
+  audio_output: |
     audio_output {
       type           "alsa"
       name           "alsa_device"
@@ -39,7 +45,6 @@ backup_file_list: |
   /usr/local/sbin/rad10d
   /var/www/html
   /lib/systemd/system/rad10d.service
-  /etc/fstab
 
 ssh_public_key: !vault |
   $ANSIBLE_VAULT;1.1;AES256

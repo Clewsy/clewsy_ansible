@@ -6,3 +6,4 @@ sshuttle_aliases:
   - "alias amy_sshuttle='sshuttle -r amy 0.0.0.0/0 --dns -v'"
   - "alias b4t_sshuttle='sshuttle -r b4t 0.0.0.0/0 --dns -v'"
   - "alias clews_sshuttle='sshuttle -r clews 0.0.0.0/0 --dns -v'"
+  - "alias ks='killall sshuttle'"

@@ -1,6 +1,6 @@
 ---
 - name: Configure bender.
-  hosts: bender #hostname must be configured in dhcp server.
+  hosts: bender
   become: yes
   gather_facts: false
 
@@ -8,17 +8,6 @@
     - import_tasks: handlers/handlers.yml
 
   roles:
-#    - common
-    - file_server
-#    - secure
-#    - headless
-#    - docker
-#    - clews.pro
-#    - polly
-#    - homeassistant
-#    - vpn
-#    - wireguard
-#    - wireguard_server
-#    - mpd
-#    - desktop
-#    - develop
+    - common
+    - desktop
+    - antarctica

@@ -1,15 +1,8 @@
-##########Variables for initialising fresh server.
-#Only config is user and password - user must be a member of sudo.
-#init_ansible_user: {{ ansible_user }}
-#init_ansible_password: {{ ansible_password }}
+host_name: bender
 
-#common role, main.yml.
-host_name: bender #fact "ansible_hostname" will be changed to host_name if it doesn't match.
+ansible_user: clewsy
 
-ansible_user: b4t
-
-#common role and droid role.
-ansible_password: !vault | # $ ansible-vault encrypt_string 'secret_password'
+ansible_password: !vault |
   $ANSIBLE_VAULT;1.1;AES256
   36653965336538353033333062333165356666306663346235613765353734356533396132356466
   6531653934613935393866666262636633333134386564320a306166643039623236666539356430
@@ -25,18 +18,20 @@ ansible_sudo_pass: !vault |
   3530353137616233340a653532356332613035616539333261623531353130346363396365316632
   6538
 
-local_tz: 'Australia/Melbourne' #If ommitted will default to 'Australia/Melbourne'
+local_tz: 'Australia/Perth'
 
-aliases:
+#aliases:
 #  - "alias ll='ls -alFh'"
 
-misc_packages:
-  install:
-    - rename
+packages:
+  apt:
+  flatpak:
+    install:
+      - ca.littlesvr.asunder #Rip CDs to mp3s.
+      - org.gnome.EasyTAG #Edit mp3 id3 tags.
 
-#common role, bashrc.yml and common_scripts.yml
 theme_colour: GRAY
-theme_prompt: "{{ BENDER }}" #Can override setting referenced in common/bashrc role.  Will default to {{ CYAN_BLUE }}
+theme_prompt: "{{ BENDER }}"
 
 #common role, main.yml
 cron_jobs:
@@ -63,15 +58,30 @@ nfs_mounts:
 #  - { mount_source: 'zapp:/export/cl0ud', mount_path: '/mnt/zapp/cl0ud' }
 #  - { mount_source: 'zapp:/export/m0n0l1th', mount_path: '/mnt/zapp/m0n0l1th' }
 
-network_shares:
-  - { path: '/' }
+desktop:
+  install:
+    calibre: false
+    conky: false
+    guake: true
+    mpdevil: false
+    sonata: false
+    terbling: true
+    terminator: true
+    vlc: true
+  nautilus_bookmarks: #Add bookmarks to nautilus sidebar.
+#    - "davs://nextcloud.clews.pro/remote.php/dav/files/jadon nextcloud"
+  autostart_appplications:
+    - terminator
 
+#backup_file_list: |
+#  /etc/fstab
+#  /etc/cron.d
 
-backup_file_list: |
-  /etc/fstab
-  /etc/cron.d
-
-mc_skin: modarcon16root-defbg
+antarctica:
+  sshuttle: true
+  sneak: 
+    install: false
+    cron: false
 
 ssh_public_key: !vault |
   $ANSIBLE_VAULT;1.1;AES256

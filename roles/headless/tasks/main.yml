@@ -4,3 +4,6 @@
 
 - name: '[mc] Install and configure midnight commander.'
   include: mc.yml
+
+- name: '[bat] Install and configure bat.'
+  include: bat.yml

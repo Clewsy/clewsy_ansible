@@ -1,0 +1,12 @@
+---
+- name: '[bat] Install bat.'
+  apt:
+    name: bat
+    state: latest
+
+- name: '[bat] Create alias bcat for batcat.'
+  lineinfile:
+    path: "{{ ansible_user_home_dir }}/.bash_aliases"
+    line: "alias bcat='batcat'" 
+    state: present
+    insertafter: EOF

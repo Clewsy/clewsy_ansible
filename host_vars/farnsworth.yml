@@ -57,6 +57,13 @@ theme_prompt: "{{ FARNSWORTH }}"
 mounts:
   - { mount_source: UUID=1628E95C28E93B7F, mount_path: '/mnt/windoze', mount_fstype: 'auto', mount_opts: 'ro,nosuid,nodev,nofail,x-gvfs-show' }
 
+cifs_mounts:
+  - { mount_source: '//odeon/d$', mount_path: '/mnt/odeon_d', mount_opts: "username=casey_odeon,password=Antarctica1,rw,uid={{ ansible_user }},gid={{ ansible_user }},suid,nofail" }
+  - { mount_source: '//odeon/e$', mount_path: '/mnt/odeon_e', mount_opts: "username=casey_odeon,password=Antarctica1,rw,uid={{ ansible_user }},gid={{ ansible_user }},suid,nofail" }
+  - { mount_source: '//odeon/f$', mount_path: '/mnt/odeon_f', mount_opts: "username=casey_odeon,password=Antarctica1,rw,uid={{ ansible_user }},gid={{ ansible_user }},suid,nofail" }
+  - { mount_source: '//odeon/g$', mount_path: '/mnt/odeon_g', mount_opts: "username=casey_odeon,password=Antarctica1,rw,uid={{ ansible_user }},gid={{ ansible_user }},suid,nofail" }
+
+
 nfs_mounts:
 #  - { mount_source: 'zapp:/export/data', mount_path: '/mnt/zapp/data' }
 #  - { mount_source: 'zapp:/export/movies', mount_path: '/mnt/zapp/movies' }

@@ -15,12 +15,12 @@
     state: latest
   when: nfs_mounts.0 is defined
 
-- name: '[mounts] Ensure nfs mount destination directories exist.'
-  file:
-    dest: "{{ item.mount_path }}"
-    state: directory
-  with_items: "{{ nfs_mounts }}"
-  when: nfs_mounts.0 is defined
+#- name: '[mounts] Ensure nfs mount destination directories exist.'
+#  file:
+#    dest: "{{ item.mount_path }}"
+#    state: directory
+#  with_items: "{{ nfs_mounts }}"
+#  when: nfs_mounts.0 is defined
 
 - name: '[mounts] Add nfs mounts to /etc/fstab.'
   mount:
@@ -31,3 +31,26 @@
     state: mounted
   with_items: "{{ nfs_mounts }}"
   when: nfs_mounts.0 is defined
+
+- name: '[mounts] Install cifs-utils (required for smb client).'
+  apt:
+    name: cifs-utils
+    state: latest
+  when: cifs_mounts.0 is defined
+
+#- name: '[mounts] Ensure cifs mount destination directories exist.'
+#  file:
+#    dest: "{{ item.mount_path }}"
+#    state: directory
+#  with_items: "{{ cifs_mounts }}"
+#  when: cifs_mounts.0 is defined
+
+- name: '[mounts] Add cifs mounts to /etc/fstab.'
+  mount:
+    path: "{{ item.mount_path }}"
+    src: "{{ item.mount_source }}"
+    fstype: cifs
+    opts: "{{ item.mount_opts }}"
+    state: mounted
+  with_items: "{{ cifs_mounts }}"
+  when: cifs_mounts.0 is defined

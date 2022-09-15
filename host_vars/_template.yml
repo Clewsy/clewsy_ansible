@@ -32,7 +32,7 @@ ansible_sudo_pass: !vault | #$ ansible-vault encrypt_string 'secret_sudo_passwor
 #  6538
 
 #common role, aliases.yml.
-aliases:
+aliases: # Use to set host-specific aliases.  Some other aliases (e.g. ll) will be set up for all.
 #  - "alias ll='ls -alFh'"
 
 #common role, packages.yml.  Configure to install/remove packages of various types (apt, snap, classin snap or pip).
@@ -146,6 +146,10 @@ nfs_mounts:
 #  - { mount_source: 'zapp:/export/tv', mount_path: '/mnt/zapp/tv' }
 #  - { mount_source: 'zapp:/export/cl0ud', mount_path: '/mnt/zapp/cl0ud' }
 #  - { mount_source: 'zapp:/export/m0n0l1th', mount_path: '/mnt/zapp/m0n0l1th' }
+
+#common role, mounts.yml
+cifs_mounts:
+#  - { mount_source: '//odeon/d$', mount_path: '/mnt/odeon_d', mount_opts: "username=casey_odeon,password=password,rw,uid={{ ansible_user }},gid={{ ansible_user }},suid,nofail" }
 
 #nfs_server role, main.yml
 nfs_server_disks:

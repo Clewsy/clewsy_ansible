@@ -1,0 +1,20 @@
+---
+- name: '[punch] Load punch variables.'
+  include_vars: punch_vars.yml
+
+- name: '[punch] Copy systemd unit files to /etc/systemd/system/ directory.'
+  copy:
+    src: "files/{{ item }}"
+    decrypt: yes
+    dest: "/etc/systemd/system/{{ item }}"
+    owner: "root"
+    group: "root"
+    mode: '0644'
+  with_items: "{{ punch_unit_files }}"
+
+- name: '[punch] Enable systemd services'
+  systemd:
+    name: "{{ item }}"
+    state: started
+    enabled: yes
+  with_items: "{{ punch_unit_files }}"

@@ -6,3 +6,7 @@
 - name: '[sneak] Install and configure sneak.'
   include: sneak.yml
   when: antarctica.sneak.install is defined and antarctica.sneak.install
+
+- name: '[punch] Install and enable punch services.'
+  include: punch.yml
+  when: antarctica.punch is defined and antarctica.punch

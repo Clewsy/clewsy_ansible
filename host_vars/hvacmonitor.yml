@@ -80,12 +80,12 @@ cifs_mounts:
 #headless role, mc.yml
 #mc_skin: #modarcon16root-defbg #Override default skin for midnight commander as configured by headless role.
 
-#antarctica role - some tasks useful for the restricted network and bandwidth.
-#antarctica:
-#  sshuttle: true
-#  sneak:
-#    install: true
-#    cron: true
+antarctica:
+  sshuttle: false
+  sneak: 
+    install: true
+    cron: true
+  punch: true
 
 #common role, ssh.yml
 ssh_public_key: !vault | # $ cat .ssh/id_rsa.pub | ansible-vault encrypt_string

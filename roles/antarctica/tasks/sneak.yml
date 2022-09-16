@@ -12,7 +12,7 @@
 
 - name: '[sneak] Ensure bin directory exists within user home directory.'
   file:
-    dest: "{{ common_scripts_directory }}"
+    dest: "{{ user_scripts_directory }}"
     state: directory
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"

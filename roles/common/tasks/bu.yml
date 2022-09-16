@@ -16,7 +16,7 @@
   copy:
     src: "{{ scripts_lib }}/bu"
     remote_src: yes
-    dest: "{{ common_scripts_directory }}/bu"
+    dest: "{{ user_scripts_directory }}/bu"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: '0755'
@@ -25,7 +25,7 @@
 - name: '[bu] Create backup file list.'
   copy:
     content: "{{ backup_file_list | default (bu_default_file_list) }}" #Defaults to just ~/.bashrc if undefined in host's vars file.
-    dest: "{{ common_scripts_directory }}/bu.list"
+    dest: "{{ user_scripts_directory }}/bu.list"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: '0644'

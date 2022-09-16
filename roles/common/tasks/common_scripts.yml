@@ -1,7 +1,4 @@
 ---
-- name: '[common_scripts] Load common_scripts variables.'
-  include_vars: common_scripts_vars.yml
-
 - name: '[common_scripts] Ensure scripts library directory exists ({{ scripts_lib }}).'
   file:
     dest: "{{ scripts_lib }}"
@@ -12,7 +9,7 @@
 
 - name: '[common_scripts] Ensure bin directory exists within user home directory.'
   file:
-    dest: "{{ common_scripts_directory }}"
+    dest: "{{ user_scripts_directory }}"
     state: directory
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"

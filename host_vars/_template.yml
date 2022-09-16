@@ -197,14 +197,14 @@ rsync_server_syncs:
 
 #mpd role, mpd.yml
 mpd:
-  run_as: "user" #Options are either "user" to run mpd as a logged-in user (can use pulse or pipewire), or "system" to run mpd as a system service (can run without a login).
-  music_dir: #"{{ ansible_user_home_dir }}/music" #Can override default setting in mpd role.  If this is an nfs share, ensure nfs role included and share defined above.
-  audio_output: | #Will default to no audio_output entry if this is ommitted.  I.e. mpd will attempt to auto-detect.
-    audio_output {
-      type       "pulse"
-      name       "pulse_device"
-      mixer_type "software"
-    }
+#  run_as: "user" #Options are either "user" to run mpd as a logged-in user (can use pulse or pipewire), or "system" to run mpd as a system service (can run without a login).
+#  music_dir: #"{{ ansible_user_home_dir }}/music" #Can override default setting in mpd role.  If this is an nfs share, ensure nfs role included and share defined above.
+#  audio_output: | #Will default to no audio_output entry if this is ommitted.  I.e. mpd will attempt to auto-detect.
+#    audio_output {
+#      type       "pulse"
+#      name       "pulse_device"
+#      mixer_type "software"
+#    }
 
 #desktop role.
 desktop:
@@ -252,9 +252,10 @@ wireguard:
 #antarctica role - some tasks useful for the restricted network and bandwidth.
 antarctica:
 #  sshuttle: true
-  sneak:
-    install: true
-    cron: true
+#  sneak:
+#    install: true
+#    cron: true
+#  punch: false
 
 #secure role
 sshd_port: !vault | #Override the default port listened to by sshd.

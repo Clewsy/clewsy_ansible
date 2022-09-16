@@ -88,6 +88,7 @@ antarctica:
   sneak: 
     install: false
     cron: false
+  punch: false
 
 # antarctic modification.
 sshd_port: !vault |

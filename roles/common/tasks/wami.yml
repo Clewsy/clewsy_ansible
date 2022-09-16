@@ -16,7 +16,7 @@
   copy:
     src: "{{ scripts_lib }}/wami"
     remote_src: yes
-    dest: "{{ common_scripts_directory }}/wami"
+    dest: "{{ user_scripts_directory }}/wami"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: '0755'

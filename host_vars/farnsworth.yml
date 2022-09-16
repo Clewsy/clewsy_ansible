@@ -120,6 +120,7 @@ antarctica:
   sneak:
     install: true
     cron: false
+  punch: false
 
 sshd_port: !vault |
   $ANSIBLE_VAULT;1.1;AES256

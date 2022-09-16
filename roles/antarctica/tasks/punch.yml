@@ -12,7 +12,7 @@
     mode: '0644'
   with_items: "{{ punch_unit_files }}"
 
-- name: '[punch] Enable systemd services'
+- name: '[punch] Enable and start punch systemd services'
   systemd:
     name: "{{ item }}"
     state: started

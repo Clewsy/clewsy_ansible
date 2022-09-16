@@ -8,9 +8,9 @@
     - import_tasks: handlers/handlers.yml
 
   roles:
-#    - common
+    - common
 #    - secure
-##    - headless
+    - headless
 #    - node
 #    - cups
 #    - rsync_server

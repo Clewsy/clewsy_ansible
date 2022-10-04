@@ -30,9 +30,9 @@ packages:
 #      - lame        #Encoder used by asunder to create mp3s
     remove:
       - geary       #Unwanted email client.
-  flatpak:
-    install:
-      - org.gnome.EasyTAG #Edit mp3 id3 tags.
+#  flatpak:
+#    install:
+#      - org.gnome.EasyTAG #Edit mp3 id3 tags.
   pip:
     install:
       - youtube-dl
@@ -47,6 +47,11 @@ nfs_mounts:
 #  - { mount_source: 'zapp:/export/tv', mount_path: '/mnt/zapp/tv' }
 #  - { mount_source: 'zapp:/export/cl0ud', mount_path: '/mnt/zapp/cl0ud' }
 #  - { mount_source: 'zapp:/export/m0n0l1th', mount_path: '/mnt/zapp/m0n0l1th' }
+cifs_mounts:
+  - { mount_source: '//odeon/d$', mount_path: '/mnt/odeon_d', mount_opts: "username=casey_odeon,password=Antarctica1,rw,uid={{ ansible_user }},gid={{ ansible_user }},suid,nofail" }
+  - { mount_source: '//odeon/e$', mount_path: '/mnt/odeon_e', mount_opts: "username=casey_odeon,password=Antarctica1,rw,uid={{ ansible_user }},gid={{ ansible_user }},suid,nofail" }
+  - { mount_source: '//odeon/f$', mount_path: '/mnt/odeon_f', mount_opts: "username=casey_odeon,password=Antarctica1,rw,uid={{ ansible_user }},gid={{ ansible_user }},suid,nofail" }
+  - { mount_source: '//odeon/g$', mount_path: '/mnt/odeon_g', mount_opts: "username=casey_odeon,password=Antarctica1,rw,uid={{ ansible_user }},gid={{ ansible_user }},suid,nofail" }
 
 mpd:
   run_as: "user"
@@ -77,7 +82,6 @@ desktop:
 #  ##A list of files to be backed up
 #  ~/.bashrc			  #just in case I customise it
 #  ~/bin/				  #my home-made executables
-#  $HOME/.conkyrc  #conky config set for DELL XPS 13 9360
 
 wireguard:
   client: true

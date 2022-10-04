@@ -12,6 +12,15 @@
     mode: '0644'
   with_items: "{{ punch_unit_files }}"
 
+- name: '[punch] Copy re-punch scripts to /lib/dhcpcd/dhcpcd-hooks/ directory for re-starting punch service after network connection is re-established.'
+  copy:
+    src: "files/{{ item }}"
+    dest: "/lib/dhcpcd/dhcpcd-hooks/{{ item }}"
+    owner: "root"
+    group: "root"
+    mode: '0755'
+  with_items: "{{ punch_dhcpcd_hook_scripts }}"
+
 - name: '[punch] Enable and start punch systemd services'
   systemd:
     name: "{{ item }}"

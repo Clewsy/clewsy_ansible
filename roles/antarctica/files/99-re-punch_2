@@ -1,0 +1,12 @@
+#/bin/bash
+
+## Copy this script to /lib/dhcpcd/dhcpcd-hooks/99_re-punch_2
+## Whenever a network connection is re-established, this script will re-start
+## the punch service.
+
+#!/bin/bash
+
+if [ "$reason" = "CARRIER" ]; then
+    systemctl restart punch_2.service
+    exit 0
+fi

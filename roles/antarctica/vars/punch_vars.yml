@@ -3,3 +3,8 @@ punch_unit_files:
   - punch_0.service
 #  - punch_1.service
 #  - punch_2.service
+
+punch_dhcpcd_hook_scripts:
+  - 99-re-punch_0
+#  - 99-re-punch_1
+#  - 99-re-punch_2

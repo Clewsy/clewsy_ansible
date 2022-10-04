@@ -6,11 +6,12 @@ After=network-online.target
 Requires=ssh.service
 
 [Service]
+Type=simple
 ExecStart=/usr/bin/ssh -N -R 44444:localhost:22 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null user@200.100.200.100
 ExecReload=/usr/bin/killall ssh && /usr/bin/ssh -N -R 44444:localhost:22 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null user@200.100.200.100
 ExecStop=/usr/bin/killall ssh
-Type=simple
 Restart=on-failure
+RestartSec=60s
 
 [Install]
 WantedBy=multi-user.target

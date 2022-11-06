@@ -2,7 +2,7 @@ host_name: nibbler
 
 ansible_user: clewsy
 
-local_tz: Australia/Perth
+local_tz: Australia/Hobart
 
 ansible_password: !vault |
   $ANSIBLE_VAULT;1.1;AES256

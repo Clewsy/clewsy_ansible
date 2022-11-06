@@ -90,7 +90,7 @@ wireguard:
 antarctica:
   sshuttle: true
   sneak: 
-    install: false
+    install: true
     cron: false
   punch: false
 

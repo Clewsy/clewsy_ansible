@@ -13,4 +13,5 @@
     - headless
     - docker
     - clews.pro
+    - rsync_server
     - wireguard

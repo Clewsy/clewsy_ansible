@@ -23,12 +23,23 @@ packages:
     install:
       - imagemagick #For image manipulation.
       - libimage-exiftool-perl #For manipulating exif data embedded in photos (e.g. deleting gps co-ords),
+      - ffmpeg #For modifying video files.
 
 theme_colour: GREEN
 theme_prompt: "{{ GREEN_GREEN }}"
 
 mounts: #Docker volumes and docker-compose.yml will go here.  Ensure the mount_source is configured!
   - { mount_source: /dev/disk/by-id/scsi-0Linode_Volume_docker_vol, mount_path: /home/docker, mount_fstype: ext4, mount_opts: "defaults,noatime,nofail" }
+
+rsync_server_syncs: #Jobs will be added to the root crontab.
+  - name: 'push_clews'
+    source: '/home/docker'
+    dest: 'b4t@b4t.site:/home/b4t/backups/'
+    minute: "0"
+    hour: "1"
+    day: "*"
+    month: "*"
+    weekday: "*"
 
 wireguard:
   client: false

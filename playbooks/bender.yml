@@ -9,5 +9,13 @@
 
   roles:
     - common
+    - secure
+    - headless
+    - node
+#    - vpn
+    - wireguard
+#    - antarctica
     - desktop
-    - antarctica
+    - develop
+#    - docker
+    - mpd

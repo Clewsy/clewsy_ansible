@@ -2,6 +2,8 @@ host_name: bender
 
 ansible_user: clewsy
 
+local_tz: Australia/Melbourne
+
 ansible_password: !vault |
   $ANSIBLE_VAULT;1.1;AES256
   36653965336538353033333062333165356666306663346235613765353734356533396132356466
@@ -18,17 +20,17 @@ ansible_sudo_pass: !vault |
   3530353137616233340a653532356332613035616539333261623531353130346363396365316632
   6538
 
-local_tz: 'Australia/Perth'
-
 #aliases:
 #  - "alias ll='ls -alFh'"
 
 packages:
   apt:
-  flatpak:
     install:
-      - ca.littlesvr.asunder #Rip CDs to mp3s.
-      - org.gnome.EasyTAG #Edit mp3 id3 tags.
+      - curl
+#  flatpak:
+#    install:
+#      - ca.littlesvr.asunder #Rip CDs to mp3s.
+#      - org.gnome.EasyTAG #Edit mp3 id3 tags.
 
 theme_colour: GRAY
 theme_prompt: "{{ BENDER }}"
@@ -58,6 +60,15 @@ nfs_mounts:
 #  - { mount_source: 'zapp:/export/cl0ud', mount_path: '/mnt/zapp/cl0ud' }
 #  - { mount_source: 'zapp:/export/m0n0l1th', mount_path: '/mnt/zapp/m0n0l1th' }
 
+mpd:
+  run_as: "user"
+  music_dir: "/home/{{ ansible_user }}/music"
+#  audio_output: | #Default (autodetection) does not work with nibbler.  Pipewire is enabled on pop_os.
+#    audio_output {
+#      type       "pipewire"
+#      name       "pipewire_device"
+#    }
+
 desktop:
   install:
     calibre: false
@@ -69,7 +80,7 @@ desktop:
     terminator: true
     vlc: true
   nautilus_bookmarks: #Add bookmarks to nautilus sidebar.
-#    - "davs://nextcloud.clews.pro/remote.php/dav/files/jadon nextcloud"
+    - "davs://nextcloud.clews.pro/remote.php/dav/files/jadon nextcloud"
   autostart_appplications:
     - terminator
 
@@ -77,11 +88,15 @@ desktop:
 #  /etc/fstab
 #  /etc/cron.d
 
-antarctica:
-  sshuttle: true
-  sneak: 
-    install: false
-    cron: false
+wireguard:
+  client: true
+  server: false
+
+#antarctica:
+#  sshuttle: true
+#  sneak: 
+#    install: false
+#    cron: false
 
 ssh_public_key: !vault |
   $ANSIBLE_VAULT;1.1;AES256

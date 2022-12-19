@@ -63,11 +63,11 @@ nfs_mounts:
 mpd:
   run_as: "user"
   music_dir: "/home/{{ ansible_user }}/music"
-#  audio_output: | #Default (autodetection) does not work with nibbler.  Pipewire is enabled on pop_os.
-#    audio_output {
-#      type       "pipewire"
-#      name       "pipewire_device"
-#    }
+  audio_output: | #Default (autodetection) does not work with bender.  Pipewire is enabled on pop_os.
+    audio_output {
+      type       "pipewire"
+      name       "pipewire_device"
+    }
 
 desktop:
   install:

@@ -71,7 +71,7 @@ mpd:
 
 desktop:
   install:
-    calibre: false
+    calibre: true
     conky: false
     guake: true
     mpdevil: false

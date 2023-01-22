@@ -1,0 +1,3 @@
+---
+calibre_books_repo: "git@gitlab.com:clewsy/books.git"
+calibre_books_repo_keyfile: "{{ ansible_user_home_dir }}/.ssh/id_rsa"

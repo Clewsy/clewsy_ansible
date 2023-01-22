@@ -1,6 +1,6 @@
 ---
-#- name: '[calibre] Load calibre variables.'
-#  include_vars: calibre_vars.yml
+- name: '[calibre] Load calibre variables.'
+  include_vars: calibre_vars.yml
 
 - name: '[calibre] Ensure flatpak is installed.'
   apt:
@@ -18,8 +18,24 @@
     name: com.calibre_ebook.calibre
     state: present
     method: system
+  register: calibre_installed
 
 - name: '[calibre] Enable dark-mode for future sessions.' #Will not take affect until next login.
   lineinfile:
     path: "{{ ansible_user_home_dir }}/.profile"
-    line: export CALIBRE_USE_DARK_PALETTE=1
+    line: "export CALIBRE_USE_DARK_PALETTE=1 #Enable dark-mode for calibre."
+
+- name: '[calibre] Clone books library repository to home directory.'
+  git:
+    repo: "{{ calibre_books_repo }}"
+    dest: "{{ ansible_user_home_dir }}/books"
+    accept_hostkey: yes
+    key_file: "{{ calibre_books_repo_keyfile }}"
+
+- name: '[calibre] Change owner and group of books library (from root to user).'
+  file:
+    recurse: yes
+    path: "{{ ansible_user_home_dir }}/books"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"

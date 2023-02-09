@@ -23,10 +23,13 @@ packages:
     install:
   pip:
     install:
-      - youtube-dl #antarctica
+#      - youtube-dl #antarctica
 
 theme_colour: RED
 theme_prompt: "{{ ZOIDBERG }}"
+
+mounts:
+  - { mount_source: /dev/mmcblk0p1, mount_path: '/media/cache', mount_fstype: 'auto', mount_opts: "auto,rw,async,user,uid={{ ansible_user }},gid={{ ansible_user }},nofail" }
 
 nfs_mounts:
 #  - { mount_source: 'zapp:/export/cl0ud', mount_path: '/mnt/zapp/cl0ud' }
@@ -40,14 +43,6 @@ sshd_port: !vault |
   63376337333230396431373639306138623939343331306139326563373761663066373965396239
   3533616165343530360a316238333831383032623162313763373935626561313763356663393663
   3565
-
-# Temp sshd_port port change for antarctica
-#  $ANSIBLE_VAULT;1.1;AES256
-#  35623263313232393064646436626339666132613266353937656439333831303032376264616266
-#  3532386639626539393734373836396366333238303232380a636439323465643337356635643765
-#  62336432633031303834646236313335303038366230376265343238376666353964313933623632
-#  3466346265353430640a633534393339663538313937633065343562623733643062393165303331
-#  6632
 
 ssh_public_key: !vault |
   $ANSIBLE_VAULT;1.1;AES256

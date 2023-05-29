@@ -13,8 +13,8 @@
     - headless
     - node
 #    - vpn
-    - wireguard
-#    - antarctica
+#    - wireguard
+    - antarctica
     - desktop
     - develop
 #    - docker

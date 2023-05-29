@@ -4,3 +4,5 @@ pigpio_local_clone: "{{ git_repos }}/pigpio"
 
 pigpio_packages:
   - build-essential #Needed to build pigpio from source.
+  - python-setuptools #Needed to build pigpio from source.
+  - python3-setuptools #Needed to build pigpio from source.

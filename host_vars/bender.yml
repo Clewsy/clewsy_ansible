@@ -92,11 +92,11 @@ wireguard:
   client: true
   server: false
 
-#antarctica:
-#  sshuttle: true
-#  sneak: 
-#    install: false
-#    cron: false
+antarctica:
+  sshuttle: true
+  sneak: 
+    install: false
+    cron: false
 
 ssh_public_key: !vault |
   $ANSIBLE_VAULT;1.1;AES256

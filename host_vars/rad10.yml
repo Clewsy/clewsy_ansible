@@ -2,7 +2,7 @@ host_name: rad10
 
 ansible_user: b4t
 
-local_tz: Australia/Perth
+local_tz: Australia/Hobart
 
 ansible_password: !vault |
   $ANSIBLE_VAULT;1.1;AES256
@@ -23,7 +23,6 @@ ansible_sudo_pass: !vault |
 packages:
   apt:
     remove:
-      - snapd
 
 theme_colour: YELLOW
 theme_prompt: "{{ YELLOW_RED }}"
@@ -32,7 +31,7 @@ nfs_mounts:
 #  - { mount_source: 'zapp:/export/mp3s', mount_path: '/mnt/zapp/mp3s' }
 
 mpd:
-  run_as: "system" #Options are either "user" to run mpd as a logged-in user (can use pulse or pipewire), or "system" to run mpd as a system service (can run without a login).
+  run_as: "system"
   audio_output: |
     audio_output {
       type           "alsa"

@@ -2,7 +2,8 @@
 sneak_url: "https://gitlab.com/clewsy/scripts/-/raw/master/sneak"
 sneak_dest: "/usr/local/sbin/sneak"
 
-sneak_transfer_source: "amy:/home/jc/transfer/"
+#sneak_transfer_source: "amy:/home/jc/transfer/" #Preferred but changed to below due to limited storage on bbb on-board eemc.
+sneak_transfer_source: "amy:/media/cache/transfer/"
 sneak_transfer_target: "{{ ansible_user_home_dir }}/transfer/"
 
 sneak_cron_jobs:

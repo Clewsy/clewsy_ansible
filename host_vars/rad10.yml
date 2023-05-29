@@ -36,7 +36,6 @@ mpd:
     audio_output {
       type           "alsa"
       name           "alsa_device"
-      mixer_control  "Headphone"
     }
 
 backup_file_list: |

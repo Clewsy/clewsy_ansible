@@ -24,7 +24,7 @@ ansible_sudo_pass: !vault |
 packages:
   apt:
     install:
-      - nvidia-driver-530 #farnsworth currently has a nvidia geforce rtx 3070.
+      - nvidia-driver-510 #farnsworth currently has a nvidia geforce rtx 3070.
       - libimage-exiftool-perl #package includes exiftool for manipulating photo metadata.
       - imagemagick #manipulate image files.
       - pdftk #manipulate pdf files.

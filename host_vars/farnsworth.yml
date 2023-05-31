@@ -2,7 +2,7 @@ host_name: farnsworth
 
 ansible_user: clewsy
 
-local_tz: Australia/Perth
+local_tz: Australia/Hobart
 
 ansible_password: !vault |
   $ANSIBLE_VAULT;1.1;AES256
@@ -24,7 +24,7 @@ ansible_sudo_pass: !vault |
 packages:
   apt:
     install:
-      - nvidia-driver-510 #farnsworth currently has a nvidia geforce rtx 3070.
+      - nvidia-driver-530 #farnsworth currently has a nvidia geforce rtx 3070.
       - libimage-exiftool-perl #package includes exiftool for manipulating photo metadata.
       - imagemagick #manipulate image files.
       - pdftk #manipulate pdf files.
@@ -35,12 +35,12 @@ packages:
 #      - gnome-mines
 #      - gnome-mahjongg
 #      - gnome-sudoku
-      - gnome-todo
-      - remmina
-      - rhythmbox
-      - thunderbird
-      - transmission-common
-      - transmission-gtk
+#      - gnome-todo
+#      - remmina
+#      - rhythmbox
+#      - thunderbird
+#      - transmission-common
+#      - transmission-gtk
   flatpak:
     install:
       - org.gimp.GIMP
@@ -78,11 +78,16 @@ mpd:
   run_as: "user"
 #  music_dir: "/mnt/zapp/mp3s" #Changed for antarctica
   music_dir: "/home/{{ ansible_user }}/music"
-  audio_output: | #Default (autodetection) works with farnsworth except for volume control hence need do define mixer_type.
+#  audio_output: | #Default (autodetection) works with farnsworth except for volume control hence need do define mixer_type.
+#    audio_output {
+#      type       "pulse"
+#      name       "pulse_device"
+#      mixer_type "software"
+#    }
+  audio_output: | #Pipewire enabled on 23.04
     audio_output {
-      type       "pulse"
-      name       "pulse_device"
-      mixer_type "software"
+      type       "pipewire"
+      name       "pipewire_device"
     }
 
 #a few antarctic changes below.
@@ -108,9 +113,9 @@ desktop:
 
 backup_file_list: |
   #a list of files and/or directories to be backed up from farnsworth to seymour
-  ~/bin/                        #scripts for use on farnsworth
-  #/etc/fstab                    #save this for mounting windows disk and nfs shares from zapp
-  $HOME/.config/autostart       #autostart configs
+  ~/bin/
+  #/etc/fstab
+  $HOME/.config/autostart
   ~/documents
 
 mc_skin: modarcon16-defbg

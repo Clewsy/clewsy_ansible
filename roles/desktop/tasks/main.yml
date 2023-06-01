@@ -4,10 +4,10 @@
     name: python3-pip
     state: latest
 
-- name: '[desktop] Install python module psutil - needed so ansible can use the dconf module.'
-  pip:
-    name: "psutil"
-    state: latest
+#- name: '[desktop] Install python module psutil - needed so ansible can use the dconf module.'
+#  pip:
+#    name: "psutil"
+#    state: latest
 
 ######
 

@@ -1,0 +1,8 @@
+---
+mpdevil_config_file: "{{ ansible_user_home_dir }}/.var/app/org.mpdevil.mpdevil/config/glib-2.0/settings/keyfile"
+
+mpdevil_config_options:
+  - {section: "org/mpdevil/mpdevil", option: socket-connection, value: 'false'}
+  - {section: "org/mpdevil/mpdevil", option: mini-player, value: 'true'}
+  - {section: "org/mpdevil/mpdevil", option: mini-player-width, value: '654'}
+  - {section: "org/mpdevil/mpdevil", option: mini-player-height, value: '701'}

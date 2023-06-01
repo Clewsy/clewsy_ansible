@@ -1,6 +1,6 @@
 ---
-#- name: '[mpdevil] Load mpdevil variables.'
-#  include_vars: mpdevil_vars.yml
+- name: '[mpdevil] Load mpdevil variables.'
+  include_vars: mpdevil_vars.yml
 
 - name: '[mpdevil] Ensure flatpak is installed.'
   apt:
@@ -25,5 +25,12 @@
     line: "alias mpdevil='flatpak run org.mpdevil.mpdevil'" 
     state: present
 
-# For future reference if you want to use ansible to configure mpdevil settings,
-# keyfile is located at ~/.var/app/org.mpdevil.mpdevil/config/glib-2.0/settings/keyfile
+- name: '[mpdevil] Configure mpdevil by editing keyfile.'
+  ini_file:
+    path: "{{ mpdevil_config_file }}"
+    section: "{{ item.section }}"
+    option: "{{ item.option }}"
+    value: "{{ item.value }}"
+    no_extra_spaces: yes
+    create: yes
+  with_items: "{{ mpdevil_config_options }}"

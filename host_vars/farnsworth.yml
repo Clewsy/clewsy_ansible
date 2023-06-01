@@ -77,14 +77,7 @@ nfs_mounts:
 
 mpd:
   run_as: "user"
-#  music_dir: "/mnt/zapp/mp3s" #Changed for antarctica
   music_dir: "/home/{{ ansible_user }}/music"
-#  audio_output: | #Default (autodetection) works with farnsworth except for volume control hence need do define mixer_type.
-#    audio_output {
-#      type       "pulse"
-#      name       "pulse_device"
-#      mixer_type "software"
-#    }
   audio_output: | #Pipewire enabled on 23.04
     audio_output {
       type       "pipewire"

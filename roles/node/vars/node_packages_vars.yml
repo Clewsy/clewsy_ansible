@@ -3,3 +3,5 @@ node_packages:
   - netdiscover
   - nmap
   - net-tools
+  - rename
+

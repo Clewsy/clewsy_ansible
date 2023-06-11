@@ -16,10 +16,10 @@
     mode: '0755'
 
 - name: Install and configure bu script.
-  include: bu.yml
+  include_tasks: bu.yml
 
 - name: Install and configure stuff script.
-  include: stuff.yml
+  include_tasks: stuff.yml
 
 - name: Install and configure wami script.
-  include: wami.yml
+  include_tasks: wami.yml

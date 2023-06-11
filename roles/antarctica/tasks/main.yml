@@ -1,12 +1,12 @@
 ---
 - name: '[sshuttle] Install and configure sshuttle.'
-  include: sshuttle.yml
+  include_tasks: sshuttle.yml
   when: antarctica.sshuttle is defined and antarctica.sshuttle
 
 - name: '[sneak] Install and configure sneak.'
-  include: sneak.yml
+  include_tasks: sneak.yml
   when: antarctica.sneak.install is defined and antarctica.sneak.install
 
 - name: '[punch] Install and enable punch services.'
-  include: punch.yml
+  include_tasks: punch.yml
   when: antarctica.punch is defined and antarctica.punch

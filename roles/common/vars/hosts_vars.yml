@@ -1,9 +1,9 @@
 ---
 hosts:
-  - {name: 'zoidberg', ip: '192.168.1.11'}
+  - {name: 'zoidberg', ip: '192.168.1.7'}
   - {name: 'zapp', ip: '192.168.1.12'}
 #  - {name: 'temp0', ip: '192.168.1.43'}
-  - {name: 'seymour', ip: '192.168.1.7'}
+#  - {name: 'seymour', ip: '192.168.1.7'}
   - {name: 'scruffy', ip: '192.168.1.100'}
 #  - {name: 'rad10', ip: '192.168.1.111'}
 #  - {name: 'pazuzu', ip: '192.168.1.79'}

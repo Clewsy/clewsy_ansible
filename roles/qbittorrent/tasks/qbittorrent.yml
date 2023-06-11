@@ -58,10 +58,10 @@
     restarted: yes
   when: qbittorrent_config is changed
 
-- name: '[qbittorrent] Create a symlink to the downloads directory within the home directory.'
-  file:
-    src: "{{ qbittorrent_root_dir }}/qbittorrent/downloads"
-    dest: "{{ ansible_user_home_dir }}/downloads"
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
-    state: link
+#- name: '[qbittorrent] Create a symlink to the downloads directory within the home directory.'
+#  file:
+#    src: "{{ qbittorrent_root_dir }}/qbittorrent/downloads"
+#    dest: "{{ ansible_user_home_dir }}/downloads"
+#    owner: "{{ ansible_user }}"
+#    group: "{{ ansible_user }}"
+#    state: link

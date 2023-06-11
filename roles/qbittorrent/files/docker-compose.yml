@@ -9,14 +9,16 @@ services:
       - PGID=1000
       - TZ=Australia/Melbourne
       - UMASK=022
-      - WEBUI_PORT=8080
+      - WEBUI_PORT=8888
     volumes:
       - ./qbittorrent/config:/config
-      - ./qbittorrent/downloads:/downloads
+      - /media/cache/downloads:/downloads
     ports:
       - 6881:6881
       - 6881:6881/udp
-      - 8080:8080
+      - 8888:8888
+    security_opt: 
+      - seccomp:unconfined #Bug workaround.  See https://github.com/homebridge/docker-homebridge/issues/461
     restart: unless-stopped
 
   watchtower:

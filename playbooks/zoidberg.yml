@@ -10,8 +10,10 @@
   roles:
     - common
     - secure
-    - headless
+#    - headless #bat is not available in the repository.
     - node
+    - docker
+    - qbittorrent
 
   # Run tasks specific only to seymour
   tasks:

@@ -24,13 +24,13 @@
     mode: '0644'
 
 - name: '[apt_all] Install and configure apt_all script.'
-  include: apt_all.yml
+  include_tasks: apt_all.yml
 
 - name: '[ball] Install and configure ball script.'
-  include: ball.yml
+  include_tasks: ball.yml
 
 - name: '[pong] Install and configure pong script.'
-  include: pong.yml
+  include_tasks: pong.yml
 
 - name: '[whodis] Install and configure whodis script.'
-  include: whodis.yml
+  include_tasks: whodis.yml

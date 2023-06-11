@@ -1,3 +1,3 @@
 ---
 - name: '[homeassistant] Install requisite packages, configure the system, then run the homeassistant supervised installer script.'
-  include: homeassistant.yml
+  include_tasks: homeassistant.yml

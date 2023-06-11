@@ -1,4 +1,4 @@
 ---
 - name: Configure rsync server features.
-  include: rsync_server.yml
+  include_tasks: rsync_server.yml
   when: rsync_server_syncs.0 is defined

@@ -1,9 +1,9 @@
 ---
 - name: '[headless_packages] Install general packages useful for a headless system'
-  include: headless_packages.yml
+  include_tasks: headless_packages.yml
 
 - name: '[mc] Install and configure midnight commander.'
-  include: mc.yml
+  include_tasks: mc.yml
 
 - name: '[bat] Install and configure bat.'
-  include: bat.yml
+  include_tasks: bat.yml

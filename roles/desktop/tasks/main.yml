@@ -12,46 +12,46 @@
 ######
 
 - name: '[calibre] Install and configure calibre.'
-  include: calibre.yml
+  include_tasks: calibre.yml
   when: desktop.install.calibre is defined and desktop.install.calibre
 
 - name: '[conky] Install and configure conky.'
-  include: conky.yml
+  include_tasks: conky.yml
   when: desktop.install.conky is defined and desktop.install.conky
 
 - name: '[guake] Install and configure guake.'
-  include: guake.yml
+  include_tasks: guake.yml
   when: desktop.install.guake is defined and desktop.install.guake
 
 - name: '[mpdevil] Install and configure mpdevil.'
-  include: mpdevil.yml
+  include_tasks: mpdevil.yml
   when: desktop.install.mpdevil is defined and desktop.install.mpdevil
 
 - name: '[sonata] Install and configure sonata.'
-  include: sonata.yml
+  include_tasks: sonata.yml
   when: desktop.install.sonata is defined and desktop.install.sonata
 
 - name: '[terbling] Install and configure terbling script.'
-  include: terbling.yml
+  include_tasks: terbling.yml
   when: desktop.install.terbling is defined and desktop.install.terbling
 
 - name: '[terminator] Install and configure terminator.'
-  include: terminator.yml
+  include_tasks: terminator.yml
   when: desktop.install.terminator is defined and desktop.install.terminator
 
 - name: '[vlc] Install vlc.'
-  include: vlc.yml
+  include_tasks: vlc.yml
   when: desktop.install.vlc is defined and desktop.install.vlc
 
 - name: '[gnome_config] Install and configure gnome_config.'
-  include: gnome_config.yml
+  include_tasks: gnome_config.yml
 
 - name: '[dir_names] Configure directory names as installed in home directory.'
-  include: dir_names.yml
+  include_tasks: dir_names.yml
 
 - name: '[nautilus] Install and configure nautilus.'
-  include: nautilus.yml
+  include_tasks: nautilus.yml
 
 - name: '[autostart] Configure desired autostart applications.'
-  include: autostart.yml
+  include_tasks: autostart.yml
  

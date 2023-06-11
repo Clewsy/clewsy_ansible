@@ -1,17 +1,17 @@
 ---
 
 - name: '[packages_apt] Install/remove apt packages.'
-  include: packages_apt.yml
+  include_tasks: packages_apt.yml
   when: packages.apt.install.0 is defined or packages.apt.remove.0 is defined
 
 - name: '[packages_snap] Install/remove snap packages.'
-  include: packages_snap.yml
+  include_tasks: packages_snap.yml
   when: packages.snap.install.0 is defined or packages.snap.remove.0 is defined or packages.classic_snap.install.0 is defined or packages.classic_snap.remove.0 is defined
 
 - name: '[packages_flatpak] Install/remove flatpak packages.'
-  include: packages_flatpak.yml
+  include_tasks: packages_flatpak.yml
   when: packages.flatpak.install.0 is defined or packages.flatpak.remove.0 is defined
 
 - name: '[packages_pip] Install/remove pip packages.'
-  include: packages_pip.yml
+  include_tasks: packages_pip.yml
   when: packages.pip.install.0 is defined or packages.pip.remove.0 is defined

@@ -1,15 +1,15 @@
 ---
 - name: '[termux_ssh] Add keys and configure ssh.'
-  include: termux_ssh.yml
+  include_tasks: termux_ssh.yml
 
 - name: '[termux_packages] Install packages.'
-  include: termux_packages.yml
+  include_tasks: termux_packages.yml
 
 - name: '[termux_scripts] Install and customize scripts for use with termux.'
-  include: termux_scripts.yml
+  include_tasks: termux_scripts.yml
 
 - name: '[termux_misc] Termux miscellaneous configuration.'
-  include: termux_misc.yml
+  include_tasks: termux_misc.yml
 
 - name: '[termux_shortcuts] Configure shortcuts for use with the Termux widget.'
-  include: termux_shortcuts.yml
+  include_tasks: termux_shortcuts.yml

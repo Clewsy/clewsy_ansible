@@ -1,3 +1,3 @@
 ---
 - name: '[motioneye] Install, configure and enable motioneye (using docker).'
-  include: motioneye.yml
+  include_tasks: motioneye.yml

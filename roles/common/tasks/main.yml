@@ -1,49 +1,49 @@
 ---
 - name: '[check_ssh_port] Determine the correct ssh port for host.'
-  include: check_ssh_port.yml
+  include_tasks: check_ssh_port.yml
   when: sshd_port is defined #Only need to check and set the ssh port if the default is overridden in the host-specific vars file.
 
 - name: '[gather_facts] Now ssh port is known, manually gather facts.'
   setup:
 
 - name: '[host_identity] Configure basic host information.'
-  include: host_identity.yml
+  include_tasks: host_identity.yml
 
 - name: '[ssh] Add keys and configure ssh.'
-  include: ssh.yml
+  include_tasks: ssh.yml
 
 - name: '[hosts] Add lan hostnames and corresponding ip addresses to the /etc/hosts file.'
-  include: hosts.yml
+  include_tasks: hosts.yml
 
 - name: '[sudo] Configure sudo.'
-  include: sudo.yml
+  include_tasks: sudo.yml
 
 - name: '[packages] Install host-specific miscellaneous packages.'
-  include: packages.yml
+  include_tasks: packages.yml
 
 - name: '[vim] Install and configure vim.'
-  include: vim.yml
+  include_tasks: vim.yml
 
 - name: '[git] Install and configure git.'
-  include: git.yml
+  include_tasks: git.yml
 
 - name: '[lm-sensors] Install and configure lm-sensors.'
-  include: lm-sensors.yml
+  include_tasks: lm-sensors.yml
 
 - name: '[motd] Set custom motd.'
-  include: motd.yml
+  include_tasks: motd.yml
 
 - name: '[basrc] Configure .bashrc file.'
-  include: bashrc.yml
+  include_tasks: bashrc.yml
 
 - name: '[aliases] Configure aliases.'
-  include: aliases.yml
+  include_tasks: aliases.yml
 
 - name: '[cron] Configure cron jobs.'
-  include: cron.yml
+  include_tasks: cron.yml
 
 - name: '[mounts] Configure mounts.'
-  include: mounts.yml
+  include_tasks: mounts.yml
 
 - name: '[common_scripts] Install and configure common scripts.'
-  include: common_scripts.yml
+  include_tasks: common_scripts.yml

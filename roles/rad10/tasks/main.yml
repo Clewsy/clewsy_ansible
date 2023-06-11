@@ -1,6 +1,6 @@
 ---
 - name: '[pigpio] Install and enable latest pigpio.' #Note will clone and make install from source.  Not included in ubuntu repo but could be apt installed on raspios.
-  include: pigpio.yml
+  include_tasks: pigpio.yml
 
 - name: '[rad10] Install and configure rad10d daemon and rad10 webui.'
-  include: rad10.yml
+  include_tasks: rad10.yml

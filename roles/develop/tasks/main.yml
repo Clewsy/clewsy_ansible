@@ -1,6 +1,6 @@
 ---
 - name: '[vscode] Install and configure vscode.'
-  include: vscode.yml
+  include_tasks: vscode.yml
 
 - name: '[develop_packages] Install additional development packages.'
-  include: develop_packages.yml
+  include_tasks: develop_packages.yml

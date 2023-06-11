@@ -1,6 +1,6 @@
 ---
 - name: '[blink1_tool] Install and enable blink1-tool.'
-  include: blink1_tool.yml
+  include_tasks: blink1_tool.yml
 
 - name: '[polly] Install and configure polly.'
-  include: polly.yml
+  include_tasks: polly.yml

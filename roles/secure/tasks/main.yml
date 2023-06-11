@@ -1,6 +1,6 @@
 ---
 - name: Install and configure ufw.
-  include: ufw.yml
+  include_tasks: ufw.yml
 
 #openssh-server version 1:8 have the ability to "Include" additional configs external to the /etc/ssh/sshd_config file.
 #These late versions are installed with the directory /etc/ssh/sshd_config.d for such configs.
@@ -11,9 +11,9 @@
   register: sshd_configs_dir
 
 - name: Configure sshd (create configs in /etc/ssh/sshd_configd.d directory).
-  include: sshd.yml
+  include_tasks: sshd.yml
   when: sshd_configs_dir.stat.isdir is defined and sshd_configs_dir.stat.isdir
 
 - name: Configure sshd (legacy config method, alter /etc/ssh/sshd_configs file).
-  include: sshd_legacy.yml
+  include_tasks: sshd_legacy.yml
   when: sshd_configs_dir.stat.isdir is not defined or sshd_configs_dir.stat.isdir == False

@@ -1,12 +1,12 @@
 ---
 - name: '[disks] Mount disks.'
-  include: disks.yml
+  include_tasks: disks.yml
   when: file_server_disks.0 is defined 
 
 - name: '[nfs] Configure nfs shares.'
-  include: nfs.yml
+  include_tasks: nfs.yml
   when: file_server_nfs_shares.0 is defined 
 
 - name: '[cifs] Configure cifs shares.'
-  include: cifs.yml
+  include_tasks: cifs.yml
   when: file_server_cifs_shares is defined

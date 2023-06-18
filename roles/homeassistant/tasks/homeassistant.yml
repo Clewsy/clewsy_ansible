@@ -6,8 +6,9 @@
 
 - name: '[homeassistant] Ensure all packages required for homeassistant are installed.'
   apt:
-    name: "{{ homeassistant_packages }}"
+    name: "{{ item }}"
     state: latest
+  with_items: "{{ homeassistant_packages }}"
 
 - name: '[homeassistant] Remove ModemManager.'
   apt:

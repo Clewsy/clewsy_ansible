@@ -4,5 +4,6 @@
   
 - name: '[node_packages] Ensure all miscellaneous node packages are installed.'
   apt:
-    name: "{{ node_packages }}"
+    name: "{{ item }}"
     state: latest
+  with_items: "{{ node_packages }}"

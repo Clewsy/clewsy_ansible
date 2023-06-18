@@ -4,9 +4,10 @@
 
 - name: '[nfs] Ensure all packages required for nfs shares are installed.'
   apt:
-    name: "{{ nfs_packages }}"
+    name: "{{ item }}"
     state: latest
   notify: restart nfs server
+  with_items: "{{ nfs_packages }}"
 
 - stat: #Check for the existence of the source_path directory.
     path: "{{ mount.source_path }}"

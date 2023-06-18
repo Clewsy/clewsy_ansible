@@ -4,8 +4,9 @@
 
 - name: '[p0wer] Ensure all packages required for p0wer executable and webui are installed.'
   apt:
-    name: "{{ p0wer_packages }}"
+    name: "{{ item }}"
     state: latest
+  with_items: "{{ p0wer_packages }}"
 
 - name: '[p0wer] Clone p0wer repository to home directory.'
   git:

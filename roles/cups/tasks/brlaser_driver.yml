@@ -4,8 +4,9 @@
 
 - name: '[brlaser_driver] Ensure all packages required for brlaser_driver are installed.'
   apt:
-    name: "{{ brlaser_driver_packages }}"
+    name: "{{ item }}"
     state: latest
+  with_items: "{{ brlaser_driver_packages }}"
 
 - name: '[brlaser_driver] Clone brlaser_driver repo.'
   git:

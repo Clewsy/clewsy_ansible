@@ -17,9 +17,10 @@
 
 - name: '[qbittorrent-cli] Install qbittorrent-cli packages.'
   apt:
-    name: "{{ qbittorrent_cli_packages }}"
+    name: "{{ item }}"
     state: latest
   register: qbittorrent_install
+  with_items: "{{ qbittorrent_cli_packages }}"
 
 - name: "[qbittorrent-cli] Set qbt username ({{ qbittorrent_cli_username }}) for {{ ansible_user }}."
   command: "/usr/bin/qbt settings set username {{ qbittorrent_cli_username }}"

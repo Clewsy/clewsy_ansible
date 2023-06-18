@@ -4,8 +4,9 @@
 
 - name: '[gnome_config] Install gnome packages'
   apt:
-    name: "{{ gnome_packages }}"
+    name: "{{ item }}"
     state: latest
+  with_items: "{{ gnome_packages }}"
 
 - name: '[gnome_config] Copy desktop profile image to {{ profile_icon_dest }} (expected location for distribution {{ ansible_distribution }}).'
   copy:

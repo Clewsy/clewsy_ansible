@@ -4,8 +4,9 @@
 
 - name: '[motion] Ensure all packages required for motion are installed.'
   apt:
-    name: "{{ motion_packages }}"
+    name: "{{ item }}"
     state: latest
+  with_items: "{{ motion_packages }}"
 
 - name: '[motion] Enable motion daemon autostart.'
   copy:

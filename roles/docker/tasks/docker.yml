@@ -4,10 +4,11 @@
 
 - name: '[docker] Install packages for docker.'
   apt:
-    name: "{{ docker_packages }}"
+    name: "{{ item }}"
     state: latest
   register: docker_not_installed
   notify: enable and start docker service
+  with_items: "{{ docker_packages }}"
 
 - name: "[docker] Add {{ ansible_user }} to docker group."
   user:

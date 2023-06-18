@@ -4,8 +4,9 @@
 
 - name: '[rsync_server] Ensure all packages required for rsync_server are installed.'
   apt:
-    name: "{{ rsync_server_packages }}"
+    name: "{{ item }}"
     state: latest
+  with_items: "{{ rsync_server_packages }}"
 
 - name: '[rsync_server] Determine if the logfile exists.'
   stat:

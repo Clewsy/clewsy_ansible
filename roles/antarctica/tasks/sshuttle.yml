@@ -4,8 +4,9 @@
 
 - name: '[sshuttle] Ensure all additional sshuttle packages are installed.'
   apt:
-    name: "{{ sshuttle_packages }}"
+    name: "{{ item }}"
     state: latest
+  with_items: "{{ sshuttle_packages }}"
 
 - name: '[sshuttle] Create sshuttle command line aliases.'
   lineinfile:

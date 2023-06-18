@@ -3,3 +3,4 @@ node_packages:
   - netdiscover
   - nmap
   - net-tools
+  - arp-scan

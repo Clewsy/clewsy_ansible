@@ -1,4 +1,0 @@
----
-bu_script_url: "{{ clewsy_repo_root }}/scripts/-/raw/master/bu"
-
-bu_default_file_list: "~/.bashrc\n"

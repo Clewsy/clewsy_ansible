@@ -15,9 +15,6 @@
     group: "{{ ansible_user }}"
     mode: '0755'
 
-- name: Install and configure bu script.
-  include_tasks: bu.yml
-
 - name: Install and configure stuff script.
   include_tasks: stuff.yml
 

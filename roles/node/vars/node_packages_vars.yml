@@ -4,3 +4,4 @@ node_packages:
   - nmap
   - net-tools
   - arp-scan
+  - rename

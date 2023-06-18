@@ -26,9 +26,6 @@
 - name: '[apt_all] Install and configure apt_all script.'
   include_tasks: apt_all.yml
 
-- name: '[ball] Install and configure ball script.'
-  include_tasks: ball.yml
-
 - name: '[pong] Install and configure pong script.'
   include_tasks: pong.yml
 

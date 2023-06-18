@@ -18,13 +18,13 @@
     name: '{{ item }}'
     state: present
     method: system
-  with_items: "{{ packages.flatpak.install }}"
   when: packages.flatpak.install.0 is defined
+  with_items: "{{ packages.flatpak.install }}"
 
 ########### Removal of apps that do come pre-installed.
 - name: '[packages_flatpak] Remove miscellaneous, host-specific flatpak packages.'
   flatpak:
     name: "{{ item }}"
     state: absent
-  with_items: "{{ packages.flatpak.remove }}"
   when: packages.flatpak.remove.0 is defined
+  with_items: "{{ packages.flatpak.remove }}"

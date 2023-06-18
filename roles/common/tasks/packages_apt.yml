@@ -13,21 +13,24 @@
 
 - name: '[packages_apt] Install common packages.'
   apt:
-    name: "{{ common_apt_packages }}"
+    name: "{{ item }}"
     state: latest
+  with_items: "{{ common_apt_packages }}"
 
 ########### Installation of apps that don't come pre-installed.
 - name: '[packages_apt] Install miscellaneous, host-specific apt packages.'
   apt:
-    name: "{{ packages.apt.install }}"
+    name: "{{ item }}"
     state: latest
   when: packages.apt.install.0 is defined
+  with_items: "{{ packages.apt.install }}"
 
 ########### Removal of apps that do come pre-installed.
 - name: '[packages_apt] Remove miscellaneous, host-specific, pre-installed apt packages.'
   apt:
-    name: "{{ packages.apt.remove }}"
+    name: "{{ item }}"
     state: absent
     purge: yes
     autoremove: yes
   when: packages.apt.remove.0 is defined
+  with_items: "{{ packages.apt.remove }}"

@@ -29,7 +29,7 @@ packages:
       - imagemagick #manipulate image files.
       - pdftk #manipulate pdf files.
       - ffmpeg #manipulate video files.
-      - yt-dlp #download from yt.
+#      - yt-dlp #download from yt.
     remove:
 #      - aisleriot
 #      - cheese
@@ -50,7 +50,7 @@ packages:
 #      - org.signal.Signal
   pip:
     install:
-#      - youtube-dl
+#      - yt-dlp
 
 theme_colour: ORANGE
 theme_prompt: "{{ FARNSWORTH }}"

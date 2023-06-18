@@ -47,11 +47,6 @@ nfs_mounts:
 #  - { mount_source: 'zapp:/export/tv', mount_path: '/mnt/zapp/tv' }
 #  - { mount_source: 'zapp:/export/cl0ud', mount_path: '/mnt/zapp/cl0ud' }
 
-backup_file_list: |
-  ##This is the list of files and directories on seymour to be backed up by the bu script.
-  ~/.bashrc
-  ~/bin/
-
 antarctica:
   sshuttle: true
   sneak: 

@@ -51,14 +51,6 @@ nfs_mounts:
   - { mount_source: 'zapp:/export/tv', mount_path: '/mnt/zapp/tv' }
   - { mount_source: 'zapp:/export/cl0ud', mount_path: '/mnt/zapp/cl0ud' }
 
-backup_file_list: |
-  ##This is the list of files and directories on seymour to be backed up by the bu script.
-  ~/.bashrc
-  ~/bin/
-  $HOME/docs/
-  /etc/fstab
-  $HOME/.gnupg/gpg-agent.conf	#gpg settings that prevent any temporary saving of keys after decrypting.
-
 sshd_port: !vault |
   $ANSIBLE_VAULT;1.1;AES256
   62396261616237383965626639633539633237656635386537633637653230623331643363303766

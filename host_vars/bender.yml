@@ -84,10 +84,6 @@ desktop:
   autostart_appplications:
     - terminator
 
-#backup_file_list: |
-#  /etc/fstab
-#  /etc/cron.d
-
 wireguard:
   client: true
   server: false

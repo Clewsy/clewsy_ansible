@@ -46,11 +46,6 @@ cron_jobs:
     weekday: "*"
     job: 'sudo /usr/local/sbin/p0wer a off'
 
-backup_file_list: |
-  ~/p0wer			#p0wer project folder - synced to gitlab.
-  /usr/local/sbin/p0wer	#The p0wer executable.
-  /var/www/html		#Web server content.
-
 ssh_public_key: !vault |
   $ANSIBLE_VAULT;1.1;AES256
   37346335666638316365646332646234363535313638373062343365306163326265323930663261

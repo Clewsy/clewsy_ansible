@@ -80,11 +80,6 @@ rsync_server_syncs: #Jobs will be added to the root crontab.
     month: "*"
     weekday: "*"
 
-backup_file_list: |
-  /etc/fstab
-  /etc/exports
-  /etc/samba/smb.conf
-
 mc_skin: modarcon16root-defbg
 
 wireguard:

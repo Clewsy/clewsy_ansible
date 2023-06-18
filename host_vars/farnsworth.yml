@@ -105,13 +105,6 @@ desktop:
     - conky
 #    - sonata
 
-backup_file_list: |
-  #a list of files and/or directories to be backed up from farnsworth to seymour
-  ~/bin/
-  #/etc/fstab
-  $HOME/.config/autostart
-  ~/documents
-
 mc_skin: modarcon16-defbg
 
 antarctica:

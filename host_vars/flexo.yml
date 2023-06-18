@@ -16,21 +16,6 @@ ansible_sudo_pass: !vault |
   6132613037393436380a663364303564633737393239623137383538356431643566393038326364
   3631
 
-backup_file_list: |
-  ~/.ssh
-  ~/.profile
-  /data/data/com.termux/files/usr/etc/motd
-  /data/data/com.termux/files/usr/etc/ssh/sshd_config
-  ~/bin
-  ~/.shortcuts
-  ~/storage/downloads/wireguard-export.zip
-  ~/storage/downloads/AntennaPodBackup**
-  ~/storage/downloads/antennapod-feeds**
-  ~/storage/downloads/otp_accounts.json.aes**
-  ~/storage/downloads/NewPipeData-**
-  ~/storage/downloads/newpipe_subscriptions_**
-  ~/storage/downloads/favourites.gpx**
-
 ssh_public_key: !vault |
   $ANSIBLE_VAULT;1.1;AES256
   39353764363334626236663435353536336632653661636230663236666135366638616639396464

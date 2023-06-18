@@ -78,11 +78,6 @@ desktop:
     - terminator
     - conky
 
-#backup_file_list: |
-#  ##A list of files to be backed up
-#  ~/.bashrc			  #just in case I customise it
-#  ~/bin/				  #my home-made executables
-
 wireguard:
   client: true
   server: false

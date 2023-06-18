@@ -38,12 +38,6 @@ mpd:
       name           "alsa_device"
     }
 
-backup_file_list: |
-  ~/rad10d
-  /usr/local/sbin/rad10d
-  /var/www/html
-  /lib/systemd/system/rad10d.service
-
 ssh_public_key: !vault |
   $ANSIBLE_VAULT;1.1;AES256
   34616133613361353438636530366465316636653037616339616432396133626439396136666235

@@ -36,12 +36,6 @@
     regexp: '^BU_REMOTE_DIR'
     line: 'BU_REMOTE_DIR="/home/$BU_USER/file_cache/flexo"'
 
-- name: '[termux_scripts] Create backup file list.'
-  copy:
-    content: "{{ backup_file_list | default ('~/.bashrc') }}"
-    dest: "{{ termux_scripts_dir }}/bu.list"
-    mode: '0644'
-
 ###stuff
 - name: '[termux_scripts] Copy stuff script to user bin directory.'
   get_url:

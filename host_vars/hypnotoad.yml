@@ -24,10 +24,6 @@ theme_prompt: "{{ HYPNOTOAD }}"
 
 nfs_mounts: #Note on OSMC, media shares are managed through the gui.
 
-backup_file_list: |
-  ~/.bashrc
-  $HOME/bin/  #Have some hypnotoad-specific scripts here.
-
 ssh_public_key: !vault |
   $ANSIBLE_VAULT;1.1;AES256
   36353438663039656363393631333038663339326537383832386166383134636564336164666365

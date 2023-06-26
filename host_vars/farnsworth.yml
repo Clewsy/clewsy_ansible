@@ -42,10 +42,14 @@ packages:
 #      - thunderbird
 #      - transmission-common
 #      - transmission-gtk
+  snap:
+    remove:
+      - libreoffice
   flatpak:
     install:
       - org.gimp.GIMP
-#      - org.inkscape.Inkscape
+      - org.libreoffice.LibreOffice
+      - org.inkscape.Inkscape
 #      - org.kicad.KiCad
 #      - org.signal.Signal
   pip:

@@ -87,7 +87,7 @@ mpd:
 #a few antarctic changes below.
 desktop:
   install:
-    calibre: false
+    calibre: true
     conky: true
     guake: true
     mpdevil: true

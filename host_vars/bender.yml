@@ -21,7 +21,8 @@ ansible_sudo_pass: !vault |
   6538
 
 aliases:
-  - "alias fry_sshuttle='sshuttle -r fry 0.0.0.0/0 --dns -v'"
+  - "alias fry_sshuttle='sshuttle -r fry -x fry 0.0.0.0/0 --dns -v'"
+  #-x fry is a workaround for a kernel bug.  See https://github.com/sshuttle/sshuttle/issues/191
 
 packages:
   apt:

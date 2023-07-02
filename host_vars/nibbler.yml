@@ -20,6 +20,9 @@ ansible_sudo_pass: !vault |
   3763323834386262310a653530313061313032363133386335643636386663626330633764656333
   3034
 
+aliases:
+  - "alias fry_sshuttle='sshuttle -r fry 0.0.0.0/0 --dns -v'"
+
 packages:
   apt:
     install:

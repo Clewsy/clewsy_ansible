@@ -7,6 +7,6 @@
 - name: '[bat] Create alias bcat for batcat.'
   lineinfile:
     path: "{{ ansible_user_home_dir }}/.bash_aliases"
-    line: "alias bcat='batcat'" 
+    line: "alias bat='batcat'" 
     state: present
     insertafter: EOF

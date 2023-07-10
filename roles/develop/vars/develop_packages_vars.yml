@@ -6,3 +6,5 @@ develop_packages:
   - gcc-avr
   - binutils-avr
   - avr-libc
+  - screen
+  - minicom

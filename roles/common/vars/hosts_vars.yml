@@ -1,18 +1,19 @@
 ---
 hosts:
-  - {name: 'zoidberg', ip: '192.168.1.7'}
-  - {name: 'zapp', ip: '192.168.1.12'}
+#  - {name: 'zoidberg', ip: '192.168.1.7'}
+#  - {name: 'zapp', ip: '192.168.1.12'}
 #  - {name: 'temp0', ip: '192.168.1.43'}
 #  - {name: 'seymour', ip: '192.168.1.7'}
-  - {name: 'scruffy', ip: '192.168.1.100'}
+#  - {name: 'scruffy', ip: '192.168.1.100'}
 #  - {name: 'rad10', ip: '192.168.1.111'}
 #  - {name: 'pazuzu', ip: '192.168.1.79'}
 #  - {name: 'p0wer', ip: '192.168.1.42'}
 #  - {name: 'nibbler', ip: '192.168.1.123'}
-  - {name: 'kif', ip: '192.168.1.1'}
-  - {name: 'hypnotoad', ip: '192.168.1.10'}
-  - {name: 'hermes', ip: '192.168.1.34'}
+#  - {name: 'kif', ip: '192.168.1.1'}
+#  - {name: 'hypnotoad', ip: '192.168.1.10'}
+#  - {name: 'hermes', ip: '192.168.1.34'}
 #  - {name: 'flexo', ip: '192.168.1.142'}
 #  - {name: 'farnsworth', ip: '192.168.1.200'}
-  - {name: 'b4t-cam', ip: '192.168.1.77'}
+#  - {name: 'b4t-cam', ip: '192.168.1.77'}
+  - {name: 'amy', ip: '211.26.200.15'}
 #Some temporarily removed above for antarctic compatibility.

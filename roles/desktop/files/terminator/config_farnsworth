@@ -43,7 +43,8 @@
       uuid = 8d806f93-c5f3-4627-a5dd-6e777291c9af
 #      temporary change for antarctic deployment.
 #      command = ssh -4 -o StrictHostKeyChecking=no b4t@seymour; bash
-      command = ssh -4 -o StrictHostKeyChecking=no amy; bash
+#      command = ssh -4 -o StrictHostKeyChecking=no amy; bash
+      command = htop; bash
     [[[terminal4]]]
       type = Terminal
       parent = child2

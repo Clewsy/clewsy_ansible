@@ -6,6 +6,6 @@
   include_tasks: mpd_user.yml
   when: mpd.run_as == "user"
 
-- name: '[mpd_system] Configure mpd yo be run as a system service.'
+- name: '[mpd_system] Configure mpd to be run as a system service.'
   include_tasks: mpd_system.yml
   when: mpd.run_as == "system"

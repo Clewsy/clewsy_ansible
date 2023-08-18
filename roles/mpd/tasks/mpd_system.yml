@@ -1,5 +1,5 @@
 ---
-- name: '[mpd-mpd_system] Load mpd_system variables.'
+- name: '[mpd_system] Load mpd_system variables.'
   include_vars: mpd_system_vars.yml
 
 - name: "[mpd_system] Ensure preferred mpd music files directory exists ({{ mpd.music_dir | default('/var/lib/mpd/music') }}).  Give group write access."

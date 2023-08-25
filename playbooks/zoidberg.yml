@@ -11,30 +11,9 @@
     - common
     - secure
 #    - headless #bat is not available in the repository.
-    - node
+#    - node
     - docker
     - qbittorrent
 
-  # Run tasks specific only to seymour
+  # Run tasks specific only to zoidberg.
   tasks:
-######################################################
-######################################################
-####Three tasks added because the ansible version aligned with the latest beaglebone debian distro is too old.
-    - name: Add key for more current ansible repo.
-      apt_key:
-        keyserver: keyserver.ubuntu.com
-        id: 93C4A3FD7BB9C367
-
-    - name: Add more current repo for ansible.
-      apt_repository:
-        repo: 'ppa:ansible/ansible'
-        codename: 'eoan'
-      register: ansible_repo_added
-
-    - name: Update ansible from added repo.
-      apt:
-        name: ansible
-        state: latest
-        update_cache: yes
-      when: ansible_repo_added is changed
-######################################################

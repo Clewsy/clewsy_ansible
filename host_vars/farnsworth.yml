@@ -102,7 +102,7 @@ desktop:
     terminator: true
     vlc: true
   nautilus_bookmarks: #Add bookmarks to nautilus sidebar.
-    - "davs://nextcloud.clews.pro/remote.php/dav/files/jadon nextcloud"
+    - "davs://nc.clews.tech/remote.php/dav/files/jadon nextcloud"
     - "file:///home/{{ ansible_user }}/projects projects"
     - "file:///mnt/zapp"
     - "file:///mnt/windoze windoze"

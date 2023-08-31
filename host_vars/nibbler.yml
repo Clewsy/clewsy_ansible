@@ -76,7 +76,7 @@ desktop:
     terminator: true
     vlc: true
   nautilus_bookmarks: #Add bookmarks to nautilus sidebar.
-    - "davs://nextcloud.clews.pro/remote.php/dav/files/jadon nextcloud"
+    - "davs://nc.clews.tech/remote.php/dav/files/jadon nextcloud"
   autostart_appplications:
     - terminator
     - conky

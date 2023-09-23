@@ -1,7 +1,6 @@
 [global_config]
   title_transmit_bg_color = "#5e5c64"
   title_inactive_bg_color = "#3d3846"
-
   suppress_multiple_term_dialog = True
 [keybindings]
 [profiles]
@@ -14,48 +13,41 @@
       type = Window
       parent = ""
       order = 0
-      position = 0:27
-      maximised = False
+      position = 0:32
+      maximised = True
       fullscreen = False
-      size = 1759, 1016
+      size = 1920, 1131
       title = bender
-      last_active_term = bdcf2385-f006-4ef8-8146-93c1e418aaca
+      last_active_term = 584baa5e-d791-4cce-988b-1a35c3fbf051
       last_active_window = True
     [[[child1]]]
       type = VPaned
       parent = child0
       order = 0
-      position = 506
-      ratio = 0.5004945598417408
+      position = 564
+      ratio = 0.5008880994671403
     [[[child2]]]
       type = HPaned
       parent = child1
       order = 0
-      position = 877
-      ratio = 0.5
-    [[[terminal2]]]
+      position = 958
+      ratio = 0.5002610966057441
+    [[[terminal3]]]
       type = Terminal
       parent = child2
       order = 0
       profile = default
       uuid = bdcf2385-f006-4ef8-8146-93c1e418aaca
-#      temporary change for antarctic deployment.
-#      command = while ! ping -c 1 -W 1 1.1.1.1 &> /dev/null; do sleep 1; done && ssh -4 -o StrictHostKeyChecking=no b4t@seymour || ssh -4 -o StrictHostKeyChecking=no amy; bash
-      command = ssh -4 -o StrictHostKeyChecking=no amy; bash
-    [[[terminal3]]]
+    [[[terminal4]]]
       type = Terminal
       parent = child2
       order = 1
       profile = default
       uuid = 584baa5e-d791-4cce-988b-1a35c3fbf051
-#      temporary change for antarctic deployment.
-#      command = while ! ping -c 1 -W 1 1.1.1.1 &> /dev/null; do sleep 1; done && $HOME/bin/pong; bash
-#      command = sshuttle -r amy 0.0.0.0/0 --dns -v; bash
-    [[[terminal1]]]
+    [[[terminal5]]]
       type = Terminal
       parent = child1
       order = 1
       profile = default
       uuid = 9582f43e-0ef4-48ad-a754-857e68ecbb15
-      command = bash $HOME/bin/terbling; bash
 [plugins]

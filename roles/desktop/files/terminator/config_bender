@@ -32,22 +32,24 @@
       order = 0
       position = 958
       ratio = 0.5002610966057441
-    [[[terminal3]]]
+    [[[terminal1]]]
       type = Terminal
       parent = child2
       order = 0
       profile = default
       uuid = bdcf2385-f006-4ef8-8146-93c1e418aaca
-    [[[terminal4]]]
+    [[[terminal2]]]
       type = Terminal
       parent = child2
       order = 1
       profile = default
       uuid = 584baa5e-d791-4cce-988b-1a35c3fbf051
-    [[[terminal5]]]
+      command = /usr/bin/htop; bash
+    [[[terminal3]]]
       type = Terminal
       parent = child1
       order = 1
       profile = default
       uuid = 9582f43e-0ef4-48ad-a754-857e68ecbb15
+      command = bash $HOME/bin/terbling; bash
 [plugins]

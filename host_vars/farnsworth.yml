@@ -50,6 +50,7 @@ packages:
       - org.gimp.GIMP
       - org.libreoffice.LibreOffice
       - org.inkscape.Inkscape
+      - org.qbittorrent.qBittorrent
       - org.gnome.EasyTAG #Edit mp3 id3 tags.
 #      - ca.littlesvr.asunder #Rip CDs to mp3s.
 #      - org.kicad.KiCad

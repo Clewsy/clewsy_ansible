@@ -31,6 +31,7 @@
     dest: "{{ ansible_user_home_dir }}/books"
     accept_hostkey: yes
     key_file: "{{ calibre_books_repo_keyfile }}"
+  ignore_errors: True
 
 - name: '[calibre] Change owner and group of books library (from root to user).'
   file:

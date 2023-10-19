@@ -22,7 +22,7 @@ The [flexo.yml][link_repo_playbooks_flexo] playbook is a special case.  It will 
 
 |Role/Link                                      |Description                   |
 |-----------------------------------------------|------------------------------|
-|[antarctica][link_repo_roles_antarctica]       |Installs a few packages and scripts to improve certain comms and access whilst restricted to a large, locked-down network with a lot of firewall restrictions - [sshuttle][link_web_sshuttle], [sneak][ink_gitlab_clewsy_scripts_sneak] and some ssh reverse-shell configs. |
+|[antarctica][link_repo_roles_antarctica]       |Installs a few packages and scripts to improve certain comms and access whilst restricted to a large, locked-down network with a lot of firewall restrictions - [sshuttle][link_web_sshuttle], [sneak][link_gitlab_clewsy_scripts_sneak] and some ssh reverse-shell configs. |
 |[clews.pro][link_repo_roles_clews.pro]         |Will configure a box as a containerised web server, clone the [clews.pro][link_gitlab_clewsy_clews.pro] repo, and spin up the containers defined in the [docker-compose.yml][link_gitlab_clewsy_clews.pro_docker-compose] file. |
 |[common][link_repo_roles_common]               |Configurations common to all hosts - hostname, timezone, ssh keys/configs, apt upgrades, common packages, [vim][link_web_vim], [git][link_web_git], host-specific packages, motd, .bashrc, aliases, cron jobs, mounts/fstab, common scripts ([stuff][link_gitlab_clewsy_scripts_stuff], [wami][link_gitlab_clewsy_scripts_wami]). |
 |[cups][link_repo_roles_cups]                   |Installs [cups][link_web_cups] and configures printers.  Currently also installs printer-driver-brlaser for compatability with a specific laser printer. |
@@ -111,6 +111,7 @@ The [flexo.yml][link_repo_playbooks_flexo] playbook is a special case.  It will 
 [link_repo_playbooks_scruffy]:playbooks/scruffy.yml
 [link_repo_playbooks_zapp]:playbooks/zapp.yml
 [link_repo_playbooks_zoidberg]:playbooks/zoidberg.yml
+[link_repo_roles_antarctica]:roles/antarctica/
 [link_repo_roles_clews.pro]:roles/clews.pro
 [link_repo_roles_common]:roles/common
 [link_repo_roles_cups]:roles/cups

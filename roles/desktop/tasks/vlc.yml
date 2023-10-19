@@ -13,6 +13,15 @@
     state: present
     flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
 
+- name: '[packages_flatpak] Ensure ~/.var directory is owned by user.'
+  file:
+    path: "{{ ansible_user_home_dir }}/.var"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    state: directory
+    mode: '0755'
+    recurse: true
+
 - name: '[vlc] Install vlc.'
   flatpak:
     name: org.videolan.VLC 

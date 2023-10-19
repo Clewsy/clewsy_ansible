@@ -12,6 +12,16 @@
     flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
   when: packages.flatpak.install.0 is defined
 
+- name: '[packages_flatpak] Ensure ~/.var directory is owned by user.'
+  file:
+    path: "{{ ansible_user_home_dir }}/.var"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    state: directory
+    mode: '0755'
+    recurse: true
+  when: packages.flatpak.install.0 is defined
+
 ########### Installation of apps that don't come pre-installed.
 - name: '[packages_flatpak] Install miscellaneous, host-specific flatpak packages.'
   flatpak:

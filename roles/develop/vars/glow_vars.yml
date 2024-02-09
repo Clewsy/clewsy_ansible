@@ -1,0 +1,3 @@
+---
+glow_python_packages:
+  - github3.py  #Needed to use the ansible module "github_release".

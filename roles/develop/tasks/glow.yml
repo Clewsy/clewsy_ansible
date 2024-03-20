@@ -1,0 +1,35 @@
+---
+- name: '[glow] Load glow variables.'
+  include_vars: glow_vars.yml
+
+- name: '[glow] Install required glow python packages.'
+  pip:
+    name: "{{ item }}"
+    state: latest
+  with_items: "{{ glow_python_packages }}"
+
+- name: '[glow] Get latest glow release from github.'
+  github_release:
+    user: charmbracelet
+    repo: glow
+    action: latest_release
+  register: glow_release
+
+- name: '[glow] Print latest glow release.'
+  debug:
+    var: glow_release
+
+- name: '[glow] Download and extract latest release glow binary'
+  unarchive:
+    src: https://github.com/charmbracelet/glow/releases/download/{{ glow_release.tag }}/glow_Linux_{{ ansible_architecture }}.tar.gz
+    dest: /tmp
+    remote_src: true
+
+- name: '[glow] Install glow binary.'
+  copy:
+    src: /tmp/glow
+    dest: "/usr/local/bin"
+    mode: a+x
+
+
+

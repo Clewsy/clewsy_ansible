@@ -75,7 +75,7 @@ desktop:
     calibre: true
     conky: false
     guake: true
-    mpdevil: false
+    plattenalbum: false
     sonata: false
     terbling: true
     terminator: true

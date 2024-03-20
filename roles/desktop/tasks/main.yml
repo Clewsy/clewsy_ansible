@@ -23,9 +23,9 @@
   include_tasks: guake.yml
   when: desktop.install.guake is defined and desktop.install.guake
 
-- name: '[mpdevil] Install and configure mpdevil.'
-  include_tasks: mpdevil.yml
-  when: desktop.install.mpdevil is defined and desktop.install.mpdevil
+- name: '[plattenalbum] Install and configure plattenalbum.'
+  include_tasks: plattenalbum.yml
+  when: desktop.install.plattenalbum is defined and desktop.install.plattenalbum
 
 - name: '[sonata] Install and configure sonata.'
   include_tasks: sonata.yml

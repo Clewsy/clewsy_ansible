@@ -1,0 +1,45 @@
+---
+- name: '[plattenalbum] Load plattenalbum variables.'
+  include_vars: plattenalbum_vars.yml
+
+- name: '[plattenalbum] Ensure flatpak is installed.'
+  apt:
+    name: flatpak
+    state: latest
+
+- name: '[plattenalbum] Ensure the flathub flatpak repository remote is added.'
+  flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+
+- name: '[plattenalbum] Ensure ~/.var directory is owned by user.'
+  file:
+    path: "{{ ansible_user_home_dir }}/.var"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    state: directory
+    mode: '0755'
+    recurse: true
+
+- name: '[plattenalbum] Install plattenalbum.'
+  flatpak:
+    name: de.wagnermartin.Plattenalbum
+    state: present
+    method: system
+
+- name: '[plattenalbum] Create alias plattenalbum for "flatpak run de.wagnermartin.Plattenalbum".'
+  lineinfile:
+    path: "{{ ansible_user_home_dir }}/.bash_aliases"
+    line: "alias plattenalbum='flatpak run de.wagnermartin.Plattenalbum'" 
+    state: present
+
+- name: '[plattenalbum] Configure plattenalbum by editing keyfile.'
+  ini_file:
+    path: "{{ plattenalbum_config_file }}"
+    section: "{{ item.section }}"
+    option: "{{ item.option }}"
+    value: "{{ item.value }}"
+    no_extra_spaces: yes
+    create: yes
+  with_items: "{{ plattenalbum_config_options }}"

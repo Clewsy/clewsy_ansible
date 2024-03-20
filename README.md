@@ -26,7 +26,7 @@ The [flexo.yml][link_repo_playbooks_flexo] playbook is a special case.  It will 
 |[clews.pro][link_repo_roles_clews.pro]         |Will configure a box as a containerised web server, clone the [clews.pro][link_gitlab_clewsy_clews.pro] repo, and spin up the containers defined in the [docker-compose.yml][link_gitlab_clewsy_clews.pro_docker-compose] file. |
 |[common][link_repo_roles_common]               |Configurations common to all hosts - hostname, timezone, ssh keys/configs, apt upgrades, common packages, [vim][link_web_vim], [git][link_web_git], host-specific packages, motd, .bashrc, aliases, cron jobs, mounts/fstab, common scripts ([stuff][link_gitlab_clewsy_scripts_stuff], [wami][link_gitlab_clewsy_scripts_wami]). |
 |[cups][link_repo_roles_cups]                   |Installs [cups][link_web_cups] and configures printers.  Currently also installs printer-driver-brlaser for compatability with a specific laser printer. |
-|[desktop][link_repo_roles_desktop]             |Configurations for systems with a desktop - [terbling][link_gitlab_clewsy_scripts_terbling], [terminator][link_web_terminator], [guake][link_web_guake], [gnome][link_web_gnome] settings, [mpdevil][link_web_mpdevil], [nautilus][link_web_nautilus] settings, [vlc][link_web_vlc]. |
+|[desktop][link_repo_roles_desktop]             |Configurations for systems with a desktop - [terbling][link_gitlab_clewsy_scripts_terbling], [terminator][link_web_terminator], [guake][link_web_guake], [gnome][link_web_gnome] settings, [plattenalbum][link_web_plattenalbum], [nautilus][link_web_nautilus] settings, [vlc][link_web_vlc]. |
 |[develop][link_repo_roles_develop]             |Install packages I use for development - [VSCode][link_web_vscode], [avrdude][link_web_avrdude] (and dependencies) and other miscellaneous tools. |
 |[docker][link_repo_roles_docker]               |Install [docker][link_web_docker] and [docker-compose][link_web_docker-compose].  Start the docker service and create a standard docker-compose staging directory.  Also create alias dc='docker-compose'. |
 |[droid][link_repo_roles_droid]                 |A special role created to configure an android smartphone running [Termux][link_web_termux].  This role has tasks similar to *common* that had to be implemented dfferently (configure ssh, install packages, install scripts).  It also installs some termux "shortcuts" which are basically scripts that can be run from a widget.  |
@@ -160,7 +160,7 @@ The [flexo.yml][link_repo_playbooks_flexo] playbook is a special case.  It will 
 [link_web_mc]:https://midnight-commander.org/
 [link_web_mpc]:https://www.musicpd.org/clients/mpc/
 [link_web_mpd]:https://www.musicpd.org/
-[link_web_mpdevil]:https://github.com/SoongNoonien/mpdevil
+[link_web_plattenalbum]:https://github.com/SoongNoonien/plattenalbum
 [link_web_motion]:https://motion-project.github.io/
 [link_web_motioneye]:https://github.com/ccrisan/motioneye
 [link_web_nautilus]:https://apps.gnome.org/app/org.gnome.Nautilus/

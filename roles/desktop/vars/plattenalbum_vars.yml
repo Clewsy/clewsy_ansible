@@ -1,0 +1,5 @@
+---
+plattenalbum_config_file: "{{ ansible_user_home_dir }}/.var/app/de.wagnermartin.Plattenalbum/config/glib-2.0/settings/keyfile"
+
+plattenalbum_config_options:
+  - {section: "de/wagnermartin/Plattenalbum", option: socket-connection, value: 'false'}

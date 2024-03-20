@@ -27,10 +27,6 @@
   include_tasks: plattenalbum.yml
   when: desktop.install.plattenalbum is defined and desktop.install.plattenalbum
 
-- name: '[sonata] Install and configure sonata.'
-  include_tasks: sonata.yml
-  when: desktop.install.sonata is defined and desktop.install.sonata
-
 - name: '[terbling] Install and configure terbling script.'
   include_tasks: terbling.yml
   when: desktop.install.terbling is defined and desktop.install.terbling

@@ -76,7 +76,6 @@ desktop:
     conky: false
     guake: true
     plattenalbum: false
-    sonata: false
     terbling: true
     terminator: true
     vlc: true

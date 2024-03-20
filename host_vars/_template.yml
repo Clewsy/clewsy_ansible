@@ -218,8 +218,7 @@ desktop:
     #calibre: false
     #conky: true
     #guake: true
-    #mpdevil: true
-    #sonata: false
+    #plattenalbum: true
     #terbling: true
     #terminator: true
     #vlc: true

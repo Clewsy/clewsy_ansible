@@ -98,7 +98,6 @@ desktop:
     conky: true
     guake: true
     plattenalbum: true
-    sonata: false
     terbling: true
     terminator: true
     vlc: true
@@ -110,7 +109,6 @@ desktop:
   autostart_appplications:
     - terminator
     - conky
-#    - sonata
 
 mc_skin: modarcon16-defbg
 

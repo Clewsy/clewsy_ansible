@@ -1,0 +1,51 @@
+---
+- name: '[shortwave] Load shortwave variables.'
+  include_vars: shortwave_vars.yml
+
+- name: '[shortwave] Ensure flatpak is installed.'
+  apt:
+    name: flatpak
+    state: latest
+
+- name: '[shortwave] Ensure the flathub flatpak repository remote is added.'
+  flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+
+- name: '[shortwave] Ensure ~/.var directory is owned by user.'
+  file:
+    path: "{{ ansible_user_home_dir }}/.var"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    state: directory
+    mode: '0755'
+    recurse: true
+
+- name: '[shortwave] Install shortwave.'
+  flatpak:
+    name: de.haeckerfelix.Shortwave
+    state: present
+    method: system
+
+- name: '[shortwave] Create alias shortwave for "flatpak run de.haeckerfelix.Shortwave".'
+  lineinfile:
+    path: "{{ ansible_user_home_dir }}/.bash_aliases"
+    line: "alias shortwave='flatpak run de.haeckerfelix.Shortwave'" 
+    state: present
+
+- name: '[shortwave] Ensure shortwave database directory exists.'
+  file:
+    dest: "{{ shortwave_database_dir }}"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0755'
+
+- name: '[shortwave] Copy shortwave database file.'
+  copy:
+    src: "files/shortwave/Shortwave.db"
+    dest: "{{ shortwave_database_file }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0664'

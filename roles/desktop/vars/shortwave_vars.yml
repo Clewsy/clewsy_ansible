@@ -1,0 +1,3 @@
+---
+shortwave_database_dir: "{{ ansible_user_home_dir }}/.var/app/de.haeckerfelix.Shortwave/data/Shortwave"
+shortwave_database_file: "{{ shortwave_database_dir }}/Shortwave.db"

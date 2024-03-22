@@ -27,6 +27,10 @@
   include_tasks: plattenalbum.yml
   when: desktop.install.plattenalbum is defined and desktop.install.plattenalbum
 
+- name: '[shortwave] Install and configure shortwave.'
+  include_tasks: shortwave.yml
+  when: desktop.install.shortwave is defined and desktop.install.shortwave
+
 - name: '[terbling] Install and configure terbling script.'
   include_tasks: terbling.yml
   when: desktop.install.terbling is defined and desktop.install.terbling

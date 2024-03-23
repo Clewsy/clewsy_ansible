@@ -13,15 +13,6 @@
     state: present
     flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
 
-- name: '[packages_flatpak] Ensure ~/.var directory is owned by user.'
-  file:
-    path: "{{ ansible_user_home_dir }}/.var"
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
-    state: directory
-    mode: '0755'
-    recurse: true
-
 - name: '[calibre] Install calibre.'
   flatpak:
     name: com.calibre_ebook.calibre
@@ -41,6 +32,7 @@
     accept_hostkey: yes
     key_file: "{{ calibre_books_repo_keyfile }}"
   ignore_errors: True
+  register: books_cloned
 
 - name: '[calibre] Change owner and group of books library (from root to user).'
   file:
@@ -49,3 +41,4 @@
     state: directory
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
+  when: books_cloned is changed

@@ -13,14 +13,13 @@
     state: present
     flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
 
-- name: '[shortwave] Ensure ~/.var directory is owned by user.'
-  file:
-    path: "{{ ansible_user_home_dir }}/.var"
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
-    state: directory
-    mode: '0755'
-    recurse: true
+#- name: '[shortwave] Ensure ~/.var directory is owned by user.'
+#  file:
+#    path: "{{ ansible_user_home_dir }}/.var"
+#    owner: "{{ ansible_user }}"
+#    group: "{{ ansible_user }}"
+#    state: directory
+#    mode: '0755'
 
 - name: '[shortwave] Install shortwave.'
   flatpak:
@@ -40,6 +39,7 @@
     state: directory
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
+    recurse: true
     mode: '0755'
 
 - name: '[shortwave] Copy shortwave database file.'

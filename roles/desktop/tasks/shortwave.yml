@@ -46,6 +46,7 @@
   copy:
     src: "files/shortwave/Shortwave.db"
     dest: "{{ shortwave_database_file }}"
+    force: false #Only if the file doesn't already exist.
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: '0664'

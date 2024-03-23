@@ -29,9 +29,6 @@
     method: system
   register: vlc_installed
 
-- debug:
-    msg: "{{ vlc_installed }}"
-
 - name: '[vlc] Create alias vlc for "flatpak run org.videolan.VLC".'
   lineinfile:
     path: "{{ ansible_user_home_dir }}/.bash_aliases"
@@ -45,4 +42,4 @@
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: '0664'
-#  when: vlc_installed is 
+  when: vlc_installed is changed

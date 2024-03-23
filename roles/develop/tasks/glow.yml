@@ -4,9 +4,8 @@
 
 - name: '[glow] Install required glow python packages.'
   pip:
-    name: "{{ item }}"
+    name: "{{ glow_python_packages }}"
     state: latest
-  with_items: "{{ glow_python_packages }}"
 
 - name: '[glow] Get latest glow release from github.'
   github_release:

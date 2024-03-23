@@ -4,9 +4,8 @@
 
 - name: '[rad10] Ensure all packages required for rad10d daemon and webui are installed.'
   apt:
-    name: "{{ item }}"
+    name: "{{ rad10_packages }}"
     state: latest
-  with_items: "{{ rad10_packages }}"
 
 - name: '[rad10] Clone rad10d repository to home directory.'
   git:

@@ -4,7 +4,7 @@
 
 - name: '[p0wer] Ensure all packages required for p0wer executable and webui are installed.'
   apt:
-    name: "{{ item }}"
+    name: "{{ p0wer_packages }}"
     state: latest
   with_items: "{{ p0wer_packages }}"
 

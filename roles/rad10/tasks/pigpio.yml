@@ -4,9 +4,8 @@
 
 - name: '[pigpio] Ensure all packages required for pigpio are installed.'
   apt:
-    name: "{{ item }}"
+    name: "{{ pigpio_packages }}"
     state: latest
-  with_items: "{{ pigpio_packages }}"
 
 - name: '[pigpio] Clone pigpio repo.'
   git:

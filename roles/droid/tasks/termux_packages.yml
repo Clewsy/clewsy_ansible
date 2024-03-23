@@ -9,9 +9,8 @@
 
 - name: '[termux_packages] Install common python packages.'
   pip:
-    name: "{{ item }}"
+    name: "{{ termux_pip_packages }}"
     state: latest
-  with_items: "{{ termux_pip_packages }}"
 
 ####################################################################################################################################
 ## The following python package installation is a workaround until the python3-apt package is available for termux.

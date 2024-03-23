@@ -25,16 +25,14 @@
 ########### Installation of apps that don't come pre-installed.
 - name: '[packages_flatpak] Install miscellaneous, host-specific flatpak packages.'
   flatpak:
-    name: '{{ item }}'
+    name: '{{ packages.flatpak.install }}'
     state: present
     method: system
   when: packages.flatpak.install.0 is defined
-  with_items: "{{ packages.flatpak.install }}"
 
 ########### Removal of apps that do come pre-installed.
 - name: '[packages_flatpak] Remove miscellaneous, host-specific flatpak packages.'
   flatpak:
-    name: "{{ item }}"
+    name: "{{ packages.flatpak.remove }}"
     state: absent
   when: packages.flatpak.remove.0 is defined
-  with_items: "{{ packages.flatpak.remove }}"

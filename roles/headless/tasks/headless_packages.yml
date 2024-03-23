@@ -4,6 +4,5 @@
 
 - name: '[headless_packages] Install generic headless packages.'
   apt:
-    name: "{{ item }}"
+    name: "{{ headless_packages }}"
     state: latest
-  with_items: "{{ headless_packages }}"

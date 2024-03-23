@@ -4,9 +4,8 @@
 
 - name: '[blink1_tool] Ensure all packages required to compile blink1-tool are installed.'
   apt:
-    name: "{{ item }}"
+    name: "{{ blink1_tool_packages }}"
     state: latest
-  with_items: "{{ blink1_tool_packages }}"
 
 - name: '[blink1_tool] Clone blink1-tool repo.'
   git:

@@ -4,6 +4,5 @@
 
 - name: '[develop_packages] Ensure all additional develop packages are installed.'
   apt:
-    name: "{{ item }}"
+    name: "{{ develop_packages }}"
     state: latest
-  with_items: "{{ develop_packages }}"

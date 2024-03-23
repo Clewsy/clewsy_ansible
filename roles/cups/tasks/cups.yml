@@ -4,10 +4,9 @@
 
 - name: '[cups] Ensure all packages required for cups are installed.'
   apt:
-    name: "{{ item }}"
+    name: "{{ cups_packages }}"
     state: latest
   register: cups
-  with_items: "{{ cups_packages }}"
 
 - name: '[cups] Copy cupsd.conf file to host.'
   template:

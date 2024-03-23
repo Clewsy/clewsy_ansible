@@ -4,9 +4,8 @@
 
 - name: '[disks] Ensure all packages required for management of disks are installed.'
   apt:
-    name: "{{ item }}"
+    name: "{{ disks_packages }}"
     state: latest
-  with_items: "{{ disks_packages }}"
 
 - name: '[disks] Check for the existence of disks by label as defined in host specific variables (file_server_disks).'
   stat:

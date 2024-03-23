@@ -4,9 +4,8 @@
 
 - name: '[nautilus] Install nautilus packages'
   apt:
-    name: "{{ item }}"
+    name: "{{ nautilus_packages }}"
     state: latest
-  with_items: "{{ nautilus_packages }}"
 
 - name: '[nautilus] Configure nautilus dconf settings'
   dconf:

@@ -4,10 +4,9 @@
 
 - name: '[cifs] Ensure all packages required for cifs shares are installed.'
   apt:
-    name: "{{ item }}"
+    name: "{{ cifs_packages }}"
     state: latest
   notify: restart cifs server
-  with_items: "{{ cifs_packages }}"
 
 - name: '[cifs] Check for the existence of the source_path directory.'
   stat:

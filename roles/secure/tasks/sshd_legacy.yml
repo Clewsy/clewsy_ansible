@@ -4,7 +4,6 @@
 - name: '[sshd_legacy] Load sshd_legacy variables.'
   include_vars: sshd_legacy_vars.yml
 
-
 - name: '[sshd_legacy] Add/change sshd configuration rules.'
   lineinfile:
     path: /etc/ssh/sshd_config

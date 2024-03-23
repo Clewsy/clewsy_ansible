@@ -4,9 +4,8 @@
 
 - name: '[ufw] Ensure all packages required for using ufw are installed.'
   apt:
-    name: "{{ item }}"
+    name: "{{ ufw_packages }}"
     state: latest
-  with_items: "{{ ufw_packages }}"
 
 - name: '[ufw] Enable ufw and set default policy to deny.' #Note docker will poke holes through firewall for EXPOSEd ports.
   ufw:

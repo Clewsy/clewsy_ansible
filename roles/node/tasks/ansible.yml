@@ -4,9 +4,8 @@
 
 - name: '[ansible] Ensure all packages required for using ansible are installed.'
   apt:
-    name: "{{ item }}"
+    name: "{{ ansible_packages }}"
     state: latest
-  with_items: "{{ ansible_packages }}"
 
 ## Not sure I need this any more.
 #- name: '[packages] Install pip3.' #Needed for next task - installing pip modules.

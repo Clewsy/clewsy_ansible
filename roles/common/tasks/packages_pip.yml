@@ -8,15 +8,13 @@
 ########### Installation of apps that don't come pre-installed.
 - name: '[packages_pip] Install miscellaneous, host-specific python packages (pip).'
   pip:
-    name: "{{ item }}"
+    name: "{{ packages.pip.install }}"
     state: latest
   when: packages.pip.install.0 is defined
-  with_items: "{{ packages.pip.install }}"
 
 ########### Removal of apps that do come pre-installed.
 - name: '[packages_pip] Remove miscellaneous, host-specific, pre-installed python packages (pip).'
   pip:
-    name: "{{ item }}"
+    name: "{{ packages.pip.remove }}"
     state: absent
   when: packages.pip.remove.0 is defined
-  with_items: "{{ packages.pip.remove }}"

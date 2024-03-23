@@ -4,6 +4,5 @@
 
 - name: '[wireguard] Ensure all packages required for using wireguard are installed.'
   apt:
-    name: "{{ item }}"
+    name: "{{ wireguard_packages }}"
     state: latest
-  with_items: "{{ wireguard_packages }}"

@@ -4,9 +4,8 @@
 
 - name: '[mpd] Ensure all packages required for using mpd are installed.'
   apt:
-    name: "{{ item }}"
+    name: "{{ mpd_packages }}"
     state: latest
-  with_items: "{{ mpd_packages }}"
 
 - name: '[mpd] Create useful command line aliases.'
   lineinfile:

@@ -28,8 +28,11 @@ packages:
   apt:
     install:
       - curl
-#  flatpak:
-#    install:
+      - vim
+  flatpak:
+    install:
+      - org.gimp.GIMP
+      - org.qbittorrent.qBittorrent
 #      - ca.littlesvr.asunder #Rip CDs to mp3s.
 #      - org.gnome.EasyTAG #Edit mp3 id3 tags.
 

@@ -25,14 +25,20 @@
 ########### Installation of apps that don't come pre-installed.
 - name: '[packages_flatpak] Install miscellaneous, host-specific flatpak packages.'
   flatpak:
-    name: '{{ packages.flatpak.install }}'
+#    name: "{{ packages.flatpak.install }}"
+    name: "{{ item }}"
+#    name:
+#      - org.gimp.GIMP
+#      - org.qbittorrent.qBittorrent
     state: present
     method: system
+  with_items: "{{ packages.flatpak.install }}"
   when: packages.flatpak.install.0 is defined
 
 ########### Removal of apps that do come pre-installed.
 - name: '[packages_flatpak] Remove miscellaneous, host-specific flatpak packages.'
   flatpak:
-    name: "{{ packages.flatpak.remove }}"
+    name: "{{ item }}"
     state: absent
+  with_items: "{{ packages.flatpak.remove }}"
   when: packages.flatpak.remove.0 is defined

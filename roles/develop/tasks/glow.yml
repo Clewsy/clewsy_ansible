@@ -20,7 +20,6 @@
 
 - name: '[glow] Download and extract latest release glow binary'
   unarchive:
-#    src: https://github.com/charmbracelet/glow/releases/download/{{ glow_release.tag }}/glow_Linux_{{ ansible_architecture }}.tar.gz
     src: https://github.com/charmbracelet/glow/releases/download/{{ glow_release.tag }}/glow_{{ glow_release.tag[1:] }}_Linux_{{ ansible_architecture }}.tar.gz
     dest: /tmp
     remote_src: true

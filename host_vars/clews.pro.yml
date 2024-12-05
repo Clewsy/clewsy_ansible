@@ -24,6 +24,8 @@ packages:
       - imagemagick #For image manipulation.
       - libimage-exiftool-perl #For manipulating exif data embedded in photos (e.g. deleting gps co-ords),
       - ffmpeg #For modifying video files.
+    remove:
+      - snapd
 
 theme_colour: GREEN
 theme_prompt: "{{ GREEN_GREEN }}"

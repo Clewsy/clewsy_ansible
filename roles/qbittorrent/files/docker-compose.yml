@@ -7,7 +7,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Australia/Melbourne
+      - TZ=Australia/Hobart
       - UMASK=022
       - WEBUI_PORT=8888
     volumes:

@@ -12,9 +12,6 @@
 - name: '[ssh] Add keys and configure ssh.'
   include_tasks: ssh.yml
 
-- name: '[hosts] Add lan hostnames and corresponding ip addresses to the /etc/hosts file.'
-  include_tasks: hosts.yml
-
 - name: '[sudo] Configure sudo.'
   include_tasks: sudo.yml
 

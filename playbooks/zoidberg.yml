@@ -10,10 +10,9 @@
   roles:
     - common
     - secure
-#    - headless #bat is not available in the repository.
-#    - node
+    - headless
     - docker
-    - qbittorrent
+    - rsync_server
 
   # Run tasks specific only to zoidberg.
   tasks:

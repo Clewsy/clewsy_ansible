@@ -1,6 +1,6 @@
 host_name: zoidberg
 
-ansible_user: jc
+ansible_user: clewsy
 
 ansible_password: !vault |
   $ANSIBLE_VAULT;1.1;AES256
@@ -23,16 +23,25 @@ packages:
     install:
   pip:
     install:
-#      - youtube-dl #antarctica
 
 theme_colour: RED
 theme_prompt: "{{ ZOIDBERG }}"
 
 mounts:
-  - { mount_source: /dev/mmcblk0p1, mount_path: '/media/cache', mount_fstype: 'auto', mount_opts: "auto,rw,async,user,uid={{ ansible_user }},gid={{ ansible_user }},nofail" }
+#  - { mount_source: /dev/mmcblk0p1, mount_path: '/media/cache', mount_fstype: 'auto', mount_opts: "auto,rw,async,user,uid={{ ansible_user }},gid={{ ansible_user }},nofail" }
 
 nfs_mounts:
 #  - { mount_source: 'zapp:/export/cl0ud', mount_path: '/mnt/zapp/cl0ud' }
+
+rsync_server_syncs: #Jobs will be added to the root crontab.
+  - name: 'push_clews'
+    source: '/home/docker'
+    dest: 'b4t@b4t.site:/home/b4t/backups/'
+    minute: "0"
+    hour: "1"
+    day: "*"
+    month: "*"
+    weekday: "*"
 
 mc_skin: modarin256-defbg
 

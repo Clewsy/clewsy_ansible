@@ -1,0 +1,35 @@
+---
+- name: '[jellyfin] Load jellyfin variables.'
+  include_vars: jellyfin_vars.yml
+  
+- name: '[docker] Create jellyfin docker-compose staging area.'
+  file:
+    path: "{{ jellyfin_root_dir }}"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: u=rwx,g=rx,o=rx
+
+- name: "[jellyfin] Copy docker-compose.yml file to {{ jellyfin_root_dir }} ready for use by docker-compose."
+  copy:
+    src: files/docker-compose.yml
+    dest: "{{ jellyfin_docker_compose_yml }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0644'
+
+- name: '[jellyfin] Create symbolic links to media sources.'
+  file:
+    src: "{{ item.link_source }}"
+    dest: "{{ item.link_name }}"
+    owner: root
+    group: root
+    state: link
+  with_items: "{{ jellyfin_media_links }}"
+
+- name: '[jellyfin] Pull docker container images listed in docker-compose.yml.'
+  docker_compose:
+    project_src: "{{ jellyfin_root_dir }}"
+    state: present
+    pull: yes
+    recreate: smart #Containers will be recreated if a new version is pulled.

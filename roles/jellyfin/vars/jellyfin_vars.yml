@@ -1,0 +1,8 @@
+---
+jellyfin_root_dir: "/home/docker/jellyfin"
+jellyfin_docker_compose_yml: "{{ jellyfin_root_dir }}/docker-compose.yml"
+
+jellyfin_media_links:
+  - { link_source: "/export/movies", link_name: "{{ jellyfin_root_dir }}/movies" }
+  - { link_source: "/export/tv", link_name: "{{ jellyfin_root_dir }}/tv" }
+  - { link_source: "/export/mp3s", link_name: "{{ jellyfin_root_dir }}/music" }

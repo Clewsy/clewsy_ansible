@@ -31,6 +31,7 @@ file_server_disks:
   - { uuid: '42b9d5de-8e2e-4524-b544-6f988dbff09e', label: 'fileb0t' }  #4.0TB SG spinning rust hot-swap bay.
   - { uuid: 'bf535493-fb42-4997-b08a-d942e0bad3fe', label: 'm0n0l1th' } #1.5TB WD spinning rust hot-swap bay.
   - { uuid: 'afb65dfc-30ca-4396-a2ce-3576f5cfc29c', label: 'y4nk' }     #120GB Kingston SSD hot-swap bay.
+
 file_server_nfs_shares:
   - { source_path: '/srv/cl0ud', share_path: '/export/cl0ud' }
   - { source_path: '/srv/fileb0t/data', share_path: '/export/data' }

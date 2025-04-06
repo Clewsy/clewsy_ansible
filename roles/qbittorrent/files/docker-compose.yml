@@ -12,13 +12,13 @@ services:
       - WEBUI_PORT=8888
     volumes:
       - ./qbittorrent/config:/config
-      - /media/cache/downloads:/downloads
+      - /export/downloads:/downloads
     ports:
       - 6881:6881
       - 6881:6881/udp
       - 8888:8888
-    security_opt: 
-      - seccomp:unconfined #Bug workaround.  See https://github.com/homebridge/docker-homebridge/issues/461
+#    security_opt: 
+#      - seccomp:unconfined #Bug workaround for raspberry pi.  See https://github.com/homebridge/docker-homebridge/issues/461
     restart: unless-stopped
 
   watchtower:

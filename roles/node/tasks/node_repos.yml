@@ -12,6 +12,12 @@
     ssh_opts: "-o StrictHostKeyChecking=no"
   with_items: "{{ node_repos }}"
   register: repo_clones
+  ignore_errors: True
+
+- name: '[ansible] Error notification.'
+  debug: 
+    msg: "Did not clone one or more repos.  Already exists with changes."
+  when: repo_clones is failed
 
 - name: '[node_repos] Ensure .gnupg directory exists with the home directory.'
   file:

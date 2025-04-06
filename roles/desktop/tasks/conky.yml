@@ -2,21 +2,21 @@
 - name: '[conky] Load conky variables.'
   include_vars: conky_vars.yml
 
-#- name: '[conky] Install extra fonts neede by conky.'
-#  get_url:
-#    url: "{{ item.font_source }}"
-#    dest: "/usr/share/fonts/{{ item.font_name }}"
-#    owner: root
-#    group: root
-#    mode: '0666'
-#  with_items: "{{ conky_fonts }}"
-#  register: get_font
-#  ignore_errors: True
-#
-#- name: '[conky] Notify if error.'
-#  debug: 
-#    msg: "Could not download font."
-#  when: get_font is failed
+- name: '[conky] Install extra fonts neede by conky.'
+  get_url:
+    url: "{{ item.font_source }}"
+    dest: "/usr/share/fonts/{{ item.font_name }}"
+    owner: root
+    group: root
+    mode: '0666'
+  with_items: "{{ conky_fonts }}"
+  register: get_font
+  ignore_errors: True
+
+- name: '[conky] Notify if error.'
+  debug: 
+    msg: "Could not download font."
+  when: get_font is failed
 
 - name: '[conky] Install conky.'
   apt:

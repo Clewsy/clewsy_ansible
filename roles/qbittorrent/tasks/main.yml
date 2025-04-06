@@ -1,6 +1,3 @@
 ---
 - name: '[qbittorrent] Install, configure and enable qbittorrent (using docker).'
   include_tasks: qbittorrent.yml
-
-- name: '[qbittorrent-cli] Install and enable qbittorrent-cli.'
-  include_tasks: qbittorrent-cli.yml

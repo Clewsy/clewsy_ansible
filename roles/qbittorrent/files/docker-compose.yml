@@ -11,8 +11,8 @@ services:
       - UMASK=022
       - WEBUI_PORT=8888
     volumes:
-      - ./qbittorrent/config:/config
-      - /export/downloads:/downloads
+      - ./config:/config
+      - ./downloads:/downloads
     ports:
       - 6881:6881
       - 6881:6881/udp
@@ -21,16 +21,3 @@ services:
 #      - seccomp:unconfined #Bug workaround for raspberry pi.  See https://github.com/homebridge/docker-homebridge/issues/461
     restart: unless-stopped
 
-  watchtower:
-    image: containrrr/watchtower
-    container_name: watchtower
-    environment:
-      - WATCHTOWER_CLEANUP=true #Remove old images.
-      - WATCHTOWER_INCLUDE_STOPPED=true
-      - WATCHTOWER_REVIVE_STOPPED=true
-      - WATCHTOWER_SCHEDULE=0 0 5 * * * #Daily at 0500hrs.
-      - WATCHTOWER_DEBUG=false
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock #Mount docker.sock to give watchtower ability to control docker.
-      - /etc/timezone:/etc/timezone:ro
-    restart: unless-stopped

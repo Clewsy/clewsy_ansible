@@ -1,7 +1,8 @@
 ---
-qbittorrent_root_dir: "/home/docker"
+qbittorrent_root_dir: "/home/docker/qbittorrent"
 qbittorrent_docker_compose_yml: "{{ qbittorrent_root_dir }}/docker-compose.yml"
-qbittorrent_config_file: "{{ qbittorrent_root_dir }}/qbittorrent/config/qBittorrent/qBittorrent.conf"
+qbittorrent_config_file: "{{ qbittorrent_root_dir }}/config/qBittorrent/qBittorrent.conf"
+qbittorrent_downloads_dir: "/export/downloads"
 
 qbittorrent_config_options:
   - {section: "Preferences", option: WebUI\LocalHostAuth, value: 'false'} #Disable password requirement from localhost.

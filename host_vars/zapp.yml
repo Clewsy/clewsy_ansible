@@ -21,7 +21,7 @@ ansible_sudo_pass: !vault |
 packages:
   apt:
     install:
-      - youtube-dl
+#      - youtube-dl
 
 theme_colour: RED
 theme_prompt: "{{ ZAPP }}" 
@@ -37,18 +37,18 @@ file_server_nfs_shares:
   - { source_path: '/srv/fileb0t/movies', share_path: '/export/movies' }
   - { source_path: '/srv/fileb0t/mp3s', share_path: '/export/mp3s' }
   - { source_path: '/srv/fileb0t/tv', share_path: '/export/tv' }
+  - { source_path: '/srv/fileb0t/downloads', share_path: '/export/downloads' }
   - { source_path: '/srv/m0n0l1th', share_path: '/export/m0n0l1th' }
   - { source_path: '/srv/y4nk', share_path: '/export/y4nk' }
-  - { source_path: '/home/docker/qbittorrent/downloads', share_path: '/export/downloads' }
 file_server_cifs_shares:
   - { source_path: '/srv/fileb0t/mp3s', name: 'mp3s' }
   - { source_path: '/srv/fileb0t/movies', name: 'movies' }
   - { source_path: '/srv/fileb0t/tv', name: 'tv' }
-#  - { source_path: '/srv/m0n0l1th', name: 'm0n0l1th' }
+  - { source_path: '/srv/m0n0l1th', name: 'm0n0l1th' }
 
 rsync_server_syncs: #Jobs will be added to the root crontab.
   - name: 'pull_clews'
-    source: 'clewsy@clews.pro:/home/docker'
+    source: 'clewsy@zoidberg:/home/docker'
     dest: '/srv/cl0ud/clews/'
     minute: "0"
     hour: "1"
@@ -63,28 +63,28 @@ rsync_server_syncs: #Jobs will be added to the root crontab.
     day: "*"
     month: "*"
     weekday: "*"
-  - name: 'pull_file_cache'
-    source: 'b4t@seymour:/home/b4t/file_cache'
-    dest: '/srv/cl0ud/'
-    minute: "0"
-    hour: "3"
-    day: "*"
-    month: "*"
-    weekday: "*"
-  - name: 'push_file_cache'
-    source: '/srv/cl0ud/file_cache'
-    dest: 'b4t@b4t.site:/home/b4t/backups/'
-    minute: "30"
-    hour: "3"
-    day: "*"
-    month: "*"
-    weekday: "*"
+#  - name: 'pull_file_cache'
+#    source: 'b4t@seymour:/home/b4t/file_cache'
+#    dest: '/srv/cl0ud/'
+#    minute: "0"
+#    hour: "3"
+#    day: "*"
+#    month: "*"
+#    weekday: "*"
+#  - name: 'push_file_cache'
+#    source: '/srv/cl0ud/file_cache'
+#    dest: 'b4t@b4t.site:/home/b4t/backups/'
+#    minute: "30"
+#    hour: "3"
+#    day: "*"
+#    month: "*"
+#    weekday: "*"
 
 mc_skin: modarcon16root-defbg
 
-wireguard:
-  client: true
-  server: false
+#wireguard:
+#  client: true
+#  server: false
 
 ssh_public_key: !vault |
   $ANSIBLE_VAULT;1.1;AES256

@@ -20,7 +20,7 @@
 
 - name: '[conky] Install conky.'
   apt:
-    name: conky
+    name: conky-all
     state: latest
 
 - name: '[conky] Clone conky configurations repo.'

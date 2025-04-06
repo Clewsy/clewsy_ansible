@@ -4,6 +4,3 @@
 
 - name: '[develop_packages] Install additional development packages.'
   include_tasks: develop_packages.yml
-
-- name: '[glow] Install glow (direct binary download from github).'
-  include_tasks: glow.yml

@@ -4,6 +4,6 @@
     name: "{{ host_name }}"
     use: systemd
 
-- name: "[host_identity] Set local timezone to {{ local_tz | default('Australia/Melbourne') }}."
+- name: "[host_identity] Set local timezone to {{ local_tz | default(default_local_tz) }}." #"default_local_tz" defined in group_vars/all.yml
   timezone:
-    name: "{{ local_tz | default('Australia/Melbourne') }}"
+    name: "{{ local_tz | default(default_local_tz) }}"

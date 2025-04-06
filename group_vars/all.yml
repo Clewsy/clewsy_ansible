@@ -10,3 +10,5 @@ git_repos: "{{ local_src_dir }}" #Cloned git repos will be copied here for compi
 clewsy_repo_root: "https://gitlab.com/clewsy"
 
 user_scripts_directory: "{{ ansible_user_home_dir }}/bin" #Scripts for use by user will be copied here, possibly modified, and made executable.
+
+default_local_tz: "Australia/Hobart"

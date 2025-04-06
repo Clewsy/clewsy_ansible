@@ -1,12 +1,7 @@
 ---
-- name: '[desktop] Install pip3.  Needed to install python package psutil'
+- name: '[desktop] Install psutil - needed so ansible can use the dconf module.'
   apt:
-    name: python3-pip
-    state: latest
-
-- name: '[desktop] Install python module psutil - needed so ansible can use the dconf module.'
-  pip:
-    name: "psutil"
+    name: python3-psutil
     state: latest
 
 ######

@@ -2,7 +2,7 @@
 - name: '[jellyfin] Load jellyfin variables.'
   include_vars: jellyfin_vars.yml
   
-- name: '[docker] Create jellyfin docker-compose staging area.'
+- name: '[jellyfin] Create jellyfin docker-compose staging area.'
   file:
     path: "{{ jellyfin_root_dir }}"
     state: directory

@@ -49,7 +49,7 @@ file_server_cifs_shares:
 
 rsync_server_syncs: #Jobs will be added to the root crontab.
   - name: 'pull_clews'
-    source: 'clewsy@zoidberg:/home/docker'
+    source: 'clewsy@zoidberg.lan:/home/docker'
     dest: '/srv/cl0ud/clews/'
     minute: "0"
     hour: "1"

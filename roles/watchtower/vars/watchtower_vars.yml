@@ -1,0 +1,3 @@
+---
+watchtower_root_dir: "/home/docker/watchtower"
+watchtower_docker_compose_yml: "{{ watchtower_root_dir }}/docker-compose.yml"

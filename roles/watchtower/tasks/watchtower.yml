@@ -1,0 +1,26 @@
+---
+- name: '[watchtower] Load watchtower variables.'
+  include_vars: watchtower_vars.yml
+  
+- name: '[watchtower] Create watchtower docker-compose staging area.'
+  file:
+    path: "{{ watchtower_root_dir }}"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: u=rwx,g=rx,o=rx
+
+- name: "[watchtower] Copy docker-compose.yml file to {{ watchtower_root_dir }} ready for use by docker-compose."
+  copy:
+    src: files/docker-compose.yml
+    dest: "{{ watchtower_docker_compose_yml }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0644'
+
+- name: '[watchtower] Pull docker container images listed in docker-compose.yml.'
+  docker_compose:
+    project_src: "{{ watchtower_root_dir }}"
+    state: present
+    pull: yes
+    recreate: smart #Containers will be recreated if a new version is pulled.

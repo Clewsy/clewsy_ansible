@@ -1,6 +1,6 @@
 host_name: zapp
 
-ansible_user: b4t
+ansible_user: clewsy
 
 ansible_password: !vault |
   $ANSIBLE_VAULT;1.1;AES256
@@ -82,9 +82,9 @@ rsync_server_syncs: #Jobs will be added to the root crontab.
 
 mc_skin: modarcon16root-defbg
 
-#wireguard:
-#  client: true
-#  server: false
+wireguard:
+  client: true
+  server: false
 
 ssh_public_key: !vault |
   $ANSIBLE_VAULT;1.1;AES256

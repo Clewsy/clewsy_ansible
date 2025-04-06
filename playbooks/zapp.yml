@@ -9,9 +9,10 @@
 
   roles:
     - common
-#    - headless
-#    - file_server
-#    - rsync_server
-##    - wireguard
-#    - qbittorrent
+    - headless
+    - file_server
+    - rsync_server
+    - wireguard
+    - qbittorrent
     - jellyfin
+    - watchtower

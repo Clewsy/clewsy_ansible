@@ -1,18 +1,40 @@
 ---
-- name: '[vscode] Add microsoft repository key for apt.'
-  apt_key:
-    url: https://packages.microsoft.com/keys/microsoft.asc
-    state: present
+- name: '[vscode] Load vscode variables.'
+  include_vars: vscode_vars.yml
 
-- name: '[vscode] Add microsoft repo for apt.'
-  apt_repository:
-    repo: deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main
-    state: present
+- name: '[vscode] Check if vscode is already installed.'
+  stat:
+    path: /usr/bin/code
+  register: vscode_executable
 
-- name: '[vscode] Install vscode.'
+- name: '[vscode] Print status of vscode executable.'
+  debug:
+    msg: "{{ vscode_executable }}"
+
+- name: '[vscode] vscode not installed, so download latest .deb package file.'
+  get_url:
+    url: https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64
+    dest: "{{ vscode_temp_deb_file }}"
+  when: vscode_executable.stat.exists == false
+
+##### Does not work with current version of vscode due to dependencies issue.
+#- name: '[vscode] Install vscode .deb file.'
+#  apt:
+#    deb: '{{ vscode_temp_deb_file }}'
+#  environment:
+#    ACCEPT_EULA: "y"
+#  when: vscode_executable.stat.exists == false
+
+##### Workaround until future version works with apt module.
+- name: '[vscode] Install vscode .deb file.'
+  command: "/usr/bin/dpkg -i {{ vscode_temp_deb_file }}"
+  when: vscode_executable.stat.exists == false
+
+- name: '[vscode] vscode is already installed so just upgrade if neccessary.'
   apt:
     name: code
-    state: present
+    only_upgrade: yes
+  when: vscode_executable.stat.exists == true
 
 - name: '[vscode] Ensure vscode user settings directory exists.'
   file:

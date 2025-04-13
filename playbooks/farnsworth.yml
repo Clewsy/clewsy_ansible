@@ -10,13 +10,11 @@
   roles:
     - common
     - secure
-#    - clews.pro
     - headless
     - node
 #    - docker
-#    - vpn
     - wireguard
-    - antarctica
+#    - antarctica
     - desktop
     - develop
     - mpd

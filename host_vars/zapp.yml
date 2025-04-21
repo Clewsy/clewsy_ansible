@@ -21,6 +21,7 @@ ansible_sudo_pass: !vault |
 packages:
   apt:
     install:
+      - rename # Not installed by default with ubuntu server for some reason.
 #      - youtube-dl
 
 theme_colour: RED

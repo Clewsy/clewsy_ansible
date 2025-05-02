@@ -59,28 +59,3 @@
     project_src: "{{ docker_home_dir }}"
     pull: yes
     recreate: smart #Containers will be recreated if a new version is pulled.
-
-- name: '[clews.pro] Create clews.service unit file.'
-  get_url:
-    url: "{{ clews_unit_file_source }}"
-    dest: "{{ clews_unit_file_dest }}"
-    mode: '0644'
-    owner: root
-    group: root
-
-- name: '[clews.pro] Enable clews.service.'
-  service:
-    name: clews
-    enabled: yes
-
-- name: '[clews.pro] Start clews.service (will spin up containers if not already up).'
-  service:
-    name: clews
-    state: started
-
-- name: '[clews.pro] Create cron job to periodically run docker-compose just in case it is brought down for some reason.'
-  cron:
-    user: "{{ ansible_user }}"
-    name: 'Role: "clews.pro" - Periodically run docker-compose to ensure containers are up.'
-    minute: "45"
-    job: "/usr/bin/docker-compose --env-file /home/docker/.env -f /home/docker/docker-compose.yml up -d"

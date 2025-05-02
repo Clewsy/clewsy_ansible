@@ -13,6 +13,7 @@
     - headless
     - docker
     - rsync_server
+    - web_apps
 
   # Run tasks specific only to zoidberg.
   tasks:

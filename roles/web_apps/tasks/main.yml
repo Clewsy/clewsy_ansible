@@ -1,5 +1,9 @@
 ---
 
+- name: '[audiobookshelf] Install, configure and enable audiobookshelf.'
+  include_tasks: audiobookshelf.yml
+  when: web_apps.audiobookshelf is defined and web_apps.audiobookshelf
+
 - name: '[jellyfin] Install, configure and enable jellyfin.'
   include_tasks: jellyfin.yml
   when: web_apps.jellyfin is defined and web_apps.jellyfin

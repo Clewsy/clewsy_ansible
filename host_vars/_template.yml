@@ -253,6 +253,7 @@ wireguard:
 
 #web_apps role - install and run various containerised apps with web interfaces.  All managed with docker.
 web_apps:
+#  audiobookshelf: true
 #  jellyfin: true
 #  qbittorrent: true
 #  watchtower: true

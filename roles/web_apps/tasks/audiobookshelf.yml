@@ -1,0 +1,35 @@
+---
+- name: '[audiobookshelf] Load audiobookshelf variables.'
+  include_vars: audiobookshelf_vars.yml
+  
+- name: '[audiobookshelf] Create audiobookshelf docker-compose staging area.'
+  file:
+    path: "{{ audiobookshelf_root_dir }}"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: u=rwx,g=rx,o=rx
+
+- name: "[audiobookshelf] Copy docker-compose.yml file to {{ audiobookshelf_root_dir }} ready for use by docker-compose."
+  copy:
+    src: files/audiobookshelf/docker-compose.yml
+    dest: "{{ audiobookshelf_docker_compose_yml }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0644'
+
+- name: "[audiobookshelf] Copy .env file to {{ audiobookshelf_root_dir }} ready for use by the audiobookshelf container."
+  copy:
+    src: files/audiobookshelf/.env
+    dest: "{{ audiobookshelf_dot_env }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    decrypt: true
+    mode: '0640'
+
+- name: '[audiobookshelf] Pull docker container images listed in docker-compose.yml.'
+  docker_compose:
+    project_src: "{{ audiobookshelf_root_dir }}"
+    state: present
+    pull: yes
+    recreate: smart #Containers will be recreated if a new version is pulled.

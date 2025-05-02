@@ -1,0 +1,4 @@
+---
+audiobookshelf_root_dir: "/home/docker/audiobookshelf"
+audiobookshelf_docker_compose_yml: "{{ audiobookshelf_root_dir }}/docker-compose.yml"
+audiobookshelf_dot_env: "{{ audiobookshelf_root_dir }}/.env"

@@ -45,6 +45,12 @@ rsync_server_syncs: #Jobs will be added to the root crontab.
 
 mc_skin: modarin256-defbg
 
+web_apps:
+  audiobookshelf: true
+  jellyfin: false
+  qbittorrent: false
+  watchtower: true
+
 sshd_port: !vault |
   $ANSIBLE_VAULT;1.1;AES256
   39336431306232663233653162346539303137623438376337616637346531373661343933356634

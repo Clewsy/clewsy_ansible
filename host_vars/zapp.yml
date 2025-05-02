@@ -91,6 +91,7 @@ wireguard:
   server: false
 
 web_apps:
+  audiobookshelf: false
   jellyfin: true
   qbittorrent: true
   watchtower: true

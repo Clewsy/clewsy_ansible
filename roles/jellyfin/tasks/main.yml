@@ -1,3 +1,0 @@
----
-- name: '[jellyfin] Install, configure and enable jellyfin (using docker).'
-  include_tasks: jellyfin.yml

@@ -1,0 +1,14 @@
+---
+
+- name: '[jellyfin] Install, configure and enable jellyfin.'
+  include_tasks: jellyfin.yml
+  when: web_apps.jellyfin is defined and web_apps.jellyfin
+
+- name: '[qbittorrent] Install, configure and enable qbittorrent.'
+  include_tasks: qbittorrent.yml
+  when: web_apps.qbittorrent is defined and web_apps.qbittorrent
+
+- name: '[watchtower] Install, configure and enable watchtower for docker containers.'
+  include_tasks: watchtower.yml
+  when: web_apps.watchtower is defined and web_apps.watchtower
+

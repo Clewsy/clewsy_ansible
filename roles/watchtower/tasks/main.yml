@@ -1,3 +1,0 @@
----
-- name: '[watchtower] Install, configure and enable watchtower for docker containers.'
-  include_tasks: watchtower.yml

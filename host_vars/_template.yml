@@ -251,6 +251,12 @@ wireguard:
 #    3735643632623136650a356563636663393138346430613934323039356338366337626237333862
 #    3234
 
+#web_apps role - install and run various containerised apps with web interfaces.  All managed with docker.
+web_apps:
+#  jellyfin: true
+#  qbittorrent: true
+#  watchtower: true
+
 #antarctica role - some tasks useful for the restricted network and bandwidth.
 antarctica:
 #  sshuttle: true

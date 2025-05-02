@@ -12,7 +12,7 @@
 
 - name: "[jellyfin] Copy docker-compose.yml file to {{ jellyfin_root_dir }} ready for use by docker-compose."
   copy:
-    src: files/docker-compose.yml
+    src: files/jellyfin/docker-compose.yml
     dest: "{{ jellyfin_docker_compose_yml }}"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"

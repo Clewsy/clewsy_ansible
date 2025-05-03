@@ -1,0 +1,35 @@
+---
+- name: '[vaultwarden] Load vaultwarden variables.'
+  include_vars: vaultwarden_vars.yml
+  
+- name: '[vaultwarden] Create vaultwarden docker-compose staging area.'
+  file:
+    path: "{{ vaultwarden_root_dir }}"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: u=rwx,g=rx,o=rx
+
+- name: "[vaultwarden] Copy docker-compose.yml file to {{ vaultwarden_root_dir }} ready for use by docker-compose."
+  copy:
+    src: files/vaultwarden/docker-compose.yml
+    dest: "{{ vaultwarden_docker_compose_yml }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0644'
+
+- name: "[vaultwarden] Copy .env file to {{ vaultwarden_root_dir }} ready for use by the vaultwarden container."
+  copy:
+    src: files/vaultwarden/.env
+    dest: "{{ vaultwarden_dot_env }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    decrypt: true
+    mode: '0640'
+
+- name: '[vaultwarden] Pull docker container images listed in docker-compose.yml.'
+  docker_compose:
+    project_src: "{{ vaultwarden_root_dir }}"
+    state: present
+    pull: yes
+    recreate: smart #Containers will be recreated if a new version is pulled.

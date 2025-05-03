@@ -51,6 +51,7 @@ web_apps:
   jellyfin: false
   navidrome: true
   qbittorrent: false
+  vaultwarden: true
   watchtower: true
 
 sshd_port: !vault |

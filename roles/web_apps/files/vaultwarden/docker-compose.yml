@@ -1,0 +1,27 @@
+version: '3'  
+
+services:
+
+######################################### Vaultwarden web app container
+  vaultwarden:
+    image: vaultwarden/server:latest
+    container_name: vaultwarden
+    networks:
+      - nginx-proxy_reverse-proxy
+#    ports:
+#      - 8170:80 #Keep a port accessible on the local network too.
+    environment:
+      - VIRTUAL_PORT=80
+      - VIRTUAL_HOST=${VAULTWARDEN_URL}
+      - LETSENCRYPT_HOST=${VAULTWARDEN_URL}
+      - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL}
+      - SIGNUPS_ALLOWED=false
+ #     - LOG_FILE="/data/vaultwarden.log"
+    volumes:
+      - ./data/:/data/
+    restart: unless-stopped
+
+######################################### Docker-managed networks
+networks:
+  nginx-proxy_reverse-proxy:
+    external: true

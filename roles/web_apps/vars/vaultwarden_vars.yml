@@ -1,0 +1,4 @@
+---
+vaultwarden_root_dir: "/home/docker/vaultwarden"
+vaultwarden_docker_compose_yml: "{{ vaultwarden_root_dir }}/docker-compose.yml"
+vaultwarden_dot_env: "{{ vaultwarden_root_dir }}/.env"

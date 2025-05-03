@@ -20,6 +20,10 @@
   include_tasks: qbittorrent.yml
   when: web_apps.qbittorrent is defined and web_apps.qbittorrent
 
+- name: '[vaultwarden] Install, configure and enable vaultwarden.'
+  include_tasks: vaultwarden.yml
+  when: web_apps.vaultwarden is defined and web_apps.vaultwarden
+
 - name: '[watchtower] Install, configure and enable watchtower for docker containers.'
   include_tasks: watchtower.yml
   when: web_apps.watchtower is defined and web_apps.watchtower

@@ -258,6 +258,7 @@ web_apps:
 #  jellyfin: true
 #  navidrome: true
 #  qbittorrent: true
+#  vaultwarden: true
 #  watchtower: true
 
 #antarctica role - some tasks useful for the restricted network and bandwidth.

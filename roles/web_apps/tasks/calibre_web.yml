@@ -1,0 +1,49 @@
+---
+- name: '[calibre_web] Load calibre_web variables.'
+  include_vars: calibre_web_vars.yml
+  
+- name: '[calibre_web] Create calibre_web docker-compose staging area.'
+  file:
+    path: "{{ calibre_web_root_dir }}"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: u=rwx,g=rx,o=rx
+
+- name: "[calibre_web] Copy docker-compose.yml file to {{ calibre_web_root_dir }} ready for use by docker-compose."
+  copy:
+    src: files/calibre_web/docker-compose.yml
+    dest: "{{ calibre_web_docker_compose_yml }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0644'
+
+- name: "[calibre_web] Copy .env file to {{ calibre_web_root_dir }} ready for use by the calibre_web container."
+  copy:
+    src: files/calibre_web/.env
+    dest: "{{ calibre_web_dot_env }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    decrypt: true
+    mode: '0640'
+
+- name: "[calibre_web] Create books directory and clone personal books library."
+  git:
+    repo: "{{ calibre_web_books_repo }}"
+    dest: "{{ calibre_web_books_directory }}"
+    accept_hostkey: yes
+    key_file: "{{ ansible_user_home_dir }}/.ssh/id_rsa"
+  register: books_clone
+  ignore_errors: True
+
+- name: '[ansible] Error notification.'
+  debug: 
+    msg: "Did not clone books repo.  Already exists with changes."
+  when: books_clone is failed
+
+- name: '[calibre_web] Pull docker container images listed in docker-compose.yml.'
+  docker_compose:
+    project_src: "{{ calibre_web_root_dir }}"
+    state: present
+    pull: yes
+    recreate: smart #Containers will be recreated if a new version is pulled.

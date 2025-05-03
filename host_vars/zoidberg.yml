@@ -47,6 +47,7 @@ mc_skin: modarin256-defbg
 
 web_apps:
   audiobookshelf: true
+  calibre_web: true
   jellyfin: false
   qbittorrent: false
   watchtower: true

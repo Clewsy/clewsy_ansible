@@ -1,0 +1,6 @@
+---
+calibre_web_root_dir: "/home/docker/calibre_web"
+calibre_web_docker_compose_yml: "{{ calibre_web_root_dir }}/docker-compose.yml"
+calibre_web_dot_env: "{{ calibre_web_root_dir }}/.env"
+calibre_web_books_repo: "git@gitlab.com:clewsy/books"
+calibre_web_books_directory: "{{ calibre_web_root_dir }}/books"

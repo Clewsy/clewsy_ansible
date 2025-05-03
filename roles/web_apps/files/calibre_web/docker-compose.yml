@@ -1,0 +1,28 @@
+version: '3'  
+
+services:
+
+######################################### Calibre-Web container
+  calibre-web:
+    image: linuxserver/calibre-web
+    container_name: calibre-web
+    networks:
+      - nginx-proxy_reverse-proxy
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - DOCKER_MODS=linuxserver/mods:universal-calibre #optional & x86-64 only. Adds the ability to perform ebook conversion
+      - VIRTUAL_PORT=8083
+      - VIRTUAL_HOST=${CALIBRE_URL}
+      - LETSENCRYPT_HOST=${CALIBRE_URL}
+      - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL}
+    volumes:
+      - ./config:/config
+      - ./books:/books #This directory should contain the library as configured by calibre.
+      - /etc/localtime:/etc/localtime:ro
+    restart: unless-stopped
+
+######################################### Docker-managed networks
+networks:
+  nginx-proxy_reverse-proxy:
+    external: true

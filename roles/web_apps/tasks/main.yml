@@ -4,6 +4,10 @@
   include_tasks: audiobookshelf.yml
   when: web_apps.audiobookshelf is defined and web_apps.audiobookshelf
 
+- name: '[calibre_web] Install, configure and enable calibre_web.'
+  include_tasks: calibre_web.yml
+  when: web_apps.calibre_web is defined and web_apps.calibre_web
+
 - name: '[jellyfin] Install, configure and enable jellyfin.'
   include_tasks: jellyfin.yml
   when: web_apps.jellyfin is defined and web_apps.jellyfin
@@ -15,4 +19,3 @@
 - name: '[watchtower] Install, configure and enable watchtower for docker containers.'
   include_tasks: watchtower.yml
   when: web_apps.watchtower is defined and web_apps.watchtower
-

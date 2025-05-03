@@ -49,6 +49,7 @@ web_apps:
   audiobookshelf: true
   calibre_web: true
   jellyfin: false
+  navidrome: true
   qbittorrent: false
   watchtower: true
 

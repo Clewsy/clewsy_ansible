@@ -1,0 +1,35 @@
+---
+- name: '[navidrome] Load navidrome variables.'
+  include_vars: navidrome_vars.yml
+  
+- name: '[navidrome] Create navidrome docker-compose staging area.'
+  file:
+    path: "{{ navidrome_root_dir }}"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: u=rwx,g=rx,o=rx
+
+- name: "[navidrome] Copy docker-compose.yml file to {{ navidrome_root_dir }} ready for use by docker-compose."
+  copy:
+    src: files/navidrome/docker-compose.yml
+    dest: "{{ navidrome_docker_compose_yml }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0644'
+
+- name: "[navidrome] Copy .env file to {{ navidrome_root_dir }} ready for use by the navidrome container."
+  copy:
+    src: files/navidrome/.env
+    dest: "{{ navidrome_dot_env }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    decrypt: true
+    mode: '0640'
+
+- name: '[navidrome] Pull docker container images listed in docker-compose.yml.'
+  docker_compose:
+    project_src: "{{ navidrome_root_dir }}"
+    state: present
+    pull: yes
+    recreate: smart #Containers will be recreated if a new version is pulled.

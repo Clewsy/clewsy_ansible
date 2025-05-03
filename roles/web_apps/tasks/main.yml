@@ -12,6 +12,10 @@
   include_tasks: jellyfin.yml
   when: web_apps.jellyfin is defined and web_apps.jellyfin
 
+- name: '[navidrome] Install, configure and enable navidrome.'
+  include_tasks: navidrome.yml
+  when: web_apps.navidrome is defined and web_apps.navidrome
+
 - name: '[qbittorrent] Install, configure and enable qbittorrent.'
   include_tasks: qbittorrent.yml
   when: web_apps.qbittorrent is defined and web_apps.qbittorrent

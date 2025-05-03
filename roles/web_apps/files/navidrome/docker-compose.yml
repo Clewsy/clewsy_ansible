@@ -1,0 +1,29 @@
+version: '3'  
+
+services:
+
+######################################### Navidrome container
+  navidrome:
+    image: deluan/navidrome
+    container_name: navidrome
+    networks:
+      - nginx-proxy_reverse-proxy
+    user: 1000:1000
+    environment:
+      - ND_SCANSCHEDULE= #Leave empty to disable (manual scan only).  Defaults to "@every 1m".
+      - RecentlyAddedByModTime=true #Defaults to false.
+      - ND_ENABLEGRAVATAR=true #Defaults to false.
+      - VIRTUAL_PORT=4533
+      - VIRTUAL_HOST=${NAVIDROME_URL}
+      - LETSENCRYPT_HOST=${NAVIDROME_URL}
+      - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL}
+    volumes:
+      - ./data:/data
+      - ./music:/music
+      - /etc/localtime:/etc/localtime:ro
+    restart: unless-stopped
+
+######################################### Docker-managed networks
+networks:
+  nginx-proxy_reverse-proxy:
+    external: true

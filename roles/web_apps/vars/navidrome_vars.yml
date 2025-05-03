@@ -1,0 +1,4 @@
+---
+navidrome_root_dir: "/home/docker/navidrome"
+navidrome_docker_compose_yml: "{{ navidrome_root_dir }}/docker-compose.yml"
+navidrome_dot_env: "{{ navidrome_root_dir }}/.env"

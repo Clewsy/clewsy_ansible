@@ -1,0 +1,19 @@
+version: '3'  
+
+services:
+
+######################################### php app for use by nginx containers
+  php:
+    image: php:fpm
+    container_name: php
+    networks:
+      - php
+    volumes:
+      - /home/docker/clews.dev/html/:/clews.dev/html/   #Must match location of html/css/php files volume defined for clews.dev container.
+      - /home/docker/clews.tech/html/:/clews.tech/html/ #Must match location of html/css/php files volume defined for clews.tech container.
+      - /home/docker/clews.pro/html/:/clews.tech/pro/   #Must match location of html/css/php files volume defined for clews.pro container.
+    restart: unless-stopped
+
+######################################### Docker-managed networks
+networks:
+  php:

@@ -1,0 +1,26 @@
+---
+- name: '[php] Load php variables.'
+  include_vars: php_vars.yml
+  
+- name: '[php] Create php docker-compose staging area.'
+  file:
+    path: "{{ php_root_dir }}"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: u=rwx,g=rx,o=rx
+
+- name: "[php] Copy docker-compose.yml file to {{ php_root_dir }} ready for use by docker-compose."
+  copy:
+    src: files/php/docker-compose.yml
+    dest: "{{ php_docker_compose_yml }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0644'
+
+- name: '[php] Pull docker container images listed in docker-compose.yml.'
+  docker_compose:
+    project_src: "{{ php_root_dir }}"
+    state: present
+    pull: yes
+    recreate: smart #Containers will be recreated if a new version is pulled.

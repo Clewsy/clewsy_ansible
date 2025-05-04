@@ -53,6 +53,7 @@ web_apps:
   qbittorrent: false
   vaultwarden: true
   watchtower: true
+  php: true
 
 sshd_port: !vault |
   $ANSIBLE_VAULT;1.1;AES256

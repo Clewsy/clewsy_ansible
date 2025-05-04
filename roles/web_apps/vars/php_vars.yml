@@ -1,0 +1,3 @@
+---
+php_root_dir: "/home/docker/php"
+php_docker_compose_yml: "{{ php_root_dir }}/docker-compose.yml"

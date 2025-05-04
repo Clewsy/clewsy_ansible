@@ -260,6 +260,7 @@ web_apps:
 #  qbittorrent: true
 #  vaultwarden: true
 #  watchtower: true
+#  php: true
 
 #antarctica role - some tasks useful for the restricted network and bandwidth.
 antarctica:

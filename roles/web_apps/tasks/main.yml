@@ -27,3 +27,10 @@
 - name: '[watchtower] Install, configure and enable watchtower for docker containers.'
   include_tasks: watchtower.yml
   when: web_apps.watchtower is defined and web_apps.watchtower
+
+## nginx web apps below this line after the php app.  
+## Ensure php is included if the nginx sites require it.
+
+- name: '[php] Install, configure and enable php container for use by nginx containers.'
+  include_tasks: php.yml
+  when: web_apps.php is defined and web_apps.php

@@ -1,0 +1,27 @@
+version: '3'  
+
+services:
+
+######################################### clews.dev website container
+  nginx-clews.dev:
+    image: nginx
+    container_name: nginx-clews.dev
+    networks:
+      - nginx-proxy_reverse-proxy
+      - php_php
+    environment:
+      - VIRTUAL_PORT=80
+      - VIRTUAL_HOST=${NGINX_CLEWS_DEV_URL}
+      - LETSENCRYPT_HOST=${NGINX_CLEWS_DEV_URL}
+      - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL}
+    volumes:
+      - ./html/:/clews.dev/html/
+      - ./conf.d/:/etc/nginx/conf.d/
+    restart: unless-stopped
+
+######################################### Docker-managed networks
+networks:
+  php_php:
+    external: true
+  nginx-proxy_reverse-proxy:
+    external: true

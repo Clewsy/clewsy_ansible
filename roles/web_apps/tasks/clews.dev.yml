@@ -1,0 +1,40 @@
+---
+- name: '[clews.dev] Load clews.dev variables.'
+  include_vars: clews.dev_vars.yml
+
+- name: '[clews.dev] Sync clews.dev repo ready for use by docker-compose.'
+  git:
+    repo: "{{ clews_dev_repo }}"
+    dest: "{{ clews_dev_root_dir }}"
+    accept_hostkey: yes
+    key_file: "{{ clews_dev_repo_keyfile }}"
+  register: clews_dev_clone
+  ignore_errors: True
+
+- name: '[clews.dev] Repo sync error notification.'
+  debug: 
+    msg: "Did not clone repo.  Possibly already exists with changes."
+  when: clews_dev_clone is failed
+
+- name: "[clews.dev] Copy docker-compose.yml file to {{ clews_dev_root_dir }} ready for use by docker-compose."
+  copy:
+    src: files/clews.dev/docker-compose.yml
+    dest: "{{ clews_dev_docker_compose_yml }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0644'
+
+- name: "[clews.dev] Copy .env file to {{ clews_dev_root_dir }} ready for use by the clews.dev nginx container."
+  copy:
+    src: files/clews.dev/.env
+    dest: "{{ clews_dev_dot_env }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    decrypt: true
+    mode: '0640'
+
+- name: '[clews.dev] Pull docker container images listed in docker.compose.yml.'
+  docker_compose:
+    project_src: "{{ clews_dev_root_dir }}"
+    pull: yes
+    recreate: smart #Containers will be recreated if a new version is pulled.

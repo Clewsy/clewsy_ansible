@@ -261,6 +261,9 @@ web_apps:
 #  vaultwarden: true
 #  watchtower: true
 #  php: true
+#  php: true
+#  clews_dev: true
+#  clews_pro: true
 
 #antarctica role - some tasks useful for the restricted network and bandwidth.
 antarctica:

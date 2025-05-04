@@ -1,0 +1,26 @@
+---
+- name: '[nginx-proxy] Load nginx-proxy variables.'
+  include_vars: nginx-proxy_vars.yml
+  
+- name: '[nginx-proxy] Create nginx-proxy docker-compose staging area.'
+  file:
+    path: "{{ nginx_proxy_root_dir }}"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: u=rwx,g=rx,o=rx
+
+- name: "[nginx-proxy] Copy docker-compose.yml file to {{ nginx_proxy_root_dir }} ready for use by docker-compose."
+  copy:
+    src: files/nginx-proxy/docker-compose.yml
+    dest: "{{ nginx_proxy_docker_compose_yml }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0644'
+
+- name: '[nginx-proxy] Pull docker container images listed in docker-compose.yml.'
+  docker_compose:
+    project_src: "{{ nginx_proxy_root_dir }}"
+    state: present
+    pull: yes
+    recreate: smart #Containers will be recreated if a new version is pulled.

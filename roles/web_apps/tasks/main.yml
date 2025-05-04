@@ -1,5 +1,9 @@
 ---
 
+- name: '[nginx-proxy] Install, configure and enable nginx-proxy for externally accessible docker containers.'
+  include_tasks: nginx-proxy.yml
+  when: web_apps.nginx_proxy is defined and web_apps.nginx_proxy
+
 - name: '[audiobookshelf] Install, configure and enable audiobookshelf.'
   include_tasks: audiobookshelf.yml
   when: web_apps.audiobookshelf is defined and web_apps.audiobookshelf

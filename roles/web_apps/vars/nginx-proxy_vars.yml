@@ -1,0 +1,3 @@
+---
+nginx_proxy_root_dir: "/home/docker/nginx-proxy"
+nginx_proxy_docker_compose_yml: "{{ nginx_proxy_root_dir }}/docker-compose.yml"

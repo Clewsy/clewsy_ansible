@@ -46,6 +46,7 @@ rsync_server_syncs: #Jobs will be added to the root crontab.
 mc_skin: modarin256-defbg
 
 web_apps:
+  nginx_proxy: true
   audiobookshelf: true
   calibre_web: true
   jellyfin: false

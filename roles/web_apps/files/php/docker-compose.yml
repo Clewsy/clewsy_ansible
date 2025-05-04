@@ -11,7 +11,7 @@ services:
     volumes:
       - /home/docker/clews.dev/html/:/clews.dev/html/   #Must match location of html/css/php files volume defined for clews.dev container.
       - /home/docker/clews.tech/html/:/clews.tech/html/ #Must match location of html/css/php files volume defined for clews.tech container.
-      - /home/docker/clews.pro/html/:/clews.tech/pro/   #Must match location of html/css/php files volume defined for clews.pro container.
+      - /home/docker/clews.pro/html/:/clews.pro/html/   #Must match location of html/css/php files volume defined for clews.pro container.
     restart: unless-stopped
 
 ######################################### Docker-managed networks

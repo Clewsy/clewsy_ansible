@@ -42,3 +42,7 @@
 - name: '[clews.pro] Clone, configure and enable clews.pro.'
   include_tasks: clews.pro.yml
   when: web_apps.clews_pro is defined and web_apps.clews_pro
+
+- name: '[clews.tech] Clone, configure and enable clews.tech.'
+  include_tasks: clews.tech.yml
+  when: web_apps.clews_tech is defined and web_apps.clews_tech

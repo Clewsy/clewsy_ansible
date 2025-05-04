@@ -263,6 +263,7 @@ web_apps:
 #  php: true
 #  php: true
 #  clews_dev: true
+#  clews_tech: true
 #  clews_pro: true
 
 #antarctica role - some tasks useful for the restricted network and bandwidth.

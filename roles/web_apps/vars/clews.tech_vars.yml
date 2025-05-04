@@ -1,0 +1,6 @@
+---
+clews_tech_repo: "git@gitlab.com:clewsy/clews.tech"
+clews_tech_repo_keyfile: "{{ ansible_user_home_dir }}/.ssh/id_rsa"
+clews_tech_root_dir: "/home/docker/clews.tech"
+clews_tech_docker_compose_yml: "{{ clews_tech_root_dir }}/docker-compose.yml"
+clews_tech_dot_env: "{{ clews_tech_root_dir }}/.env"

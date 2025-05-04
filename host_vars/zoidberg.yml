@@ -56,6 +56,7 @@ web_apps:
   php: true
   clews_dev: true
   clews_pro: true
+  clews_tech: true
 
 sshd_port: !vault |
   $ANSIBLE_VAULT;1.1;AES256

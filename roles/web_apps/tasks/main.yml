@@ -34,3 +34,7 @@
 - name: '[php] Install, configure and enable php container for use by nginx containers.'
   include_tasks: php.yml
   when: web_apps.php is defined and web_apps.php
+
+- name: '[clews.pro] Clone, configure and enable clews.pro.'
+  include_tasks: clews.pro.yml
+  when: web_apps.clews_pro is defined and web_apps.clews_pro

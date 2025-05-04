@@ -1,0 +1,44 @@
+---
+### Remember to disable vpn if using the clews.pro role on a machine that isn't zoidberg.
+### This playbook will reinstate clews.pro and other containers on a fresh install, but other data will have to be manually restored.
+### I.e. nginx certs, vaultwarden db, nextcloud data, navidrome music.
+
+- name: '[clews.pro] Load clews.pro variables.'
+  include_vars: clews.pro_vars.yml
+
+- name: '[clews.pro] Sync clews.pro repo ready for use by docker-compose.'
+  git:
+    repo: "{{ clews_pro_repo }}"
+    dest: "{{ clews_pro_root_dir }}"
+    accept_hostkey: yes
+    key_file: "{{ clews_pro_repo_keyfile }}"
+  register: clews_pro_clone
+  ignore_errors: True
+
+- name: '[clews.pro] Repo sync error notification.'
+  debug: 
+    msg: "Did not clone repo.  Possibly already exists with changes."
+  when: clews_pro_clone is failed
+
+- name: "[clews.pro] Copy docker-compose.yml file to {{ clews_pro_root_dir }} ready for use by docker-compose."
+  copy:
+    src: files/clews.pro/docker-compose.yml
+    dest: "{{ clews_pro_docker_compose_yml }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0644'
+
+- name: "[clews.pro] Copy .env file to {{ clews_pro_root_dir }} ready for use by the clews.pro nginx container."
+  copy:
+    src: files/clews.pro/.env
+    dest: "{{ clews_pro_dot_env }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    decrypt: true
+    mode: '0640'
+
+- name: '[clews.pro] Pull docker container images listed in docker.compose.yml.'
+  docker_compose:
+    project_src: "{{ clews_pro_root_dir }}"
+    pull: yes
+    recreate: smart #Containers will be recreated if a new version is pulled.

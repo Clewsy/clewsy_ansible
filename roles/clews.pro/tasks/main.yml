@@ -1,3 +1,0 @@
----
-- name: '[clews.pro] Clone, configure and enable clews.pro.'
-  include_tasks: clews.pro.yml

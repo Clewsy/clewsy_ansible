@@ -1,8 +1,4 @@
 ---
-### Remember to disable vpn if using the clews.pro role on a machine that isn't zoidberg.
-### This playbook will reinstate clews.pro and other containers on a fresh install, but other data will have to be manually restored.
-### I.e. nginx certs, vaultwarden db, nextcloud data, navidrome music.
-
 - name: '[clews.pro] Load clews.pro variables.'
   include_vars: clews.pro_vars.yml
 

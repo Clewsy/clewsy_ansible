@@ -15,7 +15,7 @@
     groups: docker
     append: yes
 
-- name: '[docker] Create docker-compose staging area.'
+- name: '[docker] Create docker compose staging area.'
   file:
     path: "{{ docker_home_dir }}"
     state: directory
@@ -23,9 +23,9 @@
     group: "{{ ansible_user }}"
     mode: u=rwx,g=rx,o=rx
 
-- name: '[docker] Create alias dc for docker-compose.'
+- name: '[docker] Create alias dc for docker compose.'
   lineinfile:
     path: "{{ ansible_user_home_dir }}/.bash_aliases"
-    line: "alias dc='docker-compose'" 
+    line: "alias dc='docker compose'" 
     state: present
     insertafter: EOF

@@ -34,7 +34,7 @@
     mode: '0640'
 
 - name: '[clews.tech] Pull docker container images listed in docker.compose.yml.'
-  docker_compose:
+  community.docker.docker_compose_v2:
     project_src: "{{ clews_tech_root_dir }}"
-    pull: yes
-    recreate: smart #Containers will be recreated if a new version is pulled.
+    pull: missing
+    recreate: auto #Containers will be recreated if a new version is pulled.

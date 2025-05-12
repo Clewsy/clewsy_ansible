@@ -28,8 +28,8 @@
     mode: '0640'
 
 - name: '[audiobookshelf] Pull docker container images listed in docker-compose.yml.'
-  docker_compose:
+  community.docker.docker_compose_v2:
     project_src: "{{ audiobookshelf_root_dir }}"
     state: present
-    pull: yes
-    recreate: smart #Containers will be recreated if a new version is pulled.
+    pull: missing
+    recreate: auto #Containers will be recreated if a new version is pulled.

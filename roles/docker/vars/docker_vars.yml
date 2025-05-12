@@ -2,4 +2,4 @@
 docker_home_dir: "/home/docker"
 docker_packages:
   - docker.io
-  - docker-compose
+  - docker-compose-v2

@@ -27,11 +27,11 @@
     state: link
 
 - name: '[qbittorrent] Pull docker container images listed in docker-compose.yml.'
-  docker_compose:
+  community.docker.docker_compose_v2:
     project_src: "{{ qbittorrent_root_dir }}"
     state: present
-    pull: yes
-    recreate: smart #Containers will be recreated if a new version is pulled.
+    pull: missing
+    recreate: auto #Containers will be recreated if a new version is pulled.
   register: qbittorrent_image
 
 - name: "[qbittorrent] Wait until the file {{ qbittorrent_config_file }} is initiated if the container was pulled/restarted."
@@ -52,9 +52,9 @@
   register: qbittorrent_config
 
 - name: '[qbittorrent] Stop qbittorrent to make changes to config.'
-  docker_compose:
+  community.docker.docker_compose_v2:
     project_src: "{{ qbittorrent_root_dir }}"
-    stopped: yes
+    state: stopped
   when: qbittorrent_config is changed
 
 - name: '[qbittorrent] Configure qbittorrent.conf key values.'
@@ -69,7 +69,7 @@
   when: qbittorrent_config is changed
 
 - name: '[qbittorrent] Restart qbittorrent to implement changes to config.'
-  docker_compose:
+  community.docker.docker_compose_v2:
     project_src: "{{ qbittorrent_root_dir }}"
-    restarted: yes
+    state: restarted
   when: qbittorrent_config is changed

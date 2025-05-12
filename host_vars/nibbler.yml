@@ -31,9 +31,6 @@ packages:
     remove:
       - geary       #Unwanted email client.
   flatpak:
-  pip:
-    install:
-      - youtube-dl
 
 theme_colour: ORANGE
 theme_prompt: "{{ NIBBLER }}"

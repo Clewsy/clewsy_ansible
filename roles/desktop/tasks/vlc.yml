@@ -13,7 +13,7 @@
     state: present
     flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
 
-- name: '[packages_flatpak] Ensure ~/.var directory is owned by user.'
+- name: '[vlc] Ensure ~/.var directory is owned by user.'
   file:
     path: "{{ ansible_user_home_dir }}/.var"
     owner: "{{ ansible_user }}"

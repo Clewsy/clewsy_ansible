@@ -28,3 +28,11 @@ gnome_config_prefs:
                                                              {% endif %}" } #Dark mode (Adwaita-dark on Ubuntu, Pop on Pop_os).
   - { key: "/org/gnome/shell/extensions/dash-to-dock/show-favorites", value: "false" }  #Remove favourites shortcuts from ubuntu dock.
   - { key: "/org/gnome/shell/extensions/dash-to-dock/show-trash", value: "false" }  #Remove trash shortcut from ubuntu dock.
+  - { key: "/org/gnome/desktop/wm/keybindings/move-to-workspace-left", value: "['<Shift><Super>Left']" }
+  - { key: "/org/gnome/desktop/wm/keybindings/move-to-workspace-right", value: "['<Shift><Super>Right']" }
+  - { key: "/org/gnome/mutter/keybindings/toggle-tiled-left", value: "''" } #Need to clear so binding can be used for workspace switching.
+  - { key: "/org/gnome/mutter/keybindings/toggle-tiled-right", value: "''" } #Need to clear so binding can be used for workspace switching.
+  - { key: "/org/gnome/desktop/wm/keybindings/switch-to-workspace-left", value: "['<Super>Left']" } #May not work until next login.
+  - { key: "/org/gnome/desktop/wm/keybindings/switch-to-workspace-right", value: "['<Super>Right']" } #May not work until next login.
+  - { key: "/org/gnome/desktop/wm/keybindings/switch-applications", value: "['<Alt>Tab']" }
+  - { key: "/org/gnome/desktop/wm/keybindings/switch-applications-backward", value: "['<Shift><Alt>Tab']" }

@@ -17,17 +17,11 @@
     dest: "{{ vscode_temp_deb_file }}"
   when: vscode_executable.stat.exists == false
 
-##### Does not work with current version of vscode due to dependencies issue.
-#- name: '[vscode] Install vscode .deb file.'
-#  apt:
-#    deb: '{{ vscode_temp_deb_file }}'
-#  environment:
-#    ACCEPT_EULA: "y"
-#  when: vscode_executable.stat.exists == false
-
-##### Workaround until future version works with apt module.
 - name: '[vscode] Install vscode .deb file.'
-  command: "/usr/bin/dpkg -i {{ vscode_temp_deb_file }}"
+  apt:
+    deb: '{{ vscode_temp_deb_file }}'
+  environment:
+    ACCEPT_EULA: "y"
   when: vscode_executable.stat.exists == false
 
 - name: '[vscode] vscode is already installed so just upgrade if neccessary.'

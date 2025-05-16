@@ -2,37 +2,27 @@
 - name: '[wireguard_client] Load wireguard_client variables.'
   include_vars: wireguard_client_vars.yml
 
-## Configure amy wireguard confs.
-- name: '[wireguard_client] Copy wireguard configuration file - client connect to amy (interface wg_amy).'
-  copy:
-    src: "files/wg_amy/wg_amy_client_{{ ansible_hostname }}.conf"
-    decrypt: yes
-    dest: "/etc/wireguard/wg_amy.conf"
-    owner: "root"
-    group: "root"
-    mode: '0644'
+### Configure amy wireguard confs.
+#- name: '[wireguard_client] Copy wireguard configuration file - client connect to amy (interface wg_amy).'
+#  copy:
+#    src: "files/wg_amy/wg_amy_client_{{ ansible_hostname }}.conf"
+#    decrypt: yes
+#    dest: "/etc/wireguard/wg_amy.conf"
+#    owner: "root"
+#    group: "root"
+#    mode: '0644'
 
-## Configure clews.pro wireguard confs.
-- name: '[wireguard_client] Copy wireguard configuration file - client connect to clews.pro (interface wg_clews).'
+## Configure b4t wireguard confs.
+- name: '[wireguard_client] Copy wireguard configuration file - client connect to b4t (interface wg_b4t).'
   copy:
-    src: "files/wg_clews/wg_clews_client_{{ ansible_hostname }}.conf"
-    decrypt: yes
-    dest: "/etc/wireguard/wg_clews.conf"
-    owner: "root"
-    group: "root"
-    mode: '0644'
-
-## Configure b4t.site wireguard confs.
-- name: '[wireguard_client] Copy wireguard configuration file - client connect to b4t.site (interface wg_b4t).'
-  copy:
-    src: "files/wg_b4t-site/wg_b4t-site_client_{{ ansible_hostname }}.conf"
+    src: "files/wg_b4t/wg_b4t_client_{{ ansible_hostname }}.conf"
     decrypt: yes
     dest: "/etc/wireguard/wg_b4t.conf"
     owner: "root"
     group: "root"
     mode: '0644'
 
-## Configure amy, clews.pro and b4t.site wireguard up/down aliases.
+## Configure amy and b4t wireguard up/down aliases.
 - name: "[wireguard_client] Set {{ ansible_user }} aliases for bringing wireguard connections up / down."
   lineinfile:
     path: "{{ ansible_user_home_dir }}/.bash_aliases"

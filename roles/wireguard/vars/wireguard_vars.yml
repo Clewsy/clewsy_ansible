@@ -1,4 +1,4 @@
 ---
 wireguard_packages:
-  - resolvconf
+  - systemd-resolved
   - wireguard

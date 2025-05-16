@@ -20,7 +20,6 @@ ansible_sudo_pass: !vault |
   6238363063616265300a383138343862333466643661343831613661663230363833363065646435
   3331
 
-#Antarctic changes to installed/removed packages.
 packages:
   apt:
     install:
@@ -47,17 +46,14 @@ packages:
       - libreoffice
   flatpak:
     install:
-      - org.gimp.GIMP
       - org.libreoffice.LibreOffice
-      - org.inkscape.Inkscape
-      - org.qbittorrent.qBittorrent
-      - org.gnome.EasyTAG #Edit mp3 id3 tags.
+#      - org.gimp.GIMP
+#      - org.inkscape.Inkscape
+#      - org.gnome.EasyTAG #Edit mp3 id3 tags.
+#      - org.qbittorrent.qBittorrent
 #      - ca.littlesvr.asunder #Rip CDs to mp3s.
 #      - org.kicad.KiCad
 #      - org.signal.Signal
-  pip:
-    install:
-#      - yt-dlp
 
 theme_colour: ORANGE
 theme_prompt: "{{ FARNSWORTH }}"
@@ -73,25 +69,24 @@ cifs_mounts:
 
 
 nfs_mounts:
-#  - { mount_source: 'zapp:/export/data', mount_path: '/mnt/zapp/data' }
-#  - { mount_source: 'zapp:/export/movies', mount_path: '/mnt/zapp/movies' }
-#  - { mount_source: 'zapp:/export/mp3s', mount_path: '/mnt/zapp/mp3s' }
-#  - { mount_source: 'zapp:/export/tv', mount_path: '/mnt/zapp/tv' }
-#  - { mount_source: 'zapp:/export/cl0ud', mount_path: '/mnt/zapp/cl0ud' }
-#  - { mount_source: 'zapp:/export/m0n0l1th', mount_path: '/mnt/zapp/m0n0l1th' }
-#  - { mount_source: 'zapp:/export/downloads', mount_path: '/mnt/zapp/downloads' }
-#  - { mount_source: 'zapp:/export/y4nk', mount_path: '/mnt/zapp/y4nk' }
+  - { mount_source: 'zapp:/export/data', mount_path: '/mnt/zapp/data' }
+  - { mount_source: 'zapp:/export/movies', mount_path: '/mnt/zapp/movies' }
+  - { mount_source: 'zapp:/export/mp3s', mount_path: '/mnt/zapp/mp3s' }
+  - { mount_source: 'zapp:/export/tv', mount_path: '/mnt/zapp/tv' }
+  - { mount_source: 'zapp:/export/cl0ud', mount_path: '/mnt/zapp/cl0ud' }
+  - { mount_source: 'zapp:/export/m0n0l1th', mount_path: '/mnt/zapp/m0n0l1th' }
+  - { mount_source: 'zapp:/export/downloads', mount_path: '/mnt/zapp/downloads' }
+  - { mount_source: 'zapp:/export/y4nk', mount_path: '/mnt/zapp/y4nk' }
 
 mpd:
   run_as: "user"
   music_dir: "/home/{{ ansible_user }}/music"
-  audio_output: | #Pipewire enabled on 23.04
+  audio_output: |
     audio_output {
       type       "pipewire"
       name       "pipewire_device"
     }
 
-#a few antarctic changes below.
 desktop:
   install:
     calibre: true
@@ -104,7 +99,6 @@ desktop:
     vlc: true
   nautilus_bookmarks: #Add bookmarks to nautilus sidebar.
     - "davs://nc.clews.tech/remote.php/dav/files/jadon nextcloud"
-    - "file:///home/{{ ansible_user }}/projects projects"
     - "file:///mnt/zapp"
     - "file:///mnt/windoze windoze"
   autostart_appplications:
@@ -113,12 +107,12 @@ desktop:
 
 mc_skin: modarcon16-defbg
 
-antarctica:
-  sshuttle: true
-  sneak:
-    install: true
-    cron: false
-  punch: false
+#antarctica:
+#  sshuttle: true
+#  sneak:
+#    install: true
+#    cron: false
+#  punch: false
 
 sshd_port: !vault |
   $ANSIBLE_VAULT;1.1;AES256

@@ -1,6 +1,6 @@
 ---
-- name: Configure b4t.site.
-  hosts: b4t.site
+- name: Configure b4t.
+  hosts: b4t
   become: yes
   gather_facts: false
   

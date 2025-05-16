@@ -180,7 +180,7 @@ rsync_server_syncs:
 #    month: "*"
 #    weekday: "*"
 #  - source: '/srv/cl0ud/zoidberg'
-#    dest: 'b4t@b4t.site:/home/b4t/backups/'
+#    dest: 'name@host:/home/b4t/backups/'
 #    minute: "0"
 #    hour: "2"
 #    day: "*"
@@ -194,7 +194,7 @@ rsync_server_syncs:
 #    month: "*"
 #    weekday: "*"
 #  - source: '/srv/cl0ud/file_cache'
-#    dest: 'b4t@b4t.site:/home/b4t/backups/'
+#    dest: 'name@host:/home/b4t/backups/'
 #    minute: "0"
 #    hour: "4"
 #    day: "*"

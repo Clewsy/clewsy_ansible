@@ -61,7 +61,7 @@ rsync_server_syncs: #Jobs will be added to the root crontab.
     weekday: "*"
   - name: 'push_clews'
     source: '/srv/cl0ud/clews'
-    dest: 'b4t@b4t.site:/home/b4t/backups/'
+    dest: "b4t@{{ backup_server_ip }}:/home/b4t/backups/'
     minute: "0"
     hour: "2"
     day: "*"
@@ -77,7 +77,7 @@ rsync_server_syncs: #Jobs will be added to the root crontab.
 #    weekday: "*"
 #  - name: 'push_file_cache'
 #    source: '/srv/cl0ud/file_cache'
-#    dest: 'b4t@b4t.site:/home/b4t/backups/'
+#    dest: 'user@host:/home/b4t/backups/'
 #    minute: "30"
 #    hour: "3"
 #    day: "*"

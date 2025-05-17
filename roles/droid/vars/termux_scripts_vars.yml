@@ -1,7 +1,5 @@
 ---
 termux_scripts_dir: "/data/data/com.termux/files/home/bin"
 
-bu_script_url: "{{ clewsy_repo_root }}/scripts/-/raw/master/bu"
 stuff_script_url: "{{ clewsy_repo_root }}/scripts/-/raw/master/stuff"
 wami_script_url: "{{ clewsy_repo_root }}/scripts/-/raw/master/wami"
-ytdl_script_url: "{{ clewsy_repo_root }}/scripts/-/raw/master/ytdl"

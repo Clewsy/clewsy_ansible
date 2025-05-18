@@ -109,30 +109,6 @@ motion: #Can override default settings in motion role.
 #  stream_localhost: 'off' #If ommitted, will default to on (i.e. only stream locally).
 #  picam: false #If omitted, defaults to false (i.e. webcam, not picam).
 
-#motioneye role, will configure cameras and action buttons.
-motioneye:
-#  normal_user: "b4t" #Will default to ansible_user if ommitted.
-#  admin_username: 'admin' #Will default to admin if ommitted.
-#  admin_password: !vault | #Remember to use vault encryption.
-#    $ANSIBLE_VAULT;1.1;AES256
-#    30366561363338316266363739336237316439306237303137346532656363363734613462343337
-#  cameras: #One example shown below.
-#    - id: '3'
-#      name: 'couch'
-#      netcam_url: 'http://b4t-cam.lan:8888/'
-#      netcam_userpass: #Remember to use vault encryption if needed.
-#      height:
-#      width:
-#      motion_detection: 'off'
-#      stream_quality: '85'
-#  action_buttons: #Examples below.  Remember to use vault encryption if 'command' requires credentials.
-#    - id: '3'
-#      action: 'light_on'
-#      command: 'curl -s http://p0wer.lan/index.php?a=on >> /dev/null'
-#    - id: '3'
-#      action: 'light_off'
-#      command: 'curl -s http://p0wer.lan/index.php?a=off >> /dev/null'
-
 #common role, mounts.yml
 mounts:
 #  - { mount_source: /dev/mmcblk0p1, mount_path: '/media/cache', mount_fstype: 'auto', mount_opts: "auto,rw,async,user,uid={{ ansible_user }},gid={{ ansible_user }},nofail" }

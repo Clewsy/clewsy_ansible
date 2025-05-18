@@ -10,7 +10,6 @@ osmc@hypnotoad			#010 Media center (raspberry pi running osmc).
 #b4t@p0wer			#042 raspi zero w connected to a gpo remote control.
 #STORED b4t@pazuzu			#079 basically another webcam - pi zero w with pi cam.
 #STORED b4t@rad10			#111 raspi running mpd and clients with hardware control.
-b4t@scruffy			#100 raspi 4 serving motioneye.
 b4t@seymour			#007 node (beaglebone black).
 b4t@zapp			#012 The file server.
 jc@zoidberg			#011 Home of clews.pro.

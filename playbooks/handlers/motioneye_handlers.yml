@@ -1,8 +1,0 @@
----
-- name: restart motioneye
-  community.docker.docker_compose_v2:
-    project_src: "{{ motioneye_root_dir }}"
-    state: restarted
-    files: "{{ motioneye_docker_compose_yml }}"
-    pull: no
-    recreate: never

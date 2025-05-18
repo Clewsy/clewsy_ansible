@@ -3,7 +3,6 @@
 - import_tasks: cron_handlers.yml
 - import_tasks: docker_handlers.yml
 - import_tasks: motion_handlers.yml
-- import_tasks: motioneye_handlers.yml
 - import_tasks: mpd_handlers.yml
 - import_tasks: nfs_handlers.yml
 - import_tasks: snapd_handlers.yml

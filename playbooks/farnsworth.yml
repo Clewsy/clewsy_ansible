@@ -12,9 +12,7 @@
     - secure
     - headless
     - node
-#    - docker
     - wireguard
-#    - antarctica
     - desktop
     - develop
     - mpd

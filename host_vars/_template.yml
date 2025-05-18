@@ -35,7 +35,7 @@ ansible_sudo_pass: !vault | #$ ansible-vault encrypt_string 'secret_sudo_passwor
 aliases: # Use to set host-specific aliases.  Some other aliases (e.g. ll) will be set up for all.
 #  - "alias ll='ls -alFh'"
 
-#common role, packages.yml.  Configure to install/remove packages of various types (apt, snap, classin snap or pip).
+#common role, packages.yml.  Configure to install/remove packages of various types (apt, snap, classic snap or flatpak).
 packages:
   apt:
     install:
@@ -65,10 +65,6 @@ packages:
   classic_snap:
     install:
 #      - code
-    remove:
-  pip:
-    install:
-#      - youtube-dl
     remove:
 
 #common role, bashrc.yml & common_scripts.yml and desktop role, terbling.yml. 

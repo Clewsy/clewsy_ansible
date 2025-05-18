@@ -2,7 +2,7 @@
 - name: '[packages_apt] Load packages_apt variables.'
   include_vars: packages_apt_vars.yml
 
-# disabled for antarctica
+# prefer to do this manually first.
 #- name: '[packages] Update apt cache and run a full upgrade.'
 #  apt:
 #    upgrade: 'full'

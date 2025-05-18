@@ -25,11 +25,7 @@
 ########### Installation of apps that don't come pre-installed.
 - name: '[packages_flatpak] Install miscellaneous, host-specific flatpak packages.'
   flatpak:
-#    name: "{{ packages.flatpak.install }}"
     name: "{{ item }}"
-#    name:
-#      - org.gimp.GIMP
-#      - org.qbittorrent.qBittorrent
     state: present
     method: system
   with_items: "{{ packages.flatpak.install }}"

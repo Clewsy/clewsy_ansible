@@ -30,24 +30,17 @@ packages:
       - ffmpeg #manipulate video files.
       - yt-dlp #download from yt.
     remove:
-#      - aisleriot
-#      - cheese
-#      - gnome-mines
-#      - gnome-mahjongg
-#      - gnome-sudoku
-#      - gnome-todo
-#      - remmina
-#      - rhythmbox
-#      - thunderbird
 #      - transmission-common
 #      - transmission-gtk
   snap:
     remove:
       - libreoffice
+      - firefox
   flatpak:
     install:
       - org.libreoffice.LibreOffice
-#      - org.gimp.GIMP
+      - org.mozilla.firefox
+      - org.gimp.GIMP
 #      - org.inkscape.Inkscape
 #      - org.gnome.EasyTAG #Edit mp3 id3 tags.
 #      - org.qbittorrent.qBittorrent
@@ -66,7 +59,6 @@ cifs_mounts:
 #  - { mount_source: '//odeon/e$', mount_path: '/mnt/odeon_e', mount_opts: "username=casey_odeon,password=Antarctica1,rw,uid={{ ansible_user }},gid={{ ansible_user }},suid,nofail" }
 #  - { mount_source: '//odeon/f$', mount_path: '/mnt/odeon_f', mount_opts: "username=casey_odeon,password=Antarctica1,rw,uid={{ ansible_user }},gid={{ ansible_user }},suid,nofail" }
 #  - { mount_source: '//odeon/g$', mount_path: '/mnt/odeon_g', mount_opts: "username=casey_odeon,password=Antarctica1,rw,uid={{ ansible_user }},gid={{ ansible_user }},suid,nofail" }
-
 
 nfs_mounts:
   - { mount_source: 'zapp:/export/data', mount_path: '/mnt/zapp/data' }
@@ -114,6 +106,10 @@ mc_skin: modarcon16-defbg
 #    cron: false
 #  punch: false
 
+wireguard:
+  client: true
+  server: false
+
 sshd_port: !vault |
   $ANSIBLE_VAULT;1.1;AES256
   33626466303634386462306264386466376632623663383632363731346664616362666533643731
@@ -121,10 +117,6 @@ sshd_port: !vault |
   64646130613666373835616437666130323461386263656565613738623535666135333539656634
   3230316337623965330a373835663561323465636464616430383766393861363839643538316530
   6539
-
-wireguard:
-  client: true
-  server: false
 
 ssh_public_key: !vault |
   $ANSIBLE_VAULT;1.1;AES256

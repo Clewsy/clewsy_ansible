@@ -1,8 +1,4 @@
 ---
-#termux_pip_packages:
-#  - youtube-dl
-#  - python3-apt
-
 termux_apt_packages:
   - bash-completion
   - vim

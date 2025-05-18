@@ -61,28 +61,13 @@ rsync_server_syncs: #Jobs will be added to the root crontab.
     weekday: "*"
   - name: 'push_clews'
     source: '/srv/cl0ud/clews'
-    dest: "b4t@{{ backup_server_ip }}:/home/b4t/backups/'
+    dest: "b4t@{{ backup_server_ip }}:/home/b4t/backups/"
+    ssh_port: "{{ backup_server_port }}"
     minute: "0"
     hour: "2"
     day: "*"
     month: "*"
     weekday: "*"
-#  - name: 'pull_file_cache'
-#    source: 'b4t@seymour:/home/b4t/file_cache'
-#    dest: '/srv/cl0ud/'
-#    minute: "0"
-#    hour: "3"
-#    day: "*"
-#    month: "*"
-#    weekday: "*"
-#  - name: 'push_file_cache'
-#    source: '/srv/cl0ud/file_cache'
-#    dest: 'user@host:/home/b4t/backups/'
-#    minute: "30"
-#    hour: "3"
-#    day: "*"
-#    month: "*"
-#    weekday: "*"
 
 mc_skin: modarcon16root-defbg
 

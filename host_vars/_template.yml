@@ -172,31 +172,20 @@ nfs_server_shares:
 
 #rsync_server role, main.yml
 rsync_server_syncs:
-#  - source: 'jc@zoidberg:/home/docker'
-#    dest: '/srv/cl0ud/zoidberg/'
+#  - name: 'pull_clews'
+#    source: 'clewsy@zoidberg.lan:/home/docker'
+#    dest: '/srv/cl0ud/clews/'
 #    minute: "0"
 #    hour: "1"
 #    day: "*"
 #    month: "*"
 #    weekday: "*"
-#  - source: '/srv/cl0ud/zoidberg'
-#    dest: 'name@host:/home/b4t/backups/'
+#  - name: 'push_clews'
+#    source: '/srv/cl0ud/clews'
+#    dest: "b4t@{{ backup_server_ip }}:/home/b4t/backups/"
+#    ssh_port: "{{ backup_server_port }}"
 #    minute: "0"
 #    hour: "2"
-#    day: "*"
-#    month: "*"
-#    weekday: "*"
-#  - source: 'b4t@seymour:/home/b4t/file_cache'
-#    dest: '/srv/cl0ud/'
-#    minute: "0"
-#    hour: "3"
-#    day: "*"
-#    month: "*"
-#    weekday: "*"
-#  - source: '/srv/cl0ud/file_cache'
-#    dest: 'name@host:/home/b4t/backups/'
-#    minute: "0"
-#    hour: "4"
 #    day: "*"
 #    month: "*"
 #    weekday: "*"

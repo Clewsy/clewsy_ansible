@@ -4,6 +4,7 @@
 SYNC_NAME={{ item.name }}
 SYNC_SOURCE={{ item.source }}
 SYNC_DEST={{ item.dest }}
+SYNC_SSH_PORT={{ item.ssh_port | default('22')}}
 SYNC_LOGFILE={{ rsync_server_logfile }}
 
 # Check for sudo.
@@ -22,7 +23,7 @@ rsync   --verbose \
         --progress \
         --log-file=${SYNC_LOGFILE} \
         --rsync-path="sudo rsync" \
-        -e "ssh -o StrictHostKeyChecking=no" \
+        -e "ssh -p ${SYNC_SSH_PORT} -o StrictHostKeyChecking=no" \
         ${SYNC_SOURCE} ${SYNC_DEST}
 
 # Log tail.

@@ -1,3 +1,0 @@
----
-- name: '[vpn] Install openvpn and configure vpn connection profiles.'
-  include_tasks: vpn.yml

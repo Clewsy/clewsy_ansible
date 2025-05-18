@@ -12,7 +12,6 @@
     - secure
     - headless
     - node
-#    - vpn
     - wireguard
     - antarctica
     - desktop

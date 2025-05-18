@@ -133,11 +133,6 @@ motioneye:
 #      action: 'light_off'
 #      command: 'curl -s http://p0wer.lan/index.php?a=off >> /dev/null'
 
-#homeassistanr role.
-homeassistant: #Can override default settings when running the homeassistant installer script.
-#  machine: raspberrypi4-64 #If ommitted will default to raspberrypi-64
-#  data_share: /home/docker/home-assistant #If ommitted will default to /home/docker/home-assistant
-
 #common role, mounts.yml
 mounts:
 #  - { mount_source: /dev/mmcblk0p1, mount_path: '/media/cache', mount_fstype: 'auto', mount_opts: "auto,rw,async,user,uid={{ ansible_user }},gid={{ ansible_user }},nofail" }

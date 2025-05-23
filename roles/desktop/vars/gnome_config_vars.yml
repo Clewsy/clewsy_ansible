@@ -38,5 +38,7 @@ gnome_config_prefs:
   - { key: "/org/gnome/mutter/keybindings/toggle-tiled-right", value: "['']" } #Need to clear so binding can be used for workspace switching.
   - { key: "/org/gnome/desktop/wm/keybindings/switch-to-workspace-left", value: "['<Super>Left']" } #May not work until next login.
   - { key: "/org/gnome/desktop/wm/keybindings/switch-to-workspace-right", value: "['<Super>Right']" } #May not work until next login.
+  - { key: "/org/gnome/desktop/wm/keybindings/switch-windows", value: "['']" } #Need to clear so binding can be used for switch-applications.
   - { key: "/org/gnome/desktop/wm/keybindings/switch-applications", value: "['<Alt>Tab']" }
   - { key: "/org/gnome/desktop/wm/keybindings/switch-applications-backward", value: "['<Shift><Alt>Tab']" }
+  - { key: "/org/gnome/mutter/overlay-key", value: "['<Super_L>']" }

@@ -31,6 +31,7 @@ packages:
     remove:
       - geary       #Unwanted email client.
   flatpak:
+      - org.libreoffice.LibreOffice
 
 theme_colour: ORANGE
 theme_prompt: "{{ NIBBLER }}"

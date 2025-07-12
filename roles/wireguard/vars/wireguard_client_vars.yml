@@ -1,7 +1,7 @@
 ---
 wireguard_client_aliases:
-#  - "alias amyup='sudo wg-quick up wg_amy'"
-#  - "alias amydn='sudo wg-quick down wg_amy'"
+  - "alias kifup='sudo wg-quick up wg_kif'"
+  - "alias kifdn='sudo wg-quick down wg_kif'"
   - "alias b4tup='sudo wg-quick up wg_b4t'"
   - "alias b4tdn='sudo wg-quick down wg_b4t'"
 

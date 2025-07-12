@@ -2,15 +2,15 @@
 - name: '[wireguard_client] Load wireguard_client variables.'
   include_vars: wireguard_client_vars.yml
 
-### Configure amy wireguard confs.
-#- name: '[wireguard_client] Copy wireguard configuration file - client connect to amy (interface wg_amy).'
-#  copy:
-#    src: "files/wg_amy/wg_amy_client_{{ ansible_hostname }}.conf"
-#    decrypt: yes
-#    dest: "/etc/wireguard/wg_amy.conf"
-#    owner: "root"
-#    group: "root"
-#    mode: '0644'
+## Configure kif wireguard confs.
+- name: '[wireguard_client] Copy wireguard configuration file - client connect to kif (interface wg_kif).'
+  copy:
+    src: "files/wg_kif/wg_kif_client_{{ ansible_hostname }}.conf"
+    decrypt: yes
+    dest: "/etc/wireguard/wg_kif.conf"
+    owner: "root"
+    group: "root"
+    mode: '0644'
 
 ## Configure b4t wireguard confs.
 - name: '[wireguard_client] Copy wireguard configuration file - client connect to b4t (interface wg_b4t).'
@@ -22,7 +22,7 @@
     group: "root"
     mode: '0644'
 
-## Configure amy and b4t wireguard up/down aliases.
+## Configure b4t and kif wireguard up/down aliases.
 - name: "[wireguard_client] Set {{ ansible_user }} aliases for bringing wireguard connections up / down."
   lineinfile:
     path: "{{ ansible_user_home_dir }}/.bash_aliases"

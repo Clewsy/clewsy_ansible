@@ -1,6 +1,6 @@
 host_name: seymour
 
-ansible_user: b4t
+ansible_user: clewsy
 
 ansible_password: !vault |
   $ANSIBLE_VAULT;1.1;AES256
@@ -18,46 +18,54 @@ ansible_sudo_pass: !vault |
   3833346263356565340a303531373162656462623039363336393164393162383065643966383030
   6437
 
-cron_jobs:
-  - name: "Run ball daily."
-    minute: "0"
-    hour: "0"
-    day: "*"
-    month: "*"
-    weekday: "*"
-    job: "{{ ansible_user_home_dir }}/bin/ball"
-  - name: "Backup file_cache to sd card daily."
-    minute: "30"
-    hour: "0"
-    day: "*"
-    month: "*"
-    weekday: "*"
-    job: "cp -r {{ ansible_user_home_dir }}/file_cache /media/cache/."
-  - name: "Run apt_all daily at 0400hrs."
-    minute: "0"
-    hour: "4"
-    day: "*"
-    month: "*"
-    weekday: "*"
-    job: "{{ ansible_user_home_dir }}/bin/apt_all"
+#cron_jobs:
+#  - name: "Run ball daily."
+#    minute: "0"
+#    hour: "0"
+#    day: "*"
+#    month: "*"
+#    weekday: "*"
+#    job: "{{ ansible_user_home_dir }}/bin/ball"
+#  - name: "Backup file_cache to sd card daily."
+#    minute: "30"
+#    hour: "0"
+#    day: "*"
+#    month: "*"
+#    weekday: "*"
+#    job: "cp -r {{ ansible_user_home_dir }}/file_cache /media/cache/."
+#  - name: "Run apt_all daily at 0400hrs."
+#    minute: "0"
+#    hour: "4"
+#    day: "*"
+#    month: "*"
+#    weekday: "*"
+#    job: "{{ ansible_user_home_dir }}/bin/apt_all"
 
 mounts:
   - { mount_source: /dev/mmcblk0p1, mount_path: '/media/cache', mount_fstype: 'auto', mount_opts: "auto,rw,async,user,uid={{ ansible_user }},gid={{ ansible_user }},nofail" }
 
-nfs_mounts:
-  - { mount_source: 'zapp:/export/data', mount_path: '/mnt/zapp/data' }
-  - { mount_source: 'zapp:/export/movies', mount_path: '/mnt/zapp/movies' }
-  - { mount_source: 'zapp:/export/mp3s', mount_path: '/mnt/zapp/mp3s' }
-  - { mount_source: 'zapp:/export/tv', mount_path: '/mnt/zapp/tv' }
-  - { mount_source: 'zapp:/export/cl0ud', mount_path: '/mnt/zapp/cl0ud' }
+#nfs_mounts:
+#  - { mount_source: 'zapp:/export/data', mount_path: '/mnt/zapp/data' }
+#  - { mount_source: 'zapp:/export/movies', mount_path: '/mnt/zapp/movies' }
+#  - { mount_source: 'zapp:/export/mp3s', mount_path: '/mnt/zapp/mp3s' }
+#  - { mount_source: 'zapp:/export/tv', mount_path: '/mnt/zapp/tv' }
+#  - { mount_source: 'zapp:/export/cl0ud', mount_path: '/mnt/zapp/cl0ud' }
+
+#sshd_port: !vault |
+#  $ANSIBLE_VAULT;1.1;AES256
+#  62396261616237383965626639633539633237656635386537633637653230623331643363303766
+#  6233656131313231653933386539616266313135643439340a383838343161313933303335396266
+#  66633732396139343262376365646631663535313931636364396330653136613231616639363664
+#  3633646466383762650a393432633462646631336261386466376363316462323865333863373865
+#  3439
 
 sshd_port: !vault |
   $ANSIBLE_VAULT;1.1;AES256
-  62396261616237383965626639633539633237656635386537633637653230623331643363303766
-  6233656131313231653933386539616266313135643439340a383838343161313933303335396266
-  66633732396139343262376365646631663535313931636364396330653136613231616639363664
-  3633646466383762650a393432633462646631336261386466376363316462323865333863373865
-  3439
+  62616563396664313762356237346366633763303036323030386535623564666434363836383561
+  3364636536336362373830373566343130313566636163320a393835653062346665643535613834
+  37613837653638616566613137623765663633646364646539363338383562633863366563373365
+  3834663731613437310a303637663932633163356666373037313032663832323461333037323132
+  3364
 
 ssh_public_key: !vault |
   $ANSIBLE_VAULT;1.1;AES256

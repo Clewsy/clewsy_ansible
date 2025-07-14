@@ -20,19 +20,15 @@ ansible_sudo_pass: !vault |
   3530353137616233340a653532356332613035616539333261623531353130346363396365316632
   6538
 
-aliases:
-  - "alias fry_sshuttle='sshuttle -r fry -x fry 0.0.0.0/0 --dns -v'"
-  #-x fry is a workaround for a kernel bug.  See https://github.com/sshuttle/sshuttle/issues/191
-
 packages:
   apt:
     install:
-      - curl
-      - vim
+#      - curl
+#      - vim
   flatpak:
     install:
       - org.gimp.GIMP
-      - org.qbittorrent.qBittorrent
+#      - org.qbittorrent.qBittorrent
 #      - ca.littlesvr.asunder #Rip CDs to mp3s.
 #      - org.gnome.EasyTAG #Edit mp3 id3 tags.
 
@@ -93,7 +89,7 @@ wireguard:
   server: false
 
 antarctica:
-  sshuttle: true
+  sshuttle: false
   sneak: 
     install: false
     cron: false

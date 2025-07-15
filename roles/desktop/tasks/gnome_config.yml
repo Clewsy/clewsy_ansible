@@ -46,6 +46,11 @@
     state: present
   become_user: "{{ ansible_user }}"
 
+### Following is required to avoid interfering with keyboard modification shortcuts in the next task.
+### Ubuntu 25.04
+- name: '[gnome_config] Disable tiling-assistant@ubuntu.com extension'
+  shell: gnome-extensions disable tiling-assistant@ubuntu.com
+
 - name: '[gnome_config] Configure gnome desktop dconf settings'
   dconf:
     key: "{{ item.key }}"

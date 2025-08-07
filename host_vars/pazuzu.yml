@@ -22,13 +22,13 @@ theme_colour: MAGENTA
 theme_prompt: "{{ PAZUZU }}"
 
 motion: #Can override default settings in motion role.
-  videodevice: '/dev/video0' #If ommitted, will default to /dev/video0
+  video_device: '/dev/video0' #If ommitted, will default to /dev/video0
   rotate: '180' #If ommitted, will default to 0 
 #  flip_axis: 'none'  #If ommitted, will default to none
   width: '640' #'3280' #If ommitted, will default to 320
   height: '480' #'2464' #If ommitted, will default to 240
   framerate: '2' #If ommitted, will default to 2
-  ffmpeg_output_movies: 'off' #If ommitted, will default to on
+  movie_output: 'off' #If ommitted, will default to on
   stream_port: '8888' #If ommitted, will default to 8081
 #  stream_quality: '100' #If ommitted, will default to 50 (%)
   stream_localhost: 'off' #If ommitted, will default to on (i.e. only stream locally).

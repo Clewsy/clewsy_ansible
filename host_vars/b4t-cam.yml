@@ -22,13 +22,13 @@ theme_colour: GRAY
 theme_prompt: "{{ B4T }}"
 
 motion:
-  videodevice: '/dev/video0'
+  video_device: '/dev/video0'
 #  rotate: '90' 
   flip_axis: 'none'
   width: '640'
   height: '480'
   framerate: '5'
-  ffmpeg_output_movies: 'off'
+  movie_output: 'off'
   stream_port: '8888'
   stream_quality: '75'
   stream_localhost: 'off'

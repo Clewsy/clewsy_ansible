@@ -1,21 +1,21 @@
 # clewsy_ansible
 
-Basic automation playbooks and roles for deploying machines on my home network.  Super handy when nuking/paving, but originally this project just started as a means of learning [ansible][link_web_ansible].  Additional information at [clews.pro][link_clews_projects_clewsy_ansible]
+Basic automation playbooks and roles for deploying machines on my home network.  Originally this project just started as a means of learning [ansible][link_web_ansible] but now I use it for configuring various machines both desktop and servers.  Additional information at [clews.pro][link_clews_projects_clewsy_ansible]
 
-A playbook and variables file exists for each host machine.  When run, the host-specific playbook will configure the host with the specified roles described below.  Prior to running the host-specific playbooks, some minimum requirements must be met:
+For each host machine there is a playbook and a variables file.  Prior to running the host-specific playbooks, some minimum requirements must be met:
 1. Operating system installed.
 2. User exists as defined in host variables file (*host_vars/hostname.yml*).
-    * User must have sudo access.
-    * Sudo password must be as defined by the host-specific *setup-password* variable.
-3. Static IP must be assigned to the MAC address of the machine's network interface.  A hosts file on my dhcp server is used, so all these machines are identified by hostname, not ip address.
+    * User must have sudo privilege.
+    * A password must defined for sudo that matches the host-specific *ansible_sudo_pass* variable.
+3. Host must be reachable by hostname - no specific IP addressess are defined here.
 
-The [flexo.yml][link_repo_playbooks_flexo] playbook is a special case.  It will configure my smartphone via [Termux][link_web_termux] and as such, has some additional pre-requisites:
+The [flexo.yml][link_repo_playbooks_flexo] playbook is a special case.  It will configure a smartphone via [Termux][link_web_termux] running sshd.  As such, has some additional pre-requisites:
 1. Termux must be installed.
 2. Within termux, a couple of packages need to be manually installed:
     * python
     * openssh
 3. Termux ssh sessions don't really have a "user" in the traditional sense, but a password must be configured (```$ passwd```).
-4. sshd must be executed from Termux.  By default, the ssh daemon will serve on port 8022.
+4. sshd must be running within Termux.  By default, the ssh daemon will serve on port 8022.
 
 
 ## Roles
@@ -23,30 +23,25 @@ The [flexo.yml][link_repo_playbooks_flexo] playbook is a special case.  It will 
 |Role/Link                                      |Description                   |
 |-----------------------------------------------|------------------------------|
 |[antarctica][link_repo_roles_antarctica]       |Installs a few packages and scripts to improve certain comms and access whilst restricted to a large, locked-down network with a lot of firewall restrictions - [sshuttle][link_web_sshuttle], [sneak][link_gitlab_clewsy_scripts_sneak] and some ssh reverse-shell configs. |
-|[clews.pro][link_repo_roles_clews.pro]         |Will configure a box as a containerised web server, clone the [clews.pro][link_gitlab_clewsy_clews.pro] repo, and spin up the containers defined in the [docker-compose.yml][link_gitlab_clewsy_clews.pro_docker-compose] file. |
-|[common][link_repo_roles_common]               |Configurations common to all hosts - hostname, timezone, ssh keys/configs, apt upgrades, common packages, [vim][link_web_vim], [git][link_web_git], host-specific packages, motd, .bashrc, aliases, cron jobs, mounts/fstab, common scripts ([stuff][link_gitlab_clewsy_scripts_stuff], [wami][link_gitlab_clewsy_scripts_wami]). |
+|[common][link_repo_roles_common]               |Configurations common to all hosts - hostname, timezone, ssh keys/configs, common packages, [vim][link_web_vim], [git][link_web_git], host-specific packages, custom motd, .bashrc, aliases, cron jobs, mounts/fstab, common scripts ([stuff][link_gitlab_clewsy_scripts_stuff], [wami][link_gitlab_clewsy_scripts_wami]). |
 |[cups][link_repo_roles_cups]                   |Installs [cups][link_web_cups] and configures printers.  Currently also installs printer-driver-brlaser for compatability with a specific laser printer. |
-|[desktop][link_repo_roles_desktop]             |Configurations for systems with a desktop - [terbling][link_gitlab_clewsy_scripts_terbling], [terminator][link_web_terminator], [guake][link_web_guake], [gnome][link_web_gnome] settings, [plattenalbum][link_web_plattenalbum], [nautilus][link_web_nautilus] settings, [vlc][link_web_vlc]. |
-|[develop][link_repo_roles_develop]             |Install packages I use for development - [VSCode][link_web_vscode], [avrdude][link_web_avrdude] (and dependencies) and other miscellaneous tools. |
-|[docker][link_repo_roles_docker]               |Install [docker][link_web_docker] and [docker-compose][link_web_docker-compose].  Start the docker service and create a standard docker-compose staging directory.  Also create alias dc='docker-compose'. |
+|[desktop][link_repo_roles_desktop]             |Configurations for systems with a desktop - [terbling][link_gitlab_clewsy_scripts_terbling], [terminator][link_web_terminator], [guake][link_web_guake], [gnome][link_web_gnome] settings, [plattenalbum][link_web_plattenalbum], [nautilus][link_web_nautilus] settings, [vlc][link_web_vlc], [shortwave][link_web_shortwave]. |
+|[develop][link_repo_roles_develop]             |Install packages for various development activities - [VSCode][link_web_vscode], [avrdude][link_web_avrdude] (and dependencies) and other miscellaneous tools. |
+|[docker][link_repo_roles_docker]               |Install [docker][link_web_docker] and [docker compose][link_web_docker-compose].  Start the docker service and create a standard docker compose staging directory.  Also create alias dc='docker compose'. |
 |[droid][link_repo_roles_droid]                 |A special role created to configure an android smartphone running [Termux][link_web_termux].  This role has tasks similar to *common* that had to be implemented dfferently (configure ssh, install packages, install scripts).  It also installs some termux "shortcuts" which are basically scripts that can be run from a widget.  |
-|[file_server][link_repo_roles_file_server]     |Mounts a number of disks and configures specified disks or directories as [nfs][link_web_nfs] shares for access over the local network. |
+|[file_server][link_repo_roles_file_server]     |Mounts a number of disks and configures specified disks or directories as [nfs][link_web_nfs] and/or CIFS shares for access over the local network. |
 |[headless][link_repo_roles_headless]           |Install and configure some [ncurses][link_web_ncurses] apps useful for headless systems and systems that are often accessed remotely.  Includes [htop][link_web_htop], [iftop][link_web_iftop], [ncdu][link_web_ncdu], [tmux][link_web_tmux], [bat][link_web_bat] and [Midnight Commander][link_web_mc]. |  
-|[homeassistant][link_repo_roles_homeassistant] |First configure docker role as a pre-requisite.  Then install/remove certain packages as required by the [home assistant supervised installer script][link_web_home_assistant_supervised_installer].  Finally download and run the [home assistant supervised][link_web_home_assistant] installer script.  Currently not in use. |
 |[monster][link_repo_roles_monster]             |Spins up a few docker containers including a web-server ([clews.monster][link_clews_monster]) and some other miscellaneous web-apps. |
 |[motion][link_repo_roles_motion]               |Turn a [raspberry pi][link_web_raspberry_pi] into a web-cam.  Install, configure and enable [motion][link_web_motion] for streaming over the lan. |
-|[motioneye][link_repo_roles_motioneye]         |Turn a [raspberry pi][link_web_raspberry_pi] into a cctv/surveilance webserver using [motioneye][link_web_motioneye] (in a docker container) as the client.  Network (and/or local) camera streams are configured so that they are all accessible through the motioneye webUI. |
 |[mpd][link_repo_roles_mpd]                     |Use on boxes that will be used for streaming audio or playing mp3s.  Install the required and useful packages ([mpd][link_web_mpd], [mpc][link_web_mpc], [ncmpc][link_web_ncmpc]) then configure and run the mpd daemon. |
 |[node][link_repo_roles_node]                   |Set up some common packages and scripts on key boxes that are used for maintaining other boxes.  Install networking packages ([netdiscover][link_web_netdiscover], [nmap][link_web_nmap]), install [ansible][link_web_ansible], clone *this* repository and install some custom scripts ([apt_all][link_gitlab_clewsy_scripts_apt_all], [pong][link_gitlab_clewsy_scripts_pong], [whodis][link_gitlab_clewsy_scripts_whodis]). |
 |[p0wer][link_repo_roles_p0wer]                 |Configure a [raspberry pi][link_web_raspberry_pi] with gpio connected to an RF remote control used to switch on or off mains-connected devices from scripts or a webui.  Clone [p0wer repo][link_gitlab_clewsy_p0wer], compile executable, install webserver packages ([Apache][link_web_apache]) and copy html/php files. |
-|[polly][link_repo_roles_polly]                 |Configue a box to control a [thingm blink1][link_web_blink1] device, then install [polly][link_gitlab_clewsy_scripts_polly] script which polls [clews.pro][link_clews], logs the result and uses the blink1 to indicate the site status. |
-|[qbittorrent][link_repo_roles_qbittorrent]     |Install and configure [qbittorrent][link_web_qbittorrent] client.  This is installed as a [docker][link_web_docker] container, so first the docker role is run, then a docker-compose.yml file is copied and used to pull and run the [qbittorrent container][link_dockerhub_qbittorrent]. |
+|[polly][link_repo_roles_polly]                 |Configue a box to control a [thingm blink1][link_web_blink1] device, then install [polly][link_gitlab_clewsy_scripts_polly] script which polls a specified url, logs the result and uses the blink1 to visually indicate the site status. |
 |[rad10][link_repo_roles_rad10]                 |Configure a [raspberry pi][link_web_raspberry_pi] as an internet radio/music streamer with hardware control and a webui.  First run the mpd role, then clone [rad10d repo][link_gitlab_clewsy_rad10d], compile the daemon and configure a unit-file for auto-starting.  Will also install web server packages ([Apache][link_web_apache]) and copy the html/php files for the rad10 webui. |
 |[rsync_server][link_repo_roles_rsync_server]   |Creates a series of [cron][link_web_cron] jobs that use [rsync][link_web_rsync] to create specified local and remote backups to/from various machines. |
 |[secure][link_repo_roles_secure]               |Configure some basic settings for ssh security and enable/configure a firewall (using [ufw][link_web_ufw]). |
-|[vpn][link_repo_roles_vpn]                     |Install [openvpn][link_web_openvpn] and copy some custom vpn configuration files.  Also copy and configure a custom [vpn][link_gitlab_clewsy_scripts_vpn] initialisation script. |
+|[web_apps][link_repo_roles_web_apps]           |Pulls, configures and runs selected docker images for various web apps.  Available web apps include [audiobookshelf][link_web_audiobookshelf], [calibre_web][link_web_calibre_web], [jellyfin][link_web_jellyfin], [navidrome][link_web_navidrome], [qbittorrent][link_web_qbittorrent], [vaultwarden][link_web_vaultwarden], [watchtower][link_web_watchtower], [nginx][link_web_nginx], [nginx-proxy][link_web_nginx-proxy] and [php][link_web_php].|
 |[wireguard][link_repo_roles_wireguard]         |Install [wireguard][link_web_wireguard] and create either custom "client" or "server" connection configurations.  If enabled, can configure host to operate as a wireguard "server" endpoint.  Also create some aliases for quickly bringing wireguard up/down from the command line. |
-
 
 ## Hosts
 
@@ -112,7 +107,6 @@ The [flexo.yml][link_repo_playbooks_flexo] playbook is a special case.  It will 
 [link_repo_playbooks_zapp]:playbooks/zapp.yml
 [link_repo_playbooks_zoidberg]:playbooks/zoidberg.yml
 [link_repo_roles_antarctica]:roles/antarctica/
-[link_repo_roles_clews.pro]:roles/clews.pro
 [link_repo_roles_common]:roles/common
 [link_repo_roles_cups]:roles/cups
 [link_repo_roles_desktop]:roles/desktop
@@ -121,28 +115,26 @@ The [flexo.yml][link_repo_playbooks_flexo] playbook is a special case.  It will 
 [link_repo_roles_droid]:roles/droid
 [link_repo_roles_file_server]:roles/file_server
 [link_repo_roles_headless]:roles/headless
-[link_repo_roles_homeassistant]:roles/homeassistant
 [link_repo_roles_motion]:roles/motion
 [link_repo_roles_monster]:roles/monster
-[link_repo_roles_motioneye]:roles/motioneye
 [link_repo_roles_mpd]:roles/mpd
 [link_repo_roles_node]:roles/node
 [link_repo_roles_p0wer]:roles/p0wer
 [link_repo_roles_polly]:roles/polly
-[link_repo_roles_qbittorrent]:roles/qbittorrent
 [link_repo_roles_rad10]:roles/rad10
 [link_repo_roles_rsync_server]:/roles/rsync_server
 [link_repo_roles_secure]:roles/secure
-[link_repo_roles_sshuttle]:roles/sshuttle
-[link_repo_roles_vpn]:roles/vpn
+[link_repo_roles_web_apps]:roles/web_apps
 [link_repo_roles_wireguard]:roles/wireguard
 
 [link_web_apache]:https://httpd.apache.org/
+[link_web_audiobookshelf]:https://www.audiobookshelf.org/
 [link_web_avrdude]:https://www.nongnu.org/avrdude/
 [link_web_ansible]:https://docs.ansible.com/
 [link_web_bat]:https://github.com/sharkdp/bat
 [link_web_beaglebone_black]:https://beagleboard.org/black/
 [link_web_blink1]:https://blink1.thingm.com/
+[link_web_calibre_web]:https://github.com/janeczku/calibre-web
 [link_web_conky]:https://github.com/brndnmtthws/conky
 [link_web_cron]:https://en.wikipedia.org/wiki/Cron
 [link_web_cups]:https://www.cups.org/
@@ -152,32 +144,34 @@ The [flexo.yml][link_repo_playbooks_flexo] playbook is a special case.  It will 
 [link_web_git]:https://git-scm.com/
 [link_web_gnome]:https://www.gnome.org
 [link_web_guake]:http://guake-project.org/
-[link_web_home_assistant]:https://www.home-assistant.io/
-[link_web_home_assistant_supervised_installer]:https://github.com/home-assistant/supervised-installer
 [link_web_htop]:https://hisham.hm/htop/
 [link_web_iftop]:http://www.ex-parrot.com/pdw/iftop/
+[link_web_jellyfin]:https://jellyfin.org/
 [link_web_lineageos]:https://lineageos.org/
 [link_web_mc]:https://midnight-commander.org/
+[link_web_motion]:https://motion-project.github.io/
 [link_web_mpc]:https://www.musicpd.org/clients/mpc/
 [link_web_mpd]:https://www.musicpd.org/
-[link_web_plattenalbum]:https://github.com/SoongNoonien/plattenalbum
-[link_web_motion]:https://motion-project.github.io/
-[link_web_motioneye]:https://github.com/ccrisan/motioneye
 [link_web_nautilus]:https://apps.gnome.org/app/org.gnome.Nautilus/
+[link_web_navidrome]:https://www.navidrome.org/
 [link_web_ncdu]:https://dev.yorhel.nl/ncdu
 [link_web_ncmpc]:https://rybczak.net/ncmpcpp/
 [link_web_ncurses]:https://invisible-island.net/ncurses/announce.html#h2-overview
-[link_web_nfs]:https://en.wikipedia.org/wiki/Network_File_System_(protocol)
 [link_web_netdiscover]:https://github.com/netdiscover-scanner/netdiscover
+[link_web_nfs]:https://en.wikipedia.org/wiki/Network_File_System_(protocol)
+[link_web_nginx]:https://hub.docker.com/_/nginx
+[link_web_nginx-proxy]:https://github.com/nginx-proxy/nginx-proxy
 [link_web_nmap]:https://nmap.org/
-[link_web_openmediavault]:https://www.openmediavault.org/
 [link_web_openvpn]:https://openvpn.net/
 [link_web_osmc]:https://osmc.tv/
+[link_web_php]:https://hub.docker.com/_/php/
+[link_web_plattenalbum]:https://github.com/SoongNoonien/plattenalbum
 [link_web_pop_os]:https://pop.system76.com/
 [link_web_qbittorrent]:https://www.qbittorrent.org/
 [link_web_raspberry_pi]:https://www.raspberrypi.org/
 [link_web_raspios]:https://www.raspberrypi.org/software/
 [link_web_rsync]:https://rsync.samba.org/
+[link_web_shortwave]:https://apps.gnome.org/Shortwave/
 [link_web_sshuttle]:https://github.com/sshuttle/sshuttle
 [link_web_terminator]:https://github.com/software-jessies-org/jessies/wiki/Terminator
 [link_web_termux]:https://termux.com/
@@ -185,7 +179,9 @@ The [flexo.yml][link_repo_playbooks_flexo] playbook is a special case.  It will 
 [link_web_ubuntu]:https://ubuntu.com/
 [link_web_ubuntu_pi]:https://ubuntu.com/raspberry-pi
 [link_web_ufw]:https://launchpad.net/ufw
+[link_web_vaultwarden]:https://github.com/dani-garcia/vaultwarden
 [link_web_vim]:https://www.vim.org/
 [link_web_vlc]:https://www.videolan.org/vlc/
 [link_web_vscode]:https://code.visualstudio.com/
+[link_web_watchtower]:https://github.com/containrrr/watchtower
 [link_web_wireguard]:https://www.wireguard.com/

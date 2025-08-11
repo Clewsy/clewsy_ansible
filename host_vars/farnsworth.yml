@@ -41,10 +41,10 @@ packages:
       - org.libreoffice.LibreOffice
       - org.mozilla.firefox
       - org.gimp.GIMP
+      - ca.littlesvr.asunder #Rip CDs to mp3s.
+      - org.gnome.EasyTAG #Edit mp3 id3 tags.
 #      - org.inkscape.Inkscape
-#      - org.gnome.EasyTAG #Edit mp3 id3 tags.
 #      - org.qbittorrent.qBittorrent
-#      - ca.littlesvr.asunder #Rip CDs to mp3s.
 #      - org.kicad.KiCad
 #      - org.signal.Signal
 

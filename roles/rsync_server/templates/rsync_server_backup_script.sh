@@ -26,6 +26,7 @@ rsync   --verbose \
         -e "ssh -p ${SYNC_SSH_PORT} -o StrictHostKeyChecking=no" \
         ${SYNC_SOURCE} ${SYNC_DEST}
 
-# Log tail.
+# Log footer.
+printf "%b" "---------- Job Name : ${SYNC_NAME}\n" >> ${SYNC_LOGFILE}
 printf "%b" "---------- Job Completed : $(date +%Y-%m-%d\ %T)\n" >> ${SYNC_LOGFILE}
 printf "%b" "---------------------------------------------------------\n" >> ${SYNC_LOGFILE}

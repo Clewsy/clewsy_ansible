@@ -1,0 +1,2 @@
+#!/data/data/com.termux/files/usr/bin/bash
+curl -G -d "id=0" http://192.168.1.221/rpc/Switch.Toggle

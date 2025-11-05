@@ -2,21 +2,26 @@
 - name: '[termux_packages] Load termux_packages variables.'
   include_vars: termux_packages_vars.yml
 
-- name: '[termux_packages] Install python-apt.'
-  apt:
-    name: python-apt
-    state: latest
-
-- name: '[termux_packages] Update apt cache and run a full upgrade.'
-  apt:
-    upgrade: 'full'
-    update_cache: yes
-    autoremove: yes
-    autoclean: yes
-    cache_valid_time: 86400 #Cache is valid for 24 hours.
+#- name: '[termux_packages] Install python-apt.'
+#  apt:
+#    name: python-apt
+#    state: latest
+#
+#- name: '[termux_packages] Update apt cache and run a full upgrade.'
+#  apt:
+#    upgrade: 'full'
+#    update_cache: yes
+#    autoremove: yes
+#    autoclean: yes
+#    cache_valid_time: 86400 #Cache is valid for 24 hours.
+#
+#- name: '[termux_packages] Install common termux apt packages.'
+#  apt:
+#    name: "{{ item }}"
+#    state: latest
+#  with_items: "{{ termux_apt_packages }}"
 
 - name: '[termux_packages] Install common termux apt packages.'
-  apt:
-    name: "{{ item }}"
-    state: latest
+  shell:
+    cmd: "apt install {{ item }} -y"
   with_items: "{{ termux_apt_packages }}"

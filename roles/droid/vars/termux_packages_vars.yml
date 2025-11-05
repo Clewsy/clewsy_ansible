@@ -6,3 +6,4 @@ termux_apt_packages:
   - rsync
   - htop
   - man
+  - youtubedr

@@ -27,8 +27,8 @@ packages:
 #      - vim
   flatpak:
     install:
-      - org.gimp.GIMP
-#      - org.qbittorrent.qBittorrent
+#      - org.gimp.GIMP
+      - org.qbittorrent.qBittorrent
 #      - ca.littlesvr.asunder #Rip CDs to mp3s.
 #      - org.gnome.EasyTAG #Edit mp3 id3 tags.
 
@@ -75,12 +75,12 @@ desktop:
     conky: false
     guake: true
     plattenalbum: false
-    shortwave: true
+    shortwave: false
     terbling: true
     terminator: true
     vlc: true
   nautilus_bookmarks: #Add bookmarks to nautilus sidebar.
-    - "davs://nc.clews.tech/remote.php/dav/files/jadon nextcloud"
+#    - "davs://nc.clews.tech/remote.php/dav/files/jadon nextcloud"
   autostart_appplications:
     - terminator
 

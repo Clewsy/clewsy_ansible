@@ -213,11 +213,11 @@ web_apps:
 #  audiobookshelf: true
 #  calibre_web: true
 #  jellyfin: true
+#  joplin: true
 #  navidrome: true
 #  qbittorrent: true
 #  vaultwarden: true
 #  watchtower: true
-#  php: true
 #  php: true
 #  clews_dev: true
 #  clews_tech: true

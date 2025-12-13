@@ -16,6 +16,10 @@
   include_tasks: jellyfin.yml
   when: web_apps.jellyfin is defined and web_apps.jellyfin
 
+- name: '[joplin] Install, configure and enable joplin.'
+  include_tasks: joplin.yml
+  when: web_apps.joplin is defined and web_apps.joplin
+
 - name: '[navidrome] Install, configure and enable navidrome.'
   include_tasks: navidrome.yml
   when: web_apps.navidrome is defined and web_apps.navidrome

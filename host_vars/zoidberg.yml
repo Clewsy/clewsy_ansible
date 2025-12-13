@@ -38,6 +38,7 @@ web_apps:
   audiobookshelf: true
   calibre_web: true
   jellyfin: false
+  joplin: true
   navidrome: true
   qbittorrent: false
   vaultwarden: true

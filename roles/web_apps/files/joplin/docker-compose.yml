@@ -1,0 +1,47 @@
+services:
+
+######################################### joplin database container
+  joplin_db:
+    image: postgres:16
+    container_name: joplin_db
+    networks:
+      - nginx-proxy_reverse-proxy
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+#    ports:
+#      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=${JOPLIN_DB_PASSWORD}
+      - POSTGRES_USER=joplin
+      - POSTGRES_DB=joplindb
+    restart: unless-stopped
+
+######################################### joplin web app container
+  joplin:
+    image: joplin/server:latest
+    container_name: joplin
+    networks:
+      - nginx-proxy_reverse-proxy
+    depends_on:
+      - joplin_db
+#    ports:
+#      - "22300:22300"
+    environment:
+      - APP_PORT=22300
+      - APP_BASE_URL=${JOPLIN_APP_BASE_URL}
+      - DB_CLIENT=pg
+      - POSTGRES_PASSWORD=${JOPLIN_DB_PASSWORD}
+      - POSTGRES_DATABASE=joplindb
+      - POSTGRES_USER=joplin
+      - POSTGRES_PORT=5432
+      - POSTGRES_HOST=joplin_db
+      - VIRTUAL_PORT=22300
+      - VIRTUAL_HOST=${JOPLIN_URL}
+      - LETSENCRYPT_HOST=${JOPLIN_URL}
+      - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL}
+    restart: unless-stopped
+
+######################################### Docker-managed networks
+networks:
+  nginx-proxy_reverse-proxy:
+    external: true

@@ -1,0 +1,35 @@
+---
+- name: '[joplin] Load joplin variables.'
+  include_vars: joplin_vars.yml
+  
+- name: '[joplin] Create joplin docker-compose staging area.'
+  file:
+    path: "{{ joplin_root_dir }}"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: u=rwx,g=rx,o=rx
+
+- name: "[joplin] Copy docker-compose.yml file to {{ joplin_root_dir }} ready for use by docker-compose."
+  copy:
+    src: files/joplin/docker-compose.yml
+    dest: "{{ joplin_docker_compose_yml }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0644'
+
+- name: "[joplin] Copy .env file to {{ joplin_root_dir }} ready for use by the joplin container."
+  copy:
+    src: files/joplin/.env
+    dest: "{{ joplin_dot_env }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    decrypt: true
+    mode: '0640'
+
+- name: '[joplin] Pull docker container images listed in docker-compose.yml.'
+  community.docker.docker_compose_v2:
+    project_src: "{{ joplin_root_dir }}"
+    state: present
+    pull: missing
+    recreate: auto #Containers will be recreated if a new version is pulled.

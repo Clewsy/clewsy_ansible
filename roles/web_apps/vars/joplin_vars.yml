@@ -1,0 +1,4 @@
+---
+joplin_root_dir: "/home/docker/joplin"
+joplin_docker_compose_yml: "{{ joplin_root_dir }}/docker-compose.yml"
+joplin_dot_env: "{{ joplin_root_dir }}/.env"

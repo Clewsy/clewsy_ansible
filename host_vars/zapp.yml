@@ -68,6 +68,15 @@ rsync_server_syncs: #Jobs will be added to the root crontab.
     day: "*"
     month: "*"
     weekday: "*"
+  - name: 'push_data'
+    source: '/export/data'
+    dest: "b4t@{{ backup_server_ip }}:/home/b4t/backups/"
+    ssh_port: "{{ backup_server_port }}"
+    minute: "0"
+    hour: "3"
+    day: "*"
+    month: "*"
+    weekday: "*"
 
 mc_skin: modarcon16root-defbg
 

@@ -23,7 +23,7 @@ ansible_sudo_pass: !vault |
 packages:
   apt:
     install:
-      - ytdlp
+      - yt-dlp
       - curl
 #      - vim
   snap:

@@ -23,12 +23,18 @@ ansible_sudo_pass: !vault |
 packages:
   apt:
     install:
-#      - curl
+      - ytdlp
+      - curl
 #      - vim
+  snap:
+    remove:
+      - firefox
   flatpak:
     install:
+      - org.libreoffice.LibreOffice
+      - org.mozilla.firefox
 #      - org.gimp.GIMP
-      - org.qbittorrent.qBittorrent
+#      - org.qbittorrent.qBittorrent
 #      - ca.littlesvr.asunder #Rip CDs to mp3s.
 #      - org.gnome.EasyTAG #Edit mp3 id3 tags.
 

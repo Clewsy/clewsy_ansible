@@ -1,11 +1,4 @@
 ---
-- name: '[check_ssh_port] Determine the correct ssh port for host.'
-  include_tasks: check_ssh_port.yml
-  when: sshd_port is defined #Only need to check and set the ssh port if the default is overridden in the host-specific vars file.
-
-- name: '[gather_facts] Now ssh port is known, manually gather facts.'
-  setup:
-
 - name: '[host_identity] Configure basic host information.'
   include_tasks: host_identity.yml
 

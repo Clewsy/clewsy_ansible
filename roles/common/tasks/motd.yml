@@ -23,13 +23,13 @@
     owner: root
     group: root
 
-- name: '[motd] Determine if a host-specific motd file exists (motd_{{ ansible_hostname }}).'
-  local_action: stat path="{{ role_path }}/files/motd/motd_{{ ansible_hostname }}"
+- name: '[motd] Determine if a host-specific motd file exists (motd_{{ ansible_facts["hostname"] }}).'
+  local_action: stat path="{{ role_path }}/files/motd/motd_{{ ansible_facts['hostname'] }}"
   register: host_specific_motd
 
 - name: '[motd] Copy host-specific motd file to host.'
   copy:
-    src: "files/motd/motd_{{ ansible_hostname }}"
+    src: "files/motd/motd_{{ ansible_facts['hostname'] }}"
     dest: /etc/update-motd.d/motd
     mode: '0644'
     owner: root

@@ -22,7 +22,7 @@
     mode: '0755'
   when: stuff is changed
 
-- name: "[stuff] Customize stuff colour theme - desired colour for {{ ansible_hostname }} is {{ theme_colour | default(CYAN) }}."
+- name: "[stuff] Customize stuff colour theme - desired colour for {{ ansible_facts['hostname'] }} is {{ theme_colour | default(CYAN) }}."
   lineinfile:
     path: "{{ user_scripts_directory }}/stuff"
     regexp: '^DEFAULT_COL='

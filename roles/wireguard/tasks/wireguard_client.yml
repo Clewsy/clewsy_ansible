@@ -5,7 +5,7 @@
 ## Configure kif wireguard confs.
 - name: '[wireguard_client] Copy wireguard configuration file - client connect to kif (interface wg_kif).'
   copy:
-    src: "files/wg_kif/wg_kif_client_{{ ansible_hostname }}.conf"
+    src: "files/wg_kif/wg_kif_client_{{ ansible_facts['hostname'] }}.conf"
     decrypt: yes
     dest: "/etc/wireguard/wg_kif.conf"
     owner: "root"
@@ -15,7 +15,7 @@
 ## Configure b4t wireguard confs.
 - name: '[wireguard_client] Copy wireguard configuration file - client connect to b4t (interface wg_b4t).'
   copy:
-    src: "files/wg_b4t/wg_b4t_client_{{ ansible_hostname }}.conf"
+    src: "files/wg_b4t/wg_b4t_client_{{ ansible_facts['hostname'] }}.conf"
     decrypt: yes
     dest: "/etc/wireguard/wg_b4t.conf"
     owner: "root"

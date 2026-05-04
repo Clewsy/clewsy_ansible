@@ -25,7 +25,7 @@
 
 - name: '[gnome_config] Copy desktop backound image to ~/pictures/wallpapers.'
   copy:
-    src: "files/gnome_config/{{ ansible_hostname }}_background"
+    src: "files/gnome_config/{{ ansible_facts['hostname'] }}_background"
     dest: "{{ gnome_config_background_file }}"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"

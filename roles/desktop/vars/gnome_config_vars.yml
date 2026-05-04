@@ -1,5 +1,5 @@
 ---
-profile_icon_dest: "{% if ansible_distribution == 'Ubuntu' %}\
+profile_icon_dest: "{% if ansible_facts['distribution'] == 'Ubuntu' %}\
                       {{ ansible_user_home_dir }}/.face\
                     {% elif ansible_distribution == 'Pop!_OS' %}\
                       /var/lib/AccountsService/icons/{{ ansible_user }}\
@@ -19,7 +19,7 @@ gnome_config_prefs:
   - { key: "/org/gnome/desktop/interface/clock-format", value: "'24h'" }  #24-hour time.
   - { key: "/org/gnome/settings-daemon/plugins/color/night-light-enabled", value: "true" }  #Activate the night light.
   - { key: "/org/gnome/desktop/interface/color-scheme", value: "'prefer-dark'" }  #Dark mode.
-  - { key: "/org/gnome/desktop/interface/gtk-theme", value: "{% if ansible_distribution == 'Ubuntu' %}\
+  - { key: "/org/gnome/desktop/interface/gtk-theme", value: "{% if ansible_facts['distribution'] == 'Ubuntu' %}\
                                                                'Adwaita-dark'\
                                                              {% elif ansible_distribution == 'Pop!_OS' %}\
                                                                'Pop-dark'\

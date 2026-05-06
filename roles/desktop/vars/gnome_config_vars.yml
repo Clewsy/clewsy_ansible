@@ -41,4 +41,7 @@ gnome_config_prefs:
   - { key: "/org/gnome/desktop/wm/keybindings/switch-windows", value: "['']" } #Need to clear so binding can be used for switch-applications.
   - { key: "/org/gnome/desktop/wm/keybindings/switch-applications", value: "['<Alt>Tab']" }
   - { key: "/org/gnome/desktop/wm/keybindings/switch-applications-backward", value: "['<Shift><Alt>Tab']" }
-  - { key: "/org/gnome/mutter/overlay-key", value: "['<Super_L>']" }
+  ##### The following few keys disable ubuntu's window tiling - nneded so the preferred super keybindings work.
+  - { key: "/org/gnome/shell/enabled-extensions", value: "@as []" }
+  - { key: "/org/gnome/shell/disabled-extensions", value: "['tiling-assistant@ubuntu.com']" }
+  - { key: "/org/gnome/shell/extensions/tiling-assistant/overridden-settings", value: "['']" }

@@ -63,15 +63,16 @@ desktop:
     calibre: true
     conky: true
     guake: true
-    plattenalbum: true
+    plattenalbum: false
     terbling: true
     terminator: true
     vlc: true
   nautilus_bookmarks: #Add bookmarks to nautilus sidebar.
-    - "davs://nc.clews.tech/remote.php/dav/files/jadon nextcloud"
+#    - "davs://nc.clews.tech/remote.php/dav/files/jadon nextcloud"
   autostart_appplications:
     - terminator
-    - conky
+    - guake
+#    - conky #time to retire conky from the laptop.
 
 wireguard:
   client: true

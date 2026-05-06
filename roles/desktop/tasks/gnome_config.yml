@@ -7,7 +7,7 @@
     name: "{{ gnome_packages }}"
     state: latest
 
-- name: '[gnome_config] Copy desktop profile image to {{ profile_icon_dest }} (expected location for distribution {{ ansible_distribution }}).'
+- name: '[gnome_config] Copy desktop profile image to {{ profile_icon_dest }} (expected location for distribution {{ ansible_facts["distribution"] }}).'
   copy:
     src: "files/gnome_config/{{ ansible_user }}.png"
     dest: "{{ profile_icon_dest }}"

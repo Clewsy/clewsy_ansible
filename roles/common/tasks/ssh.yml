@@ -36,7 +36,7 @@
     decrypt: yes
 
 - name: '[ssh] Set up {{ ansible_user }} ssh authorized_keys.'
-  authorized_key:
+  ansible.posix.authorized_key:
     user: "{{ ansible_user }}"
     state: present
     key: "{{ item }}"
@@ -78,7 +78,7 @@
     group: root
 
 - name: '[ssh] Set up root ssh authorized_keys.'
-  authorized_key:
+  ansible.posix.authorized_key:
     user: root
     state: present
     key: "{{ item }}"

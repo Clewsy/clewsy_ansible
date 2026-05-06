@@ -16,6 +16,11 @@ gnome_config_background_dir: "{{ ansible_user_home_dir }}/pictures/wallpapers"
 gnome_config_background_file: "{{ gnome_config_background_dir }}/background.jpg"
 
 gnome_config_prefs:
+  ##### The following few keys disable ubuntu's window tiling - needed so the preferred super keybindings work.
+  - { key: "/org/gnome/shell/enabled-extensions", value: "@as []" }
+  - { key: "/org/gnome/shell/disabled-extensions", value: "['tiling-assistant@ubuntu.com']" }
+  - { key: "/org/gnome/shell/extensions/tiling-assistant/overridden-settings", value: "['']" }
+  #####
   - { key: "/org/gnome/desktop/interface/clock-format", value: "'24h'" }  #24-hour time.
   - { key: "/org/gnome/settings-daemon/plugins/color/night-light-enabled", value: "true" }  #Activate the night light.
   - { key: "/org/gnome/desktop/interface/color-scheme", value: "'prefer-dark'" }  #Dark mode.
@@ -41,7 +46,3 @@ gnome_config_prefs:
   - { key: "/org/gnome/desktop/wm/keybindings/switch-windows", value: "['']" } #Need to clear so binding can be used for switch-applications.
   - { key: "/org/gnome/desktop/wm/keybindings/switch-applications", value: "['<Alt>Tab']" }
   - { key: "/org/gnome/desktop/wm/keybindings/switch-applications-backward", value: "['<Shift><Alt>Tab']" }
-  ##### The following few keys disable ubuntu's window tiling - nneded so the preferred super keybindings work.
-  - { key: "/org/gnome/shell/enabled-extensions", value: "@as []" }
-  - { key: "/org/gnome/shell/disabled-extensions", value: "['tiling-assistant@ubuntu.com']" }
-  - { key: "/org/gnome/shell/extensions/tiling-assistant/overridden-settings", value: "['']" }

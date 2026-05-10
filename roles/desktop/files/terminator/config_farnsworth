@@ -44,17 +44,16 @@
 #      temporary change for antarctic deployment.
 #      command = ssh -4 -o StrictHostKeyChecking=no b4t@seymour; bash
 #      command = htop; bash
-      command = ssh -4 -o StrictHostKeyChecking=no amy; bash
+      command = ssh -4 -o StrictHostKeyChecking=no farnsworth; bash
     [[[terminal4]]]
       type = Terminal
       parent = child2
       order = 1
       profile = default
       uuid = 54b5b915-fc98-4d08-9e94-5880dcb4ddf2
-#      temporary change for antarctic deployment.
-#      command = /home/clewsy/bin/pong; bash
 #      command = sshuttle -r amy 0.0.0.0/0 --dns -v; bash
-      command = htop; bash
+#      command = htop; bash
+      command = /home/clewsy/bin/pong; bash
     [[[terminal5]]]
       type = Terminal
       parent = child1

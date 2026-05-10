@@ -34,21 +34,20 @@ packages:
 #      - transmission-gtk
   snap:
     remove:
-      - libreoffice
       - firefox
   flatpak:
     install:
       - org.libreoffice.LibreOffice
       - org.mozilla.firefox
       - org.gimp.GIMP
-      - ca.littlesvr.asunder #Rip CDs to mp3s.
-      - org.gnome.EasyTAG #Edit mp3 id3 tags.
+#      - ca.littlesvr.asunder #Rip CDs to mp3s.
+#      - org.gnome.EasyTAG #Edit mp3 id3 tags.
 #      - org.inkscape.Inkscape
 #      - org.qbittorrent.qBittorrent
 #      - org.kicad.KiCad
 #      - org.signal.Signal
 
-theme_colour: ORANGE
+theme_colour: GREEN
 theme_prompt: "{{ FARNSWORTH }}"
 
 mounts:
@@ -90,12 +89,13 @@ desktop:
     terminator: true
     vlc: true
   nautilus_bookmarks: #Add bookmarks to nautilus sidebar.
-    - "davs://nc.clews.tech/remote.php/dav/files/jadon nextcloud"
+#    - "davs://nc.clews.tech/remote.php/dav/files/jadon nextcloud"
     - "file:///mnt/zapp"
     - "file:///mnt/windoze windoze"
   autostart_appplications:
     - terminator
     - conky
+    - guake
 
 mc_skin: modarcon16-defbg
 

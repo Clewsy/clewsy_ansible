@@ -1,0 +1,22 @@
+---
+- name: '[kodi] Load kodi variables.'
+  include_vars: kodi_vars.yml
+
+- name: '[kodi] Ensure all packages required for kodi are installed.'
+  apt:
+    name: "{{ kodi_packages }}"
+    state: latest
+
+- name: '[kodi] Ensure the autostart directory exists.'
+  ansible.builtin.file:
+    path: "{{ ansible_user_home_dir }}/.config/autostart"
+    state: directory
+    mode: '0755'
+
+- name: '[kodi] Create symbolic link to kodi autostart entry.'
+  ansible.builtin.file:
+    src: "/usr/share/applications/kodi.desktop"
+    dest: "{{ ansible_user_home_dir }}/.config/autostart/kodi.desktop"
+    owner: root
+    group: root
+    state: link

@@ -48,6 +48,7 @@ packages:
 #      - geary
   flatpak:
     install:
+#      - org.mozilla.firefox
 #      - org.gimp.GIMP
 #      - org.libreoffice.LibreOffice
 #      - org.inkscape.Inkscape

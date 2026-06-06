@@ -1,0 +1,11 @@
+---
+- name: '[media_center] Load media_center variables.'
+  include_vars: media_center_vars.yml
+
+- name: '[media_center] Configure gnome desktop dconf settings'
+  dconf:
+    key: "{{ item.key }}"
+    value: "{{ item.value }}"
+    state: present
+  become_user: "{{ ansible_user }}"
+  with_items: "{{ media_center_prefs }}"

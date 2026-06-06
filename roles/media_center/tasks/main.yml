@@ -1,0 +1,6 @@
+---
+- name: '[media_center] Configure for use with a tv.'
+  include_tasks: media_center.yml
+
+- name: '[kodi] Install kodi and set to autostart'
+  include_tasks: kodi.yml

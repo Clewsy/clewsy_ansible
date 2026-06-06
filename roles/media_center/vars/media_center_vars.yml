@@ -1,0 +1,17 @@
+---
+media_center_prefs:
+  - { key: "/org/gnome/settings-daemon/plugins/power/sleep-inactive-ac-timeout", value: "3600" }
+  - { key: "/org/gnome/settings-daemon/plugins/power/sleep-inactive-ac-type", value: "'nothing'" }
+  - { key: "/org/gnome/settings-daemon/plugins/color/night-light-schedule-automatic", value: "false" }
+  - { key: "/org/gnome/desktop/interface/accent-color", value: "'yellow'" }
+  - { key: "/org/gnome/desktop/interface/color-scheme", value: "'prefer-dark'" }
+  - { key: "/org/gnome/desktop/interface/gtk-theme", value: "'Yaru-yellow-dark'" }
+  - { key: "/org/gnome/desktop/interface/icon-theme", value: "'Yaru-yellow-dark'" }
+  - { key: "/org/gnome/desktop/session/idle-delay", value: "uint32 900" }
+  - { key: "/org/gnome/desktop/screensaver/lock-enabled", value: "false" }
+  - { key: "/org/gnome/shell/extensions/ding/show-home", value: "false" }
+  - { key: "/org/gnome/desktop/interface/clock-format", value: "'24h'" }  #24-hour time.
+  - { key: "/org/gnome/shell/extensions/dash-to-dock/show-favorites", value: "false" }  #Remove favourites shortcuts from ubuntu dock.
+  - { key: "/org/gnome/shell/extensions/dash-to-dock/show-trash", value: "false" }  #Remove trash shortcut from ubuntu dock.
+  - { key: "/org/gnome/desktop/background/picture-uri-dark", value: "''" }  #Remove wallpaper.
+  - { key: "/org/gnome/desktop/background/primary-color", value: "'#000000'" }  #Solid black desktop background.

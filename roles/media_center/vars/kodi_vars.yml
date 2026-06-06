@@ -1,0 +1,4 @@
+---
+kodi_packages:
+  - kodi
+  - cec-utils

@@ -1,0 +1,31 @@
+---
+- name: Configure hypnotoad.
+  hosts: hypnotoad
+  become: yes
+  gather_facts: true
+
+  handlers:
+    - import_tasks: handlers/handlers.yml
+
+  roles:
+    - common
+#    - secure
+#    - headless
+#    - node
+#    - cups
+#    - rsync_server
+#    - file_server
+#    - qbittorrent
+#    - wireguard
+#    - antarctica
+#    - homeassistant
+#    - desktop
+#    - develop
+#    - docker
+#    - motion
+#    - mpd
+#    - rad10
+#    - p0wer
+#    - polly
+#    - droid
+#    - web_apps

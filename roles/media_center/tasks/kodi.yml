@@ -7,6 +7,12 @@
     name: "{{ kodi_packages }}"
     state: latest
 
+- name: '[kodi] Add user to dialout group - needed for cec control.'
+  ansible.builtin.user:
+    name: "{{ ansible_user }}"
+    groups: dialout
+    append: yes
+
 - name: '[kodi] Ensure the autostart directory exists.'
   ansible.builtin.file:
     path: "{{ ansible_user_home_dir }}/.config/autostart"

@@ -24,7 +24,7 @@ packages:
       - rename # Not installed by default with ubuntu server for some reason.
 #      - youtube-dl
 
-theme_colour: RED
+theme_colour: YELLOW
 theme_prompt: "{{ ZAPP }}" 
 
 file_server_disks:

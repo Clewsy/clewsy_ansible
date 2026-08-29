@@ -1,0 +1,17 @@
+services:
+
+######################################### esphome web app container
+  esphome:
+    image: ghcr.io/esphome/esphome
+    container_name: esphome
+    environment:
+      - ESPHOME_USERNAME=${ESPHOME_USERNAME}
+      - ESPHOME_PASSWORD=${ESPHOME_PASSWORD}
+    volumes:
+      - ./config:/config
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - 6052:6052
+    privileged: true
+    network_mode: host
+    restart: unless-stopped

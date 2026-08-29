@@ -1,0 +1,35 @@
+---
+- name: '[esphome] Load esphome variables.'
+  include_vars: esphome_vars.yml
+  
+- name: '[esphome] Create esphome docker-compose staging area.'
+  file:
+    path: "{{ esphome_root_dir }}"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: u=rwx,g=rx,o=rx
+
+- name: "[esphome] Copy docker-compose.yml file to {{ esphome_root_dir }} ready for use by docker-compose."
+  copy:
+    src: files/esphome/docker-compose.yml
+    dest: "{{ esphome_docker_compose_yml }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0644'
+
+- name: "[esphome] Copy .env file to {{ esphome_root_dir }} ready for use by the esphome container."
+  copy:
+    src: files/esphome/.env
+    dest: "{{ esphome_dot_env }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    decrypt: true
+    mode: '0640'
+
+- name: '[esphome] Pull docker container images listed in docker-compose.yml.'
+  community.docker.docker_compose_v2:
+    project_src: "{{ esphome_root_dir }}"
+    state: present
+    pull: missing
+    recreate: auto #Containers will be recreated if a new version is pulled.

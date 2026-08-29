@@ -12,6 +12,10 @@
   include_tasks: calibre_web.yml
   when: web_apps.calibre_web is defined and web_apps.calibre_web
 
+- name: '[esphome] Install, configure and enable esphome.'
+  include_tasks: esphome.yml
+  when: web_apps.esphome is defined and web_apps.esphome
+
 - name: '[jellyfin] Install, configure and enable jellyfin.'
   include_tasks: jellyfin.yml
   when: web_apps.jellyfin is defined and web_apps.jellyfin

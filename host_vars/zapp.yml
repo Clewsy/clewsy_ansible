@@ -88,6 +88,7 @@ web_apps:
   jellyfin: true
   qbittorrent: true
   watchtower: true
+  esphome: true
 
 ssh_public_key: !vault |
   $ANSIBLE_VAULT;1.1;AES256

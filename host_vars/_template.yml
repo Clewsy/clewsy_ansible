@@ -213,6 +213,7 @@ web_apps:
 #  nginx_proxy: true
 #  audiobookshelf: true
 #  calibre_web: true
+#  esphome: true
 #  jellyfin: true
 #  joplin: true
 #  navidrome: true

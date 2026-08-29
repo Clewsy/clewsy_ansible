@@ -1,0 +1,4 @@
+---
+esphome_root_dir: "/home/docker/esphome"
+esphome_docker_compose_yml: "{{ esphome_root_dir }}/docker-compose.yml"
+esphome_dot_env: "{{ esphome_root_dir }}/.env"

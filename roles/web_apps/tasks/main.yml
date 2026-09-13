@@ -58,3 +58,9 @@
 - name: '[clews.tech] Clone, configure and enable clews.tech.'
   include_tasks: clews.tech.yml
   when: web_apps.clews_tech is defined and web_apps.clews_tech
+
+## set ports to open in the host_vars file.
+
+- name: '[ports] Set ufw rule/s to allow ports needed by any installed web apps.'
+  include_tasks: ports.yml
+  when: web_apps.ports is defined

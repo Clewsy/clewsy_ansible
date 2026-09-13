@@ -25,18 +25,13 @@ packages:
 theme_colour: RED
 theme_prompt: "{{ ZOIDBERG }}"
 
-mounts:
-#  - { mount_source: /dev/mmcblk0p1, mount_path: '/media/cache', mount_fstype: 'auto', mount_opts: "auto,rw,async,user,uid={{ ansible_user }},gid={{ ansible_user }},nofail" }
-
-nfs_mounts:
-#  - { mount_source: 'zapp:/export/cl0ud', mount_path: '/mnt/zapp/cl0ud' }
-
 mc_skin: modarin256-defbg
 
 web_apps:
   nginx_proxy: true
   audiobookshelf: true
   calibre_web: true
+  esphome: false
   jellyfin: false
   joplin: true
   navidrome: true
@@ -47,6 +42,21 @@ web_apps:
   clews_dev: true
   clews_pro: true
   clews_tech: true
+  ports:
+    - !vault |
+      $ANSIBLE_VAULT;1.1;AES256
+      34376537633330653835316434623735643562336537363930623430656635383938373038353763
+      6665393933643063613861646431353530323137306432340a303639663737353038393631643064
+      36616334376438393962313236366463333065633165633735383433303134386632616631333930
+      3431626565343339360a306233646561613164383363643334383139396630333538646463613166
+      3062
+    - !vault |
+      $ANSIBLE_VAULT;1.1;AES256
+      63633330646362323339653565626238666165346166666462356334633634633365636137643863
+      3863336333656330366366623438343038353031616434360a633937333936323434363134613332
+      33333164333537343738363365393130346565666130323436363737333862633838636334653735
+      6463656339616331650a366133363830386665636630366463376638336263633662663864633137
+      6131
 
 sshd_port: !vault |
   $ANSIBLE_VAULT;1.1;AES256

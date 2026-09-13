@@ -224,6 +224,9 @@ web_apps:
 #  clews_dev: true
 #  clews_tech: true
 #  clews_pro: true
+#  ports:
+#    - 5678
+#    - 6789
 
 #antarctica role - some tasks useful for the restricted network and bandwidth.
 antarctica:

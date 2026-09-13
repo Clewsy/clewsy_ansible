@@ -1,0 +1,7 @@
+---
+- name: '[ports] Set ufw rule/s to allow ports needed by any installed web apps.' 
+  ufw:
+    rule: allow
+    port: "{{ item }}"
+  notify: restart ufw
+  with_items: "{{ web_apps.ports }}"

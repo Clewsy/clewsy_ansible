@@ -2,7 +2,7 @@
 - name: Configure zoidberg.
   hosts: zoidberg
   become: yes
-  gather_facts: false
+  gather_facts: true
 
   handlers:
     - import_tasks: handlers/handlers.yml
@@ -12,9 +12,5 @@
     - secure
     - headless
     - docker
-    - rsync_server
     - web_apps
     - polly
-
-  # Run tasks specific only to zoidberg.
-  tasks:

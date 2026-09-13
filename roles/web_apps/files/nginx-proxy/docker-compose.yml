@@ -15,7 +15,6 @@ services:
       - ./html:/usr/share/nginx/html
       - ./dhparam:/etc/nginx/dhparam
       - ./certs:/etc/nginx/certs:ro
-      - ./clews_custom_proxy_settings.conf:/etc/nginx/conf.d/my_custom_proxy_settings.conf      # Enables nc uploads>1MB (client_max_body_size 500m)
       - /var/run/docker.sock:/tmp/docker.sock:ro
       - /etc/localtime:/etc/localtime:ro
     restart: unless-stopped

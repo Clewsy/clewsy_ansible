@@ -25,14 +25,14 @@
   with_items: "{{ source_stat.results }}"
   when: item.stat.exists == true #Will only run if the source_path directory exists.
 
-- name: '[nfs] Ensure shares are writable.'
-  file:
-    path: "{{ item.mount.share_path }}"
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
-    mode: '0777'
-  with_items: "{{ source_stat.results }}"
-  when: item.stat.exists == true #Will only run if the source_path directory exists.
+#- name: '[nfs] Ensure shares are writable.'
+#  file:
+#    path: "{{ item.mount.share_path }}"
+#    owner: "{{ ansible_user }}"
+#    group: "{{ ansible_user }}"
+#    mode: '0777'
+#  with_items: "{{ source_stat.results }}"
+#  when: item.stat.exists == true #Will only run if the source_path directory exists.
 
 - name: '[nfs] Update /etc/exports with nfs shares.'
   lineinfile:

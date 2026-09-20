@@ -28,39 +28,39 @@ theme_colour: YELLOW
 theme_prompt: "{{ ZAPP }}" 
 
 file_server_disks:
-  - { uuid: '0650992b-c39e-4a30-8cc8-90ac94503b59', label: 'cl0ud' }    #240GB SSD (2*240GB Kingston SSD in raid1).
-  - { uuid: '42b9d5de-8e2e-4524-b544-6f988dbff09e', label: 'fileb0t' }  #4.0TB SG spinning rust hot-swap bay.
-  - { uuid: 'bf535493-fb42-4997-b08a-d942e0bad3fe', label: 'm0n0l1th' } #1.5TB WD spinning rust hot-swap bay.
-  - { uuid: 'afb65dfc-30ca-4396-a2ce-3576f5cfc29c', label: 'y4nk' }     #120GB Kingston SSD hot-swap bay.
+#  - { uuid: '0650992b-c39e-4a30-8cc8-90ac94503b59', label: 'cl0ud' }    #240GB SSD (2*240GB Kingston SSD in raid1).
+#  - { uuid: '42b9d5de-8e2e-4524-b544-6f988dbff09e', label: 'fileb0t' }  #4.0TB SG spinning rust hot-swap bay.
+#  - { uuid: 'bf535493-fb42-4997-b08a-d942e0bad3fe', label: 'm0n0l1th' } #1.5TB WD spinning rust hot-swap bay.
+#  - { uuid: 'afb65dfc-30ca-4396-a2ce-3576f5cfc29c', label: 'y4nk' }     #120GB Kingston SSD hot-swap bay.
 
 file_server_nfs_shares:
-  - { source_path: '/srv/cl0ud', share_path: '/export/cl0ud' }
-  - { source_path: '/srv/fileb0t/audiobooks', share_path: '/export/audiobooks' }
-  - { source_path: '/srv/fileb0t/data', share_path: '/export/data' }
-  - { source_path: '/srv/fileb0t/movies', share_path: '/export/movies' }
-  - { source_path: '/srv/fileb0t/mp3s', share_path: '/export/mp3s' }
-  - { source_path: '/srv/fileb0t/tv', share_path: '/export/tv' }
-  - { source_path: '/srv/fileb0t/downloads', share_path: '/export/downloads' }
-  - { source_path: '/srv/m0n0l1th', share_path: '/export/m0n0l1th' }
-  - { source_path: '/srv/y4nk', share_path: '/export/y4nk' }
-file_server_cifs_shares:
-  - { source_path: '/srv/fileb0t/audiobooks', name: 'audiobooks' }
-  - { source_path: '/srv/fileb0t/mp3s', name: 'mp3s' }
-  - { source_path: '/srv/fileb0t/movies', name: 'movies' }
-  - { source_path: '/srv/fileb0t/tv', name: 'tv' }
-  - { source_path: '/srv/m0n0l1th', name: 'm0n0l1th' }
+#  - { source_path: '/data/files_0/audiobooks', share_path: '/export/audiobooks' }
+#  - { source_path: '/data/files_0/downloads', share_path: '/export/downloads' }
+#  - { source_path: '/data/files_0/movies', share_path: '/export/movies' }
+#  - { source_path: '/data/files_0/mp3s', share_path: '/export/mp3s' }
+#  - { source_path: '/data/files_0/tv', share_path: '/export/tv' }
+#  - { source_path: '/srv/cl0ud', share_path: '/export/cl0ud' }
+#  - { source_path: '/srv/fileb0t/data', share_path: '/export/data' }
+#  - { source_path: '/srv/m0n0l1th', share_path: '/export/m0n0l1th' }
+#  - { source_path: '/srv/y4nk', share_path: '/export/y4nk' }
+#file_server_cifs_shares:
+#  - { source_path: '/srv/fileb0t/audiobooks', name: 'audiobooks' }
+#  - { source_path: '/srv/fileb0t/mp3s', name: 'mp3s' }
+#  - { source_path: '/srv/fileb0t/movies', name: 'movies' }
+#  - { source_path: '/srv/fileb0t/tv', name: 'tv' }
+#  - { source_path: '/srv/m0n0l1th', name: 'm0n0l1th' }
 
 rsync_server_syncs: #Jobs will be added to the root crontab.
   - name: 'pull_clews'
     source: 'clewsy@zoidberg.lan:/home/docker'
-    dest: '/srv/cl0ud/clews/'
+    dest: '/data/files_1/backups/clews/'
     minute: "0"
     hour: "1"
     day: "*"
     month: "*"
     weekday: "*"
   - name: 'push_clews'
-    source: '/srv/cl0ud/clews'
+    source: '/data/files_1/backups/clews'
     dest: "b4t@{{ backup_server_ip }}:/home/b4t/backups/"
     ssh_port: "{{ backup_server_port }}"
     minute: "0"
@@ -68,15 +68,15 @@ rsync_server_syncs: #Jobs will be added to the root crontab.
     day: "*"
     month: "*"
     weekday: "*"
-  - name: 'push_data'
-    source: '/export/data'
-    dest: "b4t@{{ backup_server_ip }}:/home/b4t/backups/"
-    ssh_port: "{{ backup_server_port }}"
-    minute: "0"
-    hour: "3"
-    day: "*"
-    month: "*"
-    weekday: "*"
+#  - name: 'push_data'
+#    source: '/export/data'
+#    dest: "b4t@{{ backup_server_ip }}:/home/b4t/backups/"
+#    ssh_port: "{{ backup_server_port }}"
+#    minute: "0"
+#    hour: "3"
+#    day: "*"
+#    month: "*"
+#    weekday: "*"
 
 mc_skin: modarcon16root-defbg
 

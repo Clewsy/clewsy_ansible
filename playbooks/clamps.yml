@@ -1,0 +1,12 @@
+---
+- name: Configure clamps.
+  hosts: clamps
+  become: yes
+  gather_facts: true
+
+  handlers:
+    - import_tasks: handlers/handlers.yml
+
+  roles:
+    - common
+    - headless

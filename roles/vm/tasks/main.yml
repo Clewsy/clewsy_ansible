@@ -1,0 +1,3 @@
+---
+- name: Run extra tasks wanted for vms.
+  include_tasks: vm.yml

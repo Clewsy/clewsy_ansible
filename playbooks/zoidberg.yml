@@ -10,7 +10,8 @@
   roles:
     - common
     - secure
+    - vm
     - headless
     - docker
     - web_apps
-    - polly
+#    - polly

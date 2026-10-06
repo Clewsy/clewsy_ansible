@@ -12,6 +12,7 @@
   roles:
 #    - common
 #    - secure
+#    - vm
 #    - headless
 #    - node
 #    - cups

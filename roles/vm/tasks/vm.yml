@@ -1,0 +1,8 @@
+---
+- name: '[vm] Load vm variables.'
+  include_vars: vm_vars.yml
+
+- name: '[vm] Ensure all packages required on a vm are installed.'
+  apt:
+    name: "{{ vm_packages }}"
+    state: latest

@@ -2,12 +2,11 @@
 - name: Configure scruffy.
   hosts: scruffy
   become: yes
-  gather_facts: false
+  gather_facts: true
 
   handlers:
     - import_tasks: handlers/handlers.yml
 
   roles:
     - common
-    - secure
-    - motioneye
+    - vm

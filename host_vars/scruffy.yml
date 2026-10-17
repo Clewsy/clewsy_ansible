@@ -1,6 +1,6 @@
 host_name: scruffy
 
-ansible_user: b4t
+ansible_user: clewsy
 
 ansible_password: !vault |
   $ANSIBLE_VAULT;1.1;AES256
@@ -22,21 +22,9 @@ theme_colour: BLUE
 theme_prompt: "{{ SCRUFFY }}"
 
 nfs_mounts:
-#  - { mount_source: 'zapp:/export/data', mount_path: '/mnt/zapp/data' }
-#  - { mount_source: 'zapp:/export/movies', mount_path: '/mnt/zapp/movies' }
-#  - { mount_source: 'zapp:/export/mp3s', mount_path: '/mnt/zapp/mp3s' }
-#  - { mount_source: 'zapp:/export/music_videos', mount_path: '/mnt/zapp/music_videos' }
-#  - { mount_source: 'zapp:/export/tv', mount_path: '/mnt/zapp/tv' }
-#  - { mount_source: 'zapp:/export/cl0ud', mount_path: '/mnt/zapp/cl0ud' }
-#  - { mount_source: 'zapp:/export/m0n0l1th', mount_path: '/mnt/zapp/m0n0l1th' }
-
-sshd_port: !vault |
-  $ANSIBLE_VAULT;1.1;AES256
-  36323265393837396232343032363337636330666666393633353832636634623964303362323433
-  3933353535363266393761326530373938366431363064630a356430663038616630643335663062
-  37316635663937666536393138396331353532393235373830366163363262643930343638346532
-  3233636231356139310a333532393839386462643236386433303463636365643130316632336438
-  3536
+  - { mount_source: 'zapp.lan:/data/files_0/movies', mount_path: '/mnt/zapp/movies' }
+  - { mount_source: 'zapp.lan:/data/files_0/mp3s', mount_path: '/mnt/zapp/mp3s' }
+  - { mount_source: 'zapp.lan:/data/files_0/tv', mount_path: '/mnt/zapp/tv' }
 
 ssh_public_key: !vault |
   $ANSIBLE_VAULT;1.1;AES256

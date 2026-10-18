@@ -2,7 +2,7 @@
 - name: Configure bender.
   hosts: bender
   become: yes
-  gather_facts: false
+  gather_facts: true
 
   handlers:
     - import_tasks: handlers/handlers.yml

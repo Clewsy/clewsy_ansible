@@ -1,9 +1,9 @@
 ##systems on the local network.
-clewsy@bender       #laptop
-clewsy@nibbler      #laptop
-clewsy@farnsworth   #desktop
-clewsy@hypnotoad    #media center
-b4t@b4t             #offsite backups
-b4t@seymour
-clewsy@zapp         #file server.
-clewsy@zoidberg     #web-apps
+clewsy@bender.lan       #laptop
+clewsy@nibbler.lan      #laptop
+clewsy@farnsworth.lan   #desktop
+clewsy@hypnotoad.lan    #media center
+b4t@b4t                 #offsite backups
+b4t@seymour.lan
+clewsy@zapp.lan         #file server
+clewsy@vm-zoidberg.lan  #web-apps

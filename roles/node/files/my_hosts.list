@@ -1,15 +1,9 @@
-## A list of systems on the local network.
-b4t@b4t-cam			#077 raspberry pi ip camera.
-#jc@bender			#222 Laptop (may be off).
-#jc@farnsworth			#200 My desktop system.
-b4t@fry				#    My antarctic node.
-#butt@fartsworth		#N/A A fake host for testing scripts.
-b4t@hermes			#034 Print server (uses cups on an old raspberry pi).
-osmc@hypnotoad			#010 Media center (raspberry pi running osmc).
-#clewsy@nibbler			#123 My amazing XPS 13!
-#b4t@p0wer			#042 raspi zero w connected to a gpo remote control.
-#STORED b4t@pazuzu			#079 basically another webcam - pi zero w with pi cam.
-#STORED b4t@rad10			#111 raspi running mpd and clients with hardware control.
-b4t@seymour			#007 node (beaglebone black).
-b4t@zapp			#012 The file server.
-jc@zoidberg			#011 Home of clews.pro.
+##systems on the local network.
+clewsy@bender       #laptop
+clewsy@nibbler      #laptop
+clewsy@farnsworth   #desktop
+clewsy@hypnotoad    #media center
+b4t@b4t             #offsite backups
+b4t@seymour
+clewsy@zapp         #file server.
+clewsy@zoidberg     #web-apps
